@@ -3,16 +3,16 @@
 import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
 import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
 import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
-import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
-import platinumWindowStyle from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow.module.scss";
+import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
+import platinumWindowStyle from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss";
 import {
-    PlatinumWindowState,
-    PlatinumWindowStateEventReducer
-} from "@/app/SystemFolder/SystemResources/Window/PlatinumWindowContext";
+    ClassicyWindowState,
+    ClassicyWindowStateEventReducer
+} from "@/app/SystemFolder/SystemResources/Window/ClassicyWindowContext";
 import classNames from "classnames";
 import React from "react";
 
-interface PlatinumWindowProps {
+interface ClassicyWindowProps {
     title?: string;
     id: string;
     appId?: string;
@@ -35,7 +35,7 @@ interface PlatinumWindowProps {
     children?: React.ReactNode;
 }
 
-const PlatinumWindow: React.FC<PlatinumWindowProps> = ({
+const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                                                            id,
                                                            title = "",
                                                            icon = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}/img/icons/system/files/file.png`,
@@ -63,7 +63,7 @@ const PlatinumWindow: React.FC<PlatinumWindowProps> = ({
         0, 0,
     ]);
 
-    let initialWindowState: PlatinumWindowState = {
+    let initialWindowState: ClassicyWindowState = {
         size: initialSize,
         position: initialPosition,
         closed: hidden,
@@ -74,7 +74,7 @@ const PlatinumWindow: React.FC<PlatinumWindowProps> = ({
     const clickOffset = [10, 10];
 
     const [windowState, windowEventDispatch] = React.useReducer(
-        PlatinumWindowStateEventReducer,
+        ClassicyWindowStateEventReducer,
         initialWindowState
     );
 
@@ -424,4 +424,4 @@ const PlatinumWindow: React.FC<PlatinumWindowProps> = ({
     );
 };
 
-export default PlatinumWindow;
+export default ClassicyWindow;

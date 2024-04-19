@@ -1,7 +1,7 @@
 @use "../../Appearance/styles/appearance";
 @use "../../Appearance/styles/assets";
 
-.platinumRadioInputGroup {
+.classicyRadioInputGroup {
   display: flex;
   align-items: stretch;
   flex-direction: row;
@@ -15,7 +15,7 @@
   }
 }
 
-.platinumRadioInputWrapper {
+.classicyRadioInputWrapper {
   width: calc(var(--window-control-size) / 2);
   height: calc(var(--window-control-size) / 2);
   margin-top: calc(var(--window-control-size) / 2);
@@ -28,7 +28,7 @@
 
 }
 
-.platinumRadioInput {
+.classicyRadioInput {
   position: relative;
   top: calc(var(--window-border-size) * -5);
   left: calc(var(--window-border-size) * -3);
@@ -78,19 +78,19 @@
 
 }
 
-.platinumRadioInputLabel {
+.classicyRadioInputLabel {
   font-family: var(--ui-font);
   font-size: var(--ui-font-size);
   height: var(--window-control-size);
   margin-left: calc(var(--window-control-size) / 2);
 }
 
-.platinumRadioInputLabelDisabled {
+.classicyRadioInputLabelDisabled {
   color: var(--color-system-05);
   filter: invert(1);
 }
 
-.platinumRadioInputDefault {
+.classicyRadioInputDefault {
   width: var(--window-control-size);
   margin: 0;
 

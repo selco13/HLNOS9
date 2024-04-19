@@ -3,7 +3,7 @@ import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/
 import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
 import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
 import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const Browser = () => {
@@ -59,7 +59,7 @@ const Browser = () => {
             defaultWindow={"demo"}
             appContext={appContext}
         >
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"demo"}
                 title={appName}
                 appId={appId}
@@ -81,7 +81,7 @@ const Browser = () => {
                     allowFullScreen={true}
                     style={{width: "100%", height: "100%", padding: "0", margin: "0"}}
                 ></iframe>
-            </PlatinumWindow>
+            </ClassicyWindow>
         </ClassicyApp>
     );
 }

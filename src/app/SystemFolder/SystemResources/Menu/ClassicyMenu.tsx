@@ -1,5 +1,5 @@
 import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
-import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
+import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
 import classNames from "classnames";
 import React from "react";
 

@@ -7,8 +7,8 @@ import {useDesktop, useDesktopDispatch,} from "@/app/SystemFolder/SystemResource
 import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
 import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
 import ClassicyPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu";
-import {useSound, useSoundDispatch,} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import {useSound, useSoundDispatch,} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 export const AppearanceManager: React.FC = () => {
@@ -97,7 +97,7 @@ export const AppearanceManager: React.FC = () => {
             defaultWindow={"AppearanceManager_1"}
             openOnBoot={true}
         >
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"AppearanceManager_1"}
                 title={appName}
                 appId={appId}
@@ -121,7 +121,7 @@ export const AppearanceManager: React.FC = () => {
                     selected={desktopContext.activeTheme || "default"}
                 />
                 <ClassicyButton onClick={cleanupIcons}>Cleanup Icons</ClassicyButton>
-            </PlatinumWindow>
+            </ClassicyWindow>
             {showAbout && (
                 <ClassicyAboutWindow appId={appId}
                                      appName={appName}

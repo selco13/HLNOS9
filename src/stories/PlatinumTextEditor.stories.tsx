@@ -1,15 +1,15 @@
-import PlatinumTextEditor from "@/app/SystemFolder/SystemResources/TextEditor/PlatinumTextEditor";
+import ClassicyTextEditor from "@/app/SystemFolder/SystemResources/TextEditor/ClassicyTextEditor";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumTextEditor',
-    component: PlatinumTextEditor,
+    title: 'Platinum/ClassicyTextEditor',
+    component: ClassicyTextEditor,
     parameters: {
         layout: 'centered',
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumTextEditor>;
+} satisfies Meta<typeof ClassicyTextEditor>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

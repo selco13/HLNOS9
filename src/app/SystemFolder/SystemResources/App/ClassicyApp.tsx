@@ -1,7 +1,7 @@
 import {getTheme} from "@/app/SystemFolder/Appearance/PlatinumAppearance";
 import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
-import {useSound} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import {useSound} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 import {JSONTree} from 'react-json-tree';
 
@@ -79,7 +79,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
 
     if (debug) {
         let debugWindow = (
-            <PlatinumWindow initialSize={[400, 300]}
+            <ClassicyWindow initialSize={[400, 300]}
                             initialPosition={[100, 200]}
                             title={"DEBUG " + name}
                             id={id + "_debugger"}
@@ -95,7 +95,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
                 <br/>
                 <h2>soundPlayer</h2>
                 <JSONTree data={useSound} theme={debuggerJSONTheme}/>
-            </PlatinumWindow>
+            </ClassicyWindow>
         );
 
         if (Array.isArray[children]) {

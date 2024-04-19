@@ -6,9 +6,9 @@ import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGrou
 import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
 import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
 import ClassicyPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu";
-import PlatinumProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/PlatinumProgressBar";
-import PlatinumRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/PlatinumRadioInput";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/ClassicyProgressBar";
+import ClassicyRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const Demo: React.FC = () => {
@@ -54,7 +54,7 @@ const Demo: React.FC = () => {
                 defaultWindow={"demo"}
                 appContext={appContext}
             >
-                <PlatinumWindow
+                <ClassicyWindow
                     id={"demo2"}
                     title={appName}
                     appId={appId}
@@ -74,14 +74,14 @@ const Demo: React.FC = () => {
                         options={[{value: "hello", label: "Hello"}, {value: "hello2", label: "Hello again!"}]}
                         selected={"hello"}
                     />
-                    <PlatinumProgressBar value={59}></PlatinumProgressBar>
+                    <ClassicyProgressBar value={59}></ClassicyProgressBar>
                     <ClassicyInput id={"test"} labelTitle={"Text Input"}></ClassicyInput>
                     <ClassicyControlGroup label={"Test Radio Inputs"}>
-                        <PlatinumRadioInput id={"test1"} name={"test_radio"} isDefault={false}
+                        <ClassicyRadioInput id={"test1"} name={"test_radio"} isDefault={false}
                                             label={"Radio Button 1"}/>
-                        <PlatinumRadioInput id={"test2"} name={"test_radio"} isDefault={false}
+                        <ClassicyRadioInput id={"test2"} name={"test_radio"} isDefault={false}
                                             label={"Radio Button 2"}/>
-                        <PlatinumRadioInput id={"test3"} checked={true} name={"test_radio"} isDefault={false}
+                        <ClassicyRadioInput id={"test3"} checked={true} name={"test_radio"} isDefault={false}
                                             label={"Radio Button Disabled"} disabled={true}/>
                     </ClassicyControlGroup>
                     <ClassicyControlGroup label={"Test Checkboxes"}>
@@ -101,7 +101,7 @@ const Demo: React.FC = () => {
                     <ClassicyButton isDefault={false} onClick={quitApp}>Quit</ClassicyButton>
                     <ClassicyButton isDefault={false} disabled={true}>Disabled</ClassicyButton>
 
-                </PlatinumWindow>
+                </ClassicyWindow>
             </ClassicyApp>
         </>
     );

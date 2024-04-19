@@ -9,7 +9,7 @@ import {
 } from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopWindowManagerContext"
 import {
     PlatinumSoundManagerProvider
-} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
+} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
 import React, {createContext, Suspense, useContext, useReducer} from 'react';
 
 const PlatinumDesktopContext = createContext(null);

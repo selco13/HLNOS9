@@ -12,8 +12,8 @@ import {
     PlatinumSoundInfo,
     useSound,
     useSoundDispatch,
-} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 export const SoundManager: React.FC = () => {
@@ -97,7 +97,7 @@ export const SoundManager: React.FC = () => {
             defaultWindow={"SoundManager_1"}
             openOnBoot={true}
         >
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"SoundManager_1"}
                 title={appName}
                 appId={appId}
@@ -141,7 +141,7 @@ export const SoundManager: React.FC = () => {
                         ))}
                     </div>
                 </ClassicyDisclosure>
-            </PlatinumWindow>
+            </ClassicyWindow>
             {showAbout && (
                 <ClassicyAboutWindow appId={appId}
                                      appName={appName}

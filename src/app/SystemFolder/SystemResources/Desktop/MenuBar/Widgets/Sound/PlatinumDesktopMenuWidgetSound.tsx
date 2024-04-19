@@ -1,7 +1,7 @@
 import platinumDesktopMenuWidgetSoundStyles
     from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/PlatinumDesktopMenuWidgetSound.module.scss"
 import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
-import {useSound, useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
+import {useSound, useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
 import classNames from "classnames";
 import React from 'react';
 

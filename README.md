@@ -151,8 +151,8 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
         * `<YourPlatinumApp>`
             * `<ClassicyAppContext>`
                 * `<ClassicyApp>`
-                    * `<PlatinumWindow?>`
-                        * `<PlatinumUIControls?>`
+                    * `<ClassicyWindow?>`
+                        * `<ClassicyUIControls?>`
                         * `<OtherReactNodes?>`
 
 ## Events
@@ -203,7 +203,7 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     * `PlatinumAppHide`
     * `PlatinumAppFocus`
 
-* `PlatinumWindow`
+* `ClassicyWindow`
     * `PlatinumWindowOpen`
     * `PlatinumWindowClose`
     * `PlatinumWindowZoom`
@@ -602,7 +602,7 @@ I sketched out the component structure as follows:
         - `<APlatinumApp>`: A Custom app
             - `<AppContextProvider>`
                 - `<PlatinumDesktopIcon>`
-                - `<PlatinumWindow>`
+                - `<ClassicyWindow>`
                     - `<PlatinumUIComponents?>`
                     - `<AnyOtherReactComponent>`
 
@@ -699,7 +699,7 @@ later.
 *The JSON contents of the `Bondi` theme.*
 
 Now that I had my components defined, I sketched them out quickly, just for structure. There really wasn't much to them,
-but I needed a canvas to start working. I created a blank PlatinumDesktop, PlatinumDesktopIcon, PlatinumWindow and
+but I needed a canvas to start working. I created a blank PlatinumDesktop, PlatinumDesktopIcon, ClassicyWindow and
 ClassicyButton as a starting point, with no CSS. Then, I got to the hard, hard work.
 
 I first sketched out the components of a Platinum Window. I knew that this would be my most complicated component, so I
@@ -807,7 +807,7 @@ this all wrong. I took a week away from the project, and started doing every tut
 state and event reducers in React.
 
 After my break and fresh insight, I rewrote the PlatinumDesktop component to use a shared context and an event reducer.
-I then did the same thing to the PlatinumWindow component. I typed up a list of events I would need to react to.
+I then did the same thing to the ClassicyWindow component. I typed up a list of events I would need to react to.
 
 | EventName                     | Description                                                                                                                                                                                                                                          |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -841,8 +841,8 @@ and PlatinumDesktopMenuBar components use that state to render the menu. This to
 around, being somewhat a newbie again to React, but eventually it became so elegant that I have almost taken it for
 granted.
 
-I abstracted out as much even logic as possible into the deepest component I could. I knew that PlatinumWindow events
-might need to bubble up to the PlatinumDesktop, but I also knew many PlatinumWindow events would need to go that high,
+I abstracted out as much even logic as possible into the deepest component I could. I knew that ClassicyWindow events
+might need to bubble up to the PlatinumDesktop, but I also knew many ClassicyWindow events would need to go that high,
 and could stay within the Window itself. While the events are structuarlly the same, I decided to setup discrete event
 dispatchers for components. I knew this means I would have to make two calls for some events.
 
@@ -850,7 +850,7 @@ For instance, to handle a `PlatinumWindowFocus` event, first I need to notify th
 This is important so that it could notify the windows' children of a change, and make any visual updates necessary, such
 as applying a new "active" CSS class. Then, I need to let the PlatinumDesktop event handler also know the window was
 been focused, so it can be set as the active window and raised to the top-most z-index. When handling this event in the
-PlatinumWindow, I first dispatch a local `PlatinumWindowFocus` to the Window's event dispatcher. Then, using the same
+ClassicyWindow, I first dispatch a local `PlatinumWindowFocus` to the Window's event dispatcher. Then, using the same
 payload, I dispatch the same `PlatinumWindowFocus` event to the Desktop event dispatcher.
 
 ### Demo Time
@@ -865,7 +865,7 @@ I took a shot at building out a full App using the framework I'd setup. It looks
 <ClassicyAppContext.Provider value={{appContext, setAppContext}}>
     <PlatinumDesktopIcon appId={appId} appName={appName} icon={appIcon}/>
     <ClassicyApp id={appId} name={appName} icon={appIcon} debug={true}>
-        <PlatinumWindow
+        <ClassicyWindow
             id={"demo"}
             title={appName}
             appId={appId}
@@ -875,7 +875,7 @@ I took a shot at building out a full App using the framework I'd setup. It looks
             collapsable={true}>
             <iframe src={"https://theoldnet.com/"}
                     style={{width: "100%", height: "100%", padding: "0", margin: "0"}}/>
-        </PlatinumWindow>
+        </ClassicyWindow>
     </ClassicyApp>
 </ClassicyAppContext.Provider>
 ```

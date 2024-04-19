@@ -2,7 +2,7 @@ import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
 import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import ClassicyFileBrowser from "@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser";
 import {PlatinumFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const Finder = () => {
@@ -68,7 +68,7 @@ const Finder = () => {
     openPaths.forEach((op, idx) => {
         let dir = fs.statDir(op);
         openWindows.push(
-            <PlatinumWindow
+            <ClassicyWindow
                 id={appName + ":" + op}
                 title={dir['_name']}
                 icon={`${process.env.NEXT_PUBLIC_BASE_PATH}${dir['_icon']}`}
@@ -80,7 +80,7 @@ const Finder = () => {
             >
                 <ClassicyFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}
                                      fileOnClickFunc={openFile}/>
-            </PlatinumWindow>
+            </ClassicyWindow>
         )
     })
 

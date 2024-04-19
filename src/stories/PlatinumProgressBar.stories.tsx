@@ -1,15 +1,15 @@
-import PlatinumProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/PlatinumProgressBar";
+import ClassicyProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/ClassicyProgressBar";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumProgressBar',
-    component: PlatinumProgressBar,
+    title: 'Platinum/ClassicyProgressBar',
+    component: ClassicyProgressBar,
     parameters: {
         layout: 'padding',
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumProgressBar>;
+} satisfies Meta<typeof ClassicyProgressBar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

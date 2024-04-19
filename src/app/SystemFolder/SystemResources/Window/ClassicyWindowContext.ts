@@ -1,6 +1,6 @@
 import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 
-export type PlatinumWindowState = {
+export type ClassicyWindowState = {
     size: [number, number],
     position: [number, number],
     clickPosition?: [number, number];
@@ -17,7 +17,7 @@ export type PlatinumWindowState = {
     contextMenuLocation?: [number, number];
 }
 
-export const PlatinumWindowStateEventReducer = (ws: PlatinumWindowState, action) => {
+export const ClassicyWindowStateEventReducer = (ws: ClassicyWindowState, action) => {
     switch (action.type) {
         case "PlatinumWindowOpen": {
             ws.closed = false;

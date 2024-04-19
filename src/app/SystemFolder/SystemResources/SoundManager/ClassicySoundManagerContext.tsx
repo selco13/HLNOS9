@@ -1,10 +1,10 @@
-import React from 'react';
-import soundData from "../../../../../public/sounds/platinum/platinum.json"
-import soundLabels from "./PlatinumSoundManagerLabels.json";
 import {Howl} from 'howler';
+import React from 'react';
 import fetch from "sync-fetch";
+import soundData from "../../../../../public/sounds/platinum/platinum.json"
+import soundLabels from "./ClassicySoundManagerLabels.json";
 
-export const PlatinumSoundManagerContext = React.createContext(null);
+export const ClassicySoundManagerContext = React.createContext(null);
 export const PlatinumSoundDispatchContext = React.createContext(null);
 
 export type PlatinumSoundInfo = {
@@ -75,7 +75,7 @@ export const loadSoundTheme = (soundThemeURL: string): Howl => {
 }
 
 export function useSound() {
-    return React.useContext(PlatinumSoundManagerContext);
+    return React.useContext(ClassicySoundManagerContext);
 }
 
 export function useSoundDispatch() {
@@ -146,10 +146,10 @@ export function PlatinumSoundManagerProvider({children}) {
     const [sound, soundDispatch] = React.useReducer(PlatinumSoundStateEventReducer, initialPlayer);
 
     return (
-        <PlatinumSoundManagerContext.Provider value={sound}>
+        <ClassicySoundManagerContext.Provider value={sound}>
             <PlatinumSoundDispatchContext.Provider value={soundDispatch}>
                 {children}
             </PlatinumSoundDispatchContext.Provider>
-        </PlatinumSoundManagerContext.Provider>
+        </ClassicySoundManagerContext.Provider>
     );
 }

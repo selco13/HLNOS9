@@ -1,15 +1,15 @@
-import PlatinumRichTextEditor from "@/app/SystemFolder/SystemResources/RichTextEditor/PlatinumRichTextEditor";
+import ClassicyRichTextEditor from "@/app/SystemFolder/SystemResources/RichTextEditor/ClassicyRichTextEditor";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumRichTextEditor',
-    component: PlatinumRichTextEditor,
+    title: 'Platinum/ClassicyRichTextEditor',
+    component: ClassicyRichTextEditor,
     parameters: {
         layout: 'centered',
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumRichTextEditor>;
+} satisfies Meta<typeof ClassicyRichTextEditor>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

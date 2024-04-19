@@ -1,7 +1,7 @@
 import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
 import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
-import PlatinumRichTextEditor from "@/app/SystemFolder/SystemResources/RichTextEditor/PlatinumRichTextEditor";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyRichTextEditor from "@/app/SystemFolder/SystemResources/RichTextEditor/ClassicyRichTextEditor";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const SimpleText = () => {
@@ -66,15 +66,15 @@ const SimpleText = () => {
             name={appName}
             icon={appIcon}
             defaultWindow={"textedit-demo"}>
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"textedit-demo"}
                 title={"Here's to..."}
                 appId={appId}
                 initialSize={[100, 500]}
                 initialPosition={[350, 100]}
                 appMenu={appMenu}>
-                <PlatinumRichTextEditor content={defaultText}></PlatinumRichTextEditor>
-            </PlatinumWindow>
+                <ClassicyRichTextEditor content={defaultText}></ClassicyRichTextEditor>
+            </ClassicyWindow>
         </ClassicyApp>
     );
 }

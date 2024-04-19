@@ -1,6 +1,6 @@
 import appearanceManagerStyles from "@/app/SystemFolder/ControlPanels/AppearanceManager/AppearanceManager.module.scss";
 import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 
 type ClassicyAboutWindowProps = {
     appId: string;
@@ -19,7 +19,7 @@ export const ClassicyAboutWindow: React.FC<ClassicyAboutWindowProps> = ({
                                                                         }) => {
 
     return (
-        <PlatinumWindow
+        <ClassicyWindow
             id="AppearanceManager_about"
             appId={appId}
             closable={false}
@@ -40,6 +40,6 @@ export const ClassicyAboutWindow: React.FC<ClassicyAboutWindowProps> = ({
                     OK
                 </ClassicyButton>
             </div>
-        </PlatinumWindow>
+        </ClassicyWindow>
     )
 }

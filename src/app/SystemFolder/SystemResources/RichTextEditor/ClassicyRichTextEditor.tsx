@@ -1,5 +1,5 @@
-import PlatinumRichTextEditorStyles
-    from "@/app/SystemFolder/SystemResources/RichTextEditor/PlatinumRichTextEditor.module.scss";
+import classicyRichTextEditorStyles
+    from "@/app/SystemFolder/SystemResources/RichTextEditor/ClassicyRichTextEditor.module.scss";
 import {
     BoldItalicUnderlineToggles,
     CodeToggle,
@@ -20,8 +20,8 @@ interface PlatinumRichTextEditorProps {
     editorRef?: React.MutableRefObject<MDXEditorMethods | null>;
 }
 
-const PlatinumRichTextEditor: FC<PlatinumRichTextEditorProps> = ({content, editorRef}) => {
-    return <div className={PlatinumRichTextEditorStyles.platinumRichTextEditor}>
+const ClassicyRichTextEditor: FC<PlatinumRichTextEditorProps> = ({content, editorRef}) => {
+    return <div className={classicyRichTextEditorStyles.classicyRichTextEditor}>
         <MDXEditor ref={editorRef} markdown={content} contentEditableClassName="prose"
                    plugins={[headingsPlugin(), headingsPlugin(),
                        quotePlugin(),
@@ -41,4 +41,4 @@ const PlatinumRichTextEditor: FC<PlatinumRichTextEditorProps> = ({content, edito
                    ]}/></div>
 }
 
-export default PlatinumRichTextEditor
+export default ClassicyRichTextEditor
