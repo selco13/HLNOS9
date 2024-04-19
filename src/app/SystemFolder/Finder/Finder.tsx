@@ -73,7 +73,7 @@ const Finder = () => {
                 title={dir['_name']}
                 icon={`${process.env.NEXT_PUBLIC_BASE_PATH}${dir['_icon']}`}
                 appId={appId}
-                initialSize={[300, 300]}
+                initialSize={[425, 300]}
                 initialPosition={[50 + (idx * 50), 50 + (idx * 50)]}
                 header={<span>{dir["_count"]} items</span>}
                 onCloseFunc={closeFolder}

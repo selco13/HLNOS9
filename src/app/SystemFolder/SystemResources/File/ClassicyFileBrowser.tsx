@@ -57,9 +57,9 @@ const ClassicyFileBrowser: React.FC<PlatinumFileBrowserProps> = (
         }
     }
 
-    const createGrid = (iconSize: number, iconPadding: number, containerMeasure: [number, number]) => {
+    const createGrid = (iconSize: number, iconPadding: number, containerMeasure: [number, number]): [number, number] => {
         return [
-            Math.floor(containerMeasure[0] / (iconSize + iconPadding)),
+            Math.floor(containerMeasure[0] / (iconSize * 2 + iconPadding)),
             Math.floor(containerMeasure[1] / (iconSize * 2 + iconPadding)),
         ];
     };
@@ -70,21 +70,26 @@ const ClassicyFileBrowser: React.FC<PlatinumFileBrowserProps> = (
         return [iconSize, iconSize / 4];
     }
 
+    const getGridPosition = (i: number, grid: [number, number]): [number, number] => {
+        return [(i % grid[0]),
+            Math.floor(i/grid[0])];
+    }
+
+    function cleanupIcon(theme: string, iconIndex: number, iconTotal: number, containerMeasure: [number, number]): [number, number] {
+        const [iconSize, iconPadding] = getIconSize(theme);
+        let grid = createGrid(iconSize, iconTotal, containerMeasure);
+        const [startX, startY] = getGridPosition(iconIndex, grid)
+
+        console.log(iconIndex + 1, grid, startX, startY)
+        return [
+            iconPadding + Math.floor(((iconSize * 2) * startX)),
+            iconPadding + Math.floor(((iconSize * 2) * startY))
+        ];
+    }
 
     React.useEffect(() => {
         const containerMeasure: [number, number] = [holderRef.current.getBoundingClientRect().width, holderRef.current.getBoundingClientRect().height];
         const directoryListing = fs.filterByType(path, ["file", "directory"]);
-        function cleanupIcon(theme: string, iconIndex: number, iconTotal: number, containerMeasure: [number, number]): [number, number] {
-            const [iconSize, iconPadding] = getIconSize(theme);
-            let grid = createGrid(iconSize, iconTotal, containerMeasure);
-            const startX = grid[0] % (iconIndex + 1);
-            const startY = grid[1] % ((iconIndex) / startX);
-
-            return [
-                iconPadding + Math.floor(((iconSize * 2) * startX)),
-                iconPadding + Math.floor(((iconSize) * startY))
-            ];
-        }
 
         switch (display) {
             // TODO: Still need to work on this... I left it in a weird place.
@@ -137,11 +142,11 @@ const ClassicyFileBrowser: React.FC<PlatinumFileBrowserProps> = (
                         />
                     )
                 })
-                setItems((prevState) => ([...icons]));
+                setItems((_) => ([...icons]));
                 break;
             }
         }
-    }, [path, display, fs, desktopContext.activeTheme])
+    }, [path, display, fs, desktopContext.activeTheme, holderRef])
 
 
     return (
