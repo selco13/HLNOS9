@@ -70,24 +70,21 @@ const ClassicyFileBrowser: React.FC<PlatinumFileBrowserProps> = (
         return [iconSize, iconSize / 4];
     }
 
-    const cleanupIcon = (theme: string, iconIndex: number, iconTotal: number, containerMeasure: [number, number]): [number, number] => {
-        const [iconSize, iconPadding] = getIconSize(theme);
-
-        let grid = createGrid(iconSize, iconTotal, containerMeasure);
-        const startX = grid[0] % (iconIndex + 1);
-        const startY = grid[1] % (iconIndex / startX + 1);
-        console.log(startX, startY)
-
-        return [
-            Math.floor(((iconSize * 2) * startX)) + iconPadding,
-            Math.floor(((iconSize * 1) * startY)) + iconPadding,
-        ];
-    }
-
 
     React.useEffect(() => {
         const containerMeasure: [number, number] = [holderRef.current.getBoundingClientRect().width, holderRef.current.getBoundingClientRect().height];
         const directoryListing = fs.filterByType(path, ["file", "directory"]);
+        function cleanupIcon(theme: string, iconIndex: number, iconTotal: number, containerMeasure: [number, number]): [number, number] {
+            const [iconSize, iconPadding] = getIconSize(theme);
+            let grid = createGrid(iconSize, iconTotal, containerMeasure);
+            const startX = grid[0] % (iconIndex + 1);
+            const startY = grid[1] % ((iconIndex) / startX);
+
+            return [
+                iconPadding + Math.floor(((iconSize * 2) * startX)),
+                iconPadding + Math.floor(((iconSize) * startY))
+            ];
+        }
 
         switch (display) {
             // TODO: Still need to work on this... I left it in a weird place.
@@ -140,11 +137,11 @@ const ClassicyFileBrowser: React.FC<PlatinumFileBrowserProps> = (
                         />
                     )
                 })
-                setItems(icons)
+                setItems((prevState) => ([...icons]));
                 break;
             }
         }
-    }, [path, holderRef, desktopContext])
+    }, [path, display, fs, desktopContext.activeTheme])
 
 
     return (

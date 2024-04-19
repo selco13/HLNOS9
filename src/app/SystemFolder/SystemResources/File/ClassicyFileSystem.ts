@@ -1,4 +1,4 @@
-import {sha512} from 'sha512-crypt-ts';
+// import {sha512} from 'sha512-crypt-ts';
 
 let defaultFSContent = {
     "Macintosh HD": {
@@ -72,7 +72,7 @@ let defaultFSContent = {
     }
 }
 
-export type PlatinumFileSystemEntry = {
+type PlatinumFileSystemEntry = {
     "_type": "drive" | "directory" | "file" | "shortcut" | "app_shortcut";
     "_icon"?: string;
     "_mimeType"?: string;
@@ -91,14 +91,14 @@ export type PlatinumFileSystemEntry = {
     [entry: string]: any;
 }
 
-type pathOrObject = PlatinumFileSystemEntry | string
+export type pathOrObject = PlatinumFileSystemEntry | string
 
 export class PlatinumFileSystem {
     basePath: string;
     fs: PlatinumFileSystemEntry;
     separator: string;
 
-    constructor(basePath: string = "", defaultFS: any = defaultFSContent, separator = ":") {
+    constructor(basePath: string = "", defaultFS: any = defaultFSContent, separator: string = ":") {
         this.basePath = basePath
         this.fs = typeof window !== 'undefined'
             ? JSON.parse(localStorage.getItem(this.basePath)) || defaultFS
@@ -114,11 +114,12 @@ export class PlatinumFileSystem {
         return JSON.stringify(this.fs, null, 2);
     }
 
+    pathArray = (path: string) => {
+        return [this.basePath, ...path.split(this.separator)].filter((v) => v !== "");
+    }
+
     resolve(path: string): PlatinumFileSystemEntry {
-        const pathArray = (path: string) => {
-            return [this.basePath, ...path.split(this.separator)].filter((v) => v !== "");
-        }
-        return pathArray(path).reduce((prev, curr) => prev?.[curr], this.fs)
+        return this.pathArray(path).reduce((prev, curr) => prev?.[curr], this.fs)
     }
 
     formatSize(bytes: number, measure: "bits" | "bytes" = "bytes", decimals: number = 2): string {
@@ -177,7 +178,7 @@ export class PlatinumFileSystem {
 
     size(path: pathOrObject): number {
         if (typeof path === 'string') {
-            return new Blob([this.readFileRaw(path)]).size;
+            return new Blob([this.readFile(path)]).size;
         }
         if (path instanceof Object && '_data' in path) {
             return new Blob([path['_data'] as string]).size;
@@ -193,42 +194,65 @@ export class PlatinumFileSystem {
         }
     }
 
-    readFileRaw(path: pathOrObject): string {
+    readFile(path: pathOrObject): string {
         if (path instanceof Object && '_data' in path) {
             return path['_data'] as string
         }
         if (typeof path === 'string') {
             let item: PlatinumFileSystemEntry = this.resolve(path);
-            if (item && '_data' in item) {
-                return item['_data'];
-            }
+            return this.readFile(item)
         }
     }
 
-    readFile(path: pathOrObject) {
-        if (path instanceof Object && '_data' in path) {
-            return this.readFileRaw(path)
-        }
+    writeFile(path: pathOrObject, data: string) {
+        let current: PlatinumFileSystemEntry;
+
         if (typeof path === 'string') {
-
-            let item: PlatinumFileSystemEntry = this.resolve(path);
-            if ('_data' in item) {
-                if ('_mimeType' in item) {
-                    return this.renderFile(item['_mimeType'], item['_data']);
-                } else {
-                    return item['_data'];
-                }
-            }
+            // current = this.generateTree(path, data)
         }
+
     }
 
-    renderFile(mimeType: string, contents: any) {
-        switch (mimeType) {
-            default: {
-                return contents;
-            }
-        }
+    rmDir(path: string) {
+        const pathArr = this.pathArray(path)
+        delete pathArr.reduce((init, curr) => init && init[curr], this.fs)[pathArr[pathArr.length - 1]];
     }
+
+    mkDir(path: string) {
+        const parts: string[] = this.pathArray(path);
+
+        const newDirectoryObject = () => {
+            return {
+                "_type": "directory",
+                "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`
+            } as PlatinumFileSystemEntry;
+        }
+
+        let current = {}
+        let reference = current;
+
+        for (let i = parts.length - 1; i >= 0; i--) {
+            reference = current;
+            current = i === 0 ? {} : newDirectoryObject();
+            current[parts[i]] = i === parts.length - 1 ? newDirectoryObject() : reference;
+        }
+
+        return this.deepMerge(current, this.fs);
+    }
+
+    deepMerge(source:any, target: any) {
+        Object.keys(target).forEach(key => {
+            source[key] instanceof Object && target[key] instanceof Object
+                ? source[key] instanceof Array && target[key] instanceof Array
+                    ? void (source[key] = Array.from(new Set(source[key].concat(target[key]))))
+                    : !(source[key] instanceof Array) && !(target[key] instanceof Array)
+                        ? void this.deepMerge(source[key], target[key])
+                        : void (source[key] = target[key])
+                : void (source[key] = target[key]);
+        })
+        return source;
+    }
+
 
     calculateSizeDir(path: PlatinumFileSystemEntry | string): number {
         const gatherSizes = (entry: PlatinumFileSystemEntry, field: string, value: string): any[] => {
@@ -271,8 +295,6 @@ export class PlatinumFileSystem {
         Object.entries(metaData).forEach(([key, value]) => {
             returnValue[key] = value
         })
-
         return returnValue
     }
-
 }
