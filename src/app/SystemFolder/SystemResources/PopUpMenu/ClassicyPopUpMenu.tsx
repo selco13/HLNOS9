@@ -1,22 +1,22 @@
 import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
-import platinumPopUpMenuStyle from "@/app/SystemFolder/SystemResources/PopUpMenu/PlatinumPopUpMenu.module.scss";
+import classicyPopUpMenuStyle from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu.module.scss";
 import classNames from "classnames";
 import React from "react";
 
-type platinumPopUpMenuOptions = {
+type classicyPopUpMenuOptions = {
     value: string;
     label: string;
 }
 
-type platinumPopUpMenuProps = {
+type classicyPopUpMenuProps = {
     id: string;
     label?: string;
-    options: platinumPopUpMenuOptions[];
+    options: classicyPopUpMenuOptions[];
     selected?: string;
     small?: boolean;
     onChangeFunc?: any;
 }
-const PlatinumPopUpMenu: React.FC<platinumPopUpMenuProps> = (
+const ClassicyPopUpMenu: React.FC<classicyPopUpMenuProps> = (
     {
         id,
         label,
@@ -27,14 +27,14 @@ const PlatinumPopUpMenu: React.FC<platinumPopUpMenuProps> = (
     }
 ) => {
     return (
-        <div className={platinumPopUpMenuStyle.platinumPopUpMenuWrapper}>
+        <div className={classicyPopUpMenuStyle.classicyPopUpMenuWrapper}>
             {label &&
                 <ClassicyControlLabel label={label}></ClassicyControlLabel>
             }
             <div style={{flexGrow: "2"}}
                  className={classNames(
-                     platinumPopUpMenuStyle.platinumPopUpMenu,
-                     small ? platinumPopUpMenuStyle.platinumPopUpMenuSmall : ""
+                     classicyPopUpMenuStyle.classicyPopUpMenu,
+                     small ? classicyPopUpMenuStyle.classicyPopUpMenuSmall : ""
                  )}>
                 <select
                     id={id}
@@ -49,4 +49,4 @@ const PlatinumPopUpMenu: React.FC<platinumPopUpMenuProps> = (
         </div>
     );
 };
-export default PlatinumPopUpMenu;
+export default ClassicyPopUpMenu;

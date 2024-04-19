@@ -1,9 +1,9 @@
-import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu.module.scss";
+import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
 import classNames from "classnames";
 import React from "react";
 
-export interface PlatinumMenuItem {
+export interface ClassicyMenuItem {
     id: string;
     title?: string;
     image?: string;
@@ -12,18 +12,18 @@ export interface PlatinumMenuItem {
     keyboardShortcut?: string;
     link?: string;
     onClickFunc?: any;
-    menuChildren?: PlatinumMenuItem[];
+    menuChildren?: ClassicyMenuItem[];
     className?: string;
 }
 
-interface PlatinumMenuProps {
-    menuItems: PlatinumMenuItem[];
+interface ClassicyMenuProps {
+    menuItems: ClassicyMenuItem[];
     navClass?: string;
     subNavClass?: string;
     children?: any;
 }
 
-const PlatinumMenu: React.FC<PlatinumMenuProps> = (
+const ClassicyMenu: React.FC<ClassicyMenuProps> = (
     {
         menuItems,
         navClass,
@@ -35,7 +35,7 @@ const PlatinumMenu: React.FC<PlatinumMenuProps> = (
     const player = useSoundDispatch();
 
     const generateMenuItem = (
-            menuItem: PlatinumMenuItem,
+            menuItem: ClassicyMenuItem,
             subNavClass: string = "default"
         ) => {
             if (menuItem) {
@@ -53,7 +53,7 @@ const PlatinumMenu: React.FC<PlatinumMenuProps> = (
                             )}
                             {menuItem.title}
                         </p>
-                        <p className={platinumMenuStyles.platinumMenuItemKeyboardShortcut}
+                        <p className={classicyMenuStyles.classicyMenuItemKeyboardShortcut}
                            dangerouslySetInnerHTML={{__html: menuItem.keyboardShortcut}}></p>
                     </>;
                 }
@@ -62,16 +62,16 @@ const PlatinumMenu: React.FC<PlatinumMenuProps> = (
                     <li id={menuItem.id} key={menuItem.id}
                         onClick={menuItem.onClickFunc}
                         onMouseOver={() => {
-                            player({type: "PlatinumSoundPlay", sound: "PlatinumMenuItemHover"})
+                            player({type: "ClassicySoundPlay", sound: "ClassicyMenuItemHover"})
                         }}
                         onMouseOut={() => {
-                            player({type: "PlatinumSoundPlay", sound: "PlatinumMenuItemClick"})
+                            player({type: "ClassicySoundPlay", sound: "ClassicyMenuItemClick"})
                         }}
-                        className={classNames(platinumMenuStyles.platinumMenuItem,
-                            !!menuItem.icon ? "" : platinumMenuStyles.platinumMenuItemNoImage, menuItem.className,
-                            menuItem.disabled ? platinumMenuStyles.platinumMenuItemDisabled : "",
+                        className={classNames(classicyMenuStyles.classicyMenuItem,
+                            !!menuItem.icon ? "" : classicyMenuStyles.classicyMenuItemNoImage, menuItem.className,
+                            menuItem.disabled ? classicyMenuStyles.classicyMenuItemDisabled : "",
                             menuItem.menuChildren && menuItem.menuChildren.length > 0 ?
-                                platinumMenuStyles.platinumMenuItemChildMenuIndicator
+                                classicyMenuStyles.classicyMenuItemChildMenuIndicator
                                 : "")
                         }
                     >
@@ -85,16 +85,16 @@ const PlatinumMenu: React.FC<PlatinumMenuProps> = (
     ;
 
     const generateMenu = (
-        items: PlatinumMenuItem[],
-        navClass: string = platinumMenuStyles.platinumMenu,
-        subNavClass: string = platinumMenuStyles.platinumSubMenu,
+        items: ClassicyMenuItem[],
+        navClass: string = classicyMenuStyles.classicyMenu,
+        subNavClass: string = classicyMenuStyles.classicySubMenu,
         children?: any
     ) => {
         if (items && items.length > 0) {
             return (
-                <div className={platinumMenuStyles.platinumMenuWrapper}>
+                <div className={classicyMenuStyles.classicyMenuWrapper}>
                     <ul className={classNames(navClass)}>
-                        {items.map((item: PlatinumMenuItem) => (
+                        {items.map((item: ClassicyMenuItem) => (
                             generateMenuItem(item, subNavClass)
                         ))}
                         {children}
@@ -107,5 +107,5 @@ const PlatinumMenu: React.FC<PlatinumMenuProps> = (
     return generateMenu(menuItems, navClass, subNavClass, children)
 };
 
-export default PlatinumMenu;
+export default ClassicyMenu;
 

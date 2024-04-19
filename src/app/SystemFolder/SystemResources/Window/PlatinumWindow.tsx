@@ -2,7 +2,7 @@
 
 import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
 import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
-import {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
+import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
 import platinumWindowStyle from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow.module.scss";
 import {
@@ -29,8 +29,8 @@ interface PlatinumWindowProps {
     minimumSize?: [number, number];
     grow?: boolean;
     header?: React.ReactNode;
-    appMenu?: PlatinumMenuItem[];
-    contextMenu?: PlatinumMenuItem[];
+    appMenu?: ClassicyMenuItem[];
+    contextMenu?: ClassicyMenuItem[];
     onCloseFunc?: any;
     children?: React.ReactNode;
 }

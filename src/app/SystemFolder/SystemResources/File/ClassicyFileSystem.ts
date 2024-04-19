@@ -1,4 +1,4 @@
-// import {sha512} from 'sha512-crypt-ts';
+import {sha512} from 'sha512-crypt-ts';
 
 let defaultFSContent = {
     "Macintosh HD": {
@@ -187,7 +187,7 @@ export class PlatinumFileSystem {
 
     hash(path: pathOrObject) {
         if (typeof path === 'string') {
-            return sha512.crypt(this.readFileRaw(path), "");
+            return sha512.crypt(this.readFile(path), "");
         }
         if (path instanceof Object && '_data' in path) {
             return sha512.crypt(path['_data'], "");

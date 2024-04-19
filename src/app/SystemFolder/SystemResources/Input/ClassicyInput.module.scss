@@ -1,7 +1,7 @@
 @use "../../Appearance/styles/appearance";
 @use "sass:list";
 
-.platinumInputHolder {
+.classicyInputHolder {
   display: flex;
   align-items: baseline;
   flex-direction: row;
@@ -10,7 +10,7 @@
   column-gap: calc(var(--window-control-size) * 1);
 }
 
-.platinumInput {
+.classicyInput {
   font-family: var(--ui-font);
   flex-grow: 1;
   width: auto;
@@ -28,7 +28,9 @@
   }
 }
 
-.platinumInputLabel {
+.classicyInputDefault {}
+
+.classicyInputLabel {
   font-family: var(--ui-font);
   font-size: var(--ui-font-size);
   height: var(--window-control-size);

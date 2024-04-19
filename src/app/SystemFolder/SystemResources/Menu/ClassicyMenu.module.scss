@@ -3,7 +3,7 @@
 @use "../../Appearance/styles/appearance";
 @use "../../Appearance/styles/assets";
 
-.platinumMenuWrapper {
+.classicyMenuWrapper {
   font-family: var(--ui-font);
   font-size: var(--ui-font-size);
   position: relative;
@@ -15,7 +15,7 @@
   box-shadow: inset var(--window-border-size) var(--window-border-size) 0 0 var(--color-system-05), calc(var(--window-border-size) * 2) calc(var(--window-border-size) * 2) 0 0 var(--color-black);
 }
 
-.platinumMenu {
+.classicyMenu {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,7 @@
   }
 }
 
-.platinumSubMenu {
+.classicySubMenu {
   position: absolute;
   display: none;
   flex-direction: column;
@@ -70,7 +70,7 @@
 
 }
 
-.platinumContextSubMenu {
+.classicyContextSubMenu {
   position: absolute;
   left: 100%;
   display: none;
@@ -93,7 +93,7 @@
 }
 
 
-.platinumMenuItem {
+.classicyMenuItem {
   display: flex;
   float: left;
   align-items: center;
@@ -140,13 +140,13 @@
 
 }
 
-.platinumMenuItemNoImage {
+.classicyMenuItemNoImage {
   p {
     padding-left: calc(var(--window-control-size) * 1.75) !important;
   }
 }
 
-.platinumMenuItemDisabled {
+.classicyMenuItemDisabled {
   &:hover {
     color: var(--color-white);
     background-color: transparent !important;
@@ -158,7 +158,7 @@
 
 }
 
-.platinumMenuItemChildMenuIndicator {
+.classicyMenuItemChildMenuIndicator {
   &:after {
     position: absolute;
     right: var(--window-control-size);
@@ -171,7 +171,7 @@
   }
 }
 
-.platinumMenuItemKeyboardShortcut {
+.classicyMenuItemKeyboardShortcut {
   font-size: calc(var(--ui-font-size) * .75) !important;
   line-height: 1.75;
   padding-right: calc(var(--window-padding-size) / 2) !important;

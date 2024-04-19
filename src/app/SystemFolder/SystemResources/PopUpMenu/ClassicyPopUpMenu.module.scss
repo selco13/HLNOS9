@@ -1,7 +1,7 @@
 @use "../../Appearance/styles/assets";
 @use "../../Appearance/styles/appearance";
 
-.platinumPopUpMenuSmall {
+.classicyPopUpMenuSmall {
   width: calc(var(--window-control-size) * 2.5) !important;
   min-width: auto !important;
   min-height: auto !important;
@@ -21,13 +21,13 @@
   }
 }
 
-.platinumPopUpMenuWrapper {
+.classicyPopUpMenuWrapper {
   display: flex;
   align-items: baseline;
   flex-direction: row;
 }
 
-.platinumPopUpMenu {
+.classicyPopUpMenu {
   font-family: var(--ui-font);
   font-size: 1em;
 

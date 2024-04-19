@@ -2,7 +2,7 @@ import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
 import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
 import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
-import PlatinumInput from "@/app/SystemFolder/SystemResources/Input/PlatinumInput";
+import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
 import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
 import React from "react";
 
@@ -70,7 +70,7 @@ const Browser = () => {
                 grow={true}
             >
                 <ClassicyControlGroup columns={true}>
-                    <PlatinumInput id={"browserAddress"} ref={refAddressBar}></PlatinumInput>
+                    <ClassicyInput id={"browserAddress"} ref={refAddressBar}></ClassicyInput>
                     <ClassicyButton onClick={goBook}>Submit</ClassicyButton>
                 </ClassicyControlGroup>
                 <iframe

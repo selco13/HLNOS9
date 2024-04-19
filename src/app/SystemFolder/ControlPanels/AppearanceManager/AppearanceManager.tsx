@@ -6,7 +6,7 @@ import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
 import {useDesktop, useDesktopDispatch,} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
 import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
-import PlatinumPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/PlatinumPopUpMenu";
+import ClassicyPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu";
 import {useSound, useSoundDispatch,} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
 import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
 import React from "react";
@@ -113,7 +113,7 @@ export const AppearanceManager: React.FC = () => {
                 appMenu={appMenu}
             >
                 <ClassicyControlLabel label={"The current Theme Package is Platinum"} icon={packageIcon}/>
-                <PlatinumPopUpMenu
+                <ClassicyPopUpMenu
                     id={"select_theme"}
                     label={"Selected Theme"}
                     options={themesList}

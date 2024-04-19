@@ -1,9 +1,9 @@
 import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
-import platinumInputStyles from "@/app/SystemFolder/SystemResources/Input/PlatinumInput.module.scss";
+import classicyInputStyles from "@/app/SystemFolder/SystemResources/Input/ClassicyInput.module.scss";
 import classNames from "classnames";
 import React from "react";
 
-interface PlatinumInputProps {
+interface ClassicyInputProps {
     id: string;
     inputType?: "text";
     onChangeFunc?: any;
@@ -15,8 +15,8 @@ interface PlatinumInputProps {
     ref?: any;
 }
 
-const PlatinumInput: React.FC<PlatinumInputProps> = React.forwardRef<HTMLInputElement, PlatinumInputProps>(
-    function PlatinumInput(
+const ClassicyInput: React.FC<ClassicyInputProps> = React.forwardRef<HTMLInputElement, ClassicyInputProps>(
+    function ClassicyInput(
         {
             id,
             inputType = "text",
@@ -28,7 +28,7 @@ const PlatinumInput: React.FC<PlatinumInputProps> = React.forwardRef<HTMLInputEl
             onChangeFunc
         }, ref) {
 
-        return (<div className={platinumInputStyles.platinumInputHolder}>
+        return (<div className={classicyInputStyles.classicyInputHolder}>
             {labelTitle &&
                 <ClassicyControlLabel label={labelTitle} labelFor={id} direction={"left"}
                                       disabled={disabled}></ClassicyControlLabel>
@@ -43,9 +43,9 @@ const PlatinumInput: React.FC<PlatinumInputProps> = React.forwardRef<HTMLInputEl
                    value={prefillValue}
                    placeholder={placeholder}
                    className={classNames(
-                       platinumInputStyles.platinumInput, isDefault ? platinumInputStyles.platinumInputDefault : "")}
+                       classicyInputStyles.classicyInput, isDefault ? classicyInputStyles.classicyInputDefault : "")}
             ></input>
         </div>);
     });
 
-export default PlatinumInput;
+export default ClassicyInput;

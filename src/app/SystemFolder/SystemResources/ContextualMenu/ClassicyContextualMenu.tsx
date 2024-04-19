@@ -1,12 +1,12 @@
 import platinumContextMenuStyles
     from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu.module.scss";
-import PlatinumMenu, {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
-import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu.module.scss";
+import ClassicyMenu, {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
+import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import React from "react";
 
 interface PlatinumMenuProps {
     position: number[];
-    menuItems: PlatinumMenuItem[];
+    menuItems: ClassicyMenuItem[];
 }
 
 const ClassicyContextualMenu: React.FC<PlatinumMenuProps> = ({menuItems, position}) => {
@@ -14,7 +14,7 @@ const ClassicyContextualMenu: React.FC<PlatinumMenuProps> = ({menuItems, positio
     return (
         <div className={platinumContextMenuStyles.platinumContextMenuWrapper}
              style={{left: position[0], top: position[1]}}>
-            <PlatinumMenu menuItems={menuItems} subNavClass={platinumMenuStyles.platinumContextSubMenu}></PlatinumMenu>
+            <ClassicyMenu menuItems={menuItems} subNavClass={platinumMenuStyles.platinumContextSubMenu}></ClassicyMenu>
         </div>
     )
 };

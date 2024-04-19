@@ -3,7 +3,7 @@ import {
     platinumDesktopStateEventReducer
 } from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import {PlatinumDesktopState} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopState"
-import {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
+import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 
 export type PlatinumDesktopIconState = {
     appId: string;
@@ -11,7 +11,7 @@ export type PlatinumDesktopIconState = {
     icon: string;
     label?: string;
     kind?: string;
-    contextMenu?: PlatinumMenuItem[];
+    contextMenu?: ClassicyMenuItem[];
     location?: [number, number];
     onClickFunc?: any;
 };

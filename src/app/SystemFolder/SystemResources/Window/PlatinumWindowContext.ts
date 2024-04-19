@@ -1,11 +1,11 @@
-import {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
+import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 
 export type PlatinumWindowState = {
     size: [number, number],
     position: [number, number],
     clickPosition?: [number, number];
     closed?: boolean,
-    menuBar?: PlatinumMenuItem[];
+    menuBar?: ClassicyMenuItem[];
     collapsed?: boolean;
     zoomed?: boolean;
     dragging?: boolean;

@@ -1,5 +1,5 @@
 import {PlatinumDesktopIconState} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIconContext";
-import {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
+import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 import {Howl} from 'howler';
 
 
@@ -10,10 +10,10 @@ export interface PlatinumDesktopState {
     selectedDesktopIcons: string[];
     activeWindow: string;
     activeApp: string;
-    menuBar: PlatinumMenuItem[];
-    systemMenu: PlatinumMenuItem[];
-    appSwitcherMenu: PlatinumMenuItem[];
-    contextMenu: PlatinumMenuItem[];
+    menuBar: ClassicyMenuItem[];
+    systemMenu: ClassicyMenuItem[];
+    appSwitcherMenu: ClassicyMenuItem[];
+    contextMenu: ClassicyMenuItem[];
     showContextMenu: boolean;
     selectBox: boolean;
     selectBoxSize: number[];

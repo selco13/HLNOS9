@@ -5,8 +5,8 @@ import PlatinumDesktopMenuWidgetSound
     from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/PlatinumDesktopMenuWidgetSound";
 import PlatinumDesktopMenuWidgetTime
     from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/PlatinumDesktopMenuWidgetTime";
-import PlatinumMenu, {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
-import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu.module.scss";
+import ClassicyMenu, {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
+import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import React from "react";
 
 
@@ -14,7 +14,7 @@ const PlatinumDesktopMenuBar: React.FC = () => {
     const desktopContext = useDesktop();
     const desktopEventDispatch = useDesktopDispatch();
 
-    const systemMenuItem: PlatinumMenuItem = {
+    const systemMenuItem: ClassicyMenuItem = {
         id: "apple-menu",
         image: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/apple.png`,
         menuChildren: desktopContext.systemMenu,
@@ -33,7 +33,7 @@ const PlatinumDesktopMenuBar: React.FC = () => {
         activeAppObject = [{icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/macos.svg`, name: "Finder"}];
     }
 
-    const appSwitcherMenuMenuItem: PlatinumMenuItem = {
+    const appSwitcherMenuMenuItem: ClassicyMenuItem = {
         id: "app-switcher",
         image: activeAppObject[0].icon,
         title: activeAppObject[0].name,
@@ -53,15 +53,15 @@ const PlatinumDesktopMenuBar: React.FC = () => {
         systemMenuItem,
         desktopContext.menuBar,
         appSwitcherMenuMenuItem,
-    ) as PlatinumMenuItem[];
+    ) as ClassicyMenuItem[];
 
     return (
         <nav className={platinumDesktopMenuStyles.platinumDesktopMenuBar}>
-            <PlatinumMenu menuItems={defaultMenuItems} navClass={platinumDesktopMenuStyles.platinumDesktopMenu}
+            <ClassicyMenu menuItems={defaultMenuItems} navClass={platinumDesktopMenuStyles.platinumDesktopMenu}
                           subNavClass={platinumMenuStyles.platinumSubMenu}>
                 <PlatinumDesktopMenuWidgetSound></PlatinumDesktopMenuWidgetSound>
                 <PlatinumDesktopMenuWidgetTime></PlatinumDesktopMenuWidgetTime>
-            </PlatinumMenu>
+            </ClassicyMenu>
         </nav>
     );
 };

@@ -4,8 +4,8 @@ import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyBu
 import ClassicyCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox";
 import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
 import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
-import PlatinumInput from "@/app/SystemFolder/SystemResources/Input/PlatinumInput";
-import PlatinumPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/PlatinumPopUpMenu";
+import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
+import ClassicyPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu";
 import PlatinumProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/PlatinumProgressBar";
 import PlatinumRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/PlatinumRadioInput";
 import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
@@ -68,14 +68,14 @@ const Demo: React.FC = () => {
                     modalWindow={true}
                     appMenu={appMenu}
                 >
-                    <PlatinumPopUpMenu
+                    <ClassicyPopUpMenu
                         id={"select_theme"}
                         small={false}
                         options={[{value: "hello", label: "Hello"}, {value: "hello2", label: "Hello again!"}]}
                         selected={"hello"}
                     />
                     <PlatinumProgressBar value={59}></PlatinumProgressBar>
-                    <PlatinumInput id={"test"} labelTitle={"Text Input"}></PlatinumInput>
+                    <ClassicyInput id={"test"} labelTitle={"Text Input"}></ClassicyInput>
                     <ClassicyControlGroup label={"Test Radio Inputs"}>
                         <PlatinumRadioInput id={"test1"} name={"test_radio"} isDefault={false}
                                             label={"Radio Button 1"}/>

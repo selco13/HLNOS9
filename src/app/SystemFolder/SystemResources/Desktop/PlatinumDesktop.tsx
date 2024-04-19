@@ -5,7 +5,7 @@ import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/Contextua
 import PlatinumDesktopMenuBar from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/PlatinumDesktopMenuBar";
 import platinumDesktop from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktop.module.scss";
 import PlatinumDesktopIcon from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIcon";
-import {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
+import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 import classNames from "classnames";
 import React, {Suspense} from "react";
 import "@/app/SystemFolder/Appearance/styles/fonts.scss";
@@ -76,7 +76,7 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
             }
         }
 
-        const defaultMenuItems: PlatinumMenuItem[] = [
+        const defaultMenuItems: ClassicyMenuItem[] = [
             {
                 id: "finder_file",
                 title: "File",

@@ -214,7 +214,7 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     * `PlatinumWindowContentScroll`
     * `PlatinumWindowContentClick`
 
-* `PlatinumMenu`
+* `ClassicyMenu`
     * `PlatinumMenuHover`
     * `PlatinumMenuClick`
     * `PlatinumMenuChange`
