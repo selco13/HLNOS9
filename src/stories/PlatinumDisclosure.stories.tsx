@@ -1,10 +1,10 @@
-import PlatinumDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/PlatinumDisclosure";
+import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumDisclosure',
-    component: PlatinumDisclosure,
+    title: 'Platinum/ClassicyDisclosure',
+    component: ClassicyDisclosure,
     parameters: {
         layout: 'centered',
     },
@@ -12,7 +12,7 @@ const meta = {
         children: {table: {disable: true}},
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumDisclosure>;
+} satisfies Meta<typeof ClassicyDisclosure>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

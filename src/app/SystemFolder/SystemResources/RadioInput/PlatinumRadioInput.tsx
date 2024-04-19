@@ -1,4 +1,4 @@
-import PlatinumControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/PlatinumControlLabel";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
 import platinumRadioInputStyles from "@/app/SystemFolder/SystemResources/RadioInput/PlatinumRadioInput.module.scss";
 import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
 import classNames from "classnames";
@@ -45,7 +45,7 @@ const PlatinumRadioInput: React.FC<PlatinumRadioInputProps> = ({
                            isDefault ? platinumRadioInputStyles.platinumRadioInputDefault : ""
                        )}/>
             </div>
-            <PlatinumControlLabel labelFor={id} disabled={disabled} label={label}></PlatinumControlLabel>
+            <ClassicyControlLabel labelFor={id} disabled={disabled} label={label}></ClassicyControlLabel>
 
         </div>
     );

@@ -1,7 +1,7 @@
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import PlatinumButton from "@/app/SystemFolder/SystemResources/Button/PlatinumButton";
-import PlatinumControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/PlatinumControlGroup";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
+import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
 import PlatinumInput from "@/app/SystemFolder/SystemResources/Input/PlatinumInput";
 import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
 import React from "react";
@@ -52,7 +52,7 @@ const Browser = () => {
     ];
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
@@ -69,10 +69,10 @@ const Browser = () => {
                 appMenu={appMenu}
                 grow={true}
             >
-                <PlatinumControlGroup columns={true}>
+                <ClassicyControlGroup columns={true}>
                     <PlatinumInput id={"browserAddress"} ref={refAddressBar}></PlatinumInput>
-                    <PlatinumButton onClick={goBook}>Submit</PlatinumButton>
-                </PlatinumControlGroup>
+                    <ClassicyButton onClick={goBook}>Submit</ClassicyButton>
+                </ClassicyControlGroup>
                 <iframe
                     title="myBook"
                     src={iframeSrc}
@@ -82,7 +82,7 @@ const Browser = () => {
                     style={{width: "100%", height: "100%", padding: "0", margin: "0"}}
                 ></iframe>
             </PlatinumWindow>
-        </PlatinumApp>
+        </ClassicyApp>
     );
 }
 

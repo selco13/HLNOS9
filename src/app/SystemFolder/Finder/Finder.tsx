@@ -1,7 +1,7 @@
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import {PlatinumFileSystem} from "@/app/SystemFolder/SystemResources/File/FileSystem";
-import PlatinumFileBrowser from "@/app/SystemFolder/SystemResources/File/PlatinumFileBrowser";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyFileBrowser from "@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser";
+import {PlatinumFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
 import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
 import React from "react";
 
@@ -78,21 +78,21 @@ const Finder = () => {
                 header={<span>{dir["_count"]} items</span>}
                 onCloseFunc={closeFolder}
             >
-                <PlatinumFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}
+                <ClassicyFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}
                                      fileOnClickFunc={openFile}/>
             </PlatinumWindow>
         )
     })
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
             noDesktopIcon={true}
             defaultWindow={""}>
             {openWindows}
-        </PlatinumApp>
+        </ClassicyApp>
     );
 }
 

@@ -1,4 +1,4 @@
-import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext';
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
 
 import platinumDesktopIconStyles from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIcon.module.scss";
 import classNames from "classnames";

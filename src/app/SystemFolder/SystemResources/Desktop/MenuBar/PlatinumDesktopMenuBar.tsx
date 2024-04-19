@@ -1,4 +1,4 @@
-import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext';
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
 import platinumDesktopMenuStyles
     from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/PlatinumDesktopMenuBar.module.scss";
 import PlatinumDesktopMenuWidgetSound

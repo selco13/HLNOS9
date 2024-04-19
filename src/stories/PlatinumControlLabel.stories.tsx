@@ -1,10 +1,10 @@
-import PlatinumControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/PlatinumControlLabel";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumControlLabel',
-    component: PlatinumControlLabel,
+    title: 'Platinum/ClassicyControlLabel',
+    component: ClassicyControlLabel,
     parameters: {
         layout: 'centered',
     }, argTypes: {
@@ -12,7 +12,7 @@ const meta = {
     },
 
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumControlLabel>;
+} satisfies Meta<typeof ClassicyControlLabel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

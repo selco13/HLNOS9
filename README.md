@@ -149,8 +149,8 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
         * `<PlatinumDesktopMenuBar>`
         * `<PlatinumDesktopIcon?>`
         * `<YourPlatinumApp>`
-            * `<PlatinumAppContext>`
-                * `<PlatinumApp>`
+            * `<ClassicyAppContext>`
+                * `<ClassicyApp>`
                     * `<PlatinumWindow?>`
                         * `<PlatinumUIControls?>`
                         * `<OtherReactNodes?>`
@@ -166,7 +166,7 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     * `PlatinumAlertWildEep`
     * `PlatinumAlertndigo`
     * `PlatinumBeep`
-    * `PlatinumBoot`
+    * `ClassicyBoot`
     * `PlatinumButtonClickDown`
     * `PlatinumButtonClickUp`
     * `PlatinumInputRadioClickDown`
@@ -197,7 +197,7 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     * `PlatinumDesktopDoubleClick`
     * `PlatinumDesktopDrag`
 
-* `PlatinumApp`
+* `ClassicyApp`
     * `PlatinumAppOpen`
     * `PlatinumAppClose`
     * `PlatinumAppHide`
@@ -700,7 +700,7 @@ later.
 
 Now that I had my components defined, I sketched them out quickly, just for structure. There really wasn't much to them,
 but I needed a canvas to start working. I created a blank PlatinumDesktop, PlatinumDesktopIcon, PlatinumWindow and
-PlatinumButton as a starting point, with no CSS. Then, I got to the hard, hard work.
+ClassicyButton as a starting point, with no CSS. Then, I got to the hard, hard work.
 
 I first sketched out the components of a Platinum Window. I knew that this would be my most complicated component, so I
 hoped sketching it out would also help me identify pieces I could break down into smaller components, as well as get an
@@ -715,7 +715,7 @@ to react to as a Window, and typed those up, too.
 | Name             | Type  | Required | Description                                                                                                                                                 |
 |------------------|-------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id               | str   | Yes      | The ID of the window                                                                                                                                        |
-| appId            | str   | Yes      | The ID of the PlatinumApp that the window belongs to. All windows must belong to an App (though, not all Apps must have Windows).                           |
+| appId            | str   | Yes      | The ID of the ClassicyApp that the window belongs to. All windows must belong to an App (though, not all Apps must have Windows).                           |
 | title            | str   | No       | The Title Text to display in the windows's Title bar.                                                                                                       |
 | icon             | str   | No       | The Icon to show in the Title bar.                                                                                                                          |
 | hidden           | bool  | No       | Whether the window is hidden or not.                                                                                                                        |
@@ -795,7 +795,7 @@ multi-window environment is not very user-friendly if the Windows are fighting f
 me quite a while to wrap my head around all the things that were involved in basic window management.
 
 I needed to provide some basic system settings to all components: specifically, the color and sound themes. I also
-needed to provide a place to store which PlatinumApp was active, which Window was active, and a place to store all the
+needed to provide a place to store which ClassicyApp was active, which Window was active, and a place to store all the
 items in the Desktop Menu Bar, which will be shared by all Apps and Windows.
 
 I chose to let the PlatinumDesktop component control which Window was currently active, and PlatinumApps and Windows
@@ -829,7 +829,7 @@ I also re-wrote the event handlers I had written for the Windows's control boxes
 dispatcher.
 
 Next, I decided that the PlatinumDesktop could also control Opening and Closing PlatinumApps, which would in turn
-control its own windows. Opening a PlatinumApp also adds an entry to the `appSwitcherMenu` array, which keeps track of
+control its own windows. Opening a ClassicyApp also adds an entry to the `appSwitcherMenu` array, which keeps track of
 all the open apps and displays them in the Appication Switcher, the top-right component of the Desktop Menu.
 
 One of the other neat quirks of MacOS Classic and MacOS today is the top Desktop Menu Bar, whose contents changes based
@@ -862,9 +862,9 @@ sites, [theoldnet.com](https://theoldnet.com).
 I took a shot at building out a full App using the framework I'd setup. It looks something like below:
 
 ```other
-<PlatinumAppContext.Provider value={{appContext, setAppContext}}>
+<ClassicyAppContext.Provider value={{appContext, setAppContext}}>
     <PlatinumDesktopIcon appId={appId} appName={appName} icon={appIcon}/>
-    <PlatinumApp id={appId} name={appName} icon={appIcon} debug={true}>
+    <ClassicyApp id={appId} name={appName} icon={appIcon} debug={true}>
         <PlatinumWindow
             id={"demo"}
             title={appName}
@@ -876,11 +876,11 @@ I took a shot at building out a full App using the framework I'd setup. It looks
             <iframe src={"https://theoldnet.com/"}
                     style={{width: "100%", height: "100%", padding: "0", margin: "0"}}/>
         </PlatinumWindow>
-    </PlatinumApp>
-</PlatinumAppContext.Provider>
+    </ClassicyApp>
+</ClassicyAppContext.Provider>
 ```
 
-The JSX of a basic PlatinumApp using an iFrame to display [theoldnet.com](https://theoldnet.com).
+The JSX of a basic ClassicyApp using an iFrame to display [theoldnet.com](https://theoldnet.com).
 
 I turned on a built-in "Debugger" that simply shows another window with the current Desktop State and App Context.
 
@@ -896,7 +896,7 @@ a full Markdown editor using [MDXEditor.](https://mdxeditor.dev)
 
 ![Screenshot 2024-02-09 at 11.44.40 AM.png](https://res.craft.do/user/full/f6bf69d9-c199-b5e2-2561-223aac7866f6/doc/21B84071-5847-4B88-BE10-7257963581FF/E588419A-40CE-44BF-8A04-BB73DC2FCEC9_2/yBPOMacZ2617YsibEHNZx0u072g8yt2eO8HnGdZEM3Mz/Screenshot%202024-02-09%20at%2011.44.40AM.png)
 
-A SimpleText app, using the awesome MDXEditor, and the Demo PlatinumApp app, showing a few basic controls.
+A SimpleText app, using the awesome MDXEditor, and the Demo ClassicyApp app, showing a few basic controls.
 
 ### What's next
 

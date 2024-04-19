@@ -1,0 +1,18 @@
+.classicyControlLabel {
+  font-family: var(--ui-font);
+  font-size: var(--ui-font-size);
+  height: var(--window-control-size);
+  user-select: none;
+}
+
+.classicyControlLabelDisabled {
+  color: var(--color-system-05);
+}
+
+.classicyControlLabelLeft {
+  margin-left: calc(var(--window-control-size) / 2);
+}
+
+.classicyControlLabelRight {
+  margin-right: calc(var(--window-control-size) / 2);
+}

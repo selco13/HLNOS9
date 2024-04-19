@@ -1,0 +1,21 @@
+@use "../../Appearance/styles/appearance";
+@use "../../Appearance/styles/assets";
+
+.classicyControlGroup {
+  margin: calc(var(--window-padding-size) / 3);
+}
+
+.classicyControlGroupNoColumns {
+  columns: 1;
+}
+
+.classicyControlGroupColumns {
+  flex-grow: 1;
+  columns: 2;
+}
+
+.classicyControlGroupLegend {
+  font-family: var(--ui-font);
+  font-size: calc(var(--ui-font-size) * .75);
+  margin-top: calc(var(--ui-font-size) * -1);
+}

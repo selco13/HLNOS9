@@ -1,5 +1,5 @@
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import PlatinumRichTextEditor from "@/app/SystemFolder/SystemResources/RichTextEditor/PlatinumRichTextEditor";
 import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
 import React from "react";
@@ -61,7 +61,7 @@ const SimpleText = () => {
     ];
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
@@ -75,7 +75,7 @@ const SimpleText = () => {
                 appMenu={appMenu}>
                 <PlatinumRichTextEditor content={defaultText}></PlatinumRichTextEditor>
             </PlatinumWindow>
-        </PlatinumApp>
+        </ClassicyApp>
     );
 }
 

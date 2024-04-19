@@ -1,7 +1,7 @@
 import {getAllThemes, getThemeVars} from "@/app/SystemFolder/Appearance/PlatinumAppearance"
 import Finder from "@/app/SystemFolder/Finder/Finder";
-import {useDesktop, useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import PlatinumContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/PlatinumContextualMenu";
+import {useDesktop, useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
 import PlatinumDesktopMenuBar from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/PlatinumDesktopMenuBar";
 import platinumDesktop from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktop.module.scss";
 import PlatinumDesktopIcon from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIcon";
@@ -159,7 +159,7 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
                         }
                         <PlatinumDesktopMenuBar/>
                         {contextMenu && (
-                            <PlatinumContextualMenu menuItems={defaultMenuItems}
+                            <ClassicyContextualMenu menuItems={defaultMenuItems}
                                                     position={contextMenuLocation}/>
                         )}
                         <Finder/>

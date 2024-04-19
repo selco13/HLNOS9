@@ -1,4 +1,4 @@
-import PlatinumControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/PlatinumControlLabel";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
 import platinumInputStyles from "@/app/SystemFolder/SystemResources/Input/PlatinumInput.module.scss";
 import classNames from "classnames";
 import React from "react";
@@ -30,8 +30,8 @@ const PlatinumInput: React.FC<PlatinumInputProps> = React.forwardRef<HTMLInputEl
 
         return (<div className={platinumInputStyles.platinumInputHolder}>
             {labelTitle &&
-                <PlatinumControlLabel label={labelTitle} labelFor={id} direction={"left"}
-                                      disabled={disabled}></PlatinumControlLabel>
+                <ClassicyControlLabel label={labelTitle} labelFor={id} direction={"left"}
+                                      disabled={disabled}></ClassicyControlLabel>
             }
             <input id={id}
                    tabIndex={0}

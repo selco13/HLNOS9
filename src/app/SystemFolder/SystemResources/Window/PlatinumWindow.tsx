@@ -1,7 +1,7 @@
 "use client";
 
-import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext';
-import PlatinumContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/PlatinumContextualMenu";
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
+import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
 import {PlatinumMenuItem} from "@/app/SystemFolder/SystemResources/Menu/PlatinumMenu";
 import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
 import platinumWindowStyle from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow.module.scss";
@@ -332,10 +332,10 @@ const PlatinumWindow: React.FC<PlatinumWindowProps> = ({
                     onMouseOut={hideContextMenu}
                 >
                     {contextMenu && windowState.contextMenu && (
-                        <PlatinumContextualMenu
+                        <ClassicyContextualMenu
                             menuItems={contextMenu}
                             position={windowState.contextMenuLocation}
-                        ></PlatinumContextualMenu>
+                        ></ClassicyContextualMenu>
                     )}
 
                     <div

@@ -1,4 +1,4 @@
-import PlatinumControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/PlatinumControlLabel";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
 import platinumPopUpMenuStyle from "@/app/SystemFolder/SystemResources/PopUpMenu/PlatinumPopUpMenu.module.scss";
 import classNames from "classnames";
 import React from "react";
@@ -29,7 +29,7 @@ const PlatinumPopUpMenu: React.FC<platinumPopUpMenuProps> = (
     return (
         <div className={platinumPopUpMenuStyle.platinumPopUpMenuWrapper}>
             {label &&
-                <PlatinumControlLabel label={label}></PlatinumControlLabel>
+                <ClassicyControlLabel label={label}></ClassicyControlLabel>
             }
             <div style={{flexGrow: "2"}}
                  className={classNames(
