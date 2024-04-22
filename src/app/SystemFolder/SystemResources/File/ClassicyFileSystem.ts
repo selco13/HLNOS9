@@ -84,7 +84,7 @@ type PlatinumFileSystemEntry = {
     "_version"?: number;
     "_locked"?: boolean;
     "_count"?: number;
-    "_size"?: number | string;
+    "_size"?: number;
     "_readOnly"?: boolean;
     "_systemFile"?: boolean;
     "_url"?: string;
@@ -166,13 +166,9 @@ export class PlatinumFileSystem {
         return items
     }
 
-    statFile(path: string, formatSize?: boolean, sizeIn: "bits" | "bytes" = "bytes"): PlatinumFileSystemEntry {
+    statFile(path: string): PlatinumFileSystemEntry {
         let item = this.resolve(path);
-        if (formatSize) {
-            item['_size'] = this.formatSize(this.size(path), sizeIn)
-        } else {
-            item['_size'] = this.size(path)
-        }
+        item['_size'] = this.size(path)
         return item
     }
 
@@ -240,7 +236,7 @@ export class PlatinumFileSystem {
         return this.deepMerge(current, this.fs);
     }
 
-    deepMerge(source:any, target: any) {
+    deepMerge(source: any, target: any) {
         Object.keys(target).forEach(key => {
             source[key] instanceof Object && target[key] instanceof Object
                 ? source[key] instanceof Array && target[key] instanceof Array

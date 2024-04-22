@@ -1,8 +1,6 @@
-import platinumDesktopMenuStyles
-    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/PlatinumDesktopMenuBar.module.scss";
 import platinumDesktopMenuWidgetTimeStyles
     from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/PlatinumDesktopMenuWidgetTime.module.scss"
-import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
+import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import classNames from "classnames";
 import React from 'react';
 
@@ -78,9 +76,9 @@ const PlatinumDesktopMenuWidgetTime: React.FC<PlatinumDesktopMenuWidgetTimeProps
             {!hide &&
                 <li className={
                     classNames(
-                        platinumMenuStyles.platinumMenuItem,
-                        platinumMenuStyles.platinumMenuItemNoImage,
-                        platinumDesktopMenuStyles.platinumDesktopMenuTime
+                        classicyMenuStyles.classicyMenuItem,
+                        classicyMenuStyles.classicyMenuItemNoImage,
+                        platinumDesktopMenuWidgetTimeStyles.classicyDesktopMenuTime
                     )
                 }>
                     {displayDay &&

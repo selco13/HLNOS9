@@ -4,7 +4,7 @@ import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources
 import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
 import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
-import platinumWindowStyle from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss";
+import classicyWindowStyle from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss";
 import {
     ClassicyWindowState,
     ClassicyWindowStateEventReducer
@@ -270,19 +270,19 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         if (title !== "") {
             return (
                 <>
-                    <div className={platinumWindowStyle.platinumWindowTitleLeft}></div>
-                    <div className={platinumWindowStyle.platinumWindowIcon}>
+                    <div className={classicyWindowStyle.classicyWindowTitleLeft}></div>
+                    <div className={classicyWindowStyle.classicyWindowIcon}>
                         <img src={icon} alt={title}/>
                     </div>
-                    <div className={platinumWindowStyle.platinumWindowTitleText}>
+                    <div className={classicyWindowStyle.classicyWindowTitleText}>
                         {title}
                     </div>
-                    <div className={platinumWindowStyle.platinumWindowTitleRight}></div>
+                    <div className={classicyWindowStyle.classicyWindowTitleRight}></div>
                 </>
             )
         }
         return (
-            <div className={platinumWindowStyle.platinumWindowTitleCenter}></div>
+            <div className={classicyWindowStyle.classicyWindowTitleCenter}></div>
         )
     }
 
@@ -301,29 +301,29 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                         minHeight: minimumSize[1],
                     }}
                     className={classNames(
-                        platinumWindowStyle.platinumWindow,
+                        classicyWindowStyle.classicyWindow,
                         windowState.collapsed === true
-                            ? platinumWindowStyle.platinumWindowCollapsed
+                            ? classicyWindowStyle.classicyWindowCollapsed
                             : "",
                         windowState.zoomed === true
-                            ? platinumWindowStyle.platinumWindowZoomed
+                            ? classicyWindowStyle.classicyWindowZoomed
                             : "",
                         isActive()
-                            ? platinumWindowStyle.platinumWindowActive
-                            : platinumWindowStyle.platinumWindowInactive,
+                            ? classicyWindowStyle.classicyWindowActive
+                            : classicyWindowStyle.classicyWindowInactive,
                         windowState.closed === false
                             ? ""
-                            : platinumWindowStyle.platinumWindowInvisible,
+                            : classicyWindowStyle.classicyWindowInvisible,
                         windowState.moving === true
-                            ? platinumWindowStyle.platinumWindowDragging
+                            ? classicyWindowStyle.classicyWindowDragging
                             : "",
                         windowState.resizing === true
-                            ? platinumWindowStyle.platinumWindowResizing
+                            ? classicyWindowStyle.classicyWindowResizing
                             : "",
-                        modalWindow === true ? platinumWindowStyle.platinumWindowModal : "",
+                        modalWindow === true ? classicyWindowStyle.classicyWindowModal : "",
                         scrollable === true
                             ? ""
-                            : platinumWindowStyle.platinumWindowNoScroll,
+                            : classicyWindowStyle.classicyWindowNoScroll,
                     )}
                     onMouseMove={changeWindow}
                     onMouseUp={stopChangeWindow}
@@ -340,46 +340,46 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
                     <div
                         className={classNames(
-                            platinumWindowStyle.platinumWindowTitleBar,
+                            classicyWindowStyle.classicyWindowTitleBar,
                             modalWindow === true
-                                ? platinumWindowStyle.platinumWindowTitleBarModal
+                                ? classicyWindowStyle.classicyWindowTitleBarModal
                                 : ""
                         )}
                         onDoubleClick={toggleCollapse}
                     >
                         {closable && (
-                            <div className={platinumWindowStyle.platinumWindowControlBox}>
+                            <div className={classicyWindowStyle.classicyWindowControlBox}>
                                 <div
-                                    className={platinumWindowStyle.platinumWindowCloseBox}
+                                    className={classicyWindowStyle.classicyWindowCloseBox}
                                     onClick={close}
                                 ></div>
                             </div>
                         )}
                         <div
-                            className={platinumWindowStyle.platinumWindowTitle}
+                            className={classicyWindowStyle.classicyWindowTitle}
                             onMouseDown={startMoveWindow}
                         >
                             {titleBar()}
                         </div>
                         {collapsable && (
-                            <div className={platinumWindowStyle.platinumWindowControlBox}>
+                            <div className={classicyWindowStyle.classicyWindowControlBox}>
                                 <div
-                                    className={platinumWindowStyle.platinumWindowCollapseBox}
+                                    className={classicyWindowStyle.classicyWindowCollapseBox}
                                     onClick={toggleCollapse}
                                 ></div>
                             </div>
                         )}
                         {zoomable && (
-                            <div className={platinumWindowStyle.platinumWindowControlBox}>
+                            <div className={classicyWindowStyle.classicyWindowControlBox}>
                                 <div
-                                    className={platinumWindowStyle.platinumWindowZoomBox}
+                                    className={classicyWindowStyle.classicyWindowZoomBox}
                                     onClick={toggleZoom}
                                 ></div>
                             </div>
                         )}
                     </div>
                     {header && !windowState.collapsed && (
-                        <div className={platinumWindowStyle.platinumWindowHeader}>
+                        <div className={classicyWindowStyle.classicyWindowHeader}>
                             {header}
                         </div>
                     )}
@@ -387,14 +387,14 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                         className={classNames(
                             isActive()
                                 ? ""
-                                : platinumWindowStyle.platinumWindowContentsDimmed,
+                                : classicyWindowStyle.classicyWindowContentsDimmed,
                             scrollable === true
                                 ? ""
-                                : platinumWindowStyle.platinumWindowNoScroll,
+                                : classicyWindowStyle.classicyWindowNoScroll,
                             modalWindow === true
-                                ? platinumWindowStyle.platinumWindowContentsModal
-                                : platinumWindowStyle.platinumWindowContents,
-                            header ? platinumWindowStyle.platinumWindowContentsWithHeader : ""
+                                ? classicyWindowStyle.classicyWindowContentsModal
+                                : classicyWindowStyle.classicyWindowContents,
+                            header ? classicyWindowStyle.classicyWindowContentsWithHeader : ""
                         )}
                         style={{
                             display: windowState.collapsed == true ? "none" : "block",
@@ -402,11 +402,11 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                     >
                         <div
                             className={classNames(
-                                platinumWindowStyle.platinumWindowContentsInner,
+                                classicyWindowStyle.classicyWindowContentsInner,
                                 modalWindow === true
-                                    ? platinumWindowStyle.platinumWindowContentsModalInner
+                                    ? classicyWindowStyle.classicyWindowContentsModalInner
                                     : "",
-                                grow ? platinumWindowStyle.platinumWindowContentsInnerGrow : ""
+                                grow ? classicyWindowStyle.classicyWindowContentsInnerGrow : ""
                             )}
                         >
                             {children}
@@ -414,7 +414,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                     </div>
                     {resizable && !windowState.collapsed && (
                         <div
-                            className={platinumWindowStyle.platinumWindowResizer}
+                            className={classicyWindowStyle.classicyWindowResizer}
                             onMouseDown={startResizeWindow}
                         ></div>
                     )}

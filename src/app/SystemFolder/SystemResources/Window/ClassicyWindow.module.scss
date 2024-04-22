@@ -253,10 +253,14 @@
     z-index: 999;
     right: calc(var(--window-padding-size) + var(--window-border-size) * 2);
     bottom: calc(var(--window-padding-size) + var(--window-border-size) * 2);
-    width: calc(var(--window-padding-size) * 2 + var(--window-border-size) * 4);
-    height: calc(var(--window-padding-size) * 2 + var(--window-border-size) * 4);
+    width: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 2);
+    height: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 2);
+    margin: calc(var(--window-border-size) * -3) calc(var(--window-border-size) * -2);
+    padding: 0;
     cursor: grab;
     user-select: none;
+    border-top: var(--window-border-size) solid var(--color-black);
+    border-left: var(--window-border-size) solid var(--color-black);
     background-color: var(--color-system-03);
     background-image: assets.$resizer;
     background-repeat: no-repeat;

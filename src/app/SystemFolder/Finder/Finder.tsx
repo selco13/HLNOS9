@@ -75,7 +75,7 @@ const Finder = () => {
                 appId={appId}
                 initialSize={[425, 300]}
                 initialPosition={[50 + (idx * 50), 50 + (idx * 50)]}
-                header={<span>{dir["_count"]} items</span>}
+                header={<span>{dir["_count"]} items, {fs.formatSize(dir["_size"])}</span>}
                 onCloseFunc={closeFolder}
             >
                 <ClassicyFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}

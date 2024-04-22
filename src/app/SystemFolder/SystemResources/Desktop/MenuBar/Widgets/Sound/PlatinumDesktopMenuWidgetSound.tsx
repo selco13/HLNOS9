@@ -1,6 +1,6 @@
-import platinumDesktopMenuWidgetSoundStyles
+import classicyDesktopMenuWidgetSoundStyles
     from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/PlatinumDesktopMenuWidgetSound.module.scss"
-import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
+import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import {useSound, useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
 import classNames from "classnames";
 import React from 'react';
@@ -35,9 +35,9 @@ const PlatinumDesktopMenuWidgetSound: React.FC<PlatinumDesktopMenuWidgetSoundPro
             {!hide &&
                 <li className={
                     classNames(
-                        platinumDesktopMenuWidgetSoundStyles.platinumDesktopMenuWidgetSound,
-                        platinumMenuStyles.platinumMenuItem,
-                        platinumMenuStyles.platinumMenuItemNoImage,
+                        classicyDesktopMenuWidgetSoundStyles.classicyDesktopMenuWidgetSound,
+                        classicyMenuStyles.classicyMenuItem,
+                        classicyMenuStyles.classicyMenuItemNoImage,
                     )
                 }
                     onClick={mute}
