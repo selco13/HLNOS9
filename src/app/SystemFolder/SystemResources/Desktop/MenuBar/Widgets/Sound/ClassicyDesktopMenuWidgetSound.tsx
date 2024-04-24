@@ -1,16 +1,16 @@
 import classicyDesktopMenuWidgetSoundStyles
-    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/PlatinumDesktopMenuWidgetSound.module.scss"
+    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/ClassicyDesktopMenuWidgetSound.module.scss"
 import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import {useSound, useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
 import classNames from "classnames";
 import React from 'react';
 
 
-type PlatinumDesktopMenuWidgetSoundProps = {
+type ClassicyDesktopMenuWidgetSoundProps = {
     hide?: boolean;
 }
 
-const PlatinumDesktopMenuWidgetSound: React.FC<PlatinumDesktopMenuWidgetSoundProps> = (
+const ClassicyDesktopMenuWidgetSound: React.FC<ClassicyDesktopMenuWidgetSoundProps> = (
     {
         hide = false,
     },
@@ -24,7 +24,7 @@ const PlatinumDesktopMenuWidgetSound: React.FC<PlatinumDesktopMenuWidgetSoundPro
 
     const mute = () => {
         player({
-            type: "PlatinumSoundDisable",
+            type: "ClassicySoundDisable",
             disabled: playerState.disabled.includes("*") ? [] : ["*"],
         });
         return;
@@ -51,4 +51,4 @@ const PlatinumDesktopMenuWidgetSound: React.FC<PlatinumDesktopMenuWidgetSoundPro
     );
 };
 
-export default PlatinumDesktopMenuWidgetSound;
+export default ClassicyDesktopMenuWidgetSound;

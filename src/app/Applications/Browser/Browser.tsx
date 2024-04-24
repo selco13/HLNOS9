@@ -27,7 +27,7 @@ const Browser = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,

@@ -2,7 +2,7 @@
 @use "../../Appearance/styles/appearance";
 @use "../../Appearance/styles/scrollbars";
 
-.platinumDesktop {
+.classicyDesktop {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
@@ -48,7 +48,7 @@
 
 }
 
-.platinumDesktopSelect {
+.classicyDesktopSelect {
   position: absolute !important;
   border: var(--window-border-size) dotted var(--color-black);
   outline: var(--window-border-size) dotted var(--color-black);

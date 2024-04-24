@@ -9,7 +9,7 @@ import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGrou
 import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
 import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
 import {
-    PlatinumSoundInfo,
+    ClassicySoundInfo,
     useSound,
     useSoundDispatch,
 } from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
@@ -33,7 +33,7 @@ export const SoundManager: React.FC = () => {
     const changeSounds = (e) => {
         setEnableAllSounds(!!e.target.checked);
         player({
-            type: "PlatinumSoundDisable",
+            type: "ClassicySoundDisable",
             disabled: enableAllSounds ? [] : ["*"],
         });
     };
@@ -41,7 +41,7 @@ export const SoundManager: React.FC = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,
@@ -125,7 +125,7 @@ export const SoundManager: React.FC = () => {
                     <div className={soundManagerStyles.soundManagerControlGroupHolder}>
                         {getSoundLabelGroups().map((group: string) => (
                             <ClassicyControlGroup label={group} columns={true} key={group}>
-                                {playerState.labels.map((item: PlatinumSoundInfo) => (
+                                {playerState.labels.map((item: ClassicySoundInfo) => (
                                     <>
                                         {item.group === group && (
                                             <ClassicyCheckbox

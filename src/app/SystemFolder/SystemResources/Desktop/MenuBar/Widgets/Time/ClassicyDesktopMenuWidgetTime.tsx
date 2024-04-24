@@ -1,10 +1,10 @@
-import platinumDesktopMenuWidgetTimeStyles
-    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/PlatinumDesktopMenuWidgetTime.module.scss"
+import classicyDesktopMenuWidgetTimeStyles
+    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/ClassicyDesktopMenuWidgetTime.module.scss"
 import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import classNames from "classnames";
 import React from 'react';
 
-type PlatinumDesktopMenuWidgetTimeProps = {
+type ClassicyDesktopMenuWidgetTimeProps = {
     hide?: boolean;
     militaryTime?: boolean;
     displaySeconds?: boolean;
@@ -14,7 +14,7 @@ type PlatinumDesktopMenuWidgetTimeProps = {
     flashSeparators?: boolean;
 }
 
-const PlatinumDesktopMenuWidgetTime: React.FC<PlatinumDesktopMenuWidgetTimeProps> = (
+const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps> = (
     {
         hide = false,
         militaryTime = false,
@@ -65,7 +65,7 @@ const PlatinumDesktopMenuWidgetTime: React.FC<PlatinumDesktopMenuWidgetTimeProps
 
     const toBlink = () => {
         if (flashSeparators) {
-            return platinumDesktopMenuWidgetTimeStyles.textBlinker;
+            return classicyDesktopMenuWidgetTimeStyles.textBlinker;
         }
 
         return;
@@ -78,7 +78,7 @@ const PlatinumDesktopMenuWidgetTime: React.FC<PlatinumDesktopMenuWidgetTimeProps
                     classNames(
                         classicyMenuStyles.classicyMenuItem,
                         classicyMenuStyles.classicyMenuItemNoImage,
-                        platinumDesktopMenuWidgetTimeStyles.classicyDesktopMenuTime
+                        classicyDesktopMenuWidgetTimeStyles.classicyDesktopMenuTime
                     )
                 }>
                     {displayDay &&
@@ -101,4 +101,4 @@ const PlatinumDesktopMenuWidgetTime: React.FC<PlatinumDesktopMenuWidgetTimeProps
     );
 };
 
-export default PlatinumDesktopMenuWidgetTime;
+export default ClassicyDesktopMenuWidgetTime;

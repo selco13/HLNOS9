@@ -2,19 +2,19 @@ import {getAllThemes, getThemeVars} from "@/app/SystemFolder/Appearance/Platinum
 import Finder from "@/app/SystemFolder/Finder/Finder";
 import {useDesktop, useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
-import PlatinumDesktopMenuBar from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/PlatinumDesktopMenuBar";
-import platinumDesktop from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktop.module.scss";
-import PlatinumDesktopIcon from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIcon";
+import classicyDesktop from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktop.module.scss";
+import ClassicyDesktopIcon from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIcon";
+import ClassicyDesktopMenuBar from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/ClassicyDesktopMenuBar";
 import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 import classNames from "classnames";
 import React, {Suspense} from "react";
 import "@/app/SystemFolder/Appearance/styles/fonts.scss";
 
-interface PlatinumDesktopProps {
+interface ClassicyDesktopProps {
     children?: any;
 }
 
-const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
+const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({children}) => {
 
         const [contextMenu, setContextMenu] = React.useState(false);
         const [contextMenuLocation, setContextMenuLocation] = React.useState([0, 0]);
@@ -30,14 +30,14 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
 
         if (desktopState.availableThemes.length <= 0) {
             desktopEventDispatch({
-                type: "PlatinumDesktopLoadThemes",
+                type: "ClassicyDesktopLoadThemes",
                 availableThemes: getAllThemes(),
             });
         }
 
 
         const startSelectBox = (e) => {
-            if (e.target.id === "platinumDesktop") {
+            if (e.target.id === "classicyDesktop") {
                 if (e.button > 1) {
                     toggleDesktopContextMenu(e);
                 } else {
@@ -62,7 +62,7 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
         const clearActives = (e) => {
             setContextMenu(false);
             desktopEventDispatch({
-                type: "PlatinumDesktopFocus",
+                type: "ClassicyDesktopFocus",
                 e: e,
                 menuBar: defaultMenuItems,
             });
@@ -70,7 +70,7 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
 
         const toggleDesktopContextMenu = (e) => {
             e.preventDefault();
-            if (e.target.id === "platinumDesktop") {
+            if (e.target.id === "classicyDesktop") {
                 setContextMenuLocation([e.clientX - clickOffset[0], e.clientY - clickOffset[1]]);
                 setContextMenu(!contextMenu);
             }
@@ -94,7 +94,7 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
                         title: "Clean up",
                         onClickFunc: () => {
                             desktopEventDispatch({
-                                type: "PlatinumDesktopIconCleanup"
+                                type: "ClassicyDesktopIconCleanup"
                             });
                         }
                     },
@@ -133,7 +133,7 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
 
         React.useEffect(() => {
             desktopEventDispatch({
-                type: "PlatinumDesktopFocus",
+                type: "ClassicyDesktopFocus",
                 menuBar: defaultMenuItems,
             });
         }, []);
@@ -141,15 +141,15 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
         return (
             <>
                 <Suspense>
-                    <div id={"platinumDesktop"}
+                    <div id={"classicyDesktop"}
                          style={currentTheme as React.CSSProperties}
-                         className={classNames(platinumDesktop.platinumDesktop)}
+                         className={classNames(classicyDesktop.classicyDesktop)}
                          onMouseMove={resizeSelectBox}
                          onContextMenu={toggleDesktopContextMenu}
                          onClick={clearSelectBox}
                          onMouseDown={startSelectBox}>
                         {selectBox &&
-                            <div className={platinumDesktop.platinumDesktopSelect}
+                            <div className={classicyDesktop.classicyDesktopSelect}
                                  style={{
                                      left: selectBoxStart[0],
                                      top: selectBoxStart[1],
@@ -157,14 +157,14 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
                                      height: selectBoxSize[1]
                                  }}/>
                         }
-                        <PlatinumDesktopMenuBar/>
+                        <ClassicyDesktopMenuBar/>
                         {contextMenu && (
                             <ClassicyContextualMenu menuItems={defaultMenuItems}
                                                     position={contextMenuLocation}/>
                         )}
                         <Finder/>
                         {desktopState.desktopIcons.map(i => (
-                            <PlatinumDesktopIcon
+                            <ClassicyDesktopIcon
                                 appId={i.appId}
                                 appName={i.appName}
                                 icon={i.icon}
@@ -182,4 +182,4 @@ const PlatinumDesktop: React.FC<PlatinumDesktopProps> = ({children}) => {
     }
 ;
 
-export default PlatinumDesktop;
+export default ClassicyDesktop;

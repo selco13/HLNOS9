@@ -1,11 +1,11 @@
 import {getTheme} from "@/app/SystemFolder/Appearance/PlatinumAppearance";
 import {
-    platinumDesktopStateEventReducer
+    classicyDesktopStateEventReducer
 } from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
-import {PlatinumDesktopState} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopState"
+import {ClassicyDesktopState} from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopState"
 import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 
-export type PlatinumDesktopIconState = {
+export type ClassicyDesktopIconState = {
     appId: string;
     appName: string;
     icon: string;
@@ -56,7 +56,7 @@ const getIconSize = (theme: string) => {
 }
 
 
-const cleanupDesktopIcons = (theme: string, icons: PlatinumDesktopIconState[]) => {
+const cleanupDesktopIcons = (theme: string, icons: ClassicyDesktopIconState[]) => {
     let newDesktopIcons = [];
     let startX: number = 1;
     let startY: number = 0;
@@ -99,28 +99,28 @@ const cleanupDesktopIcons = (theme: string, icons: PlatinumDesktopIconState[]) =
     return newDesktopIcons;
 }
 
-export const platinumDesktopIconEventHandler = (
-    ds: PlatinumDesktopState,
+export const classicyDesktopIconEventHandler = (
+    ds: ClassicyDesktopState,
     action,
 ) => {
     switch (action.type) {
-        case "PlatinumDesktopIconCleanup": {
+        case "ClassicyDesktopIconCleanup": {
             ds.desktopIcons = cleanupDesktopIcons(ds.activeTheme, ds.desktopIcons);
             break;
         }
-        case "PlatinumDesktopIconFocus": {
+        case "ClassicyDesktopIconFocus": {
             ds.selectedDesktopIcons = [action.iconId];
             break;
         }
-        case "PlatinumDesktopIconOpen": {
+        case "ClassicyDesktopIconOpen": {
             ds.selectedDesktopIcons = [action.iconId];
-            ds = platinumDesktopStateEventReducer(ds, {
-                type: "PlatinumAppOpen",
+            ds = classicyDesktopStateEventReducer(ds, {
+                type: "ClassicyAppOpen",
                 app: action.app,
             });
             break;
         }
-        case "PlatinumDesktopIconAdd": {
+        case "ClassicyDesktopIconAdd": {
             // TODO: We need to separate onClickFunc from here; it's being stored in the localstorage cache which
             // means it gets blown out after every session clear. An Event name and payload here would be better.
             let icon = ds.desktopIcons.filter((icon) => icon.appId === action.app.id);
@@ -144,7 +144,7 @@ export const platinumDesktopIconEventHandler = (
             break;
         }
 
-        case "PlatinumDesktopIconRemove": {
+        case "ClassicyDesktopIconRemove": {
             let iconIdx = ds.desktopIcons.findIndex(
                 (icon) => icon.appId === action.app.id,
             );
@@ -153,7 +153,7 @@ export const platinumDesktopIconEventHandler = (
             }
             break;
         }
-        case "PlatinumDesktopIconMove": {
+        case "ClassicyDesktopIconMove": {
             let iconIdx = ds.desktopIcons.findIndex(
                 (icon) => icon.appId === action.app.id,
             );

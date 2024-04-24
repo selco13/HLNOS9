@@ -32,10 +32,10 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
                 <input type={"radio"} onClick={onClick}
                        tabIndex={0}
                        onMouseDown={() => {
-                           player({type: "PlatinumSoundPlay", sound: "PlatinumInputRadioClickDown"})
+                           player({type: "ClassicySoundPlay", sound: "ClassicyInputRadioClickDown"})
                        }}
                        onMouseUp={() => {
-                           player({type: "PlatinumSoundPlay", sound: "PlatinumInputRadioClickUp"})
+                           player({type: "ClassicySoundPlay", sound: "ClassicyInputRadioClickUp"})
                        }}
                        id={id}
                        name={name}

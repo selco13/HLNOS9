@@ -3,7 +3,7 @@ import {useSoundDispatch} from "@/app/SystemFolder/SystemResources/SoundManager/
 import classNames from "classnames";
 import React from "react";
 
-type PlatinumButtonProps = {
+type ClassicyButtonProps = {
     isDefault?: boolean;
     disabled?: boolean;
     onClick?: any;
@@ -13,7 +13,7 @@ type PlatinumButtonProps = {
     buttonType?: "button" | "submit" | "reset";
 }
 
-const ClassicyButton: React.FC<PlatinumButtonProps> = ({
+const ClassicyButton: React.FC<ClassicyButtonProps> = ({
                                                            isDefault = false,
                                                            buttonType = "button",
                                                            buttonShape = "rectangle",
@@ -38,10 +38,10 @@ const ClassicyButton: React.FC<PlatinumButtonProps> = ({
                 }
                 onClick={onClick}
                 onMouseDown={() => {
-                    player({type: "PlatinumSoundPlay", sound: "PlatinumButtonClickDown"})
+                    player({type: "ClassicySoundPlay", sound: "ClassicyButtonClickDown"})
                 }}
                 onMouseUp={() => {
-                    player({type: "PlatinumSoundPlay", sound: "PlatinumButtonClickUp"})
+                    player({type: "ClassicySoundPlay", sound: "ClassicyButtonClickUp"})
                 }}
                 disabled={disabled}>
             {children}

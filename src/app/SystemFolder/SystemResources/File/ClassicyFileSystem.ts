@@ -72,7 +72,7 @@ let defaultFSContent = {
     }
 }
 
-type PlatinumFileSystemEntry = {
+type ClassicyFileSystemEntry = {
     "_type": "drive" | "directory" | "file" | "shortcut" | "app_shortcut";
     "_icon"?: string;
     "_mimeType"?: string;
@@ -92,11 +92,11 @@ type PlatinumFileSystemEntry = {
     [entry: string]: any;
 }
 
-export type pathOrObject = PlatinumFileSystemEntry | string
+export type pathOrObject = ClassicyFileSystemEntry | string
 
-export class PlatinumFileSystem {
+export class ClassicyFileSystem {
     basePath: string;
-    fs: PlatinumFileSystemEntry;
+    fs: ClassicyFileSystemEntry;
     separator: string;
 
     constructor(basePath: string = "", defaultFS: any = defaultFSContent, separator: string = ":") {
@@ -108,7 +108,7 @@ export class PlatinumFileSystem {
     }
 
     load(data: string) {
-        this.fs = JSON.parse(data) as PlatinumFileSystemEntry;
+        this.fs = JSON.parse(data) as ClassicyFileSystemEntry;
     }
 
     snapshot(): string {
@@ -119,7 +119,7 @@ export class PlatinumFileSystem {
         return [this.basePath, ...path.split(this.separator)].filter((v) => v !== "");
     }
 
-    resolve(path: string): PlatinumFileSystemEntry {
+    resolve(path: string): ClassicyFileSystemEntry {
         return this.pathArray(path).reduce((prev, curr) => prev?.[curr], this.fs)
     }
 
@@ -136,7 +136,7 @@ export class PlatinumFileSystem {
     }
 
     filterMetadata(content: any, mode: "only" | "remove" = "remove") {
-        let items: PlatinumFileSystemEntry | object = {};
+        let items: ClassicyFileSystemEntry | object = {};
 
         Object.entries(content).forEach(([key, value]) => {
             switch (mode) {
@@ -158,7 +158,7 @@ export class PlatinumFileSystem {
     }
 
     filterByType(path: string, byType: string | string[] = ["file", "directory"]) {
-        let items: PlatinumFileSystemEntry | object = {};
+        let items: ClassicyFileSystemEntry | object = {};
         Object.entries(this.resolve(path)).forEach(([b, a]) => {
             if (byType.includes(a["_type"])) {
                 items[b] = a
@@ -167,7 +167,7 @@ export class PlatinumFileSystem {
         return items
     }
 
-    statFile(path: string): PlatinumFileSystemEntry {
+    statFile(path: string): ClassicyFileSystemEntry {
         let item = this.resolve(path);
         item['_size'] = this.size(path)
         return item
@@ -196,13 +196,13 @@ export class PlatinumFileSystem {
             return path['_data'] as string
         }
         if (typeof path === 'string') {
-            let item: PlatinumFileSystemEntry = this.resolve(path);
+            let item: ClassicyFileSystemEntry = this.resolve(path);
             return this.readFile(item)
         }
     }
 
     writeFile(path: pathOrObject, data: string) {
-        let current: PlatinumFileSystemEntry;
+        let current: ClassicyFileSystemEntry;
 
         if (typeof path === 'string') {
             // current = this.generateTree(path, data)
@@ -222,7 +222,7 @@ export class PlatinumFileSystem {
             return {
                 "_type": "directory",
                 "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`
-            } as PlatinumFileSystemEntry;
+            } as ClassicyFileSystemEntry;
         }
 
         let current = {}
@@ -251,14 +251,14 @@ export class PlatinumFileSystem {
     }
 
 
-    calculateSizeDir(path: PlatinumFileSystemEntry | string): number {
-        const gatherSizes = (entry: PlatinumFileSystemEntry, field: string, value: string): any[] => {
+    calculateSizeDir(path: ClassicyFileSystemEntry | string): number {
+        const gatherSizes = (entry: ClassicyFileSystemEntry, field: string, value: string): any[] => {
             let results: string[] = [];
             for (const key in entry) {
                 if (key === field && entry[key] === value) {
                     results.push(String(this.size(entry)));
                 } else if (typeof entry[key] === 'object' && entry[key] !== null) {
-                    results = results.concat(gatherSizes(entry[key] as PlatinumFileSystemEntry, field, value));
+                    results = results.concat(gatherSizes(entry[key] as ClassicyFileSystemEntry, field, value));
                 }
             }
             return results;
@@ -275,13 +275,13 @@ export class PlatinumFileSystem {
         return Object.entries(this.filterMetadata(this.resolve(path))).length
     }
 
-    statDir(path: string): PlatinumFileSystemEntry {
-        let current: PlatinumFileSystemEntry = this.resolve(path);
+    statDir(path: string): ClassicyFileSystemEntry {
+        let current: ClassicyFileSystemEntry = this.resolve(path);
         let metaData = this.filterMetadata(current, "only");
 
         let name = path.split(this.separator).slice(-1);
 
-        let returnValue: PlatinumFileSystemEntry = {
+        let returnValue: ClassicyFileSystemEntry = {
             '_count': this.countFilesInDir(path),
             '_name': name[0],
             '_path': path,

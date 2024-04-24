@@ -1,21 +1,21 @@
-import {PlatinumDesktopState} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopState";
+import {ClassicyDesktopState} from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopState";
 
-export const platinumWindowEventHandler = (ds: PlatinumDesktopState, action) => {
+export const classicyWindowEventHandler = (ds: ClassicyDesktopState, action) => {
     switch (action.type) {
-        case "PlatinumWindowOpen": {
+        case "ClassicyWindowOpen": {
             ds.activeWindow = action.app.id;
             break;
         }
-        case "PlatinumWindowClose": {
+        case "ClassicyWindowClose": {
             break;
         }
-        case "PlatinumWindowFocus": {
+        case "ClassicyWindowFocus": {
             ds.activeWindow = action.app.window;
             ds.menuBar = action.app.appMenu;
             ds.activeApp = action.app.id;
             break;
         }
-        case "PlatinumWindowMenu": {
+        case "ClassicyWindowMenu": {
             ds.menuBar = action.menuBar;
         }
     }

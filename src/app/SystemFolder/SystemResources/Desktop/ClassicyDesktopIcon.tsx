@@ -1,10 +1,10 @@
 import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
 
-import platinumDesktopIconStyles from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIcon.module.scss";
+import classicyDesktopIconStyles from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIcon.module.scss";
 import classNames from "classnames";
 import React from "react";
 
-interface PlatinumDesktopIconProps {
+interface ClassicyDesktopIconProps {
     appId: string;
     appName: string;
     icon: string;
@@ -13,7 +13,7 @@ interface PlatinumDesktopIconProps {
     onClickFunc?: any;
 }
 
-const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
+const ClassicyDesktopIcon: React.FC<ClassicyDesktopIconProps> = ({
                                                                      appId,
                                                                      appName,
                                                                      icon,
@@ -34,7 +34,7 @@ const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
 
     const clickFocus = () => {
         desktopEventDispatch({
-            type: "PlatinumDesktopIconFocus",
+            type: "ClassicyDesktopIconFocus",
             iconId: id,
         })
     }
@@ -44,7 +44,7 @@ const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
             clickFocus();
 
             desktopEventDispatch({
-                type: "PlatinumDesktopIconMove",
+                type: "ClassicyDesktopIconMove",
                 app: {
                     id: appId
                 },
@@ -63,7 +63,7 @@ const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
             onClickFunc();
         }
         desktopEventDispatch({
-            type: "PlatinumDesktopIconOpen",
+            type: "ClassicyDesktopIconOpen",
             iconId: id,
             app: {
                 id: appId,
@@ -110,11 +110,11 @@ const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
 
     const getClass = (id) => {
         if (isActive(id) && isLaunched()) {
-            return platinumDesktopIconStyles.platinumDesktopIconActiveAndOpen
+            return classicyDesktopIconStyles.classicyDesktopIconActiveAndOpen
         } else if (isActive(id)) {
-            return platinumDesktopIconStyles.platinumDesktopIconActive
+            return classicyDesktopIconStyles.classicyDesktopIconActive
         } else if (isLaunched()) {
-            return platinumDesktopIconStyles.platinumDesktopIconOpen
+            return classicyDesktopIconStyles.classicyDesktopIconOpen
         } else {
             return "";
         }
@@ -129,16 +129,16 @@ const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
              draggable={false}
              onClick={clickFocus}
              className={classNames(
-                 platinumDesktopIconStyles.platinumDesktopIcon,
-                 dragging ? platinumDesktopIconStyles.platinumDesktopIconDragging : "",
+                 classicyDesktopIconStyles.classicyDesktopIcon,
+                 dragging ? classicyDesktopIconStyles.classicyDesktopIconDragging : "",
                  getClass(id)
              )}
              style={{top: thisLocation[0], left: thisLocation[1]}}
         >
-            <div className={platinumDesktopIconStyles.platinumDesktopIconMaskOuter}
+            <div className={classicyDesktopIconStyles.classicyDesktopIconMaskOuter}
                  style={{maskImage: `url(${icon})`}}>
                 <div
-                    className={platinumDesktopIconStyles.platinumDesktopIconMask}
+                    className={classicyDesktopIconStyles.classicyDesktopIconMask}
                     style={{mask: `url(${icon})`}}>
                     <img src={icon} alt={appName}/>
                 </div>
@@ -148,4 +148,4 @@ const PlatinumDesktopIcon: React.FC<PlatinumDesktopIconProps> = ({
     );
 };
 
-export default PlatinumDesktopIcon;
+export default ClassicyDesktopIcon;

@@ -5,34 +5,34 @@ import soundData from "../../../../../public/sounds/platinum/platinum.json"
 import soundLabels from "./ClassicySoundManagerLabels.json";
 
 export const ClassicySoundManagerContext = React.createContext(null);
-export const PlatinumSoundDispatchContext = React.createContext(null);
+export const ClassicySoundDispatchContext = React.createContext(null);
 
-export type PlatinumSoundInfo = {
+export type ClassicySoundInfo = {
     id: string;
     group: string;
     label: string;
     description: string;
 }
 
-type PlatinumSoundState = {
+type ClassicySoundState = {
     soundPlayer: Howl | null;
     disabled: string[];
-    labels: PlatinumSoundInfo[];
+    labels: ClassicySoundInfo[];
     volume?: number;
 }
 
-enum PlatinumSoundActionTypes {
-    PlatinumSoundStop,
-    PlatinumSoundPlay,
-    PlatinumSoundPlayInterrupt,
-    PlatinumSoundLoad,
-    PlatinumSoundSet,
-    PlatinumSoundDisable,
-    PlatinumVolumeSet
+enum ClassicySoundActionTypes {
+    ClassicySoundStop,
+    ClassicySoundPlay,
+    ClassicySoundPlayInterrupt,
+    ClassicySoundLoad,
+    ClassicySoundSet,
+    ClassicySoundDisable,
+    ClassicyVolumeSet
 }
 
-interface PlatinumSoundAction {
-    type: PlatinumSoundActionTypes;
+interface ClassicySoundAction {
+    type: ClassicySoundActionTypes;
     sound?: string;
     file?: string;
     disabled?: string[];
@@ -79,10 +79,10 @@ export function useSound() {
 }
 
 export function useSoundDispatch() {
-    return React.useContext(PlatinumSoundDispatchContext);
+    return React.useContext(ClassicySoundDispatchContext);
 }
 
-const playerCanPlayInterrupt = ({disabled, soundPlayer}: PlatinumSoundState, sound: string) => {
+const playerCanPlayInterrupt = ({disabled, soundPlayer}: ClassicySoundState, sound: string) => {
     return (
         !disabled.includes("*") &&
         !disabled.includes(sound) &&
@@ -90,50 +90,50 @@ const playerCanPlayInterrupt = ({disabled, soundPlayer}: PlatinumSoundState, sou
     );
 }
 
-const playerCanPlay = (ss: PlatinumSoundState, sound: string) => {
+const playerCanPlay = (ss: ClassicySoundState, sound: string) => {
     return (
         playerCanPlayInterrupt(ss, sound) &&
         !ss.soundPlayer.playing()
     )
 }
 
-export const PlatinumSoundStateEventReducer = (
-    ss: PlatinumSoundState,
-    action: PlatinumSoundAction
+export const ClassicySoundStateEventReducer = (
+    ss: ClassicySoundState,
+    action: ClassicySoundAction
 ) => {
-    const validatedAction = PlatinumSoundActionTypes[action.type as unknown as keyof typeof PlatinumSoundActionTypes];
+    const validatedAction = ClassicySoundActionTypes[action.type as unknown as keyof typeof ClassicySoundActionTypes];
     switch (validatedAction) {
-        case PlatinumSoundActionTypes.PlatinumSoundStop: {
+        case ClassicySoundActionTypes.ClassicySoundStop: {
             ss.soundPlayer.stop();
             break;
         }
-        case PlatinumSoundActionTypes.PlatinumSoundPlay: {
+        case ClassicySoundActionTypes.ClassicySoundPlay: {
             if (playerCanPlay(ss, action.sound)) {
                 ss.soundPlayer.play(action.sound);
             }
             break;
         }
-        case PlatinumSoundActionTypes.PlatinumSoundPlayInterrupt: {
+        case ClassicySoundActionTypes.ClassicySoundPlayInterrupt: {
             if (playerCanPlayInterrupt(ss, action.sound)) {
                 ss.soundPlayer.stop();
                 ss.soundPlayer.play(action.sound);
             }
             break;
         }
-        case PlatinumSoundActionTypes.PlatinumSoundLoad: {
+        case ClassicySoundActionTypes.ClassicySoundLoad: {
             ss.soundPlayer = loadSoundTheme(process.env.NEXT_PUBLIC_BASE_PATH + action.file);
             ss.disabled = action.disabled;
             break;
         }
-        case PlatinumSoundActionTypes.PlatinumSoundSet: {
+        case ClassicySoundActionTypes.ClassicySoundSet: {
             ss.soundPlayer = action.soundPlayer;
             break;
         }
-        case PlatinumSoundActionTypes.PlatinumVolumeSet: {
+        case ClassicySoundActionTypes.ClassicyVolumeSet: {
             ss.soundPlayer = action.soundPlayer;
             break;
         }
-        case PlatinumSoundActionTypes.PlatinumSoundDisable: {
+        case ClassicySoundActionTypes.ClassicySoundDisable: {
             ss.disabled = action.disabled;
             break;
         }
@@ -142,14 +142,14 @@ export const PlatinumSoundStateEventReducer = (
 };
 
 
-export function PlatinumSoundManagerProvider({children}) {
-    const [sound, soundDispatch] = React.useReducer(PlatinumSoundStateEventReducer, initialPlayer);
+export function ClassicySoundManagerProvider({children}) {
+    const [sound, soundDispatch] = React.useReducer(ClassicySoundStateEventReducer, initialPlayer);
 
     return (
         <ClassicySoundManagerContext.Provider value={sound}>
-            <PlatinumSoundDispatchContext.Provider value={soundDispatch}>
+            <ClassicySoundDispatchContext.Provider value={soundDispatch}>
                 {children}
-            </PlatinumSoundDispatchContext.Provider>
+            </ClassicySoundDispatchContext.Provider>
         </ClassicySoundManagerContext.Provider>
     );
 }

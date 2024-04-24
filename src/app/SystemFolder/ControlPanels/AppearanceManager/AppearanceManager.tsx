@@ -30,7 +30,7 @@ export const AppearanceManager: React.FC = () => {
 
     const switchTheme = (e) => {
         desktopEventDispatch({
-            type: "PlatinumDesktopTheme",
+            type: "ClassicyDesktopTheme",
             activeTheme: e.target.value,
         });
         loadSoundTheme(e.target.value);
@@ -39,7 +39,7 @@ export const AppearanceManager: React.FC = () => {
     const loadSoundTheme = (themeName: string) => {
         const soundTheme = getTheme(themeName).sound;
         player({
-            type: "PlatinumSoundLoad",
+            type: "ClassicySoundLoad",
             file: soundTheme.file,
             disabled: soundTheme.disabled,
         });
@@ -47,7 +47,7 @@ export const AppearanceManager: React.FC = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,
@@ -85,7 +85,7 @@ export const AppearanceManager: React.FC = () => {
 
     const cleanupIcons = () => {
         desktopEventDispatch({
-            type: "PlatinumDesktopIconCleanup",
+            type: "ClassicyDesktopIconCleanup",
         });
     };
 

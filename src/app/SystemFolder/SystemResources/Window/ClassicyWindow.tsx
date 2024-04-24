@@ -91,7 +91,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const startResizeWindow = () => {
         windowEventDispatch({
-            type: "PlatinumWindowPosition",
+            type: "ClassicyWindowPosition",
             position: [windowRef.current.getBoundingClientRect().left, windowRef.current.getBoundingClientRect().top]
         })
         setResize(true);
@@ -101,7 +101,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const startMoveWindow = (e) => {
         e.preventDefault();
-        player({type: "PlatinumSoundPlay", sound: "PlatinumWindowMoveIdle"})
+        player({type: "ClassicySoundPlay", sound: "ClassicyWindowMoveIdle"})
         setDragging(true);
         setClickPosition([
             e.clientX - windowRef.current.getBoundingClientRect().left,
@@ -123,7 +123,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         }
 
         if (windowState.dragging) {
-            player({type: "PlatinumSoundPlay", sound: "PlatinumWindowMoveMoving"})
+            player({type: "ClassicySoundPlay", sound: "ClassicyWindowMoveMoving"})
             setMoving(true, [
                 e.clientX - clickPosition[0],
                 e.clientY - clickPosition[1],
@@ -134,7 +134,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     const stopChangeWindow = (e) => {
         e.preventDefault();
         if (windowState.resizing || windowState.dragging || windowState.moving) {
-            player({type: "PlatinumSoundPlayInterrupt", sound: "PlatinumWindowMoveStop"});
+            player({type: "ClassicySoundPlayInterrupt", sound: "ClassicyWindowMoveStop"});
         }
         setResize(false);
         setDragging(false);
@@ -144,7 +144,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const setDragging = (toDrag: boolean) => {
         windowEventDispatch({
-            type: "PlatinumWindowDrag",
+            type: "ClassicyWindowDrag",
             dragging: toDrag,
         });
     };
@@ -154,7 +154,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         toPosition: [number, number] = [0, 0]
     ) => {
         windowEventDispatch({
-            type: "PlatinumWindowMove",
+            type: "ClassicyWindowMove",
             moving: toMove,
             position: toPosition,
         });
@@ -168,10 +168,10 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const setActive = () => {
         if (!isActive()) {
-            player({type: "PlatinumSoundPlay", sound: "PlatinumWindowFocus"})
+            player({type: "ClassicySoundPlay", sound: "ClassicyWindowFocus"})
 
             desktopEventDispatch({
-                type: "PlatinumWindowFocus",
+                type: "ClassicyWindowFocus",
                 app: {
                     id: appId,
                     window: id,
@@ -179,7 +179,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                 }
             });
             desktopEventDispatch({
-                type: "PlatinumWindowContextMenu",
+                type: "ClassicyWindowContextMenu",
                 contextMenu: contextMenu ? contextMenu : [],
             });
         }
@@ -197,14 +197,14 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const setCollapse = (toCollapse: boolean) => {
         if (toCollapse) {
-            player({type: "PlatinumSoundPlay", sound: "PlatinumWindowCollapse"})
+            player({type: "ClassicySoundPlay", sound: "ClassicyWindowCollapse"})
             windowEventDispatch({
-                type: "PlatinumWindowCollapse",
+                type: "ClassicyWindowCollapse",
             });
         } else {
-            player({type: "PlatinumSoundPlay", sound: "PlatinumWindowExpand"})
+            player({type: "ClassicySoundPlay", sound: "ClassicyWindowExpand"})
             windowEventDispatch({
-                type: "PlatinumWindowExpand",
+                type: "ClassicyWindowExpand",
             });
         }
     };
@@ -219,16 +219,16 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         if (windowState.collapsed) {
             setCollapse(false);
         }
-        player({type: "PlatinumSoundPlay", sound: "PlatinumWindowZoom"})
+        player({type: "ClassicySoundPlay", sound: "ClassicyWindowZoom"})
         windowEventDispatch({
-            type: "PlatinumWindowZoom",
+            type: "ClassicyWindowZoom",
             zoomed: toZoom,
         });
     };
 
     const setContextMenu = (toShow: boolean, atPosition: [number, number]) => {
         windowEventDispatch({
-            type: "PlatinumWindowContextMenu",
+            type: "ClassicyWindowContextMenu",
             contextMenu: toShow,
             position: atPosition,
         });
@@ -250,16 +250,16 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     const setResize = (toResize: boolean) => {
         if (resizable) {
             windowEventDispatch({
-                type: "PlatinumWindowResize",
+                type: "ClassicyWindowResize",
                 resizing: toResize,
             });
         }
     };
 
     const close = () => {
-        player({type: "PlatinumSoundPlay", sound: "PlatinumWindowClose"})
+        player({type: "ClassicySoundPlay", sound: "ClassicyWindowClose"})
         windowEventDispatch({
-            type: "PlatinumWindowClose",
+            type: "ClassicyWindowClose",
         });
         if (typeof onCloseFunc === 'function') {
             onCloseFunc(id);

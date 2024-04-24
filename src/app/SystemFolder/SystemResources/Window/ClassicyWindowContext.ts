@@ -19,52 +19,52 @@ export type ClassicyWindowState = {
 
 export const ClassicyWindowStateEventReducer = (ws: ClassicyWindowState, action) => {
     switch (action.type) {
-        case "PlatinumWindowOpen": {
+        case "ClassicyWindowOpen": {
             ws.closed = false;
             break;
         }
-        case "PlatinumWindowClose": {
+        case "ClassicyWindowClose": {
             ws.closed = true;
             break;
         }
-        case "PlatinumWindowResize": {
+        case "ClassicyWindowResize": {
             ws.resizing = action.resizing;
             break;
         }
-        case "PlatinumWindowZoom": {
+        case "ClassicyWindowZoom": {
             ws.zoomed = action.zoomed;
             break;
         }
-        case "PlatinumWindowFocus": {
+        case "ClassicyWindowFocus": {
             break;
         }
-        case "PlatinumWindowExpand": {
+        case "ClassicyWindowExpand": {
             ws.collapsed = false;
             break;
         }
-        case "PlatinumWindowCollapse": {
+        case "ClassicyWindowCollapse": {
             ws.collapsed = true;
             break;
         }
-        case "PlatinumWindowDrag": {
+        case "ClassicyWindowDrag": {
             ws.dragging = action.dragging;
             break;
         }
-        case "PlatinumWindowContextMenu": {
+        case "ClassicyWindowContextMenu": {
             ws.contextMenu = action.contextMenu;
             if (action.contextMenuShown === true) {
                 ws.contextMenuLocation = action.position;
             }
             break;
         }
-        case "PlatinumWindowMove": {
+        case "ClassicyWindowMove": {
             ws.moving = action.moving;
             if (action.moving === true) {
                 ws.position = action.position;
             }
             break;
         }
-        case "PlatinumWindowPosition": {
+        case "ClassicyWindowPosition": {
             ws.position = action.position;
             break;
         }

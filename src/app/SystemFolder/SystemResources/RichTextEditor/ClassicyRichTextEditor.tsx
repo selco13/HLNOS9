@@ -15,12 +15,12 @@ import {
 } from "@mdxeditor/editor"
 import {FC} from 'react'
 
-interface PlatinumRichTextEditorProps {
+interface ClassicyRichTextEditorProps {
     content: string;
     editorRef?: React.MutableRefObject<MDXEditorMethods | null>;
 }
 
-const ClassicyRichTextEditor: FC<PlatinumRichTextEditorProps> = ({content, editorRef}) => {
+const ClassicyRichTextEditor: FC<ClassicyRichTextEditorProps> = ({content, editorRef}) => {
     return <div className={classicyRichTextEditorStyles.classicyRichTextEditor}>
         <MDXEditor ref={editorRef} markdown={content} contentEditableClassName="prose"
                    plugins={[headingsPlugin(), headingsPlugin(),

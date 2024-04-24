@@ -1,12 +1,12 @@
-import {PlatinumDesktopIconState} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIconContext";
+import {ClassicyDesktopIconState} from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext";
 import {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
 import {Howl} from 'howler';
 
 
-export interface PlatinumDesktopState {
+export interface ClassicyDesktopState {
     activeTheme: string;
     soundPlayer: Howl;
-    availableThemes: PlatinumTheme[];
+    availableThemes: ClassicyTheme[];
     selectedDesktopIcons: string[];
     activeWindow: string;
     activeApp: string;
@@ -18,11 +18,11 @@ export interface PlatinumDesktopState {
     selectBox: boolean;
     selectBoxSize: number[];
     selectBoxStart: number[];
-    desktopIcons: PlatinumDesktopIconState[];
-    openApps: PlatinumAppItem[];
+    desktopIcons: ClassicyDesktopIconState[];
+    openApps: ClassicyAppItem[];
 }
 
-export type PlatinumAppItem = {
+export type ClassicyAppItem = {
     id: string;
     name: string;
     icon: string;
@@ -30,9 +30,9 @@ export type PlatinumAppItem = {
     defaultWindow?: string;
 };
 
-export type PlatinumThemeColorPalette = [number, number, number, number, number, number, number];
+export type ClassicyThemeColorPalette = [number, number, number, number, number, number, number];
 
-export type PlatinumThemeColorsWindow = {
+export type ClassicyThemeColorsWindow = {
     border: string;
     borderOutset: string;
     borderInset: string;
@@ -41,7 +41,7 @@ export type PlatinumThemeColorsWindow = {
     document: string;
 }
 
-export type PlatinumThemeColors = {
+export type ClassicyThemeColors = {
     outline: string;
     select: string;
     highlight: string;
@@ -49,12 +49,12 @@ export type PlatinumThemeColors = {
     white: string;
     alert: string;
     error: string;
-    system: PlatinumThemeColorPalette;
-    theme: PlatinumThemeColorPalette;
-    window: PlatinumThemeColorsWindow;
+    system: ClassicyThemeColorPalette;
+    theme: ClassicyThemeColorPalette;
+    window: ClassicyThemeColorsWindow;
 }
 
-export type PlatinumThemeTypography = {
+export type ClassicyThemeTypography = {
     ui: string;
     uiSize: string;
     header: string;
@@ -63,23 +63,23 @@ export type PlatinumThemeTypography = {
     bodySize: string;
 }
 
-export type PlatinumThemeMeasurementsWindow = {
+export type ClassicyThemeMeasurementsWindow = {
     borderSize: string;
     controlSize: string;
     paddingSize: string
     scrollbarSize: string;
 }
 
-export type PlatinumThemeMeasurements = {
-    window: PlatinumThemeMeasurementsWindow;
+export type ClassicyThemeMeasurements = {
+    window: ClassicyThemeMeasurementsWindow;
 }
 
-export type PlatinumThemeSound = {
+export type ClassicyThemeSound = {
     file: string;
     disabled: string[];
 }
 
-export type PlatinumThemeDesktop = {
+export type ClassicyThemeDesktop = {
     iconSize: string;
     iconFontSize: string;
     backgroundImage: string;
@@ -89,18 +89,18 @@ export type PlatinumThemeDesktop = {
     size: string;
 }
 
-export type PlatinumTheme = {
+export type ClassicyTheme = {
     id: string;
     name: string;
-    color: PlatinumThemeColors
-    typography: PlatinumThemeTypography;
-    measurements: PlatinumThemeMeasurements;
-    desktop: PlatinumThemeDesktop;
-    sound: PlatinumThemeSound;
+    color: ClassicyThemeColors
+    typography: ClassicyThemeTypography;
+    measurements: ClassicyThemeMeasurements;
+    desktop: ClassicyThemeDesktop;
+    sound: ClassicyThemeSound;
 };
 
 
-export const DefaultDesktopState: PlatinumDesktopState = {
+export const DefaultDesktopState: ClassicyDesktopState = {
     activeTheme: "default",
     availableThemes: [],
     selectedDesktopIcons: [],

@@ -1,9 +1,9 @@
-.platinumDesktopMenuBar {
+.classicyDesktopMenuBar {
   z-index: 500;
   background: var(--color-black);
 }
 
-.platinumDesktopMenu {
+.classicyDesktopMenu {
   z-index: 500;
   display: inline-block;
   width: 100%;
@@ -29,7 +29,7 @@
 
 }
 
-.platinumDesktopMenuAppleMenu {
+.classicyDesktopMenuAppleMenu {
   margin-left: 0;
 
   &:after {
@@ -39,7 +39,7 @@
 
 }
 
-.platinumDesktopMenuAppSwitcher {
+.classicyDesktopMenuAppSwitcher {
   float: right;
   margin-right: 0;
   margin-left: 0;

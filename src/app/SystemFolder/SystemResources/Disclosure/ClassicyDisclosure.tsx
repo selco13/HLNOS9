@@ -3,15 +3,15 @@ import classicyDisclosureStyles from "@/app/SystemFolder/SystemResources/Disclos
 import classNames from "classnames";
 import React from "react";
 
-type PlatinumDisclosureTriangleDirections = "up" | "right" | "down" | "left";
+type ClassicyDisclosureTriangleDirections = "up" | "right" | "down" | "left";
 
-type PlatinumDisclosureProps = {
-    direction?: PlatinumDisclosureTriangleDirections;
+type ClassicyDisclosureProps = {
+    direction?: ClassicyDisclosureTriangleDirections;
     label?: string;
     children?: any;
 }
 
-const ClassicyDisclosure: React.FC<PlatinumDisclosureProps> = (
+const ClassicyDisclosure: React.FC<ClassicyDisclosureProps> = (
     {
         direction = "right",
         label = "",

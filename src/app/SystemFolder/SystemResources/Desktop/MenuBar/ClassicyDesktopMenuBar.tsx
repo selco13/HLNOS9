@@ -1,16 +1,16 @@
 import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
-import platinumDesktopMenuStyles
-    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/PlatinumDesktopMenuBar.module.scss";
-import PlatinumDesktopMenuWidgetSound
-    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/PlatinumDesktopMenuWidgetSound";
-import PlatinumDesktopMenuWidgetTime
-    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/PlatinumDesktopMenuWidgetTime";
+import classicyDesktopMenuStyles
+    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/ClassicyDesktopMenuBar.module.scss";
+import ClassicyDesktopMenuWidgetSound
+    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Sound/ClassicyDesktopMenuWidgetSound";
+import ClassicyDesktopMenuWidgetTime
+    from "@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/ClassicyDesktopMenuWidgetTime";
 import ClassicyMenu, {ClassicyMenuItem} from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu";
-import platinumMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
+import classicyMenuStyles from "@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss";
 import React from "react";
 
 
-const PlatinumDesktopMenuBar: React.FC = () => {
+const ClassicyDesktopMenuBar: React.FC = () => {
     const desktopContext = useDesktop();
     const desktopEventDispatch = useDesktopDispatch();
 
@@ -18,12 +18,12 @@ const PlatinumDesktopMenuBar: React.FC = () => {
         id: "apple-menu",
         image: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/apple.png`,
         menuChildren: desktopContext.systemMenu,
-        className: platinumDesktopMenuStyles.platinumDesktopMenuAppleMenu
+        className: classicyDesktopMenuStyles.clasicyDesktopMenuAppleMenu
     };
 
     const setActiveApp = (appId: string) => {
         desktopEventDispatch({
-            type: "PlatinumAppFocus",
+            type: "ClassicyAppFocus",
             app: {id: appId},
         })
     };
@@ -37,7 +37,7 @@ const PlatinumDesktopMenuBar: React.FC = () => {
         id: "app-switcher",
         image: activeAppObject[0].icon,
         title: activeAppObject[0].name,
-        className: platinumDesktopMenuStyles.platinumDesktopMenuAppSwitcher,
+        className: classicyDesktopMenuStyles.classicyDesktopMenuAppSwitcher,
         menuChildren: desktopContext.openApps.map((app) => ({
                 id: app.id,
                 icon: app.icon,
@@ -56,15 +56,15 @@ const PlatinumDesktopMenuBar: React.FC = () => {
     ) as ClassicyMenuItem[];
 
     return (
-        <nav className={platinumDesktopMenuStyles.platinumDesktopMenuBar}>
-            <ClassicyMenu menuItems={defaultMenuItems} navClass={platinumDesktopMenuStyles.platinumDesktopMenu}
-                          subNavClass={platinumMenuStyles.platinumSubMenu}>
-                <PlatinumDesktopMenuWidgetSound></PlatinumDesktopMenuWidgetSound>
-                <PlatinumDesktopMenuWidgetTime></PlatinumDesktopMenuWidgetTime>
+        <nav className={classicyDesktopMenuStyles.classicyDesktopMenuBar}>
+            <ClassicyMenu menuItems={defaultMenuItems} navClass={classicyDesktopMenuStyles.classicyDesktopMenu}
+                          subNavClass={classicyMenuStyles.classicySubMenu}>
+                <ClassicyDesktopMenuWidgetSound></ClassicyDesktopMenuWidgetSound>
+                <ClassicyDesktopMenuWidgetTime></ClassicyDesktopMenuWidgetTime>
             </ClassicyMenu>
         </nav>
     );
 };
 
-export default PlatinumDesktopMenuBar;
+export default ClassicyDesktopMenuBar;
 

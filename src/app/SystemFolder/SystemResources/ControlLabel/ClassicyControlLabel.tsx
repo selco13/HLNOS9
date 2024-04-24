@@ -3,7 +3,7 @@ import classicyControlLabelStyles
 import classNames from "classnames";
 import React from "react";
 
-interface PlatinumControlLabelProps {
+interface ClassicyControlLabelProps {
     labelFor?: string;
     label?: string;
     disabled?: boolean;
@@ -13,7 +13,7 @@ interface PlatinumControlLabelProps {
     children?: any;
 }
 
-const ClassicyControlLabel: React.FC<PlatinumControlLabelProps> = ({
+const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
                                                                        labelFor = "",
                                                                        label = "",
                                                                        disabled = false,

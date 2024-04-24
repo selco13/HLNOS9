@@ -1,59 +1,59 @@
 import ClassicyBoot from "@/app/SystemFolder/SystemResources/Boot/ClassicyBoot";
-import {platinumDesktopIconEventHandler} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopIconContext";
+import {classicyDesktopIconEventHandler} from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext";
 import {
-    DefaultDesktopState,
-    PlatinumDesktopState
-} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopState";
+    ClassicyDesktopState,
+    DefaultDesktopState
+} from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopState";
 import {
-    platinumWindowEventHandler
-} from "@/app/SystemFolder/SystemResources/Desktop/PlatinumDesktopWindowManagerContext"
+    classicyWindowEventHandler
+} from "@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopWindowManagerContext"
 import {
-    PlatinumSoundManagerProvider
+    ClassicySoundManagerProvider
 } from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
 import React, {createContext, Suspense, useContext, useReducer} from 'react';
 
-const PlatinumDesktopContext = createContext(null);
-const PlatinumDesktopDispatchContext = createContext(null);
+const ClassicyDesktopContext = createContext(null);
+const ClassicyDesktopDispatchContext = createContext(null);
 
-type PlatinumDesktopProviderProps = {
+type ClassicyDesktopProviderProps = {
     children?: any
 }
-export const PlatinumDesktopProvider: React.FC<PlatinumDesktopProviderProps> = ({children}) => {
+export const ClassicyDesktopProvider: React.FC<ClassicyDesktopProviderProps> = ({children}) => {
     let desktopState = typeof window !== 'undefined'
-        ? JSON.parse(localStorage.getItem('platinumDesktopState')) || DefaultDesktopState
+        ? JSON.parse(localStorage.getItem('classicyDesktopState')) || DefaultDesktopState
         : DefaultDesktopState;
 
-    const [desktop, dispatch] = useReducer(platinumDesktopStateEventReducer, desktopState);
+    const [desktop, dispatch] = useReducer(classicyDesktopStateEventReducer, desktopState);
 
     React.useEffect(() => {
-        localStorage.setItem('platinumDesktopState', JSON.stringify(desktop));
+        localStorage.setItem('classicyDesktopState', JSON.stringify(desktop));
     }, [desktop])
 
     return (
         <Suspense fallback={<ClassicyBoot/>}>
-            <PlatinumDesktopContext.Provider value={desktop}>
-                <PlatinumDesktopDispatchContext.Provider value={dispatch}>
-                    <PlatinumSoundManagerProvider>
+            <ClassicyDesktopContext.Provider value={desktop}>
+                <ClassicyDesktopDispatchContext.Provider value={dispatch}>
+                    <ClassicySoundManagerProvider>
                         {children}
-                    </PlatinumSoundManagerProvider>
-                </PlatinumDesktopDispatchContext.Provider>
-            </PlatinumDesktopContext.Provider>
+                    </ClassicySoundManagerProvider>
+                </ClassicyDesktopDispatchContext.Provider>
+            </ClassicyDesktopContext.Provider>
         </Suspense>
     );
 }
 
 export function useDesktop() {
-    return useContext(PlatinumDesktopContext);
+    return useContext(ClassicyDesktopContext);
 }
 
 export function useDesktopDispatch() {
-    return useContext(PlatinumDesktopDispatchContext);
+    return useContext(ClassicyDesktopDispatchContext);
 }
 
-export const platinumDesktopEventHandler = (ds: PlatinumDesktopState, action) => {
+export const classicyDesktopEventHandler = (ds: ClassicyDesktopState, action) => {
     switch (action.type) {
-        case "PlatinumDesktopFocus": {
-            if ('e' in action && action.e.target.id === "platinumDesktop") {
+        case "ClassicyDesktopFocus": {
+            if ('e' in action && action.e.target.id === "classicyDesktop") {
                 ds.activeWindow = "";
                 ds.activeApp = "finder.app";
                 ds.selectedDesktopIcons = [];
@@ -68,31 +68,31 @@ export const platinumDesktopEventHandler = (ds: PlatinumDesktopState, action) =>
 
             break;
         }
-        case "PlatinumDesktopDoubleClick": {
+        case "ClassicyDesktopDoubleClick": {
             break;
         }
-        case "PlatinumDesktopDrag": {
+        case "ClassicyDesktopDrag": {
             ds.selectBoxSize = [action.e.clientX - ds.selectBoxStart[0], action.e.clientY - ds.selectBoxStart[1]];
             break;
         }
-        case "PlatinumDesktopStop": {
+        case "ClassicyDesktopStop": {
             ds.selectBox = false;
             ds.selectBoxStart = [0, 0];
             ds.selectBoxSize = [0, 0];
             break;
         }
-        case "PlatinumDesktopContextMenu": {
+        case "ClassicyDesktopContextMenu": {
             ds.showContextMenu = action.showContextMenu;
             if (action.contextMenu) {
                 ds.contextMenu = action.contextMenu;
             }
             break;
         }
-        case "PlatinumDesktopTheme": {
+        case "ClassicyDesktopTheme": {
             ds.activeTheme = action.activeTheme;
             break;
         }
-        case "PlatinumDesktopLoadThemes": {
+        case "ClassicyDesktopLoadThemes": {
             ds.availableThemes = action.availableThemes;
         }
     }
@@ -100,9 +100,9 @@ export const platinumDesktopEventHandler = (ds: PlatinumDesktopState, action) =>
 };
 
 
-export const platinumAppEventHandler = (ds: PlatinumDesktopState, action) => {
+export const classicyAppEventHandler = (ds: ClassicyDesktopState, action) => {
     switch (action.type) {
-        case "PlatinumAppOpen": {
+        case "ClassicyAppOpen": {
             const findIcon = ds.openApps.find((i) =>
                 i.id === action.app.id
             );
@@ -117,19 +117,19 @@ export const platinumAppEventHandler = (ds: PlatinumDesktopState, action) => {
             }
             break;
         }
-        case "PlatinumAppClose": {
+        case "ClassicyAppClose": {
             ds.openApps = ds.openApps.filter((oa) => oa.id !== action.app.id);
             ds.activeWindow = "";
             break;
         }
-        case "PlatinumAppFocus": {
+        case "ClassicyAppFocus": {
             if (ds.activeApp !== action.app.id) {
                 ds.activeWindow = action.window;
             }
             ds.activeApp = action.app.id;
             break;
         }
-        case "PlatinumAppActivate": {
+        case "ClassicyAppActivate": {
             ds.activeApp = action.app.id;
             break;
         }
@@ -139,17 +139,17 @@ export const platinumAppEventHandler = (ds: PlatinumDesktopState, action) => {
 
 };
 
-export const platinumDesktopStateEventReducer = (ds: PlatinumDesktopState, action) => {
+export const classicyDesktopStateEventReducer = (ds: ClassicyDesktopState, action) => {
     const startDs = ds;
     if ('type' in action) {
-        if (action.type.startsWith("PlatinumWindow")) {
-            ds = platinumWindowEventHandler(ds, action);
-        } else if (action.type.startsWith("PlatinumApp")) {
-            ds = platinumAppEventHandler(ds, action);
-        } else if (action.type.startsWith("PlatinumDesktopIcon")) {
-            ds = platinumDesktopIconEventHandler(ds, action);
-        } else if (action.type.startsWith("PlatinumDesktop")) {
-            ds = platinumDesktopEventHandler(ds, action);
+        if (action.type.startsWith("ClassicyWindow")) {
+            ds = classicyWindowEventHandler(ds, action);
+        } else if (action.type.startsWith("ClassicyApp")) {
+            ds = classicyAppEventHandler(ds, action);
+        } else if (action.type.startsWith("ClassicyDesktopIcon")) {
+            ds = classicyDesktopIconEventHandler(ds, action);
+        } else if (action.type.startsWith("ClassicyDesktop")) {
+            ds = classicyDesktopEventHandler(ds, action);
         }
     }
     if ('debug' in action) {

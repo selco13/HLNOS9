@@ -59,7 +59,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
 
     const onFocus = () => {
         desktopEventDispatch({
-            type: "PlatinumAppFocus",
+            type: "ClassicyAppFocus",
             app: {id: id},
         });
     }
@@ -67,7 +67,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
     React.useEffect(() => {
         if (!noDesktopIcon) {
             desktopEventDispatch({
-                type: "PlatinumDesktopIconAdd",
+                type: "ClassicyDesktopIconAdd",
                 app: {
                     id: id,
                     name: name,

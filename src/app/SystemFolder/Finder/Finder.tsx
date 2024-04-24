@@ -1,7 +1,7 @@
 import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
 import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
 import ClassicyFileBrowser from "@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser";
-import {PlatinumFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
+import {ClassicyFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
 import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
@@ -31,11 +31,11 @@ const Finder = () => {
 
     const emptyTrash = () => {
         desktopEventDispatch({
-            type: "PlatinumFinderEmptyTrash",
+            type: "ClassicyFinderEmptyTrash",
         });
     }
 
-    const fs = new PlatinumFileSystem("");
+    const fs = new ClassicyFileSystem("");
     const desktopEventDispatch = useDesktopDispatch();
 
     React.useEffect(() => {
@@ -43,7 +43,7 @@ const Finder = () => {
 
         Object.entries(drives).forEach(([a, b]) => {
             desktopEventDispatch({
-                type: "PlatinumDesktopIconAdd",
+                type: "ClassicyDesktopIconAdd",
                 app: {
                     id: appId,
                     name: a,
@@ -53,7 +53,7 @@ const Finder = () => {
         });
 
         desktopEventDispatch({
-            type: "PlatinumDesktopIconAdd",
+            type: "ClassicyDesktopIconAdd",
             app: {
                 id: "finder_trash",
                 name: "Trash",

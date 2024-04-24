@@ -1,12 +1,12 @@
 import {getTheme} from "@/app/SystemFolder/Appearance/PlatinumAppearance";
 import {useDesktop, useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
-import {PlatinumFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
+import {ClassicyFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
 import ClassicyIcon from "@/app/SystemFolder/SystemResources/Icon/ClassicyIcon";
 import React from "react";
 
 
-type PlatinumFileBrowserProps = {
-    fs: PlatinumFileSystem;
+type ClassicyFileBrowserProps = {
+    fs: ClassicyFileSystem;
     path: string;
     appId: string;
     display?: "icons" | "list";
@@ -14,7 +14,7 @@ type PlatinumFileBrowserProps = {
     fileOnClickFunc?: any;
 }
 
-const ClassicyFileBrowser: React.FC<PlatinumFileBrowserProps> = (
+const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = (
     {
         fs,
         display = "icons",
