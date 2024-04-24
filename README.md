@@ -1,7 +1,6 @@
-# Platimum
+# Clasicy (Previously Platimum)
 
-A UI framework using native CSS/JS replications of the Mac OS 8.1 interface components. The project is named after the
-interface theme that came with MacOS 8 and 9, Platinum.
+A UI framework using native CSS/JS replications of the Mac OS 8.1 interface components.
 
 ## Demo
 
@@ -9,7 +8,7 @@ interface theme that came with MacOS 8 and 9, Platinum.
 
 ## Running Locally
 
-The Platinum components are created in React. For demo purposes, we provide a very basic Next.js app for testing.
+The Classicy components are created in React. For demo purposes, we provide a very basic Next.js app for testing.
 
 You will need Node.js v20.11 or higher. You will also need the `yarn` package manager.
 
@@ -29,14 +28,14 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
    NEXT_PUBLIC_BASE_PATH=""
    '''
 
-4. Start the Platinum Destkop server in development mode.
+4. Start the Classicy Destkop server in development mode.
     ```bash
     yarn dev
     ```
 
 4. Open your web browser to [http://localhost:3000](http://localhost:3000) .
 
-5. To view the Platinum UI Components, run the Storybook Development server.
+5. To view the Classicy UI Components, run the Storybook Development server.
     ```bash
     yarn storybook
     ```
@@ -144,11 +143,11 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
 
 ## Component Organization
 
-* `<PlatinumDesktopProvider>`
+* `<ClassicyDesktopProvider>`
     * `<ClassicyDesktop>`
         * `<ClassicyDesktopMenuBar>`
         * `<ClassicyDesktopIcon?>`
-        * `<YourPlatinumApp>`
+        * `<YourClassicyApp>`
             * `<ClassicyAppContext>`
                 * `<ClassicyApp>`
                     * `<ClassicyWindow?>`
@@ -158,66 +157,66 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
 ## Events
 
 * `ClassicyDesktop`
-    * `PlatinumDesktopClick`
-    * `PlatinumDesktopDrag`
+    * `ClassicyDesktopClick`
+    * `ClassicyDesktopDrag`
 
 * `ClassicySoundPlay`
-    * `PlatinumAlertSosumi`
-    * `PlatinumAlertWildEep`
-    * `PlatinumAlertndigo`
-    * `PlatinumBeep`
+    * `ClassicyAlertSosumi`
+    * `ClassicyAlertWildEep`
+    * `ClassicyAlertndigo`
+    * `ClassicyBeep`
     * `ClassicyBoot`
-    * `PlatinumButtonClickDown`
-    * `PlatinumButtonClickUp`
-    * `PlatinumInputRadioClickDown`
-    * `PlatinumInputRadioClickUp`
-    * `PlatinumMenuClose`
-    * `PlatinumMenuItemClick`
-    * `PlatinumMenuItemHover`
-    * `PlatinumMenuOpen`
-    * `PlatinumWindowClose`
-    * `PlatinumWindowCollapse`
-    * `PlatinumWindowControlClickDown`
-    * `PlatinumWindowControlClickUp`
-    * `PlatinumWindowExpand`
-    * `PlatinumWindowFocus`
-    * `PlatinumWindowMoveIdle`
-    * `PlatinumWindowMoveMoving`
-    * `PlatinumWindowMoveStop`
-    * `PlatinumWindowOpen`
-    * `PlatinumWindowResizeIdle`
-    * `PlatinumWindowResizeResizing`
-    * `PlatinumWindowResizeStop`
-    * `PlatinumWindowZoomMaximize`
-    * `PlatinumWindowZoomMinimize`
+    * `ClassicyButtonClickDown`
+    * `ClassicyButtonClickUp`
+    * `ClassicyInputRadioClickDown`
+    * `ClassicyInputRadioClickUp`
+    * `ClassicyMenuClose`
+    * `ClassicyMenuItemClick`
+    * `ClassicyMenuItemHover`
+    * `ClassicyMenuOpen`
+    * `ClassicyWindowClose`
+    * `ClassicyWindowCollapse`
+    * `ClassicyWindowControlClickDown`
+    * `ClassicyWindowControlClickUp`
+    * `ClassicyWindowExpand`
+    * `ClassicyWindowFocus`
+    * `ClassicyWindowMoveIdle`
+    * `ClassicyWindowMoveMoving`
+    * `ClassicyWindowMoveStop`
+    * `ClassicyWindowOpen`
+    * `ClassicyWindowResizeIdle`
+    * `ClassicyWindowResizeResizing`
+    * `ClassicyWindowResizeStop`
+    * `ClassicyWindowZoomMaximize`
+    * `ClassicyWindowZoomMinimize`
 
 * `ClassicyDesktopIcon`
-    * `PlatinumDesktopClick`
-    * `PlatinumDesktopAltClick`
-    * `PlatinumDesktopDoubleClick`
-    * `PlatinumDesktopDrag`
+    * `ClassicyDesktopClick`
+    * `ClassicyDesktopAltClick`
+    * `ClassicyDesktopDoubleClick`
+    * `ClassicyDesktopDrag`
 
 * `ClassicyApp`
-    * `PlatinumAppOpen`
-    * `PlatinumAppClose`
-    * `PlatinumAppHide`
-    * `PlatinumAppFocus`
+    * `ClassicyAppOpen`
+    * `ClassicyAppClose`
+    * `ClassicyAppHide`
+    * `ClassicyAppFocus`
 
 * `ClassicyWindow`
-    * `PlatinumWindowOpen`
-    * `PlatinumWindowClose`
-    * `PlatinumWindowZoom`
-    * `PlatinumWindowCollapse`
-    * `PlatinumWindowResize`
-    * `PlatinumWindowDrag`
-    * `PlatinumWindowFocus`
-    * `PlatinumWindowContentScroll`
-    * `PlatinumWindowContentClick`
+    * `ClassicyWindowOpen`
+    * `ClassicyWindowClose`
+    * `ClassicyWindowZoom`
+    * `ClassicyWindowCollapse`
+    * `ClassicyWindowResize`
+    * `ClassicyWindowDrag`
+    * `ClassicyWindowFocus`
+    * `ClassicyWindowContentScroll`
+    * `ClassicyWindowContentClick`
 
 * `ClassicyMenu`
-    * `PlatinumMenuHover`
-    * `PlatinumMenuClick`
-    * `PlatinumMenuChange`
+    * `ClassicyMenuHover`
+    * `ClassicyMenuClick`
+    * `ClassicyMenuChange`
 
 ## The Development Story
 
@@ -475,7 +474,7 @@ the UI elements.
 
 ![PICT 128.png](https://res.craft.do/user/full/f6bf69d9-c199-b5e2-2561-223aac7866f6/doc/21B84071-5847-4B88-BE10-7257963581FF/950BC5FF-2FD8-4D1E-A41D-F70868B54027_2/oMJwx7qKxkTnKA3GtxnjueyxsgNc6YEeiouDivsbItEz/PICT%20128.png)
 
-The Apple Platinum theme logo, hidden inside the Apple platinum theme file's Resource fork.
+The Apple Platinum theme logo, hidden inside the `Apple platinum theme` file's Resource fork.
 
 Nearly all of the standard HTML elements are represented in the HIG: everything from buttons to fieldsets are presented.
 I started to jot down, in my notebook, all the different components and how they were related to one another: a Button
@@ -576,12 +575,12 @@ the first time this has been done, and in fact, this isn't the first time that I
 project [https://github.com/robbiebyrd/platinum](https://github.com/robbiebyrd/platinum) was already in existence well
 before I decided to revisit this topic again after 4 years.
 
-I first created my version of [Platinum](https://github.com/robbiebyrd/platinum) in 2019 by forking the amazing work
+I first created my version of [Classicy (as Platinum)](https://github.com/robbiebyrd/platinum) in 2019 by forking the amazing work
 of [npjg](https://github.com/npjg) and his [https://github.com/npjg/classic.css](https://github.com/npjg/classic.css)
 project. I extended it as part of [my project 9/11 Realtime](https://github.com/Keeping-History/rt911/) and used it as a
 time-representative user interface.
 
-The Platinum project was created using a mish-mash of CSS from several projects and a spaghetti-code mess of event
+The Classicy project was created using a mish-mash of CSS from several projects and a spaghetti-code mess of event
 handlers for controlling things like window resizes and closes. It has so far been starred 44 times and used in a
 handful of post-grad student projects. It has been embarressing for me to connect with up-and-coming developers around
 the world, trying to debug code I'm sure would deny them their well-earned degree.
@@ -598,29 +597,29 @@ was the perfect tool for a Platinum project revamp.
 I sketched out the component structure as follows:
 
 - `<ClassicyDesktop>`
-    - `<PlatinumDesktopContext>`
-        - `<APlatinumApp>`: A Custom app
+    - `<ClassicyDesktopContext>`
+        - `<AClassicyApp>`: A Custom app
             - `<AppContextProvider>`
                 - `<ClassicyDesktopIcon>`
                 - `<ClassicyWindow>`
-                    - `<PlatinumUIComponents?>`
+                    - `<ClassicyUIComponents?>`
                     - `<AnyOtherReactComponent>`
 
-I deliberated a lot over the nesting of components, and in the end hoped that this order would allow PlatinumApps to be
+I deliberated a lot over the nesting of components, and in the end hoped that this order would allow ClassicyApps to be
 more easily packaged. I also hoped that putting a Window in charge of its own contents would not turn out to be a
 mistake.
 
 > A React Context is a data structure that allows sharing state between components.
 
-I also decided ultimately to wire up any PlatinumUIComponent that accepted some kind of input directly to the
+I also decided ultimately to wire up any ClassicyUIComponent that accepted some kind of input directly to the
 AppContext. This way, the app itself could keep an eye on the values of each component within each window, allowing one
 window to change the contents of another.
 
-Finally, I decided to insert a PlatinumDesktopContext to hold all the system settings; specifically, I needed a place
+Finally, I decided to insert a ClassicyDesktopContext to hold all the system settings; specifically, I needed a place
 to store the theme settings. While I eventually decided to use CSS variables to set theme colors throughout the entire
 app, I still needed a place to stash Sound file resources, desktop background settings and font selections for the
-theme. This allows me to change the theme from inside an App, and have that change copied over to all over Platinum
-Apps, Windows and UI Components. In fact, the app Appearance Manager that is included in the Platinum React project is
+theme. This allows me to change the theme from inside an App, and have that change copied over to all over Classicy
+Apps, Windows and UI Components. In fact, the app Appearance Manager that is included in the Classicy React project is
 simply a regular app that reports an Event when the theme is selected from a dropdown. I'll talk more about events
 later.
 
@@ -702,7 +701,7 @@ Now that I had my components defined, I sketched them out quickly, just for stru
 but I needed a canvas to start working. I created a blank ClassicyDesktop, ClassicyDesktopIcon, ClassicyWindow and
 ClassicyButton as a starting point, with no CSS. Then, I got to the hard, hard work.
 
-I first sketched out the components of a Platinum Window. I knew that this would be my most complicated component, so I
+I first sketched out the components of a "Platinum" style Window. I knew that this would be my most complicated component, so I
 hoped sketching it out would also help me identify pieces I could break down into smaller components, as well as get an
 idea of the types of events and states I would need.
 
@@ -731,7 +730,7 @@ to react to as a Window, and typed those up, too.
 | contextMenuItems | []    | No       | When a user right-clicks within a window, a Context Menu is shown. This holds the contents of that context menu.                                            |
 | children         | any   | No       | Any contents for the inside of the window.                                                                                                                  |
 
-I implemented a simple state for the Platinum Window component, and added it in. I then connected all the props in and
+I implemented a simple state for the ClassicyWindow component, and added it in. I then connected all the props in and
 then realized while what I had was functional, it was really ugly. It was time to get to the difficult work of CSS
 theming.
 
@@ -747,7 +746,7 @@ and `box-shadow`.
 
 ![windowoutline.png](https://res.craft.do/user/full/f6bf69d9-c199-b5e2-2561-223aac7866f6/doc/21B84071-5847-4B88-BE10-7257963581FF/355653FD-3A9C-4D2C-8743-38D063FBA5FB_2/GDaK93gDDcvcqcH9Ut5xjAl5VcFxH11uLrjjYUgec6Az/windowoutline.png)
 
-An overview of the outlines that make up a Platinum window.
+An overview of the outlines that make up a ClassicyWindow.
 
 I notcied that there were some pretty hard-and-fast measurements: borders were 1px, and the padding between the outer
 window chrome and the inner window contents was 4px. This same 4px spacing also showed up in the title bar: the spacing
@@ -798,7 +797,7 @@ I needed to provide some basic system settings to all components: specifically, 
 needed to provide a place to store which ClassicyApp was active, which Window was active, and a place to store all the
 items in the Desktop Menu Bar, which will be shared by all Apps and Windows.
 
-I chose to let the ClassicyDesktop component control which Window was currently active, and PlatinumApps and Windows
+I chose to let the ClassicyDesktop component control which Window was currently active, and ClassicyApps and Windows
 could request a window become active by firing an event. At first, I fell unwittingly into a hole known as "prop
 drilling" by others, by passing large data structures as props through components. Most of the time, I was only passing
 them so they would be available to child components. At first, this kind of made sense, because as a backend developer,
@@ -811,24 +810,24 @@ I then did the same thing to the ClassicyWindow component. I typed up a list of 
 
 | EventName                     | Description                                                                                                                                                                                                                                          |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `PlatinumWindowOpen`          | Fired when a window opens.                                                                                                                                                                                                                           |
-| `PlatinumWindowClose`         | Fired when a window closes.                                                                                                                                                                                                                          |
-| `PlatinumWindowResize`        | Fired when a user clicks the resizer (RSZR) element in the bottom-right corner. No resizing actually begins until the `PlatinumWindowMove` method is fired.                                                                                          |
-| `PlatinumWindowDrag`          | Fired when a user clicks on the Window Title. No dragging of the window actually occurs until the `PlatinumWindowMove` method is fired.                                                                                                              |
-| `PlatinumWindowMove`          | Fired when the mouse is moving within the window. If the `PlatinumWindowDrag` or `PlatinumWindowResize` events have been fired, then moving the window will either drag or resize the move in response to the mouse's movement.                      |
-| `PlatinumWindowStop`          | Fired when either a `PlatinumWindowResize` or `PlatinumWindowDrag` has finished.                                                                                                                                                                     |
-| `PlatinumWindowFocus`         | Fired when the user clicks within the area of the window. Clicking the title bar, contents or outside frame of a window will cause it to become the highlighted window, and all other windows will lose focus.                                       |
-| `PlatinumWindowContentScroll` | Fired when a user scrolls the window contents container.                                                                                                                                                                                             |
-| `PlatinumWindowContentClick`  | Fired when a user clicks within the window contents area.                                                                                                                                                                                            |
-| `PlatinumWindowContextMenu`   | Fired when a user right-clicks within a window. Each window controls the contents of its own context menu.                                                                                                                                           |
-| `PlatinumWindowExpand`        | Fired when a user clicks the CLPSE button and the window is currently collapsed. Collapsing makes the height of the window only as tall as the Title bar, and hides the contents of the window. It is the MacOS 8 equivalent of "minizing" a window. |
-| `PlatinumWindowCollapse`      | Fired when a user clicks the CLPSE button and the window is currently in an expanded state.                                                                                                                                                          |
-| `PlatinumWindowZoom`          | Fired when a user clicks the ZOOM button. Clicking the Zoom button makes the current window as large as the current viewport. Clicking the ZOOM button again will return the window to its previous position.                                        |
+| `ClassicyWindowOpen`          | Fired when a window opens.                                                                                                                                                                                                                           |
+| `ClassicyWindowClose`         | Fired when a window closes.                                                                                                                                                                                                                          |
+| `ClassicyWindowResize`        | Fired when a user clicks the resizer (RSZR) element in the bottom-right corner. No resizing actually begins until the `ClassicyWindowMove` method is fired.                                                                                          |
+| `ClassicyWindowDrag`          | Fired when a user clicks on the Window Title. No dragging of the window actually occurs until the `ClassicyWindowMove` method is fired.                                                                                                              |
+| `ClassicyWindowMove`          | Fired when the mouse is moving within the window. If the `ClassicyWindowDrag` or `ClassicyWindowResize` events have been fired, then moving the window will either drag or resize the move in response to the mouse's movement.                      |
+| `ClassicyWindowStop`          | Fired when either a `ClassicyWindowResize` or `ClassicyWindowDrag` has finished.                                                                                                                                                                     |
+| `ClassicyWindowFocus`         | Fired when the user clicks within the area of the window. Clicking the title bar, contents or outside frame of a window will cause it to become the highlighted window, and all other windows will lose focus.                                       |
+| `ClassicyWindowContentScroll` | Fired when a user scrolls the window contents container.                                                                                                                                                                                             |
+| `ClassicyWindowContentClick`  | Fired when a user clicks within the window contents area.                                                                                                                                                                                            |
+| `ClassicyWindowContextMenu`   | Fired when a user right-clicks within a window. Each window controls the contents of its own context menu.                                                                                                                                           |
+| `ClassicyWindowExpand`        | Fired when a user clicks the CLPSE button and the window is currently collapsed. Collapsing makes the height of the window only as tall as the Title bar, and hides the contents of the window. It is the MacOS 8 equivalent of "minizing" a window. |
+| `ClassicyWindowCollapse`      | Fired when a user clicks the CLPSE button and the window is currently in an expanded state.                                                                                                                                                          |
+| `ClassicyWindowZoom`          | Fired when a user clicks the ZOOM button. Clicking the Zoom button makes the current window as large as the current viewport. Clicking the ZOOM button again will return the window to its previous position.                                        |
 
 I also re-wrote the event handlers I had written for the Windows's control boxes, and took advantage of the event
 dispatcher.
 
-Next, I decided that the ClassicyDesktop could also control Opening and Closing PlatinumApps, which would in turn
+Next, I decided that the ClassicyDesktop could also control Opening and Closing ClassicyApps, which would in turn
 control its own windows. Opening a ClassicyApp also adds an entry to the `appSwitcherMenu` array, which keeps track of
 all the open apps and displays them in the Appication Switcher, the top-right component of the Desktop Menu.
 
@@ -846,12 +845,12 @@ might need to bubble up to the ClassicyDesktop, but I also knew many ClassicyWin
 and could stay within the Window itself. While the events are structuarlly the same, I decided to setup discrete event
 dispatchers for components. I knew this means I would have to make two calls for some events.
 
-For instance, to handle a `PlatinumWindowFocus` event, first I need to notify the actual window it has been focused.
+For instance, to handle a `ClassicyWindowFocus` event, first I need to notify the actual window it has been focused.
 This is important so that it could notify the windows' children of a change, and make any visual updates necessary, such
 as applying a new "active" CSS class. Then, I need to let the ClassicyDesktop event handler also know the window was
 been focused, so it can be set as the active window and raised to the top-most z-index. When handling this event in the
-ClassicyWindow, I first dispatch a local `PlatinumWindowFocus` to the Window's event dispatcher. Then, using the same
-payload, I dispatch the same `PlatinumWindowFocus` event to the Desktop event dispatcher.
+ClassicyWindow, I first dispatch a local `ClassicyWindowFocus` to the Window's event dispatcher. Then, using the same
+payload, I dispatch the same `ClassicyWindowFocus` event to the Desktop event dispatcher.
 
 ### Demo Time
 
@@ -900,7 +899,7 @@ A SimpleText app, using the awesome MDXEditor, and the Demo ClassicyApp app, sho
 
 ### What's next
 
-The current version of Platinum is 0.3.0, a pre-release demo showing the new outline for how the project will work going
+The current version of Classicy is 0.4.0, a pre-release demo showing the new outline for how the project will work going
 forward. My plan is to continue releasing point releases until the system is in a full state for a 1.0 release.
 
 I still don't have a list of the items that will make this a 1.0 release, but I'm hoping that by 0.5 we will have a more
