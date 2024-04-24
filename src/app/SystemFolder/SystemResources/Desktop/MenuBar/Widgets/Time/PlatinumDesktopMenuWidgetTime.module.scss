@@ -1,9 +1,0 @@
-.textBlinker {
-  animation: blinker 2s steps(1, end) infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}

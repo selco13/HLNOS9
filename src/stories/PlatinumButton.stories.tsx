@@ -1,10 +1,10 @@
-import PlatinumButton from "@/app/SystemFolder/SystemResources/Button/PlatinumButton";
+import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
     title: 'Platinum/PlatinumButton',
-    component: PlatinumButton,
+    component: ClassicyButton,
     parameters: {
         layout: 'centered',
         label: "Button"
@@ -14,7 +14,7 @@ const meta = {
         children: {table: {disable: true}},
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumButton>;
+} satisfies Meta<typeof ClassicyButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

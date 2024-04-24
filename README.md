@@ -145,28 +145,28 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
 ## Component Organization
 
 * `<PlatinumDesktopProvider>`
-    * `<PlatinumDesktop>`
-        * `<PlatinumDesktopMenuBar>`
-        * `<PlatinumDesktopIcon?>`
+    * `<ClassicyDesktop>`
+        * `<ClassicyDesktopMenuBar>`
+        * `<ClassicyDesktopIcon?>`
         * `<YourPlatinumApp>`
-            * `<PlatinumAppContext>`
-                * `<PlatinumApp>`
-                    * `<PlatinumWindow?>`
-                        * `<PlatinumUIControls?>`
+            * `<ClassicyAppContext>`
+                * `<ClassicyApp>`
+                    * `<ClassicyWindow?>`
+                        * `<ClassicyUIControls?>`
                         * `<OtherReactNodes?>`
 
 ## Events
 
-* `PlatinumDesktop`
+* `ClassicyDesktop`
     * `PlatinumDesktopClick`
     * `PlatinumDesktopDrag`
 
-* `PlatinumSoundPlay`
+* `ClassicySoundPlay`
     * `PlatinumAlertSosumi`
     * `PlatinumAlertWildEep`
     * `PlatinumAlertndigo`
     * `PlatinumBeep`
-    * `PlatinumBoot`
+    * `ClassicyBoot`
     * `PlatinumButtonClickDown`
     * `PlatinumButtonClickUp`
     * `PlatinumInputRadioClickDown`
@@ -191,19 +191,19 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     * `PlatinumWindowZoomMaximize`
     * `PlatinumWindowZoomMinimize`
 
-* `PlatinumDesktopIcon`
+* `ClassicyDesktopIcon`
     * `PlatinumDesktopClick`
     * `PlatinumDesktopAltClick`
     * `PlatinumDesktopDoubleClick`
     * `PlatinumDesktopDrag`
 
-* `PlatinumApp`
+* `ClassicyApp`
     * `PlatinumAppOpen`
     * `PlatinumAppClose`
     * `PlatinumAppHide`
     * `PlatinumAppFocus`
 
-* `PlatinumWindow`
+* `ClassicyWindow`
     * `PlatinumWindowOpen`
     * `PlatinumWindowClose`
     * `PlatinumWindowZoom`
@@ -214,7 +214,7 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     * `PlatinumWindowContentScroll`
     * `PlatinumWindowContentClick`
 
-* `PlatinumMenu`
+* `ClassicyMenu`
     * `PlatinumMenuHover`
     * `PlatinumMenuClick`
     * `PlatinumMenuChange`
@@ -597,12 +597,12 @@ was the perfect tool for a Platinum project revamp.
 
 I sketched out the component structure as follows:
 
-- `<PlatinumDesktop>`
+- `<ClassicyDesktop>`
     - `<PlatinumDesktopContext>`
         - `<APlatinumApp>`: A Custom app
             - `<AppContextProvider>`
-                - `<PlatinumDesktopIcon>`
-                - `<PlatinumWindow>`
+                - `<ClassicyDesktopIcon>`
+                - `<ClassicyWindow>`
                     - `<PlatinumUIComponents?>`
                     - `<AnyOtherReactComponent>`
 
@@ -699,8 +699,8 @@ later.
 *The JSON contents of the `Bondi` theme.*
 
 Now that I had my components defined, I sketched them out quickly, just for structure. There really wasn't much to them,
-but I needed a canvas to start working. I created a blank PlatinumDesktop, PlatinumDesktopIcon, PlatinumWindow and
-PlatinumButton as a starting point, with no CSS. Then, I got to the hard, hard work.
+but I needed a canvas to start working. I created a blank ClassicyDesktop, ClassicyDesktopIcon, ClassicyWindow and
+ClassicyButton as a starting point, with no CSS. Then, I got to the hard, hard work.
 
 I first sketched out the components of a Platinum Window. I knew that this would be my most complicated component, so I
 hoped sketching it out would also help me identify pieces I could break down into smaller components, as well as get an
@@ -715,7 +715,7 @@ to react to as a Window, and typed those up, too.
 | Name             | Type  | Required | Description                                                                                                                                                 |
 |------------------|-------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | id               | str   | Yes      | The ID of the window                                                                                                                                        |
-| appId            | str   | Yes      | The ID of the PlatinumApp that the window belongs to. All windows must belong to an App (though, not all Apps must have Windows).                           |
+| appId            | str   | Yes      | The ID of the ClassicyApp that the window belongs to. All windows must belong to an App (though, not all Apps must have Windows).                           |
 | title            | str   | No       | The Title Text to display in the windows's Title bar.                                                                                                       |
 | icon             | str   | No       | The Icon to show in the Title bar.                                                                                                                          |
 | hidden           | bool  | No       | Whether the window is hidden or not.                                                                                                                        |
@@ -766,7 +766,7 @@ CSS `calc()` function, I was able to get a tighter grip on the visual style. It 
 continued to add components, as I had already established a good measurement system and ratios that were consistent
 throughout.
 
-I created a shared SASS module that created CSS classes for all the themes, so that updating the PlatinumDesktop
+I created a shared SASS module that created CSS classes for all the themes, so that updating the ClassicyDesktop
 component's class name would update all the child components. I created a SASS array of color values for each color
 theme; adding additional color or system themes is as easy as creating a new class and changing a few input variables to
 the `appearanceManagerTheme` mixin function. Then, any Component needs only use CSS variables in their styling to take
@@ -795,10 +795,10 @@ multi-window environment is not very user-friendly if the Windows are fighting f
 me quite a while to wrap my head around all the things that were involved in basic window management.
 
 I needed to provide some basic system settings to all components: specifically, the color and sound themes. I also
-needed to provide a place to store which PlatinumApp was active, which Window was active, and a place to store all the
+needed to provide a place to store which ClassicyApp was active, which Window was active, and a place to store all the
 items in the Desktop Menu Bar, which will be shared by all Apps and Windows.
 
-I chose to let the PlatinumDesktop component control which Window was currently active, and PlatinumApps and Windows
+I chose to let the ClassicyDesktop component control which Window was currently active, and PlatinumApps and Windows
 could request a window become active by firing an event. At first, I fell unwittingly into a hole known as "prop
 drilling" by others, by passing large data structures as props through components. Most of the time, I was only passing
 them so they would be available to child components. At first, this kind of made sense, because as a backend developer,
@@ -806,8 +806,8 @@ the idea of dependency injection is a real, but often ignored, pain. After too l
 this all wrong. I took a week away from the project, and started doing every tutorial I could find dealing with complex
 state and event reducers in React.
 
-After my break and fresh insight, I rewrote the PlatinumDesktop component to use a shared context and an event reducer.
-I then did the same thing to the PlatinumWindow component. I typed up a list of events I would need to react to.
+After my break and fresh insight, I rewrote the ClassicyDesktop component to use a shared context and an event reducer.
+I then did the same thing to the ClassicyWindow component. I typed up a list of events I would need to react to.
 
 | EventName                     | Description                                                                                                                                                                                                                                          |
 |-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -828,29 +828,29 @@ I then did the same thing to the PlatinumWindow component. I typed up a list of 
 I also re-wrote the event handlers I had written for the Windows's control boxes, and took advantage of the event
 dispatcher.
 
-Next, I decided that the PlatinumDesktop could also control Opening and Closing PlatinumApps, which would in turn
-control its own windows. Opening a PlatinumApp also adds an entry to the `appSwitcherMenu` array, which keeps track of
+Next, I decided that the ClassicyDesktop could also control Opening and Closing PlatinumApps, which would in turn
+control its own windows. Opening a ClassicyApp also adds an entry to the `appSwitcherMenu` array, which keeps track of
 all the open apps and displays them in the Appication Switcher, the top-right component of the Desktop Menu.
 
 One of the other neat quirks of MacOS Classic and MacOS today is the top Desktop Menu Bar, whose contents changes based
 on the current, active window. The Menu Bar is considered contextually relevant to the active window the user is
 interacting with. This is in contrast to Windows TaskBar, which is contextually independent.
 
-I decided to let windows attach a MenuBar to the event they fire when they become active, and let the PlatinumDesktop
-and PlatinumDesktopMenuBar components use that state to render the menu. This took some time for me to wrap my head
+I decided to let windows attach a MenuBar to the event they fire when they become active, and let the ClassicyDesktop
+and ClassicyDesktopMenuBar components use that state to render the menu. This took some time for me to wrap my head
 around, being somewhat a newbie again to React, but eventually it became so elegant that I have almost taken it for
 granted.
 
-I abstracted out as much even logic as possible into the deepest component I could. I knew that PlatinumWindow events
-might need to bubble up to the PlatinumDesktop, but I also knew many PlatinumWindow events would need to go that high,
+I abstracted out as much even logic as possible into the deepest component I could. I knew that ClassicyWindow events
+might need to bubble up to the ClassicyDesktop, but I also knew many ClassicyWindow events would need to go that high,
 and could stay within the Window itself. While the events are structuarlly the same, I decided to setup discrete event
 dispatchers for components. I knew this means I would have to make two calls for some events.
 
 For instance, to handle a `PlatinumWindowFocus` event, first I need to notify the actual window it has been focused.
 This is important so that it could notify the windows' children of a change, and make any visual updates necessary, such
-as applying a new "active" CSS class. Then, I need to let the PlatinumDesktop event handler also know the window was
+as applying a new "active" CSS class. Then, I need to let the ClassicyDesktop event handler also know the window was
 been focused, so it can be set as the active window and raised to the top-most z-index. When handling this event in the
-PlatinumWindow, I first dispatch a local `PlatinumWindowFocus` to the Window's event dispatcher. Then, using the same
+ClassicyWindow, I first dispatch a local `PlatinumWindowFocus` to the Window's event dispatcher. Then, using the same
 payload, I dispatch the same `PlatinumWindowFocus` event to the Desktop event dispatcher.
 
 ### Demo Time
@@ -862,10 +862,10 @@ sites, [theoldnet.com](https://theoldnet.com).
 I took a shot at building out a full App using the framework I'd setup. It looks something like below:
 
 ```other
-<PlatinumAppContext.Provider value={{appContext, setAppContext}}>
-    <PlatinumDesktopIcon appId={appId} appName={appName} icon={appIcon}/>
-    <PlatinumApp id={appId} name={appName} icon={appIcon} debug={true}>
-        <PlatinumWindow
+<ClassicyAppContext.Provider value={{appContext, setAppContext}}>
+    <ClassicyDesktopIcon appId={appId} appName={appName} icon={appIcon}/>
+    <ClassicyApp id={appId} name={appName} icon={appIcon} debug={true}>
+        <ClassicyWindow
             id={"demo"}
             title={appName}
             appId={appId}
@@ -875,12 +875,12 @@ I took a shot at building out a full App using the framework I'd setup. It looks
             collapsable={true}>
             <iframe src={"https://theoldnet.com/"}
                     style={{width: "100%", height: "100%", padding: "0", margin: "0"}}/>
-        </PlatinumWindow>
-    </PlatinumApp>
-</PlatinumAppContext.Provider>
+        </ClassicyWindow>
+    </ClassicyApp>
+</ClassicyAppContext.Provider>
 ```
 
-The JSX of a basic PlatinumApp using an iFrame to display [theoldnet.com](https://theoldnet.com).
+The JSX of a basic ClassicyApp using an iFrame to display [theoldnet.com](https://theoldnet.com).
 
 I turned on a built-in "Debugger" that simply shows another window with the current Desktop State and App Context.
 
@@ -896,7 +896,7 @@ a full Markdown editor using [MDXEditor.](https://mdxeditor.dev)
 
 ![Screenshot 2024-02-09 at 11.44.40 AM.png](https://res.craft.do/user/full/f6bf69d9-c199-b5e2-2561-223aac7866f6/doc/21B84071-5847-4B88-BE10-7257963581FF/E588419A-40CE-44BF-8A04-BB73DC2FCEC9_2/yBPOMacZ2617YsibEHNZx0u072g8yt2eO8HnGdZEM3Mz/Screenshot%202024-02-09%20at%2011.44.40AM.png)
 
-A SimpleText app, using the awesome MDXEditor, and the Demo PlatinumApp app, showing a few basic controls.
+A SimpleText app, using the awesome MDXEditor, and the Demo ClassicyApp app, showing a few basic controls.
 
 ### What's next
 

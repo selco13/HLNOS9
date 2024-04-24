@@ -1,14 +1,14 @@
 "use client";
 
 import {getTheme} from "@/app/SystemFolder/Appearance/PlatinumAppearance";
-import {PlatinumAboutWindow} from "@/app/SystemFolder/SystemResources/AboutWindow/PlatinumAboutWindow";
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktop, useDesktopDispatch,} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import PlatinumButton from "@/app/SystemFolder/SystemResources/Button/PlatinumButton";
-import PlatinumControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/PlatinumControlLabel";
-import PlatinumPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/PlatinumPopUpMenu";
-import {useSound, useSoundDispatch,} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import {ClassicyAboutWindow} from "@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktop, useDesktopDispatch,} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
+import ClassicyPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu";
+import {useSound, useSoundDispatch,} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 export const AppearanceManager: React.FC = () => {
@@ -30,7 +30,7 @@ export const AppearanceManager: React.FC = () => {
 
     const switchTheme = (e) => {
         desktopEventDispatch({
-            type: "PlatinumDesktopTheme",
+            type: "ClassicyDesktopTheme",
             activeTheme: e.target.value,
         });
         loadSoundTheme(e.target.value);
@@ -39,7 +39,7 @@ export const AppearanceManager: React.FC = () => {
     const loadSoundTheme = (themeName: string) => {
         const soundTheme = getTheme(themeName).sound;
         player({
-            type: "PlatinumSoundLoad",
+            type: "ClassicySoundLoad",
             file: soundTheme.file,
             disabled: soundTheme.disabled,
         });
@@ -47,7 +47,7 @@ export const AppearanceManager: React.FC = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,
@@ -85,19 +85,19 @@ export const AppearanceManager: React.FC = () => {
 
     const cleanupIcons = () => {
         desktopEventDispatch({
-            type: "PlatinumDesktopIconCleanup",
+            type: "ClassicyDesktopIconCleanup",
         });
     };
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
             defaultWindow={"AppearanceManager_1"}
             openOnBoot={true}
         >
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"AppearanceManager_1"}
                 title={appName}
                 appId={appId}
@@ -112,18 +112,18 @@ export const AppearanceManager: React.FC = () => {
                 modalWindow={true}
                 appMenu={appMenu}
             >
-                <PlatinumControlLabel label={"The current Theme Package is Platinum"} icon={packageIcon}/>
-                <PlatinumPopUpMenu
+                <ClassicyControlLabel label={"The current Theme Package is Platinum"} icon={packageIcon}/>
+                <ClassicyPopUpMenu
                     id={"select_theme"}
                     label={"Selected Theme"}
                     options={themesList}
                     onChangeFunc={switchTheme}
                     selected={desktopContext.activeTheme || "default"}
                 />
-                <PlatinumButton onClick={cleanupIcons}>Cleanup Icons</PlatinumButton>
-            </PlatinumWindow>
+                <ClassicyButton onClick={cleanupIcons}>Cleanup Icons</ClassicyButton>
+            </ClassicyWindow>
             {showAbout && (
-                <PlatinumAboutWindow appId={appId}
+                <ClassicyAboutWindow appId={appId}
                                      appName={appName}
                                      appIcon={appIcon}
                                      hideFunc={() => {
@@ -131,6 +131,6 @@ export const AppearanceManager: React.FC = () => {
                                      }}
                 />
             )}
-        </PlatinumApp>
+        </ClassicyApp>
     );
 };

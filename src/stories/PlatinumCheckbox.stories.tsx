@@ -1,10 +1,10 @@
-import PlatinumCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/PlatinumCheckbox";
+import ClassicyCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
     title: 'Platinum/PlatinumCheckbox',
-    component: PlatinumCheckbox,
+    component: ClassicyCheckbox,
     parameters: {
         layout: 'centered',
         label: "Button"
@@ -15,7 +15,7 @@ const meta = {
         name: {table: {disable: true}},
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumCheckbox>;
+} satisfies Meta<typeof ClassicyCheckbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

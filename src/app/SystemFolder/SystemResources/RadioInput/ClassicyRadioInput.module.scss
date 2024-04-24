@@ -1,0 +1,101 @@
+@use "../../Appearance/styles/appearance";
+@use "../../Appearance/styles/assets";
+
+.classicyRadioInputGroup {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: stretch;
+  padding: calc(var(--window-border-size) * 4);
+
+  div {
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+  }
+}
+
+.classicyRadioInputWrapper {
+  width: calc(var(--window-control-size) / 2);
+  height: calc(var(--window-control-size) / 2);
+  margin-top: calc(var(--window-control-size) / 2);
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 calc(var(--window-border-size) * 1) var(--color-white),
+  0 0 0 calc(var(--window-border-size) * 2) var(--color-system-05),
+  0 0 0 calc(var(--window-border-size) * 3) var(--color-black),
+  0 0 0 calc(var(--window-border-size) * 4) var(--color-system-05);
+
+}
+
+.classicyRadioInput {
+  position: relative;
+  top: calc(var(--window-border-size) * -5);
+  left: calc(var(--window-border-size) * -3);
+  width: calc(var(--window-control-size) / 1);
+  height: calc(var(--window-control-size) / 1);
+  margin: 0;
+  padding: 0;
+  border-width: calc(var(--window-control-size) / 2);
+  border-style: solid;
+  border-radius: 50%;
+  appearance: none;
+
+  mask-image: assets.$corner-dither;
+  mask-mode: luminance;
+  mask-composite: intersect;
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  filter: invert(1);
+
+  &:checked, &:active {
+    border-color: var(--color-theme-07);
+    filter: invert(0);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 calc(var(--window-border-size) * 1) var(--color-system-05),
+    0 0 0 calc(var(--window-border-size) * 2) var(--color-system-06),
+    0 0 0 calc(var(--window-border-size) * 3) var(--color-black),
+    0 0 0 calc(var(--window-border-size) * 4) var(--color-system-06);
+  }
+
+  &:disabled {
+    border-color: var(--color-system-03);
+    box-shadow: 0 0 0 calc(var(--window-border-size) * 2) var(--color-system-03),
+    0 0 0 calc(var(--window-border-size) * 3) var(--color-system-05),
+    0 0 0 calc(var(--window-border-size) * 4) var(--color-system-04);
+  }
+
+  &:disabled:checked {
+    border-color: var(--color-system-05);
+  }
+
+  &:focus {
+    outline: var(--color-outline) solid calc(var(--window-border-size) * 2) !important;
+  }
+
+}
+
+.classicyRadioInputLabel {
+  font-family: var(--ui-font);
+  font-size: var(--ui-font-size);
+  height: var(--window-control-size);
+  margin-left: calc(var(--window-control-size) / 2);
+}
+
+.classicyRadioInputLabelDisabled {
+  color: var(--color-system-05);
+  filter: invert(1);
+}
+
+.classicyRadioInputDefault {
+  width: var(--window-control-size);
+  margin: 0;
+
+  &:checked, &:active {
+    background-color: var(--color-theme-07) !important;
+  }
+
+}

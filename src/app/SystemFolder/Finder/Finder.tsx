@@ -1,8 +1,8 @@
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import {PlatinumFileSystem} from "@/app/SystemFolder/SystemResources/File/FileSystem";
-import PlatinumFileBrowser from "@/app/SystemFolder/SystemResources/File/PlatinumFileBrowser";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyFileBrowser from "@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser";
+import {ClassicyFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const Finder = () => {
@@ -31,11 +31,11 @@ const Finder = () => {
 
     const emptyTrash = () => {
         desktopEventDispatch({
-            type: "PlatinumFinderEmptyTrash",
+            type: "ClassicyFinderEmptyTrash",
         });
     }
 
-    const fs = new PlatinumFileSystem("");
+    const fs = new ClassicyFileSystem("");
     const desktopEventDispatch = useDesktopDispatch();
 
     React.useEffect(() => {
@@ -43,7 +43,7 @@ const Finder = () => {
 
         Object.entries(drives).forEach(([a, b]) => {
             desktopEventDispatch({
-                type: "PlatinumDesktopIconAdd",
+                type: "ClassicyDesktopIconAdd",
                 app: {
                     id: appId,
                     name: a,
@@ -53,7 +53,7 @@ const Finder = () => {
         });
 
         desktopEventDispatch({
-            type: "PlatinumDesktopIconAdd",
+            type: "ClassicyDesktopIconAdd",
             app: {
                 id: "finder_trash",
                 name: "Trash",
@@ -68,31 +68,31 @@ const Finder = () => {
     openPaths.forEach((op, idx) => {
         let dir = fs.statDir(op);
         openWindows.push(
-            <PlatinumWindow
+            <ClassicyWindow
                 id={appName + ":" + op}
                 title={dir['_name']}
                 icon={`${process.env.NEXT_PUBLIC_BASE_PATH}${dir['_icon']}`}
                 appId={appId}
-                initialSize={[300, 300]}
+                initialSize={[425, 300]}
                 initialPosition={[50 + (idx * 50), 50 + (idx * 50)]}
-                header={<span>{dir["_count"]} items</span>}
+                header={<span>{dir["_count"]} items, {fs.formatSize(dir["_size"])}</span>}
                 onCloseFunc={closeFolder}
             >
-                <PlatinumFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}
+                <ClassicyFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}
                                      fileOnClickFunc={openFile}/>
-            </PlatinumWindow>
+            </ClassicyWindow>
         )
     })
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
             noDesktopIcon={true}
             defaultWindow={""}>
             {openWindows}
-        </PlatinumApp>
+        </ClassicyApp>
     );
 }
 

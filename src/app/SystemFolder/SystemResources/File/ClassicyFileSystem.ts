@@ -1,0 +1,297 @@
+import {sha512} from 'sha512-crypt-ts';
+
+let defaultFSContent = {
+    "Macintosh HD": {
+        "_type": "drive",
+        "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/drives/disk.png`,
+        "Applications": {
+            "_type": "directory",
+            "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
+            "TextEdit.app": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents",
+            },
+            "Calculator.app": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents",
+            }
+        },
+        "Library": {
+            "_type": "directory",
+            "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
+            "Extensions": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents"
+            }
+        },
+        "System Folder": {
+            "_type": "directory",
+            "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
+            "Finder": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents"
+            },
+            "System": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents"
+            }
+        },
+        "Users": {
+            "_type": "directory",
+            "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
+            "Guest": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents"
+            },
+            "Shared": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents"
+            }
+        },
+        "Utilities": {
+            "_type": "directory",
+            "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
+            "Disk Utility.app": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents",
+            },
+            "Terminal.app": {
+                "_type": "file",
+                "_mimeType": "text/plain",
+                "_data": "File Contents",
+            }
+        }
+    }
+}
+
+type ClassicyFileSystemEntry = {
+    "_type": "drive" | "directory" | "file" | "shortcut" | "app_shortcut";
+    "_icon"?: string;
+    "_mimeType"?: string;
+    "_data"?: any;
+    "_createdOn"?: Date;
+    "_modifiedOn"?: Date;
+    "_label"?: string;
+    "_comments"?: string;
+    "_version"?: number;
+    "_locked"?: boolean;
+    "_count"?: number;
+    "_size"?: number;
+    "_readOnly"?: boolean;
+    "_systemFile"?: boolean;
+    "_url"?: string;
+    "_trashed"?: boolean;
+    [entry: string]: any;
+}
+
+export type pathOrObject = ClassicyFileSystemEntry | string
+
+export class ClassicyFileSystem {
+    basePath: string;
+    fs: ClassicyFileSystemEntry;
+    separator: string;
+
+    constructor(basePath: string = "", defaultFS: any = defaultFSContent, separator: string = ":") {
+        this.basePath = basePath
+        this.fs = typeof window !== 'undefined'
+            ? JSON.parse(localStorage.getItem(this.basePath)) || defaultFS
+            : defaultFS;
+        this.separator = separator;
+    }
+
+    load(data: string) {
+        this.fs = JSON.parse(data) as ClassicyFileSystemEntry;
+    }
+
+    snapshot(): string {
+        return JSON.stringify(this.fs, null, 2);
+    }
+
+    pathArray = (path: string) => {
+        return [this.basePath, ...path.split(this.separator)].filter((v) => v !== "");
+    }
+
+    resolve(path: string): ClassicyFileSystemEntry {
+        return this.pathArray(path).reduce((prev, curr) => prev?.[curr], this.fs)
+    }
+
+    formatSize(bytes: number, measure: "bits" | "bytes" = "bytes", decimals: number = 2): string {
+        if (!+bytes) return '0 ' + measure;
+        const sizes = measure === "bits"
+            ? ['Bits', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb']
+            : ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+        const i = Math.floor(Math.log(bytes) / Math.log(1024));
+        bytes = measure === "bits" ? bytes * 8 : bytes;
+
+        return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(Math.max(0, decimals)))} ${sizes[i]}`;
+    }
+
+    filterMetadata(content: any, mode: "only" | "remove" = "remove") {
+        let items: ClassicyFileSystemEntry | object = {};
+
+        Object.entries(content).forEach(([key, value]) => {
+            switch (mode) {
+                case "only": {
+                    if (key.startsWith("_")) {
+                        items[key] = value
+                    }
+                    break;
+                }
+                default: {
+                    if (!key.startsWith("_")) {
+                        items[key] = value
+                    }
+                    break;
+                }
+            }
+        });
+        return items
+    }
+
+    filterByType(path: string, byType: string | string[] = ["file", "directory"]) {
+        let items: ClassicyFileSystemEntry | object = {};
+        Object.entries(this.resolve(path)).forEach(([b, a]) => {
+            if (byType.includes(a["_type"])) {
+                items[b] = a
+            }
+        });
+        return items
+    }
+
+    statFile(path: string): ClassicyFileSystemEntry {
+        let item = this.resolve(path);
+        item['_size'] = this.size(path)
+        return item
+    }
+
+    size(path: pathOrObject): number {
+        if (typeof path === 'string') {
+            return new Blob([this.readFile(path)]).size;
+        }
+        if (path instanceof Object && '_data' in path) {
+            return new Blob([path['_data'] as string]).size;
+        }
+    }
+
+    hash(path: pathOrObject) {
+        if (typeof path === 'string') {
+            return sha512.crypt(this.readFile(path), "");
+        }
+        if (path instanceof Object && '_data' in path) {
+            return sha512.crypt(path['_data'], "");
+        }
+    }
+
+    readFile(path: pathOrObject): string {
+        if (path instanceof Object && '_data' in path) {
+            return path['_data'] as string
+        }
+        if (typeof path === 'string') {
+            let item: ClassicyFileSystemEntry = this.resolve(path);
+            return this.readFile(item)
+        }
+    }
+
+    writeFile(path: pathOrObject, data: string) {
+        let current: ClassicyFileSystemEntry;
+
+        if (typeof path === 'string') {
+            // current = this.generateTree(path, data)
+        }
+
+    }
+
+    rmDir(path: string) {
+        const pathArr = this.pathArray(path)
+        delete pathArr.reduce((init, curr) => init && init[curr], this.fs)[pathArr[pathArr.length - 1]];
+    }
+
+    mkDir(path: string) {
+        const parts: string[] = this.pathArray(path);
+
+        const newDirectoryObject = () => {
+            return {
+                "_type": "directory",
+                "_icon": `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`
+            } as ClassicyFileSystemEntry;
+        }
+
+        let current = {}
+        let reference = current;
+
+        for (let i = parts.length - 1; i >= 0; i--) {
+            reference = current;
+            current = i === 0 ? {} : newDirectoryObject();
+            current[parts[i]] = i === parts.length - 1 ? newDirectoryObject() : reference;
+        }
+
+        return this.deepMerge(current, this.fs);
+    }
+
+    deepMerge(source: any, target: any) {
+        Object.keys(target).forEach(key => {
+            source[key] instanceof Object && target[key] instanceof Object
+                ? source[key] instanceof Array && target[key] instanceof Array
+                    ? void (source[key] = Array.from(new Set(source[key].concat(target[key]))))
+                    : !(source[key] instanceof Array) && !(target[key] instanceof Array)
+                        ? void this.deepMerge(source[key], target[key])
+                        : void (source[key] = target[key])
+                : void (source[key] = target[key]);
+        })
+        return source;
+    }
+
+
+    calculateSizeDir(path: ClassicyFileSystemEntry | string): number {
+        const gatherSizes = (entry: ClassicyFileSystemEntry, field: string, value: string): any[] => {
+            let results: string[] = [];
+            for (const key in entry) {
+                if (key === field && entry[key] === value) {
+                    results.push(String(this.size(entry)));
+                } else if (typeof entry[key] === 'object' && entry[key] !== null) {
+                    results = results.concat(gatherSizes(entry[key] as ClassicyFileSystemEntry, field, value));
+                }
+            }
+            return results;
+        }
+
+        if (typeof path === 'string') {
+            path = this.resolve(path)
+        }
+
+        return gatherSizes(path, "_type", "file").reduce((a, c) => a + (+c), 0)
+    }
+
+    countFilesInDir(path: string): number {
+        return Object.entries(this.filterMetadata(this.resolve(path))).length
+    }
+
+    statDir(path: string): ClassicyFileSystemEntry {
+        let current: ClassicyFileSystemEntry = this.resolve(path);
+        let metaData = this.filterMetadata(current, "only");
+
+        let name = path.split(this.separator).slice(-1);
+
+        let returnValue: ClassicyFileSystemEntry = {
+            '_count': this.countFilesInDir(path),
+            '_name': name[0],
+            '_path': path,
+            '_size': this.calculateSizeDir(current),
+            "_type": "directory"
+        };
+
+        Object.entries(metaData).forEach(([key, value]) => {
+            returnValue[key] = value
+        })
+        return returnValue
+    }
+}

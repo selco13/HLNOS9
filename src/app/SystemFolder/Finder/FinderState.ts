@@ -1,8 +1,8 @@
-export type PlatinumFinderContextData = {
+export type ClassicyFinderContextData = {
     openPaths: string[]
 }
 
-export const DefaultPlatinumFinderState = {
+export const DefaultClassicyFinderState = {
     openPaths: []
 }
 

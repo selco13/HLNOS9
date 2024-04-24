@@ -1,10 +1,10 @@
-import PlatinumControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/PlatinumControlGroup";
+import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumControlGroup',
-    component: PlatinumControlGroup,
+    title: 'Platinum/ClassicyControlGroup',
+    component: ClassicyControlGroup,
     decorators: [
         (Story) => (
             <div style={{padding: '1em'}}>
@@ -19,7 +19,7 @@ const meta = {
         children: {table: {disable: true}},
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumControlGroup>;
+} satisfies Meta<typeof ClassicyControlGroup>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,10 +1,10 @@
-import PlatinumRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/PlatinumRadioInput";
+import ClassicyRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumRadioInput',
-    component: PlatinumRadioInput,
+    title: 'Platinum/ClassicyRadioInput',
+    component: ClassicyRadioInput,
     parameters: {
         layout: 'centered',
         label: "OK",
@@ -16,7 +16,7 @@ const meta = {
         name: {table: {disable: true}},
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumRadioInput>;
+} satisfies Meta<typeof ClassicyRadioInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

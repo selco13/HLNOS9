@@ -1,49 +1,49 @@
-import {DefaultPlatinumFinderState, PlatinumFinderContextData} from "@/app/SystemFolder/Finder/FinderState";
+import {ClassicyFinderContextData, DefaultClassicyFinderState} from "@/app/SystemFolder/Finder/FinderState";
 import React from 'react';
 
-export const PlatinumFinderContext = React.createContext(DefaultPlatinumFinderState);
-export const PlatinumFinderDispatchContext = React.createContext(null);
+export const ClassicyFinderContext = React.createContext(DefaultClassicyFinderState);
+export const ClassicyFinderDispatchContext = React.createContext(null);
 
-type PlatinumFinderProviderProps = {
+type ClassicyFinderProviderProps = {
     children?: any
 }
 
-export const PlatinumFinderProvider: React.FC<PlatinumFinderProviderProps> = ({children}) => {
+export const ClassicyFinderProvider: React.FC<ClassicyFinderProviderProps> = ({children}) => {
     let finderState = typeof window !== 'undefined'
-        ? JSON.parse(localStorage.getItem('platinumFinderState')) || DefaultPlatinumFinderState
-        : DefaultPlatinumFinderState;
+        ? JSON.parse(localStorage.getItem('classicyFinderState')) || DefaultClassicyFinderState
+        : DefaultClassicyFinderState;
 
-    const [finder, dispatch] = React.useReducer(platinumFinderEventHandler, finderState);
+    const [finder, dispatch] = React.useReducer(classicyFinderEventHandler, finderState);
 
     React.useEffect(() => {
-        localStorage.setItem('platinumFinderState', JSON.stringify(finder));
+        localStorage.setItem('classicyFinderState', JSON.stringify(finder));
     }, [finder])
 
     return (
-        <PlatinumFinderContext.Provider value={finder}>
-            <PlatinumFinderDispatchContext.Provider value={dispatch}>
+        <ClassicyFinderContext.Provider value={finder}>
+            <ClassicyFinderDispatchContext.Provider value={dispatch}>
                 {children}
-            </PlatinumFinderDispatchContext.Provider>
-        </PlatinumFinderContext.Provider>
+            </ClassicyFinderDispatchContext.Provider>
+        </ClassicyFinderContext.Provider>
     );
 }
 
 
 export function useFinder() {
-    return React.useContext(PlatinumFinderContext);
+    return React.useContext(ClassicyFinderContext);
 }
 
 export function useFinderDispatch() {
-    return React.useContext(PlatinumFinderDispatchContext);
+    return React.useContext(ClassicyFinderDispatchContext);
 }
 
-export const platinumFinderEventHandler = (ds: PlatinumFinderContextData, action) => {
+export const classicyFinderEventHandler = (ds: ClassicyFinderContextData, action) => {
     switch (action.type) {
-        case "PlatinumFinderEmptyTrash": {
+        case "ClassicyFinderEmptyTrash": {
             // TODO: We need to decide how to reset the state here.
             break;
         }
-        case "PlatinumFinderOpenDirectory": {
+        case "ClassicyFinderOpenDirectory": {
             ds.openPaths = [...ds.openPaths, action.path];
             break;
         }

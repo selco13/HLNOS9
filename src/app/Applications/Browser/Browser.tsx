@@ -1,9 +1,9 @@
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import PlatinumButton from "@/app/SystemFolder/SystemResources/Button/PlatinumButton";
-import PlatinumControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/PlatinumControlGroup";
-import PlatinumInput from "@/app/SystemFolder/SystemResources/Input/PlatinumInput";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
+import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
+import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const Browser = () => {
@@ -27,7 +27,7 @@ const Browser = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,
@@ -52,14 +52,14 @@ const Browser = () => {
     ];
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
             defaultWindow={"demo"}
             appContext={appContext}
         >
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"demo"}
                 title={appName}
                 appId={appId}
@@ -69,10 +69,10 @@ const Browser = () => {
                 appMenu={appMenu}
                 grow={true}
             >
-                <PlatinumControlGroup columns={true}>
-                    <PlatinumInput id={"browserAddress"} ref={refAddressBar}></PlatinumInput>
-                    <PlatinumButton onClick={goBook}>Submit</PlatinumButton>
-                </PlatinumControlGroup>
+                <ClassicyControlGroup columns={true}>
+                    <ClassicyInput id={"browserAddress"} ref={refAddressBar}></ClassicyInput>
+                    <ClassicyButton onClick={goBook}>Submit</ClassicyButton>
+                </ClassicyControlGroup>
                 <iframe
                     title="myBook"
                     src={iframeSrc}
@@ -81,8 +81,8 @@ const Browser = () => {
                     allowFullScreen={true}
                     style={{width: "100%", height: "100%", padding: "0", margin: "0"}}
                 ></iframe>
-            </PlatinumWindow>
-        </PlatinumApp>
+            </ClassicyWindow>
+        </ClassicyApp>
     );
 }
 

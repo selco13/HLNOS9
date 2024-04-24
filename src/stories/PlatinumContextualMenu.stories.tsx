@@ -1,10 +1,10 @@
-import PlatinumContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/PlatinumContextualMenu";
+import ClassicyContextualMenu from "@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumContextualMenu',
-    component: PlatinumContextualMenu,
+    title: 'Platinum/ClassicyContextualMenu',
+    component: ClassicyContextualMenu,
     decorators: [
         (Story) => (
             <div style={{margin: '3em'}}>
@@ -16,7 +16,7 @@ const meta = {
         layout: 'centered',
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumContextualMenu>;
+} satisfies Meta<typeof ClassicyContextualMenu>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

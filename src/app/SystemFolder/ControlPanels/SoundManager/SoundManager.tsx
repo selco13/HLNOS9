@@ -1,19 +1,19 @@
 "use client";
 
 import soundManagerStyles from "@/app/SystemFolder/ControlPanels/SoundManager/SoundManager.module.scss";
-import {PlatinumAboutWindow} from "@/app/SystemFolder/SystemResources/AboutWindow/PlatinumAboutWindow";
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import PlatinumCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/PlatinumCheckbox";
-import PlatinumControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/PlatinumControlGroup";
-import PlatinumControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/PlatinumControlLabel";
-import PlatinumDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/PlatinumDisclosure";
+import {ClassicyAboutWindow} from "@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox";
+import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
+import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
 import {
-    PlatinumSoundInfo,
+    ClassicySoundInfo,
     useSound,
     useSoundDispatch,
-} from "@/app/SystemFolder/SystemResources/SoundManager/PlatinumSoundManagerContext";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 export const SoundManager: React.FC = () => {
@@ -33,7 +33,7 @@ export const SoundManager: React.FC = () => {
     const changeSounds = (e) => {
         setEnableAllSounds(!!e.target.checked);
         player({
-            type: "PlatinumSoundDisable",
+            type: "ClassicySoundDisable",
             disabled: enableAllSounds ? [] : ["*"],
         });
     };
@@ -41,7 +41,7 @@ export const SoundManager: React.FC = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,
@@ -90,14 +90,14 @@ export const SoundManager: React.FC = () => {
     };
 
     return (
-        <PlatinumApp
+        <ClassicyApp
             id={appId}
             name={appName}
             icon={appIcon}
             defaultWindow={"SoundManager_1"}
             openOnBoot={true}
         >
-            <PlatinumWindow
+            <ClassicyWindow
                 id={"SoundManager_1"}
                 title={appName}
                 appId={appId}
@@ -112,7 +112,7 @@ export const SoundManager: React.FC = () => {
                 modalWindow={true}
                 appMenu={appMenu}
             >
-                <PlatinumCheckbox
+                <ClassicyCheckbox
                     id={"disable_sounds"}
                     name={"disable_sounds"}
                     isDefault={true}
@@ -120,15 +120,15 @@ export const SoundManager: React.FC = () => {
                     onClick={changeSounds}
                     checked={!playerState.disabled.includes("*")}
                 />
-                <PlatinumDisclosure label={"Disable Sounds"}>
-                    <PlatinumControlLabel label={"These settings are not currently connected."}/>
+                <ClassicyDisclosure label={"Disable Sounds"}>
+                    <ClassicyControlLabel label={"These settings are not currently connected."}/>
                     <div className={soundManagerStyles.soundManagerControlGroupHolder}>
                         {getSoundLabelGroups().map((group: string) => (
-                            <PlatinumControlGroup label={group} columns={true} key={group}>
-                                {playerState.labels.map((item: PlatinumSoundInfo) => (
+                            <ClassicyControlGroup label={group} columns={true} key={group}>
+                                {playerState.labels.map((item: ClassicySoundInfo) => (
                                     <>
                                         {item.group === group && (
-                                            <PlatinumCheckbox
+                                            <ClassicyCheckbox
                                                 id={"enable_sound_" + item.id}
                                                 name={"enable_sound_" + item.id}
                                                 label={item.label}
@@ -137,13 +137,13 @@ export const SoundManager: React.FC = () => {
                                         )}
                                     </>
                                 ))}
-                            </PlatinumControlGroup>
+                            </ClassicyControlGroup>
                         ))}
                     </div>
-                </PlatinumDisclosure>
-            </PlatinumWindow>
+                </ClassicyDisclosure>
+            </ClassicyWindow>
             {showAbout && (
-                <PlatinumAboutWindow appId={appId}
+                <ClassicyAboutWindow appId={appId}
                                      appName={appName}
                                      appIcon={appIcon}
                                      hideFunc={() => {
@@ -152,6 +152,6 @@ export const SoundManager: React.FC = () => {
                 />
 
             )}
-        </PlatinumApp>
+        </ClassicyApp>
     );
 };

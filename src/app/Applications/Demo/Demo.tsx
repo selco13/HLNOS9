@@ -1,14 +1,14 @@
-import PlatinumApp from "@/app/SystemFolder/SystemResources/App/PlatinumApp";
-import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/PlatinumAppManagerContext";
-import PlatinumButton from "@/app/SystemFolder/SystemResources/Button/PlatinumButton";
-import PlatinumCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/PlatinumCheckbox";
-import PlatinumControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/PlatinumControlGroup";
-import PlatinumDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/PlatinumDisclosure";
-import PlatinumInput from "@/app/SystemFolder/SystemResources/Input/PlatinumInput";
-import PlatinumPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/PlatinumPopUpMenu";
-import PlatinumProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/PlatinumProgressBar";
-import PlatinumRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/PlatinumRadioInput";
-import PlatinumWindow from "@/app/SystemFolder/SystemResources/Window/PlatinumWindow";
+import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
+import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
+import ClassicyCheckbox from "@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox";
+import ClassicyControlGroup from "@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup";
+import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
+import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
+import ClassicyPopUpMenu from "@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu";
+import ClassicyProgressBar from "@/app/SystemFolder/SystemResources/ProgressBar/ClassicyProgressBar";
+import ClassicyRadioInput from "@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput";
+import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
 import React from "react";
 
 const Demo: React.FC = () => {
@@ -21,7 +21,7 @@ const Demo: React.FC = () => {
 
     const quitApp = () => {
         desktopEventDispatch({
-            type: "PlatinumAppClose",
+            type: "ClassicyAppClose",
             app: {
                 id: appId,
                 title: appName,
@@ -47,14 +47,14 @@ const Demo: React.FC = () => {
 
     return (
         <>
-            <PlatinumApp
+            <ClassicyApp
                 id={appId}
                 name={appName}
                 icon={appIcon}
                 defaultWindow={"demo"}
                 appContext={appContext}
             >
-                <PlatinumWindow
+                <ClassicyWindow
                     id={"demo2"}
                     title={appName}
                     appId={appId}
@@ -68,41 +68,41 @@ const Demo: React.FC = () => {
                     modalWindow={true}
                     appMenu={appMenu}
                 >
-                    <PlatinumPopUpMenu
+                    <ClassicyPopUpMenu
                         id={"select_theme"}
                         small={false}
                         options={[{value: "hello", label: "Hello"}, {value: "hello2", label: "Hello again!"}]}
                         selected={"hello"}
                     />
-                    <PlatinumProgressBar value={59}></PlatinumProgressBar>
-                    <PlatinumInput id={"test"} labelTitle={"Text Input"}></PlatinumInput>
-                    <PlatinumControlGroup label={"Test Radio Inputs"}>
-                        <PlatinumRadioInput id={"test1"} name={"test_radio"} isDefault={false}
+                    <ClassicyProgressBar value={59}></ClassicyProgressBar>
+                    <ClassicyInput id={"test"} labelTitle={"Text Input"}></ClassicyInput>
+                    <ClassicyControlGroup label={"Test Radio Inputs"}>
+                        <ClassicyRadioInput id={"test1"} name={"test_radio"} isDefault={false}
                                             label={"Radio Button 1"}/>
-                        <PlatinumRadioInput id={"test2"} name={"test_radio"} isDefault={false}
+                        <ClassicyRadioInput id={"test2"} name={"test_radio"} isDefault={false}
                                             label={"Radio Button 2"}/>
-                        <PlatinumRadioInput id={"test3"} checked={true} name={"test_radio"} isDefault={false}
+                        <ClassicyRadioInput id={"test3"} checked={true} name={"test_radio"} isDefault={false}
                                             label={"Radio Button Disabled"} disabled={true}/>
-                    </PlatinumControlGroup>
-                    <PlatinumControlGroup label={"Test Checkboxes"}>
-                        <PlatinumCheckbox id={"test4"} name={"test_check"} isDefault={true}
+                    </ClassicyControlGroup>
+                    <ClassicyControlGroup label={"Test Checkboxes"}>
+                        <ClassicyCheckbox id={"test4"} name={"test_check"} isDefault={true}
                                           label={"Default Checkbox"}
                                           disabled={false}/>
-                        <PlatinumCheckbox id={"test5"} name={"test_check"} isDefault={false}
+                        <ClassicyCheckbox id={"test5"} name={"test_check"} isDefault={false}
                                           label={"Checkbox 2"}
                                           disabled={false}/>
-                        <PlatinumCheckbox id={"test6"} name={"test_check"} isDefault={false} label={"Disabled"}
+                        <ClassicyCheckbox id={"test6"} name={"test_check"} isDefault={false} label={"Disabled"}
                                           disabled={true}/>
-                    </PlatinumControlGroup>
-                    <PlatinumDisclosure label={"Expandable Section"}>
+                    </ClassicyControlGroup>
+                    <ClassicyDisclosure label={"Expandable Section"}>
                         <p style={{fontFamily: "var(--header-font)"}}>HELLO!</p>
-                    </PlatinumDisclosure>
-                    <PlatinumButton isDefault={true}>Do Nothing</PlatinumButton>
-                    <PlatinumButton isDefault={false} onClick={quitApp}>Quit</PlatinumButton>
-                    <PlatinumButton isDefault={false} disabled={true}>Disabled</PlatinumButton>
+                    </ClassicyDisclosure>
+                    <ClassicyButton isDefault={true}>Do Nothing</ClassicyButton>
+                    <ClassicyButton isDefault={false} onClick={quitApp}>Quit</ClassicyButton>
+                    <ClassicyButton isDefault={false} disabled={true}>Disabled</ClassicyButton>
 
-                </PlatinumWindow>
-            </PlatinumApp>
+                </ClassicyWindow>
+            </ClassicyApp>
         </>
     );
 }

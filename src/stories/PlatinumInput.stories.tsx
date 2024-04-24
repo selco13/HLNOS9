@@ -1,10 +1,10 @@
-import PlatinumInput from "@/app/SystemFolder/SystemResources/Input/PlatinumInput";
+import ClassicyInput from "@/app/SystemFolder/SystemResources/Input/ClassicyInput";
 import type {Meta, StoryObj} from '@storybook/react';
 import './PlatinumBaseTheme.css';
 
 const meta = {
-    title: 'Platinum/PlatinumInput',
-    component: PlatinumInput,
+    title: 'Platinum/ClassicyInput',
+    component: ClassicyInput,
     parameters: {
         layout: 'centered',
         label: "OK"
@@ -14,7 +14,7 @@ const meta = {
         id: {table: {disable: true}},
     },
     tags: ['autodocs'],
-} satisfies Meta<typeof PlatinumInput>;
+} satisfies Meta<typeof ClassicyInput>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
