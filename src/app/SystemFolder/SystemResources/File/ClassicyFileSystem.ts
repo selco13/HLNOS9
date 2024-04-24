@@ -88,6 +88,7 @@ type PlatinumFileSystemEntry = {
     "_readOnly"?: boolean;
     "_systemFile"?: boolean;
     "_url"?: string;
+    "_trashed"?: boolean;
     [entry: string]: any;
 }
 
