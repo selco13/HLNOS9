@@ -6,125 +6,157 @@
     "/sounds/platinum/platinum.ac3"
   ],
   "sprite": {
-    "PlatinumAlertIndigo": [
+    "ClassicyAlertBonk": [
       0,
-      352.312925170068
+      499.31972789115645
     ],
-    "PlatinumAlertQuack": [
+    "ClassicyAlertGrowl": [
       2000,
-      183.37868480725606
+      977.8231292517008
     ],
-    "PlatinumAlertSosumi": [
+    "ClassicyAlertIndigo": [
       4000,
-      179.63718820861718
+      352.31292517006807
     ],
-    "PlatinumAlertWildEep": [
+    "ClassicyAlertQuack": [
       6000,
-      137.00680272108823
+      183.3786848072565
     ],
-    "PlatinumBeep": [
+    "ClassicyAlertSosumi": [
       8000,
+      179.6371882086163
+    ],
+    "ClassicyAlertTabitha": [
+      10000,
+      736.2358276643998
+    ],
+    "ClassicyAlertWildEep": [
+      12000,
+      137.00680272108912
+    ],
+    "ClassicyBeep": [
+      14000,
       254.94331065759644
     ],
-    "PlatinumBoot": [
-      10000,
-      1376.4852607709752
+    "ClassicyBoot": [
+      16000,
+      1376.4852607709734
     ],
-    "PlatinumButtonClickDown": [
-      13000,
+    "ClassicyButtonClickDown": [
+      19000,
       1.678004535147437
     ],
-    "PlatinumButtonClickUp": [
-      15000,
+    "ClassicyButtonClickUp": [
+      21000,
       1.678004535147437
     ],
-    "PlatinumClick": [
-      17000,
+    "ClassicyClick": [
+      23000,
       19.20634920634967
     ],
-    "PlatinumInputRadioClickDown": [
-      19000,
+    "ClassicyEmailMailError": [
+      25000,
+      1097.1882086167816
+    ],
+    "ClassicyEmailMailSent": [
+      28000,
+      627.0068027210875
+    ],
+    "ClassicyEmailNewMail": [
+      30000,
+      966.5306122448989
+    ],
+    "ClassicyEmailNoMail": [
+      32000,
+      296.07709750566613
+    ],
+    "ClassicyInputRadioClickDown": [
+      34000,
       46.666666666666856
     ],
-    "PlatinumInputRadioClickUp": [
-      21000,
+    "ClassicyInputRadioClickUp": [
+      36000,
       6.666666666667709
     ],
-    "PlatinumMenuClose": [
-      23000,
+    "ClassicyMenuClose": [
+      38000,
       131.67800453514644
     ],
-    "PlatinumMenuItemClick": [
-      25000,
+    "ClassicyMenuItemClick": [
+      40000,
       140.00000000000057
     ],
-    "PlatinumMenuItemHover": [
-      27000,
-      36.66666666666529
+    "ClassicyMenuItemHover": [
+      42000,
+      36.666666666668846
     ],
-    "PlatinumMenuOpen": [
-      29000,
-      135.0113378684803
+    "ClassicyMenuOpen": [
+      44000,
+      135.01133786848385
     ],
-    "PlatinumWindowClose": [
-      31000,
-      135.0113378684803
+    "ClassicyThump": [
+      46000,
+      144.39909297052367
     ],
-    "PlatinumWindowCollapse": [
-      33000,
+    "ClassicyWindowClose": [
+      48000,
+      135.01133786848385
+    ],
+    "ClassicyWindowCollapse": [
+      50000,
       119.99999999999744
     ],
-    "PlatinumWindowControlClickDown": [
-      35000,
+    "ClassicyWindowControlClickDown": [
+      52000,
       11.678004535149
     ],
-    "PlatinumWindowControlClickUp": [
-      37000,
+    "ClassicyWindowControlClickUp": [
+      54000,
       56.66666666666487
     ],
-    "PlatinumWindowExpand": [
-      39000,
+    "ClassicyWindowExpand": [
+      56000,
       235.01133786847817
     ],
-    "PlatinumWindowFocus": [
-      41000,
+    "ClassicyWindowFocus": [
+      58000,
       30.000000000001137
     ],
-    "PlatinumWindowMoveIdle": [
-      43000,
+    "ClassicyWindowMoveIdle": [
+      60000,
       381.67800453514644
     ],
-    "PlatinumWindowMoveMoving": [
-      45000,
+    "ClassicyWindowMoveMoving": [
+      62000,
       853.3333333333317
     ],
-    "PlatinumWindowMoveStop": [
-      47000,
+    "ClassicyWindowMoveStop": [
+      64000,
       200.00000000000284
     ],
-    "PlatinumWindowOpen": [
-      49000,
-      306.66666666666487
+    "ClassicyWindowOpen": [
+      66000,
+      306.666666666672
     ],
-    "PlatinumWindowResizeIdle": [
-      51000,
+    "ClassicyWindowResizeIdle": [
+      68000,
       381.67800453514644
     ],
-    "PlatinumWindowResizeResizing": [
-      53000,
+    "ClassicyWindowResizeResizing": [
+      70000,
       873.3333333333348
     ],
-    "PlatinumWindowResizeStop": [
-      55000,
-      306.66666666666487
+    "ClassicyWindowResizeStop": [
+      72000,
+      306.666666666672
     ],
-    "PlatinumWindowZoomMaximize": [
-      57000,
+    "ClassicyWindowZoomMaximize": [
+      74000,
       71.67800453514417
     ],
-    "PlatinumWindowZoomMinimize": [
-      59000,
-      66.66666666666998
+    "ClassicyWindowZoomMinimize": [
+      76000,
+      66.66666666666288
     ]
   }
 }
