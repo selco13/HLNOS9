@@ -75,8 +75,14 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+
+      - name: Build sounds
+        uses: AnimMouse/setup-ffmpeg@v1
+        run: bin/make_audio_sprites.sh
+
       - name: Copy public resources over
         run: cp -r public/* out/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
