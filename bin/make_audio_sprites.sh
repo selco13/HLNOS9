@@ -1,5 +1,5 @@
-dir=${1:-../resources/sounds}
-outputDir=${2:-../public/sounds}
+dir=${1:-./resources/sounds}
+outputDir=${2:-./public/sounds}
 outputPath=${2:-/sounds}
 fileExt=${3:-mp3}
 formats=${4:-ogg,m4a,mp3,ac3}
