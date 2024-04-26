@@ -7,6 +7,6 @@ formats=${4:-ogg,m4a,mp3,ac3}
 for eachDir in ${dir}/*/
 do
     eachDir=${eachDir%*/}
-    audiosprite -f howler2 -o ${outputDir}/${eachDir##*/}/${eachDir##*/} -e ${formats} -u ${outputPath}/${eachDir##*/} ${dir}/${eachDir##*/}/*.${fileExt}
+    npx -y audiosprite -f howler2 -o "${outputDir}/${eachDir##*/}/${eachDir##*/}" -e "${formats}" -u "${outputPath}/${eachDir##*/}" "${dir}/${eachDir##*/}/*.${fileExt}"
 done
 
