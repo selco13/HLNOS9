@@ -80,7 +80,6 @@ const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = (
         let grid = createGrid(iconSize, iconTotal, containerMeasure);
         const [startX, startY] = getGridPosition(iconIndex, grid)
 
-        console.log(iconIndex + 1, grid, startX, startY)
         return [
             iconPadding + Math.floor(((iconSize * 2) * startX)),
             iconPadding + Math.floor(((iconSize * 2) * startY))
@@ -135,6 +134,7 @@ const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = (
                         <ClassicyIcon
                             appId={appId}
                             name={filename}
+                            invisible={properties["_invisible"]}
                             icon={properties["_icon"] || iconImageByType(properties["_type"])}
                             onClickFunc={openFileOrFolder(properties, path, filename)}
                             holder={holderRef}

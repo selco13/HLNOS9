@@ -10,6 +10,7 @@ interface ClassicyIconProps {
     initialPosition?: [number, number];
     holder?: any;
     onClickFunc?: any;
+    invisible?: boolean;
 }
 
 const ClassicyIcon: React.FC<ClassicyIconProps> = ({
@@ -20,6 +21,7 @@ const ClassicyIcon: React.FC<ClassicyIconProps> = ({
                                                        initialPosition = [0, 0],
                                                        holder,
                                                        onClickFunc,
+                                                       invisible = false
                                                    }) => {
 
     const [position, setPosition] = React.useState<[number, number]>(initialPosition);
@@ -73,7 +75,7 @@ const ClassicyIcon: React.FC<ClassicyIconProps> = ({
              className={classNames(
                  classicyIconStyles.classicyIcon,
                  dragging ? classicyIconStyles.classicyIconDragging : "",
-                 active ? classicyIconStyles.classicyIconActive : ""
+                 active ? classicyIconStyles.classicyIconActive : "",
              )}
              style={{position: "absolute", left: position[0] + 'px', top: position[1] + 'px'}}
              onClick={toggleFocus}
@@ -82,13 +84,16 @@ const ClassicyIcon: React.FC<ClassicyIconProps> = ({
              onMouseUp={stopChangeIcon}
              onDoubleClick={doDoubleClick}
         >
-            <div className={classicyIconStyles.classicyIconMaskOuter}
-                 style={{maskImage: `url(${icon})`}}>
+            <div
+                className={classNames(classicyIconStyles.classicyIconMaskOuter, invisible ? classicyIconStyles.classicyIconInvisible : "")}
+                style={{maskImage: `url(${icon})`}}>
                 <div className={classicyIconStyles.classicyIconMask} style={{mask: `url(${icon})`}}>
                     <img src={icon} alt={name}/>
                 </div>
             </div>
-            <p>{label ? label : name}</p>
+            <p className={classNames(invisible ? classicyIconStyles.classicyIconInvisible : "")}>
+                {label ? label : name}
+            </p>
         </div>
     );
 };

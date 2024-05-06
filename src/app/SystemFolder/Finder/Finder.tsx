@@ -1,5 +1,7 @@
 import ClassicyApp from "@/app/SystemFolder/SystemResources/App/ClassicyApp";
 import {useDesktopDispatch} from "@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext";
+import ClassicyControlLabel from "@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel";
+import ClassicyDisclosure from "@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure";
 import ClassicyFileBrowser from "@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser";
 import {ClassicyFileSystem} from "@/app/SystemFolder/SystemResources/File/ClassicyFileSystem";
 import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
@@ -67,6 +69,8 @@ const Finder = () => {
     let openWindows = [];
     openPaths.forEach((op, idx) => {
         let dir = fs.statDir(op);
+        let headerString = dir["_count"] + " items" + (dir["_countHidden"] ? " (" + dir["_countHidden"] + " hidden)" : "") + ", " + fs.formatSize(dir["_size"])
+
         openWindows.push(
             <ClassicyWindow
                 id={appName + ":" + op}
@@ -75,11 +79,14 @@ const Finder = () => {
                 appId={appId}
                 initialSize={[425, 300]}
                 initialPosition={[50 + (idx * 50), 50 + (idx * 50)]}
-                header={<span>{dir["_count"]} items, {fs.formatSize(dir["_size"])}</span>}
-                onCloseFunc={closeFolder}
-            >
-                <ClassicyFileBrowser appId={appId} fs={fs} path={op} dirOnClickFunc={openFolder}
-                                     fileOnClickFunc={openFile}/>
+                header={<span>{headerString}</span>}
+                onCloseFunc={closeFolder}>
+                <ClassicyFileBrowser
+                    appId={appId}
+                    fs={fs} path={op}
+                    dirOnClickFunc={openFolder}
+                    fileOnClickFunc={openFile}
+                />
             </ClassicyWindow>
         )
     })
@@ -90,7 +97,25 @@ const Finder = () => {
             name={appName}
             icon={appIcon}
             noDesktopIcon={true}
-            defaultWindow={""}>
+            defaultWindow={""}
+        >
+            <ClassicyWindow
+                id={'test-get-file-info'}
+                scrollable={false}
+                resizable={false}
+                collapsable={false}
+                zoomable={false}
+                modalWindow={true}
+                initialSize={[50,200]}
+                initialPosition={[50,50]}
+            >
+                <div>
+                    <ClassicyControlLabel label={'File Name'} labelSize={'medium'} icon={'img/icons/system/apple.png'}></ClassicyControlLabel>
+                    <ClassicyDisclosure label={"More Info"}>
+                        Hello
+                    </ClassicyDisclosure>
+                </div>
+            </ClassicyWindow>
             {openWindows}
         </ClassicyApp>
     );

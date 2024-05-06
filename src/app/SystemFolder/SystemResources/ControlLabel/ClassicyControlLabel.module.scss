@@ -1,8 +1,18 @@
 .classicyControlLabel {
   font-family: var(--ui-font);
-  font-size: var(--ui-font-size);
-  height: var(--window-control-size);
   user-select: none;
+}
+
+.classicyControlLabelSmall {
+  font-size: calc(var(--ui-font-size) / 2);
+}
+
+.classicyControlLabelMedium {
+  font-size: var(--ui-font-size);
+}
+
+.classicyControlLabelLarge {
+  font-size: calc(var(--ui-font-size) * 2);
 }
 
 .classicyControlLabelDisabled {

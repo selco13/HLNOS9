@@ -141,8 +141,7 @@ export const ClassicySoundStateEventReducer = (
     return ss;
 };
 
-
-export function ClassicySoundManagerProvider({children}) {
+export const ClassicySoundManagerProvider: React.FC<{children: any}> = ({children}) => {
     const [sound, soundDispatch] = React.useReducer(ClassicySoundStateEventReducer, initialPlayer);
 
     return (
@@ -153,3 +152,4 @@ export function ClassicySoundManagerProvider({children}) {
         </ClassicySoundManagerContext.Provider>
     );
 }
+
