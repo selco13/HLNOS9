@@ -18,6 +18,15 @@
   @include platinumWindowBoxShadow;
 }
 
+@mixin platinumWindowHeaderBorder {
+  border: 1px solid var(--color-system-07);
+  border-bottom: 1px solid var(--color-system-05);
+  @include platinumWindowBoxShadow;
+  box-shadow:  inset var(--window-border-size) var(--window-border-size) var(--color-window-border-outset),
+;
+}
+
+
 @mixin platinumWindowInnerBoxShadow {
   box-shadow: calc(var(--window-border-size) * -1) calc(var(--window-border-size) * -1) var(--color-system-05),
   calc(var(--window-border-size) * 1) calc(var(--window-border-size) * 1) var(--color-window-border-outset);

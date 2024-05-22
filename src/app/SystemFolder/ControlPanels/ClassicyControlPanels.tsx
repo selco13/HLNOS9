@@ -4,7 +4,7 @@ import { AppearanceManager } from '@/app/SystemFolder/ControlPanels/AppearanceMa
 import { SoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/SoundManager'
 import React from 'react'
 
-export default function ControlPanels() {
+export default function ClassicyControlPanels() {
     return (
         <>
             <AppearanceManager />

@@ -1,4 +1,4 @@
-@use "@/app/SystemFolder/Appearance/styles/scrollbars";
+@use "../app/SystemFolder/Appearance/styles/scrollbars";
 
 * {
   @include scrollbars.scrollbars;

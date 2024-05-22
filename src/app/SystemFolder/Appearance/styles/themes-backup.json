@@ -1,0 +1,1430 @@
+[
+  {
+    "id": "default",
+    "name": "Default",
+    "color": {
+      "outline": "#6666CC",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#EEEEEE",
+        "#CCCCFF",
+        "#9999FF",
+        "#6666CC",
+        "#333399",
+        "#000088",
+        "#000055"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "/img/wallpapers/default.png",
+      "backgroundColor": "#6666CC",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "auto"
+    }
+  },
+  {
+    "id": "azul",
+    "name": "Azul",
+    "color": {
+      "outline": "#7599D0",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#AFC9FF",
+        "#93B6EA",
+        "#7599D0",
+        "#6686B7",
+        "#4A6999",
+        "#30467D",
+        "#293C6A"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "/img/wallpapers/azul_dark.png",
+      "backgroundColor": "#4A6999",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "bondi",
+    "name": "Bondi",
+    "color": {
+      "outline": "#5AB9AD",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#C8F8E9",
+        "#67DACD",
+        "#5AB9AD",
+        "#308F91",
+        "#0D716A",
+        "#00454B",
+        "#003333"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "/img/wallpapers/waves_bondi.png",
+      "backgroundColor": "#00454B",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "auto"
+    }
+  },
+  {
+    "id": "copper",
+    "name": "Copper",
+    "color": {
+      "outline": "#FF9966",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFFFCC",
+        "#FFCC99",
+        "#FF9966",
+        "#CC6633",
+        "#993300",
+        "#660000",
+        "#220000"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#660000",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "crimson",
+    "name": "Crimson",
+    "color": {
+      "outline": "#FF6666",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFCCCC",
+        "#FF9999",
+        "#FF6666",
+        "#CC3333",
+        "#990000",
+        "#770000",
+        "#440000"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#770000",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "emerald",
+    "name": "Emerald",
+    "color": {
+      "outline": "#33CC66",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#CCFFCC",
+        "#66FF99",
+        "#33CC66",
+        "#339966",
+        "#006633",
+        "#004400",
+        "#002200"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#004400",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "frenchBlue",
+    "name": "French Blue",
+    "color": {
+      "outline": "#8585BC",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#CCCCFF",
+        "#B0B0EA",
+        "#8585BC",
+        "#666699",
+        "#51517C",
+        "#333366",
+        "#26264D"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"ChicagoFLF\", \"Charcoal\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#51517C",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "gold",
+    "name": "Gold",
+    "color": {
+      "outline": "#CCCC00",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFFF99",
+        "#FFFF00",
+        "#CCCC00",
+        "#999900",
+        "#666600",
+        "#333300",
+        "#111111"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#666600",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "ivy",
+    "name": "Ivy",
+    "color": {
+      "outline": "#669966",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#CCFFCC",
+        "#CCFFCC",
+        "#669966",
+        "#336633",
+        "#003300",
+        "#002200",
+        "#001100"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#002200",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "lavender",
+    "name": "Lavender",
+    "color": {
+      "outline": "#9999FF",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#EEEEEE",
+        "#CCCCFF",
+        "#9999FF",
+        "#6666CC",
+        "#333399",
+        "#000088",
+        "#000055"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#333399",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "pistachio",
+    "name": "Pistachio",
+    "color": {
+      "outline": "#CDED6D",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#EDFFB7",
+        "#DBFD75",
+        "#CDED6D",
+        "#B5E040",
+        "#99CC3E",
+        "#669900",
+        "#336600"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#336600",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "magenta",
+    "name": "Magenta",
+    "color": {
+      "outline": "#CC66CC",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFCCFF",
+        "#FF99FF",
+        "#CC66CC",
+        "#993399",
+        "#660066",
+        "#330033",
+        "#220000"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#330033",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "nutmeg",
+    "name": "Nutmeg",
+    "color": {
+      "outline": "#CC9966",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FED9B3",
+        "#ECB277",
+        "#CC9966",
+        "#996633",
+        "#663300",
+        "#451F18",
+        "#220000"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#451F18",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "poppy",
+    "name": "Poppy",
+    "color": {
+      "outline": "#FE8502",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFC05C",
+        "#FE9C02",
+        "#FE8502",
+        "#F46F19",
+        "#FE4200",
+        "#E14200",
+        "#A43000"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#A43000",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "plum",
+    "name": "Plum",
+    "color": {
+      "outline": "#BE80BE",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFCCFF",
+        "#DEA4DE",
+        "#BE80BE",
+        "#996699",
+        "#663366",
+        "#4A0A4A",
+        "#330033"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#330033",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "rose",
+    "name": "Rose",
+    "color": {
+      "outline": "#CC9999",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFDCDC",
+        "#EFC8C8",
+        "#CC9999",
+        "#996666",
+        "#794242",
+        "#541F1F",
+        "#350000"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#350000",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "sapphire",
+    "name": "Sapphire",
+    "color": {
+      "outline": "#6699FF",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#EEEEEE",
+        "#99CCFF",
+        "#6699FF",
+        "#3366FF",
+        "#0033CC",
+        "#000099",
+        "#000099"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#000099",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "silver",
+    "name": "Silver",
+    "color": {
+      "outline": "#AAAAAA",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#EEEEEE",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#777777",
+        "#555555",
+        "#333333",
+        "#222222"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#555555",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "teal",
+    "name": "Teal",
+    "color": {
+      "outline": "#669999",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#B9EEEE",
+        "#99CCCC",
+        "#669999",
+        "#477979",
+        "#336666",
+        "#074C4C",
+        "#003333"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#003333",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "turquoise",
+    "name": "Turquoise",
+    "color": {
+      "outline": "#00CCFF",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#CCFFFF",
+        "#66FFFF",
+        "#00CCFF",
+        "#0099CC",
+        "#006699",
+        "#003366",
+        "#000022"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#003366",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  },
+  {
+    "id": "sunny",
+    "name": "Sunny",
+    "color": {
+      "outline": "#F5DB61",
+      "select": "#DDDDDD",
+      "highlight": "#AAAAAA",
+      "window": {
+        "border": "#000000",
+        "borderOutset": "#FFFFFF",
+        "borderInset": "#CCCCCC",
+        "frame": "#CCCCCC",
+        "title": "#000000",
+        "document": "#FFFFFF"
+      },
+      "black": "#000000",
+      "white": "#FFFFFF",
+      "alert": "#ffFF00",
+      "error": "#ff0000",
+      "system": [
+        "#EEEEEE",
+        "#DDDDDD",
+        "#CCCCCC",
+        "#AAAAAA",
+        "#808080",
+        "#393939",
+        "#202020"
+      ],
+      "theme": [
+        "#FFFEE6",
+        "#FEF491",
+        "#F5DB61",
+        "#E6C144",
+        "#CCAB3B",
+        "#AA8F35",
+        "#887126"
+      ]
+    },
+    "sound": {
+      "file": "/sounds/platinum/platinum.json",
+      "disabled": []
+    },
+    "typography": {
+      "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
+      "uiSize": "14px",
+      "header": "\"AppleGaramond\", serif",
+      "headerSize": "22px",
+      "body": "\"Geneva\", serif",
+      "bodySize": "14px"
+    },
+    "measurements": {
+      "window": {
+        "borderSize": "1px",
+        "controlSize": "12px",
+        "paddingSize": "6px",
+        "scrollbarSize": "20px"
+      }
+    },
+    "desktop": {
+      "iconSize": "48px",
+      "iconFontSize": "12px",
+      "backgroundImage": "",
+      "backgroundColor": "#887126",
+      "repeat": "repeat",
+      "position": "center",
+      "size": "100%"
+    }
+  }
+]

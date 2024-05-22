@@ -16,12 +16,12 @@
 
 .classicyWindowHeader {
   font-family: var(--ui-font);
-  font-size: var(--ui-font-size);
+  font-size: calc(var(--ui-font-size) * .865);
   position: sticky;
   z-index: 999;
   top: 0;
   display: flex;
-  @include appearance.platinumWindowInnerBorder;
+  @include appearance.platinumWindowHeaderBorder;
   align-items: center;
   flex-direction: row;
   justify-content: center;
@@ -280,7 +280,6 @@
   .classicyWindowContentsWithHeader {
     position: relative;
     display: block;
-    @include appearance.platinumWindowInnerBorder;
     overflow: scroll;
     height: calc(100% - (var(--window-control-size) * 4));
     background-color: var(--color-window-document);

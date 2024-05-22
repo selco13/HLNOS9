@@ -3,38 +3,38 @@
     "id": "default",
     "name": "Default",
     "color": {
-      "outline": "#6666CC",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 6710988,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#EEEEEE",
-        "#CCCCFF",
-        "#9999FF",
-        "#6666CC",
-        "#333399",
-        "#000088",
-        "#000055"
+        15658734,
+        13421823,
+        10066431,
+        6710988,
+        3355545,
+        136,
+        85
       ]
     },
     "sound": {
@@ -43,66 +43,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "/img/wallpapers/default.png",
-      "backgroundColor": "#6666CC",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "auto"
+      "backgroundColor": 6710988,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "auto"
     }
   },
   {
     "id": "azul",
     "name": "Azul",
     "color": {
-      "outline": "#7599D0",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 7707088,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#AFC9FF",
-        "#93B6EA",
-        "#7599D0",
-        "#6686B7",
-        "#4A6999",
-        "#30467D",
-        "#293C6A"
+        11520511,
+        9680618,
+        7707088,
+        6719159,
+        4876697,
+        3163773,
+        2702442
       ]
     },
     "sound": {
@@ -111,66 +111,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "/img/wallpapers/azul_dark.png",
-      "backgroundColor": "#4A6999",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 4876697,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "bondi",
     "name": "Bondi",
     "color": {
-      "outline": "#5AB9AD",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 5945773,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#C8F8E9",
-        "#67DACD",
-        "#5AB9AD",
-        "#308F91",
-        "#0D716A",
-        "#00454B",
-        "#003333"
+        13170921,
+        6806221,
+        5945773,
+        3182481,
+        881002,
+        17739,
+        13107
       ]
     },
     "sound": {
@@ -179,66 +179,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "/img/wallpapers/waves_bondi.png",
-      "backgroundColor": "#00454B",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "auto"
+      "backgroundColor": 17739,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "auto"
     }
   },
   {
     "id": "copper",
     "name": "Copper",
     "color": {
-      "outline": "#FF9966",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 16750950,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFFFCC",
-        "#FFCC99",
-        "#FF9966",
-        "#CC6633",
-        "#993300",
-        "#660000",
-        "#220000"
+        16777164,
+        16764057,
+        16750950,
+        13395507,
+        10040064,
+        6684672,
+        2228224
       ]
     },
     "sound": {
@@ -247,66 +247,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#660000",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 6684672,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "crimson",
     "name": "Crimson",
     "color": {
-      "outline": "#FF6666",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 16737894,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFCCCC",
-        "#FF9999",
-        "#FF6666",
-        "#CC3333",
-        "#990000",
-        "#770000",
-        "#440000"
+        16764108,
+        16751001,
+        16737894,
+        13382451,
+        10027008,
+        7798784,
+        4456448
       ]
     },
     "sound": {
@@ -315,66 +315,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#770000",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 7798784,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "emerald",
     "name": "Emerald",
     "color": {
-      "outline": "#33CC66",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 3394662,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#CCFFCC",
-        "#66FF99",
-        "#33CC66",
-        "#339966",
-        "#006633",
-        "#004400",
-        "#002200"
+        13434828,
+        6750105,
+        3394662,
+        3381606,
+        26163,
+        17408,
+        8704
       ]
     },
     "sound": {
@@ -383,66 +383,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#004400",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 17408,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "frenchBlue",
     "name": "French Blue",
     "color": {
-      "outline": "#8585BC",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 8750524,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#CCCCFF",
-        "#B0B0EA",
-        "#8585BC",
-        "#666699",
-        "#51517C",
-        "#333366",
-        "#26264D"
+        13421823,
+        11579626,
+        8750524,
+        6710937,
+        5329276,
+        3355494,
+        2500173
       ]
     },
     "sound": {
@@ -451,66 +451,66 @@
     },
     "typography": {
       "ui": "\"ChicagoFLF\", \"Charcoal\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#51517C",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 5329276,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "gold",
     "name": "Gold",
     "color": {
-      "outline": "#CCCC00",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 13421568,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFFF99",
-        "#FFFF00",
-        "#CCCC00",
-        "#999900",
-        "#666600",
-        "#333300",
-        "#111111"
+        16777113,
+        16776960,
+        13421568,
+        10066176,
+        6710784,
+        3355392,
+        1118481
       ]
     },
     "sound": {
@@ -519,66 +519,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#666600",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 6710784,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "ivy",
     "name": "Ivy",
     "color": {
-      "outline": "#669966",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 6723942,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#CCFFCC",
-        "#CCFFCC",
-        "#669966",
-        "#336633",
-        "#003300",
-        "#002200",
-        "#001100"
+        13434828,
+        13434828,
+        6723942,
+        3368499,
+        13056,
+        8704,
+        4352
       ]
     },
     "sound": {
@@ -587,66 +587,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#002200",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 8704,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "lavender",
     "name": "Lavender",
     "color": {
-      "outline": "#9999FF",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 10066431,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#EEEEEE",
-        "#CCCCFF",
-        "#9999FF",
-        "#6666CC",
-        "#333399",
-        "#000088",
-        "#000055"
+        15658734,
+        13421823,
+        10066431,
+        6710988,
+        3355545,
+        136,
+        85
       ]
     },
     "sound": {
@@ -655,66 +655,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#333399",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 3355545,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "pistachio",
     "name": "Pistachio",
     "color": {
-      "outline": "#CDED6D",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 13495661,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#EDFFB7",
-        "#DBFD75",
-        "#CDED6D",
-        "#B5E040",
-        "#99CC3E",
-        "#669900",
-        "#336600"
+        15597495,
+        14417269,
+        13495661,
+        11919424,
+        10079294,
+        6723840,
+        3368448
       ]
     },
     "sound": {
@@ -723,66 +723,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#336600",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 3368448,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "magenta",
     "name": "Magenta",
     "color": {
-      "outline": "#CC66CC",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 13395660,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFCCFF",
-        "#FF99FF",
-        "#CC66CC",
-        "#993399",
-        "#660066",
-        "#330033",
-        "#220000"
+        16764159,
+        16751103,
+        13395660,
+        10040217,
+        6684774,
+        3342387,
+        2228224
       ]
     },
     "sound": {
@@ -791,66 +791,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#330033",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 3342387,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "nutmeg",
     "name": "Nutmeg",
     "color": {
-      "outline": "#CC9966",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 13408614,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FED9B3",
-        "#ECB277",
-        "#CC9966",
-        "#996633",
-        "#663300",
-        "#451F18",
-        "#220000"
+        16701875,
+        15512183,
+        13408614,
+        10053171,
+        6697728,
+        4529944,
+        2228224
       ]
     },
     "sound": {
@@ -859,66 +859,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#451F18",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 4529944,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "poppy",
     "name": "Poppy",
     "color": {
-      "outline": "#FE8502",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 16680194,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFC05C",
-        "#FE9C02",
-        "#FE8502",
-        "#F46F19",
-        "#FE4200",
-        "#E14200",
-        "#A43000"
+        16760924,
+        16686082,
+        16680194,
+        16019225,
+        16663040,
+        14762496,
+        10760192
       ]
     },
     "sound": {
@@ -927,66 +927,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#A43000",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 10760192,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "plum",
     "name": "Plum",
     "color": {
-      "outline": "#BE80BE",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 12484798,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFCCFF",
-        "#DEA4DE",
-        "#BE80BE",
-        "#996699",
-        "#663366",
-        "#4A0A4A",
-        "#330033"
+        16764159,
+        14591198,
+        12484798,
+        10053273,
+        6697830,
+        4852298,
+        3342387
       ]
     },
     "sound": {
@@ -995,66 +995,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#330033",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 3342387,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "rose",
     "name": "Rose",
     "color": {
-      "outline": "#CC9999",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 13408665,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFDCDC",
-        "#EFC8C8",
-        "#CC9999",
-        "#996666",
-        "#794242",
-        "#541F1F",
-        "#350000"
+        16768220,
+        15714504,
+        13408665,
+        10053222,
+        7946818,
+        5512991,
+        3473408
       ]
     },
     "sound": {
@@ -1063,66 +1063,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#350000",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 3473408,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "sapphire",
     "name": "Sapphire",
     "color": {
-      "outline": "#6699FF",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 6724095,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#EEEEEE",
-        "#99CCFF",
-        "#6699FF",
-        "#3366FF",
-        "#0033CC",
-        "#000099",
-        "#000099"
+        15658734,
+        10079487,
+        6724095,
+        3368703,
+        13260,
+        153,
+        153
       ]
     },
     "sound": {
@@ -1131,66 +1131,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#000099",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 153,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "silver",
     "name": "Silver",
     "color": {
-      "outline": "#AAAAAA",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 11184810,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#EEEEEE",
-        "#CCCCCC",
-        "#AAAAAA",
-        "#777777",
-        "#555555",
-        "#333333",
-        "#222222"
+        15658734,
+        13421772,
+        11184810,
+        7829367,
+        5592405,
+        3355443,
+        2236962
       ]
     },
     "sound": {
@@ -1199,66 +1199,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#555555",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 5592405,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "teal",
     "name": "Teal",
     "color": {
-      "outline": "#669999",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 6723993,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#B9EEEE",
-        "#99CCCC",
-        "#669999",
-        "#477979",
-        "#336666",
-        "#074C4C",
-        "#003333"
+        12185326,
+        10079436,
+        6723993,
+        4684153,
+        3368550,
+        478284,
+        13107
       ]
     },
     "sound": {
@@ -1267,66 +1267,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#003333",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 13107,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "turquoise",
     "name": "Turquoise",
     "color": {
-      "outline": "#00CCFF",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 52479,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#CCFFFF",
-        "#66FFFF",
-        "#00CCFF",
-        "#0099CC",
-        "#006699",
-        "#003366",
-        "#000022"
+        13434879,
+        6750207,
+        52479,
+        39372,
+        26265,
+        13158,
+        34
       ]
     },
     "sound": {
@@ -1335,66 +1335,66 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#003366",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 13158,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   },
   {
     "id": "sunny",
     "name": "Sunny",
     "color": {
-      "outline": "#F5DB61",
-      "select": "#DDD",
-      "highlight": "#AAA",
+      "outline": 16112481,
+      "select": 14540253,
+      "highlight": 11184810,
       "window": {
-        "border": "#000",
-        "borderOutset": "#FFF",
-        "borderInset": "#CCC",
-        "frame": "#CCC",
-        "title": "#000",
-        "document": "#FFF"
+        "border": 0,
+        "borderOutset": 16777215,
+        "borderInset": 13421772,
+        "frame": 13421772,
+        "title": 0,
+        "document": 16777215
       },
-      "black": "#000",
-      "white": "#FFF",
-      "alert": "#ffFF00",
-      "error": "#ff0000",
+      "black": 0,
+      "white": 16777215,
+      "alert": 16776960,
+      "error": 16711680,
       "system": [
-        "#EEE",
-        "#DDD",
-        "#CCC",
-        "#AAA",
-        "#808080",
-        "#393939",
-        "#202020"
+        15658734,
+        14540253,
+        13421772,
+        11184810,
+        8421504,
+        3750201,
+        2105376
       ],
       "theme": [
-        "#FFFEE6",
-        "#FEF491",
-        "#F5DB61",
-        "#E6C144",
-        "#CCAB3B",
-        "#AA8F35",
-        "#887126"
+        16776934,
+        16708753,
+        16112481,
+        15122756,
+        13413179,
+        11177781,
+        8941862
       ]
     },
     "sound": {
@@ -1403,28 +1403,28 @@
     },
     "typography": {
       "ui": "\"Charcoal\", \"ChicagoFLF\", \"Geneva\", sans-serif",
-      "uiSize": "14px",
+      "uiSize": 14,
       "header": "\"AppleGaramond\", serif",
-      "headerSize": "22px",
+      "headerSize": 22,
       "body": "\"Geneva\", serif",
-      "bodySize": "14px"
+      "bodySize": 14
     },
     "measurements": {
       "window": {
-        "borderSize": "1px",
-        "controlSize": "12px",
-        "paddingSize": "6px",
-        "scrollbarSize": "20px"
+        "borderSize": 1,
+        "controlSize": 12,
+        "paddingSize": 6,
+        "scrollbarSize": 20
       }
     },
     "desktop": {
-      "iconSize": "48px",
-      "iconFontSize": "12px",
+      "iconSize": 48,
+      "iconFontSize": 12,
       "backgroundImage": "",
-      "backgroundColor": "#887126",
-      "repeat": "repeat",
-      "position": "center",
-      "size": "100%"
+      "backgroundColor": 8941862,
+      "backgroundRepeat": "repeat",
+      "backgroundPosition": "center",
+      "backgroundSize": "100%"
     }
   }
 ]

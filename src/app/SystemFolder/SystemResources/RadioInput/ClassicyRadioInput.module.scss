@@ -50,7 +50,7 @@
   filter: invert(1);
 
   &:checked, &:active {
-    border-color: var(--color-theme-07);
+    border-color: var(--color-black);
     filter: invert(0);
   }
 

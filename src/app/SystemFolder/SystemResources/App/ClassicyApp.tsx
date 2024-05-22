@@ -1,38 +1,37 @@
-import {getTheme} from "@/app/SystemFolder/Appearance/PlatinumAppearance";
-import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext';
-import {useSound} from "@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext";
-import ClassicyWindow from "@/app/SystemFolder/SystemResources/Window/ClassicyWindow";
-import React from "react";
-import {JSONTree} from 'react-json-tree';
+import { getTheme } from '@/app/SystemFolder/Appearance/ClassicyAppearance'
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import { useSound } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
+import React from 'react'
+import { JSONTree } from 'react-json-tree'
 
 interface ClassicyAppProps {
-    id: string;
-    name: string;
-    icon: string;
-    defaultWindow: string;
-    noDesktopIcon?: boolean;
-    debug?: boolean;
-    openOnBoot?: boolean;
-    children?: any;
-    appContext?: any;
+    id: string
+    name: string
+    icon: string
+    defaultWindow: string
+    noDesktopIcon?: boolean
+    debug?: boolean
+    openOnBoot?: boolean
+    children?: any
+    appContext?: any
 }
 
-
 const ClassicyApp: React.FC<ClassicyAppProps> = ({
-                                                     id,
-                                                     icon,
-                                                     name,
-                                                     openOnBoot,
-                                                     noDesktopIcon,
-                                                     appContext,
-                                                     defaultWindow,
-                                                     debug = false,
-                                                     children
-                                                 }) => {
-    const desktopContext = useDesktop();
-    const desktopEventDispatch = useDesktopDispatch();
+    id,
+    icon,
+    name,
+    openOnBoot,
+    noDesktopIcon,
+    appContext,
+    defaultWindow,
+    debug = false,
+    children,
+}) => {
+    const desktopContext = useDesktop()
+    const desktopEventDispatch = useDesktopDispatch()
 
-    const themeData = getTheme(desktopContext.activeTheme);
+    const themeData = getTheme(desktopContext.activeTheme)
     const debuggerJSONTheme = {
         base00: themeData.color.white,
         base01: themeData.color.black,
@@ -50,70 +49,64 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
         base0D: themeData.color.theme[4],
         base0E: themeData.color.theme[5],
         base0F: themeData.color.theme[6],
-    };
+    }
 
     const isAppOpen = () => {
-        const appOpen = desktopContext.openApps.find((i) => i.id === id);
-        return !!appOpen;
+        const appOpen = desktopContext.openApps.find((i) => i.id === id)
+        return !!appOpen
     }
 
     const onFocus = () => {
         desktopEventDispatch({
-            type: "ClassicyAppFocus",
-            app: {id: id},
-        });
+            type: 'ClassicyAppFocus',
+            app: { id: id },
+        })
     }
 
     React.useEffect(() => {
         if (!noDesktopIcon) {
             desktopEventDispatch({
-                type: "ClassicyDesktopIconAdd",
+                type: 'ClassicyDesktopIconAdd',
                 app: {
                     id: id,
                     name: name,
-                    icon: icon
-                }
-            });
+                    icon: icon,
+                },
+            })
         }
-    }, [noDesktopIcon]);
+    }, [noDesktopIcon])
 
     if (debug) {
         let debugWindow = (
-            <ClassicyWindow initialSize={[400, 300]}
-                            initialPosition={[100, 200]}
-                            title={"DEBUG " + name}
-                            id={id + "_debugger"}
-                            appId={id}
-                            appMenu={[{id: "Debug", title: "Debug"}]}>
+            <ClassicyWindow
+                initialSize={[400, 300]}
+                initialPosition={[100, 200]}
+                title={'DEBUG ' + name}
+                id={id + '_debugger'}
+                appId={id}
+                appMenu={[{ id: 'Debug', title: 'Debug' }]}
+            >
                 <h1>Providers</h1>
-                <hr/>
+                <hr />
                 <h2>appContext</h2>
-                <JSONTree data={appContext} theme={debuggerJSONTheme}/>
-                <br/>
+                <JSONTree data={appContext} theme={debuggerJSONTheme} />
+                <br />
                 <h2>desktopContext</h2>
-                <JSONTree data={desktopContext} theme={debuggerJSONTheme}/>
-                <br/>
+                <JSONTree data={desktopContext} theme={debuggerJSONTheme} />
+                <br />
                 <h2>soundPlayer</h2>
-                <JSONTree data={useSound} theme={debuggerJSONTheme}/>
+                <JSONTree data={useSound} theme={debuggerJSONTheme} />
             </ClassicyWindow>
-        );
+        )
 
         if (Array.isArray[children]) {
-            children = [...children, debugWindow];
+            children = [...children, debugWindow]
         } else {
-            children = [children, debugWindow];
+            children = [children, debugWindow]
         }
     }
 
-    return (
-        <div onMouseDown={onFocus}>
-            {isAppOpen() &&
-                <>
-                    {children}
-                </>
-            }
-        </div>
-    );
-};
+    return <div onMouseDown={onFocus}>{isAppOpen() && <>{children}</>}</div>
+}
 
-export default ClassicyApp;
+export default ClassicyApp
