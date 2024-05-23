@@ -5,91 +5,46 @@ export const metadata = {
     description: 'MacOS 8.5 "Platinum"',
 }
 
+const favicons: [number, number, string][] = [
+    [57, 57, 'apple-touch-icon'],
+    [60, 60, 'apple-touch-icon'],
+    [72, 72, 'apple-touch-icon'],
+    [76, 76, 'apple-touch-icon'],
+    [114, 114, 'apple-touch-icon'],
+    [120, 120, 'apple-touch-icon'],
+    [144, 144, 'apple-touch-icon'],
+    [152, 152, 'apple-touch-icon'],
+    [180, 180, 'apple-touch-icon'],
+    [192, 192, 'apple-touch-icon'],
+    [16, 16, 'icon'],
+    [32, 32, 'icon'],
+    [96, 96, 'icon']
+]
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <head>
-                <title>Classicy - MacOS 8.6</title>
-                <link rel="manifest" href="/manifest.json" />
-                <meta name="theme-color" content="#808080" />
+        <head>
+            <title>MacOS 8.6</title>
+            <meta name="theme-color" content="#808080"/>
+            <meta
+                name="msapplication-TileImage"
+                content={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/ms-icon-144x144.png`}
+            />
+            <meta name="msapplication-TileColor" content="#808080"/>
+            <link rel="manifest" href="/manifest.json"/>
 
+            {favicons.map(([x, y, label]) => (
                 <link
-                    rel="apple-touch-icon"
-                    sizes="57x57"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-57x57.png`}
+                    key={[label, x, y].join('_')}
+                    rel={label}
+                    sizes={[x, y].join('x')}
+                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/${label}-${[x, y].join('x')}.png`}
                 />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="60x60"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-60x60.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="72x72"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-72x72.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="76x76"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-76x76.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="114x114"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-114x114.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="120x120"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-120x120.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="144x144"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-144x144.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="152x152"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-152x152.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="180x180"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-180x180.png`}
-                />
-                <link
-                    rel="apple-touch-icon"
-                    sizes="192x192"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/apple-icon-192x192.png`}
-                />
+            ))}
 
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="32x32"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/favicon-32x32.png`}
-                />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="96x96"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/favicon-96x96.png`}
-                />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="16x16"
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/favicon-16x16.png`}
-                />
-
-                <meta
-                    name="msapplication-TileImage"
-                    content={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/ms-icon-144x144.png`}
-                />
-                <meta name="msapplication-TileColor" content="#808080" />
-            </head>
-            <body className={globalStyles.classicy}>{children}</body>
+        </head>
+        <body className={globalStyles.classicy}>{children}</body>
         </html>
-    )
+    );
 }

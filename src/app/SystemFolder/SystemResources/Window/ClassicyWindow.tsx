@@ -1,9 +1,9 @@
 'use client'
 
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
 import ClassicyContextualMenu from '@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu'
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import {ClassicyMenuItem} from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
+import {useSoundDispatch} from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import classicyWindowStyle from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss'
 import {
     ClassicyWindowState,
@@ -172,6 +172,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     }
 
     React.useEffect(() => {
+        // This ensures that once a window has opened it becomes the focus.
         setActive()
     }, [])
 
@@ -336,7 +337,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                     </div>
                     {header && !windowState.collapsed && (
                         <div className={classNames(classicyWindowStyle.classicyWindowHeader,
-                            isActive() ? '' : classicyWindowStyle.classicyWindowContentsDimmed,
+                            isActive() ? '' : classicyWindowStyle.classicyWindowHeaderDimmed,
                         )}>{header}</div>
                     )}
                     <div
@@ -364,7 +365,8 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                     </div>
                     {resizable && !windowState.collapsed && (
                         <div
-                            className={classicyWindowStyle.classicyWindowResizer}
+                            className={classNames(classicyWindowStyle.classicyWindowResizer,
+                                isActive() ? '' : classicyWindowStyle.classicyWindowResizerDimmed)}
                             onMouseDown={startResizeWindow}
                         ></div>
                     )}

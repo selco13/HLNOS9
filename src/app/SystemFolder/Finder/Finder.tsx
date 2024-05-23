@@ -1,9 +1,7 @@
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
-import { useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
-import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
-import ClassicyDisclosure from '@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure'
+import {useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
 import ClassicyFileBrowser from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser'
-import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
+import {ClassicyFileSystem} from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
 
@@ -98,25 +96,23 @@ const Finder = () => {
 
     return (
         <ClassicyApp id={appId} name={appName} icon={appIcon} noDesktopIcon={true} defaultWindow={''}>
-            <ClassicyWindow
-                id={'test-get-file-info'}
-                scrollable={false}
-                resizable={false}
-                collapsable={false}
-                zoomable={false}
-                modal={true}
-                initialSize={[50, 200]}
-                initialPosition={[50, 50]}
-            >
-                <div>
-                    <ClassicyControlLabel
-                        label={'File Name'}
-                        labelSize={'medium'}
-                        icon={'img/icons/system/apple.png'}
-                    ></ClassicyControlLabel>
-                    <ClassicyDisclosure label={'More Info'}>Hello</ClassicyDisclosure>
-                </div>
-            </ClassicyWindow>
+            {/*<ClassicyWindow*/}
+            {/*    id={'test-get-file-info'}*/}
+            {/*    scrollable={false}*/}
+            {/*    resizable={false}*/}
+            {/*    collapsable={false}*/}
+            {/*    zoomable={false}*/}
+            {/*    modalWindow={true}*/}
+            {/*    initialSize={[50,200]}*/}
+            {/*    initialPosition={[50,50]}*/}
+            {/*>*/}
+            {/*    <div>*/}
+            {/*        <ClassicyControlLabel label={'File Name'} labelSize={'medium'} icon={'img/icons/system/apple.png'}></ClassicyControlLabel>*/}
+            {/*        <ClassicyDisclosure label={"More Info"}>*/}
+            {/*            Hello*/}
+            {/*        </ClassicyDisclosure>*/}
+            {/*    </div>*/}
+            {/*</ClassicyWindow>*/}
             {openWindows}
         </ClassicyApp>
     )

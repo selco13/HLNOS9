@@ -25,11 +25,17 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  width: calc(100% - var(--window-padding-size) * 2.25);
+  width: calc(100% - var(--window-padding-size) * 2 - calc(var(--window-border-size) * 2));
   height: var(--window-control-size);
   padding: var(--window-padding-size);
   background: var(--color-system-03);
   column-gap: var(--window-control-size);
+}
+
+.classicyWindowHeaderDimmed {
+  opacity: .5;
+  border: solid 1px black !important;
+  box-shadow: none !important;
 }
 
 .classicyWindowInactive {
@@ -43,6 +49,11 @@
   filter: contrast(.9);
 }
 
+.classicyWindowResizerDimmed {
+  background-image: none !important;
+  box-shadow: var(--color-system-07) -2px -2px 0;
+}
+
 .classicyWindowActive {
   z-index: 300 !important;
 
@@ -52,7 +63,6 @@
     .classicyWindowControlBox {
       opacity: 1 !important;
     }
-
     .classicyWindowTitle {
       .classicyWindowTitleText {
         color: black !important;
@@ -161,13 +171,12 @@
     column-gap: var(--window-padding-size);
 
     .classicyWindowIcon {
-      max-width: calc(var(--window-control-size) * 1);
-      max-height: calc(var(--window-control-size) * 1);
-      margin: 0 calc(var(--window-padding-size) * 1);
+      max-width: calc(var(--window-control-size) * 2);
+      max-height: calc(var(--window-control-size) * 2);
 
       img {
-        width: 100%;
-        margin: 2px auto;
+        height: 100%;
+        object-fit: contain;
         user-select: none;
         pointer-events: none;
       }
@@ -253,19 +262,22 @@
     z-index: 999;
     right: calc(var(--window-padding-size) + var(--window-border-size) * 2);
     bottom: calc(var(--window-padding-size) + var(--window-border-size) * 2);
-    width: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 2);
-    height: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 2);
+    width: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 1);
+    height: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 1);
     margin: calc(var(--window-border-size) * -3) calc(var(--window-border-size) * -2);
     padding: 0;
     cursor: grab;
     user-select: none;
-    border-top: var(--window-border-size) solid var(--color-black);
-    border-left: var(--window-border-size) solid var(--color-black);
-    background-color: var(--color-system-03);
     background-image: assets.$resizer;
     background-repeat: no-repeat;
     background-position: center;
     background-size: var(--window-control-size);
+    background-color: var(--color-system-03);
+    border-top: 1px solid var(--color-system-01);
+    border-left: 1px solid var(--color-system-01);
+    box-shadow: var(--color-system-03) 1px 1px 0,
+    var(--color-system-03) -1px -1px 0,
+    var(--color-system-07) -2px -2px 0;
   }
 
   .classicyWindowContents {
