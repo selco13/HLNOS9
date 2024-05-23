@@ -1,4 +1,4 @@
-import { ClassicyFileSystem } from './ClassicyFileSystem'
+import {ClassicyFileSystem} from './ClassicyFileSystem'
 
 process.env.NEXT_PUBLIC_BASE_PATH = '/platinum'
 
@@ -137,7 +137,7 @@ describe('File System', () => {
     })
 
     it('can write a file', () => {
-        const a = fs.writeFile(
+        fs.writeFile(
             'Macintosh HD:Apps:Test Apps:Test App:Resources:Test.app',
             'Test Data'
         )

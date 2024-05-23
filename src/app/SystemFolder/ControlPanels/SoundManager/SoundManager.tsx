@@ -1,9 +1,9 @@
 'use client'
 
 import soundManagerStyles from '@/app/SystemFolder/ControlPanels/SoundManager/SoundManager.module.scss'
-import { ClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
+import {ClassicyAboutWindow} from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
-import { useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
 import ClassicyCheckbox from '@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox'
 import ClassicyControlGroup from '@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
@@ -79,7 +79,7 @@ export const SoundManager: React.FC = () => {
     const getSoundLabelGroups = () => {
         const soundLabelGroups = [...new Set(playerState.labels.map((item) => item.group))]
 
-        var index = soundLabelGroups.indexOf('Alert')
+        const index = soundLabelGroups.indexOf('Alert')
         if (index !== -1) {
             soundLabelGroups.splice(index, 1)
         }

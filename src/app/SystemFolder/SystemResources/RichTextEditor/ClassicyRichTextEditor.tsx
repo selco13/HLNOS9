@@ -30,7 +30,6 @@ const ClassicyRichTextEditor: FC<ClassicyRichTextEditorProps> = ({content, edito
                        toolbarPlugin({
                            toolbarContents: () => (
                                <>
-                                   {' '}
                                    <UndoRedo/>
                                    <BoldItalicUnderlineToggles/>
                                    <CodeToggle></CodeToggle>
