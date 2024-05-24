@@ -1,4 +1,4 @@
-import { sha512 } from 'sha512-crypt-ts'
+import {sha512} from 'sha512-crypt-ts'
 
 let defaultFSContent = {
     'Macintosh HD': {
@@ -167,6 +167,8 @@ export class ClassicyFileSystem {
         decimals: number = 2
     ): string {
         if (!+bytes) {
+            return '0 ' + measure
+        }
         const sizes =
             measure === 'bits'
                 ? ['Bits', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb']
@@ -312,50 +314,6 @@ export class ClassicyFileSystem {
         //     this.fs = this.deepMerge(current, this.fs)
         // }
     }
-    private deepMerge(
-        source: ClassicyFileSystemEntry,
-        target: ClassicyFileSystemEntry
-    ): ClassicyFileSystemEntry {
-        Object.keys(target).forEach((key) => {
-            const sourceKeyIsObject = source[key] instanceof Object
-            const targetKeyIsObject = target[key] instanceof Object
-
-            if (sourceKeyIsObject && targetKeyIsObject) {
-                const sourceKeyIsArray = source[key] instanceof Array
-                const targetKeyIsArray = target[key] instanceof Array
-
-                if (sourceKeyIsArray && targetKeyIsArray) {
-                    source[key] = Array.from(
-                        new Set(source[key].concat(target[key]))
-                    )
-                } else if (!sourceKeyIsArray && !targetKeyIsArray) {
-                    this.deepMerge(source[key], target[key])
-                } else {
-                    source[key] = target[key]
-                }
-            } else {
-                source[key] = target[key]
-            }
-        })
-        return source
-    }
-
-    private deletePropertyPath(
-        fileSystem: ClassicyFileSystemEntry,
-        path: string
-    ): ClassicyFileSystemEntry {
-        const pathToArray = path.split(':')
-
-        for (let i = 0; i < pathToArray.length - 1; i++) {
-            fileSystem = fileSystem[pathToArray[i]]
-            if (typeof fileSystem === 'undefined') {
-                return
-            }
-        }
-
-        delete fileSystem[pathToArray.pop()]
-        return fileSystem
-    }
 
     rmDir(path: string) {
         return this.deletePropertyPath(this.fs, path)
@@ -465,5 +423,50 @@ export class ClassicyFileSystem {
             returnValue[key] = value
         })
         return returnValue
+    }
+
+    private deepMerge(
+        source: ClassicyFileSystemEntry,
+        target: ClassicyFileSystemEntry
+    ): ClassicyFileSystemEntry {
+        Object.keys(target).forEach((key) => {
+            const sourceKeyIsObject = source[key] instanceof Object
+            const targetKeyIsObject = target[key] instanceof Object
+
+            if (sourceKeyIsObject && targetKeyIsObject) {
+                const sourceKeyIsArray = source[key] instanceof Array
+                const targetKeyIsArray = target[key] instanceof Array
+
+                if (sourceKeyIsArray && targetKeyIsArray) {
+                    source[key] = Array.from(
+                        new Set(source[key].concat(target[key]))
+                    )
+                } else if (!sourceKeyIsArray && !targetKeyIsArray) {
+                    this.deepMerge(source[key], target[key])
+                } else {
+                    source[key] = target[key]
+                }
+            } else {
+                source[key] = target[key]
+            }
+        })
+        return source
+    }
+
+    private deletePropertyPath(
+        fileSystem: ClassicyFileSystemEntry,
+        path: string
+    ): ClassicyFileSystemEntry {
+        const pathToArray = path.split(':')
+
+        for (let i = 0; i < pathToArray.length - 1; i++) {
+            fileSystem = fileSystem[pathToArray[i]]
+            if (typeof fileSystem === 'undefined') {
+                return
+            }
+        }
+
+        delete fileSystem[pathToArray.pop()]
+        return fileSystem
     }
 }

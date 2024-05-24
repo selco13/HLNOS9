@@ -37,6 +37,8 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
     const handleOnClick = (e) => {
         setCheck(e.target.id);
         if (onClickFunc) {
+            onClickFunc(e)
+        }
     }
     const handleOnChange = (e) => {
         setCheck(e.target.id);

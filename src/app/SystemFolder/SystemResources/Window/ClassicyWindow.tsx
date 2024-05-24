@@ -36,27 +36,27 @@ interface ClassicyWindowProps {
 }
 
 const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
-    id,
-    title = '',
-    appId,
-    icon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/files/file.png`,
-    hidden = false,
-    closable = true,
-    zoomable = true,
-    collapsable = true,
-    resizable = true,
-    scrollable = true,
-    modal = false,
-    growable,
-    initialSize = [350, 0],
-    initialPosition = [0, 0],
-    minimumSize = [250, 0],
-    header,
-    appMenu,
-    contextMenu,
-    onCloseFunc,
-    children,
-}) => {
+                                                           id,
+                                                           title = '',
+                                                           appId,
+                                                           icon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/files/file.png`,
+                                                           hidden = false,
+                                                           closable = true,
+                                                           zoomable = true,
+                                                           collapsable = true,
+                                                           resizable = true,
+                                                           scrollable = true,
+                                                           modal = false,
+                                                           growable,
+                                                           initialSize = [350, 0],
+                                                           initialPosition = [0, 0],
+                                                           minimumSize = [250, 0],
+                                                           header,
+                                                           appMenu,
+                                                           contextMenu,
+                                                           onCloseFunc,
+                                                           children,
+                                                       }) => {
     const [size, setSize] = React.useState<[number, number]>(initialSize)
     const [clickPosition, setClickPosition] = React.useState<[number, number]>([0, 0])
 
@@ -79,7 +79,8 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     let player = useSoundDispatch()
 
     if (player === null) {
-        player = (_) => {}
+        player = (_) => {
+        }
     }
 
     const startResizeWindow = () => {
@@ -94,7 +95,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const startMoveWindow = (e) => {
         e.preventDefault()
-        player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowMoveIdle' })
+        player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowMoveIdle'})
         setDragging(true)
         setClickPosition([
             e.clientX - windowRef.current.getBoundingClientRect().left,
@@ -116,7 +117,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         }
 
         if (windowState.dragging) {
-            player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowMoveMoving' })
+            player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowMoveMoving'})
             setMoving(true, [e.clientX - clickPosition[0], e.clientY - clickPosition[1]])
         }
     }
@@ -124,7 +125,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     const stopChangeWindow = (e) => {
         e.preventDefault()
         if (windowState.resizing || windowState.dragging || windowState.moving) {
-            player({ type: 'ClassicySoundPlayInterrupt', sound: 'ClassicyWindowMoveStop' })
+            player({type: 'ClassicySoundPlayInterrupt', sound: 'ClassicyWindowMoveStop'})
         }
         setResize(false)
         setDragging(false)
@@ -149,12 +150,14 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const isActive = () => {
         if (desktopContext && 'activeWindow' in desktopContext) {
+            return id === desktopContext.activeWindow
+        }
         return true
     }
 
     const setActive = () => {
         if (!isActive()) {
-            player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowFocus' })
+            player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowFocus'})
 
             desktopEventDispatch({
                 type: 'ClassicyWindowFocus',
@@ -184,12 +187,12 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const setCollapse = (toCollapse: boolean) => {
         if (toCollapse) {
-            player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowCollapse' })
+            player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowCollapse'})
             windowEventDispatch({
                 type: 'ClassicyWindowCollapse',
             })
         } else {
-            player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowExpand' })
+            player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowExpand'})
             windowEventDispatch({
                 type: 'ClassicyWindowExpand',
             })
@@ -206,7 +209,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         if (windowState.collapsed) {
             setCollapse(false)
         }
-        player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowZoom' })
+        player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowZoom'})
         windowEventDispatch({
             type: 'ClassicyWindowZoom',
             zoomed: toZoom,
@@ -241,7 +244,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     }
 
     const close = () => {
-        player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowClose' })
+        player({type: 'ClassicySoundPlay', sound: 'ClassicyWindowClose'})
         windowEventDispatch({
             type: 'ClassicyWindowClose',
         })
@@ -256,7 +259,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                 <>
                     <div className={classicyWindowStyle.classicyWindowTitleLeft}></div>
                     <div className={classicyWindowStyle.classicyWindowIcon}>
-                        <img src={icon} alt={title} />
+                        <img src={icon} alt={title}/>
                     </div>
                     <div className={classicyWindowStyle.classicyWindowTitleText}>{title}</div>
                     <div className={classicyWindowStyle.classicyWindowTitleRight}></div>
