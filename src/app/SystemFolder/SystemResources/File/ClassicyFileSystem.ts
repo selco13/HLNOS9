@@ -166,7 +166,7 @@ export class ClassicyFileSystem {
         measure: 'bits' | 'bytes' = 'bytes',
         decimals: number = 2
     ): string {
-        if (!+bytes) return '0 ' + measure
+        if (!+bytes) {
         const sizes =
             measure === 'bits'
                 ? ['Bits', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb', 'Eb', 'Zb', 'Yb']
@@ -262,9 +262,8 @@ export class ClassicyFileSystem {
         const updateObjProp = (obj, value, propPath) => {
             const [head, ...rest] = propPath.split(':')
 
-            !rest.length
-                ? (obj[head] = value)
-                : updateObjProp(obj[head], value, rest.join(':'))
+            rest.length ? updateObjProp(obj[head], value, rest.join(':')) : obj[head] = value
+
         }
 
         let directoryPath = path.split(':')
