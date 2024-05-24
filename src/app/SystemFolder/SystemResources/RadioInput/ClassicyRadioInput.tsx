@@ -46,7 +46,7 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
         <>
             {label && <ClassicyControlLabel labelFor={name} disabled={disabled} label={label} direction={'left'}/>}
             <div className={classNames(classicyRadioInputStyles.classicyRadioInputGroup,
-                align === 'rows' ? classicyRadioInputStyles.classicyRadioInputGroupRows : classicyRadioInputStyles.classicyRadioInputGroupColumns)}>
+                align === 'columns' ? classicyRadioInputStyles.classicyRadioInputGroupColumns : "")}>
                 {inputs && inputs.map((item) => (
                     <div key={name + item.id} onClick={handleOnClick}
                     >
