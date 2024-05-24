@@ -1,5 +1,5 @@
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
-import { useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyCheckbox from '@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox'
 import ClassicyControlGroup from '@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup'
@@ -56,7 +56,7 @@ const Demo: React.FC = () => {
                     zoomable={false}
                     scrollable={false}
                     collapsable={false}
-                    initialSize={[400, 500]}
+                    initialSize={[400, 0]}
                     initialPosition={[300, 50]}
                     modal={true}
                     appMenu={appMenu}
@@ -65,8 +65,8 @@ const Demo: React.FC = () => {
                         id={'select_theme'}
                         small={false}
                         options={[
-                            { value: 'hello', label: 'Hello' },
-                            { value: 'hello2', label: 'Hello again!' },
+                            {value: 'hello', label: 'Hello'},
+                            {value: 'hello2', label: 'Hello again!'},
                         ]}
                         selected={'hello'}
                     />
@@ -74,51 +74,73 @@ const Demo: React.FC = () => {
                     <ClassicyInput id={'test'} labelTitle={'Text Input'}></ClassicyInput>
                     <ClassicyControlGroup label={'Test Radio Inputs'}>
                         <ClassicyRadioInput
-                            id={'test1'}
+                            inputs={[{
+                                id: 'test1',
+                                isDefault: true,
+                                disabled: false,
+                                label: 'Radio Button 1 (Default)'
+                            },
+                                {
+                                    id: 'test2',
+                                    label: 'Radio Button 2 (Regular)'
+                                },
+                                {
+                                    id: 'test3',
+                                    mixed: true,
+                                    label: 'Radio Button 3 (Mixed)'
+                                }]}
                             name={'test_radio'}
-                            isDefault={false}
-                            label={'Radio Button 1'}
+                            label={'Radio Buttons'}
                         />
                         <ClassicyRadioInput
-                            id={'test2'}
-                            name={'test_radio'}
-                            isDefault={false}
-                            label={'Radio Button 2'}
-                        />
-                        <ClassicyRadioInput
-                            id={'test3'}
-                            checked={true}
-                            name={'test_radio'}
-                            isDefault={false}
-                            label={'Radio Button Disabled'}
-                            disabled={true}
+                            inputs={[{
+                                id: 'test4',
+                                disabled: true,
+                                label: 'Radio Button 4 (Disabled)'
+                            }, {
+                                id: 'test5',
+                                checked: true,
+                                disabled: true,
+                                mixed: true,
+                                label: 'Radio Button 6 (Disabled + Checked + Mixed)'
+                            }]}
+                            name={'test_radio_disabled'}
+                            label={'Disabled Radio Buttons'}
                         />
                     </ClassicyControlGroup>
                     <ClassicyControlGroup label={'Test Checkboxes'}>
                         <ClassicyCheckbox
-                            id={'test4'}
-                            name={'test_check'}
+                            id={'test6'}
                             isDefault={true}
+                            checked={true}
                             label={'Default Checkbox'}
                             disabled={false}
                         />
                         <ClassicyCheckbox
-                            id={'test5'}
-                            name={'test_check'}
+                            id={'test7'}
                             isDefault={false}
                             label={'Checkbox 2'}
                             disabled={false}
                         />
                         <ClassicyCheckbox
-                            id={'test6'}
-                            name={'test_check'}
+                            id={'test8'}
+                            mixed={true}
+                            isDefault={false}
+                            label={'Mixed'}
+                            disabled={false}
+                        />
+                        <ClassicyCheckbox
+                            id={'test9'}
                             isDefault={false}
                             label={'Disabled'}
                             disabled={true}
+                            onClickFunc={() => {
+                                alert('This is disabled')
+                            }}
                         />
                     </ClassicyControlGroup>
                     <ClassicyDisclosure label={'Expandable Section'}>
-                        <p style={{ fontFamily: 'var(--header-font)' }}>HELLO!</p>
+                        <p style={{fontFamily: 'var(--header-font)'}}>HELLO!</p>
                     </ClassicyDisclosure>
                     <ClassicyButton isDefault={true}>Do Nothing</ClassicyButton>
                     <ClassicyButton isDefault={false} onClick={quitApp}>

@@ -5,50 +5,79 @@ import classNames from "classnames";
 import React, {MouseEventHandler} from "react";
 
 type ClassicyRadioInputProps = {
-    id: string;
     name: string;
+    label?: string;
+    align?: 'rows' | 'columns';
+    disabled?: boolean;
+    onClickFunc?: MouseEventHandler;
+    inputs: ClassicyRadioInputValueProps[]
+}
+
+type ClassicyRadioInputValueProps = {
+    id: string;
     checked?: boolean;
+    mixed?: boolean;
     isDefault?: boolean;
     disabled?: boolean;
-    onClick?: MouseEventHandler;
     label?: string;
 }
 
 const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
-                                                                   id,
                                                                    name,
-                                                                   checked,
-                                                                   isDefault,
-                                                                   disabled,
-                                                                   onClick,
-                                                                   label
+                                                                   label,
+                                                                   align = 'columns',
+                                                                   disabled = false,
+                                                                   onClickFunc,
+                                                                   inputs
                                                                }) => {
 
+    const [check, setCheck] = React.useState<string>('')
     const player = useSoundDispatch();
 
-    return (
-        <div className={classicyRadioInputStyles.classicyRadioInputGroup}>
-            <div className={classicyRadioInputStyles.classicyRadioInputWrapper}>
-                <input type={"radio"} onClick={onClick}
-                       tabIndex={0}
-                       onMouseDown={() => {
-                           player({type: "ClassicySoundPlay", sound: "ClassicyInputRadioClickDown"})
-                       }}
-                       onMouseUp={() => {
-                           player({type: "ClassicySoundPlay", sound: "ClassicyInputRadioClickUp"})
-                       }}
-                       id={id}
-                       name={name}
-                       disabled={disabled}
-                       className={classNames(
-                           classicyRadioInputStyles.classicyRadioInput,
-                           isDefault ? classicyRadioInputStyles.classicyRadioInputDefault : ""
-                       )}/>
-            </div>
-            <ClassicyControlLabel labelFor={id} disabled={disabled} label={label}></ClassicyControlLabel>
+    const handleOnClick = (e) => {
+        setCheck(e.target.id);
+        if (onClickFunc) onClickFunc(e)
+    }
+    const handleOnChange = (e) => {
+        setCheck(e.target.id);
+    }
 
-        </div>
-    );
+    return (
+        <>
+            {label && <ClassicyControlLabel labelFor={name} disabled={disabled} label={label} direction={'left'}/>}
+            <div className={classNames(classicyRadioInputStyles.classicyRadioInputGroup,
+                align === 'rows' ? classicyRadioInputStyles.classicyRadioInputGroupRows : classicyRadioInputStyles.classicyRadioInputGroupColumns)}>
+                {inputs && inputs.map((item) => (
+                    <div key={name + item.id} onClick={handleOnClick}
+                    >
+                        <div className={classNames(classicyRadioInputStyles.classicyRadioInputWrapper,
+                            check === item.id ? classicyRadioInputStyles.classicyRadioInputWrapperChecked : "",
+                            item.disabled ? classicyRadioInputStyles.classicyRadioInputWrapperDisabled : "",
+                        )}>
+                            <input id={item.id}
+                                   name={name}
+                                   disabled={item.disabled}
+                                   checked={check === item.id || item.checked}
+                                   className={classNames(
+                                       classicyRadioInputStyles.classicyRadioInput,
+                                       item.isDefault ? classicyRadioInputStyles.classicyRadioInputDefault : "",
+                                       item.mixed ? classicyRadioInputStyles.classicyRadioInputMixed : ""
+                                   )}
+                                   type={"radio"} tabIndex={0}
+                                   onChange={handleOnChange}
+                                   onMouseDown={() => {
+                                       player({type: "ClassicySoundPlay", sound: "ClassicyInputRadioClickDown"});
+                                   }}
+                                   onMouseUp={() => {
+                                       player({type: "ClassicySoundPlay", sound: "ClassicyInputRadioClickUp"});
+                                   }}
+                            />
+                        </div>
+                        <ClassicyControlLabel labelFor={item.id} disabled={item.disabled} label={item.label}/>
+                    </div>
+                ))}
+            </div>
+        </>);
 };
 export default ClassicyRadioInput;
 
