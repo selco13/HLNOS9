@@ -3,10 +3,10 @@
 @use "../../Appearance/styles/appearance";
 
 .classicyWindowZoomed {
-  top: 5% !important;
-  left: 1% !important;
+  top: calc(var(--window-control-size) * 2 + var(--window-padding-size)) !important;
+  left: calc(var(--window-padding-size) * 2) !important;
   width: calc(100% - (var(--window-padding-size) * 2 + (var(--window-control-size) * 2))) !important;
-  height: calc(100% - (var(--window-padding-size) * 2 + (var(--window-control-size) * 4))) !important;
+  height: calc(100% - (var(--window-padding-size) * 2)) !important;
 }
 
 .classicyWindowCollapsed {
@@ -46,8 +46,8 @@
 
 .classicyWindowContentsDimmed {
   opacity: .8;
-  filter: contrast(.9);
   box-shadow: none !important;
+  filter: contrast(.9);
 }
 
 .classicyWindowResizerDimmed {
@@ -64,6 +64,7 @@
     .classicyWindowControlBox {
       opacity: 1 !important;
     }
+
     .classicyWindowTitle {
       .classicyWindowTitleText {
         color: black !important;
@@ -153,7 +154,7 @@
 .classicyWindow {
   position: absolute;
   z-index: 20;
-  max-height: 95vh;
+  max-height: calc(100% - var(--window-control-size) * 4 - var(--window-padding-size));
   padding: var(--window-padding-size);
 
   background-color: var(--color-window-frame);
@@ -177,9 +178,9 @@
 
       img {
         height: 100%;
-        object-fit: contain;
         user-select: none;
         pointer-events: none;
+        object-fit: contain;
       }
     }
 
@@ -269,13 +270,13 @@
     padding: 0;
     cursor: grab;
     user-select: none;
+    border-top: 1px solid var(--color-system-01);
+    border-left: 1px solid var(--color-system-01);
+    background-color: var(--color-system-03);
     background-image: assets.$resizer;
     background-repeat: no-repeat;
     background-position: center;
     background-size: var(--window-control-size);
-    background-color: var(--color-system-03);
-    border-top: 1px solid var(--color-system-01);
-    border-left: 1px solid var(--color-system-01);
     box-shadow: var(--color-system-03) 1px 1px 0,
     var(--color-system-03) -1px -1px 0,
     var(--color-system-07) -2px -2px 0;
