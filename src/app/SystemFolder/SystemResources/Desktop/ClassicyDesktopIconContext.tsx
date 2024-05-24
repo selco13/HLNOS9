@@ -74,7 +74,7 @@ const cleanupDesktopIcons = (theme: string, icons: ClassicyDesktopIconState[]) =
     sortedIcons.forEach((icon) => {
         if (startY >= grid[1]) {
             startY = 0
-            startX = startX + 1
+            startX += 1
         }
 
         if (startX >= grid[0]) {
@@ -88,7 +88,7 @@ const cleanupDesktopIcons = (theme: string, icons: ClassicyDesktopIconState[]) =
             location: getGridPosition(iconSize, iconPadding, startX, startY),
         })
 
-        startY = startY + 1
+        startY += 1
     })
 
     return newDesktopIcons

@@ -1,5 +1,5 @@
 export const hexToInt = (hex: string): number => {
-    if (!hex.startsWith('0x')) hex = '0x' + hex
+    if (!hex.startsWith('0x')) {
     return Number(hex)
 }
 
