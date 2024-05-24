@@ -148,7 +148,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     }
 
     const isActive = () => {
-        if (desktopContext && 'activeWindow' in desktopContext) return id === desktopContext.activeWindow
+        if (desktopContext && 'activeWindow' in desktopContext) {
         return true
     }
 
