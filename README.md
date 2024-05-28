@@ -1,4 +1,4 @@
-# Clasicy (Previously Platimum)
+# Classicy (Previously Platimum)
 
 A UI framework using native CSS/JS replications of the Mac OS 8.1 interface components.
 
