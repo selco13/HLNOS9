@@ -36,6 +36,10 @@
   }
 }
 
+.classicyIconInvisible {
+  filter: opacity(.45);
+}
+
 .classicyIconDragging {
   z-index: 500 !important;
   //margin: calc(var(--desktop-icon-size) * -4);

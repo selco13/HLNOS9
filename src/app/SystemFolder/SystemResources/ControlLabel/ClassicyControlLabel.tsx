@@ -3,19 +3,24 @@ import classicyControlLabelStyles
 import classNames from "classnames";
 import React from "react";
 
+type ClassicyControlLabelDirections = "left" | "right";
+type ClassicyControlLabelSize = "small" | "medium" | "large";
+
 interface ClassicyControlLabelProps {
     labelFor?: string;
     label?: string;
+    labelSize?: ClassicyControlLabelSize;
     disabled?: boolean;
     icon?: string;
     iconSize?: string;
-    direction?: "left" | "right";
+    direction?: ClassicyControlLabelDirections;
     children?: any;
 }
 
 const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
                                                                        labelFor = "",
                                                                        label = "",
+                                                                       labelSize = "medium",
                                                                        disabled = false,
                                                                        direction = "left",
                                                                        icon,
@@ -23,9 +28,18 @@ const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
                                                                        children
                                                                    }) => {
 
-    const getDirectionClass = (direction: string) => {
+    const getDirectionClass = (direction: ClassicyControlLabelDirections) => {
         if (direction === "right") {
             return classicyControlLabelStyles.classicyControlLabelRight;
+        }
+        return classicyControlLabelStyles.classicyControlLabelLeft;
+    }
+
+    const getSizeClass = (size: ClassicyControlLabelSize) => {
+        switch (size) {
+            case "small": return classicyControlLabelStyles.classicyControlLabelSmall;
+            case "medium": return classicyControlLabelStyles.classicyControlLabelMedium;
+            case "large": return classicyControlLabelStyles.classicyControlLabelLarge;
         }
         return classicyControlLabelStyles.classicyControlLabelLeft;
     }
@@ -57,7 +71,8 @@ const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
                        className={classNames(
                            classicyControlLabelStyles.classicyControlLabel,
                            disabled ? classicyControlLabelStyles.classicyControlLabelDisabled : "",
-                           getDirectionClass(direction)
+                           getDirectionClass(direction),
+                           getSizeClass(labelSize)
                        )}>
                     {label}
                 </label>

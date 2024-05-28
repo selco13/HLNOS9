@@ -9,4 +9,3 @@ do
     eachDir=${eachDir%*/}
     npx -y audiosprite -f howler2 -o "${outputDir}/${eachDir##*/}/${eachDir##*/}" -e "${formats}" -u "${outputPath}/${eachDir##*/}" "${dir}/${eachDir##*/}/*.${fileExt}"
 done
-

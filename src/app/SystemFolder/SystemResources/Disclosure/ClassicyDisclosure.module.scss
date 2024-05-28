@@ -1,21 +1,18 @@
 @use "../../Appearance/styles/appearance";
 
 .classicyDisclosure {
-  padding: calc(var(--window-border-size) * 2);
-
+  padding: 0;
 }
 
 .classicyDisclosureHeader {
   display: flex;
   flex-direction: row;
-  padding: calc(var(--window-padding-size) * 2);
+  padding: calc(var(--window-padding-size));
 
-  &:focus {
-    outline: var(--color-outline) solid calc(var(--window-border-size) * 2) !important;
-  }
 }
 
 .classicyDisclosureInner {
+  padding: calc(var(--window-padding-size));
 }
 
 .classicyDisclosureInnerOpen {
@@ -35,6 +32,7 @@
   transition-timing-function: steps(4, end);
   transition-duration: .125s;
   transition-property: all;
+  margin-left: calc(var(--window-control-size) / -2)
 }
 
 .classicyDisclosureTriangleHighlight {

@@ -1,180 +1,180 @@
 [
   {
-    "id": "PlatinumClick",
+    "id": "ClassicyClick",
     "group": "General",
     "label": "Click",
     "description": ""
   },
   {
-    "id": "PlatinumBeep",
+    "id": "ClassicyBeep",
     "group": "System",
     "label": "Beep",
     "description": ""
   },
   {
-    "id": "PlatinumBoot",
+    "id": "ClassicyBoot",
     "group": "System",
     "label": "Boot",
     "description": ""
   },
   {
-    "id": "PlatinumAlertIndigo",
+    "id": "ClassicyAlertIndigo",
     "group": "Alert",
     "label": "Indigo",
     "description": ""
   },
   {
-    "id": "PlatinumAlertQuack",
+    "id": "ClassicyAlertQuack",
     "group": "Alert",
     "label": "Quack",
     "description": ""
   },
   {
-    "id": "PlatinumAlertSosumi",
+    "id": "ClassicyAlertSosumi",
     "group": "Alert",
     "label": "Sosumi",
     "description": ""
   },
   {
-    "id": "PlatinumAlertWildEep",
+    "id": "ClassicyAlertWildEep",
     "group": "Alert",
     "label": "Wild Eep",
     "description": ""
   },
   {
-    "id": "PlatinumButtonClickDown",
+    "id": "ClassicyButtonClickDown",
     "group": "Buttons",
     "label": "Button Click (Press)",
     "description": ""
   },
   {
-    "id": "PlatinumButtonClickUp",
+    "id": "ClassicyButtonClickUp",
     "group": "Buttons",
     "label": "Button Click (Up)",
     "description": ""
   },
   {
-    "id": "PlatinumInputRadioClickDown",
+    "id": "ClassicyInputRadioClickDown",
     "group": "Inputs",
     "label": "Radio Button (Press)",
     "description": ""
   },
   {
-    "id": "PlatinumInputRadioClickUp",
+    "id": "ClassicyInputRadioClickUp",
     "group": "Inputs",
     "label": "Radio Button (Up)",
     "description": ""
   },
   {
-    "id": "PlatinumMenuClose",
+    "id": "ClassicyMenuClose",
     "group": "Menus",
     "label": "Menu Close",
     "description": ""
   },
   {
-    "id": "PlatinumMenuItemClick",
+    "id": "ClassicyMenuItemClick",
     "group": "Menus",
     "label": "Menu Item (Click)",
     "description": ""
   },
   {
-    "id": "PlatinumMenuItemHover",
+    "id": "ClassicyMenuItemHover",
     "group": "Menus",
     "label": "Menu Item (Hover)",
     "description": ""
   },
   {
-    "id": "PlatinumMenuOpen",
+    "id": "ClassicyMenuOpen",
     "group": "Menus",
     "label": "Menu Open",
     "description": ""
   },
   {
-    "id": "PlatinumWindowClose",
+    "id": "ClassicyWindowClose",
     "group": "Menus",
     "label": "Window Close",
     "description": ""
   },
   {
-    "id": "PlatinumWindowCollapse",
+    "id": "ClassicyWindowCollapse",
     "group": "Windows",
     "label": "Window Collapse",
     "description": ""
   },
   {
-    "id": "PlatinumWindowControlClickDown",
+    "id": "ClassicyWindowControlClickDown",
     "group": "Windows",
     "label": "Window Control (Press)",
     "description": ""
   },
   {
-    "id": "PlatinumWindowControlClickUp",
+    "id": "ClassicyWindowControlClickUp",
     "group": "Windows",
     "label": "Window Control (Up)",
     "description": ""
   },
   {
-    "id": "PlatinumWindowExpand",
+    "id": "ClassicyWindowExpand",
     "group": "Windows",
     "label": "Window Expand",
     "description": ""
   },
   {
-    "id": "PlatinumWindowFocus",
+    "id": "ClassicyWindowFocus",
     "group": "Windows",
     "label": "Window Focus",
     "description": ""
   },
   {
-    "id": "PlatinumWindowMoveIdle",
+    "id": "ClassicyWindowMoveIdle",
     "group": "Windows",
     "label": "Window Move (Idle)",
     "description": ""
   },
   {
-    "id": "PlatinumWindowMoveMoving",
+    "id": "ClassicyWindowMoveMoving",
     "group": "Windows",
     "label": "Window Moving",
     "description": ""
   },
   {
-    "id": "PlatinumWindowMoveStop",
+    "id": "ClassicyWindowMoveStop",
     "group": "Windows",
     "label": "Window Move (Stop)",
     "description": ""
   },
   {
-    "id": "PlatinumWindowOpen",
+    "id": "ClassicyWindowOpen",
     "group": "Windows",
     "label": "Window Open",
     "description": ""
   },
   {
-    "id": "PlatinumWindowResizeIdle",
+    "id": "ClassicyWindowResizeIdle",
     "group": "Windows",
     "label": "Window Resize (Idle)",
     "description": ""
   },
   {
-    "id": "PlatinumWindowResizeResizing",
+    "id": "ClassicyWindowResizeResizing",
     "group": "Windows",
     "label": "Window Resizing",
     "description": ""
   },
   {
-    "id": "PlatinumWindowResizeStop",
+    "id": "ClassicyWindowResizeStop",
     "group": "Windows",
     "label": "Window Resize (Stop)",
     "description": ""
   },
   {
-    "id": "PlatinumWindowZoomMaximize",
+    "id": "ClassicyWindowZoomMaximize",
     "group": "Windows",
     "label": "Window Maximize",
     "description": ""
   },
   {
-    "id": "PlatinumWindowZoomMinimize",
+    "id": "ClassicyWindowZoomMinimize",
     "group": "Windows",
     "label": "Window Minimize",
     "description": ""

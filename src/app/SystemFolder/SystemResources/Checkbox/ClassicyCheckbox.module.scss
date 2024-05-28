@@ -2,6 +2,7 @@
 
 .ClassicyCheckboxGroup {
   display: flex;
+  flex-direction: row;
   padding: calc(var(--window-border-size) * 2);
 }
 
@@ -31,8 +32,8 @@
   }
 
   &:active {
-    @include appearance.platinumDepressableBoxShadowActive;
-    background: black;
+    background: var(--color-system-06);
+    box-shadow: none;
   }
 
   &:focus {

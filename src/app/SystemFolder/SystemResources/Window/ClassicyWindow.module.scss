@@ -3,10 +3,10 @@
 @use "../../Appearance/styles/appearance";
 
 .classicyWindowZoomed {
-  top: 5% !important;
-  left: 1% !important;
+  top: calc(var(--window-control-size) * 2 + var(--window-padding-size)) !important;
+  left: calc(var(--window-padding-size) * 2) !important;
   width: calc(100% - (var(--window-padding-size) * 2 + (var(--window-control-size) * 2))) !important;
-  height: calc(100% - (var(--window-padding-size) * 2 + (var(--window-control-size) * 4))) !important;
+  height: calc(100% - (var(--window-padding-size) * 2)) !important;
 }
 
 .classicyWindowCollapsed {
@@ -16,20 +16,26 @@
 
 .classicyWindowHeader {
   font-family: var(--ui-font);
-  font-size: var(--ui-font-size);
+  font-size: calc(var(--ui-font-size) * .865);
   position: sticky;
   z-index: 999;
   top: 0;
   display: flex;
-  @include appearance.platinumWindowInnerBorder;
+  @include appearance.platinumWindowHeaderBorder;
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  width: calc(100% - var(--window-padding-size) * 2.25);
+  width: calc(100% - var(--window-padding-size) * 2 - calc(var(--window-border-size) * 2));
   height: var(--window-control-size);
   padding: var(--window-padding-size);
   background: var(--color-system-03);
   column-gap: var(--window-control-size);
+}
+
+.classicyWindowHeaderDimmed {
+  opacity: .5;
+  border: solid 1px black !important;
+  box-shadow: none !important;
 }
 
 .classicyWindowInactive {
@@ -40,7 +46,13 @@
 
 .classicyWindowContentsDimmed {
   opacity: .8;
+  box-shadow: none !important;
   filter: contrast(.9);
+}
+
+.classicyWindowResizerDimmed {
+  background-image: none !important;
+  box-shadow: var(--color-system-07) -2px -2px 0;
 }
 
 .classicyWindowActive {
@@ -142,7 +154,7 @@
 .classicyWindow {
   position: absolute;
   z-index: 20;
-  max-height: 95vh;
+  max-height: calc(100% - var(--window-control-size) * 4 - var(--window-padding-size));
   padding: var(--window-padding-size);
 
   background-color: var(--color-window-frame);
@@ -161,15 +173,14 @@
     column-gap: var(--window-padding-size);
 
     .classicyWindowIcon {
-      max-width: calc(var(--window-control-size) * 1);
-      max-height: calc(var(--window-control-size) * 1);
-      margin: 0 calc(var(--window-padding-size) * 1);
+      max-width: calc(var(--window-control-size) * 2);
+      max-height: calc(var(--window-control-size) * 2);
 
       img {
-        width: 100%;
-        margin: 2px auto;
+        height: 100%;
         user-select: none;
         pointer-events: none;
+        object-fit: contain;
       }
     }
 
@@ -253,19 +264,22 @@
     z-index: 999;
     right: calc(var(--window-padding-size) + var(--window-border-size) * 2);
     bottom: calc(var(--window-padding-size) + var(--window-border-size) * 2);
-    width: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 2);
-    height: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 2);
+    width: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 1);
+    height: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 1);
     margin: calc(var(--window-border-size) * -3) calc(var(--window-border-size) * -2);
     padding: 0;
     cursor: grab;
     user-select: none;
-    border-top: var(--window-border-size) solid var(--color-black);
-    border-left: var(--window-border-size) solid var(--color-black);
+    border-top: 1px solid var(--color-system-01);
+    border-left: 1px solid var(--color-system-01);
     background-color: var(--color-system-03);
     background-image: assets.$resizer;
     background-repeat: no-repeat;
     background-position: center;
     background-size: var(--window-control-size);
+    box-shadow: var(--color-system-03) 1px 1px 0,
+    var(--color-system-03) -1px -1px 0,
+    var(--color-system-07) -2px -2px 0;
   }
 
   .classicyWindowContents {
@@ -280,7 +294,6 @@
   .classicyWindowContentsWithHeader {
     position: relative;
     display: block;
-    @include appearance.platinumWindowInnerBorder;
     overflow: scroll;
     height: calc(100% - (var(--window-control-size) * 4));
     background-color: var(--color-window-document);
