@@ -1,13 +1,13 @@
 'use client'
 
-import { getTheme } from '@/app/SystemFolder/Appearance/ClassicyAppearance'
-import { ClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
+import {getTheme} from '@/app/SystemFolder/Appearance/ClassicyAppearance'
+import {ClassicyAboutWindow} from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import {useSoundDispatch} from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
 
@@ -25,7 +25,7 @@ export const AppearanceManager: React.FC = () => {
     const [showAbout, setShowAbout] = React.useState(false)
 
     const themesList = desktopContext.availableThemes.map((a: any) =>
-        (({ id, name }) => ({ value: id, label: name }))(a)
+        (({id, name}) => ({value: id, label: name}))(a)
     )
 
     const switchTheme = (e) => {
@@ -106,7 +106,7 @@ export const AppearanceManager: React.FC = () => {
                 modal={true}
                 appMenu={appMenu}
             >
-                <ClassicyControlLabel label={'The current Theme Package is Platinum'} icon={packageIcon} />
+                <ClassicyControlLabel label={'The current Theme Package is Platinum'} icon={packageIcon}/>
                 <ClassicyPopUpMenu
                     id={'select_theme'}
                     label={'Selected Theme'}

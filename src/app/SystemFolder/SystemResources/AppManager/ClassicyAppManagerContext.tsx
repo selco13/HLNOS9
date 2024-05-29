@@ -1,17 +1,19 @@
 import ClassicyBoot from '@/app/SystemFolder/SystemResources/Boot/ClassicyBoot'
-import { classicyDesktopIconEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
+import {classicyDesktopIconEventHandler} from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
 import {
     ClassicyDesktopState,
     DefaultDesktopState,
 } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopState'
-import { classicyWindowEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopWindowManagerContext'
-import { ClassicySoundManagerProvider } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
-import React, { createContext, Suspense, useContext, useReducer } from 'react'
+import {
+    classicyWindowEventHandler
+} from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopWindowManagerContext'
+import {ClassicySoundManagerProvider} from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import React, {createContext, Suspense, useContext, useReducer} from 'react'
 
 const ClassicyDesktopContext = createContext(null)
 const ClassicyDesktopDispatchContext = createContext(null)
 
-export const ClassicyDesktopProvider = ({ children }) => {
+export const ClassicyDesktopProvider = ({children}) => {
     let desktopState =
         typeof window !== 'undefined'
             ? JSON.parse(localStorage.getItem('classicyDesktopState')) || DefaultDesktopState
@@ -24,7 +26,7 @@ export const ClassicyDesktopProvider = ({ children }) => {
     }, [desktop])
 
     return (
-        <Suspense fallback={<ClassicyBoot />}>
+        <Suspense fallback={<ClassicyBoot/>}>
             <ClassicyDesktopContext.Provider value={desktop}>
                 <ClassicyDesktopDispatchContext.Provider value={dispatch}>
                     <ClassicySoundManagerProvider>{children}</ClassicySoundManagerProvider>
@@ -147,5 +149,5 @@ export const classicyDesktopStateEventReducer = (ds: ClassicyDesktopState, actio
         console.log('End State: ', ds)
         console.groupEnd()
     }
-    return { ...ds }
+    return {...ds}
 }

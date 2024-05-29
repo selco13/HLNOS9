@@ -42,7 +42,6 @@ const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = (
             <input type={"checkbox"} onChange={onCheck}
                    tabIndex={0}
                    id={id}
-                   name={id}
                    checked={check}
                    disabled={disabled}
                    className={classNames(

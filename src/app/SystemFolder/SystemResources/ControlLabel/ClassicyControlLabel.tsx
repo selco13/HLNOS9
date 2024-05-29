@@ -37,9 +37,12 @@ const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
 
     const getSizeClass = (size: ClassicyControlLabelSize) => {
         switch (size) {
-            case "small": return classicyControlLabelStyles.classicyControlLabelSmall;
-            case "medium": return classicyControlLabelStyles.classicyControlLabelMedium;
-            case "large": return classicyControlLabelStyles.classicyControlLabelLarge;
+            case "small":
+                return classicyControlLabelStyles.classicyControlLabelSmall;
+            case "medium":
+                return classicyControlLabelStyles.classicyControlLabelMedium;
+            case "large":
+                return classicyControlLabelStyles.classicyControlLabelLarge;
         }
         return classicyControlLabelStyles.classicyControlLabelLeft;
     }

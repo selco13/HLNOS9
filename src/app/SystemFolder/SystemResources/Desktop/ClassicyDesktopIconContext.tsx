@@ -1,7 +1,7 @@
-import { getTheme } from '@/app/SystemFolder/Appearance/ClassicyAppearance'
-import { classicyDesktopStateEventReducer } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
-import { ClassicyDesktopState } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopState'
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
+import {getTheme} from '@/app/SystemFolder/Appearance/ClassicyAppearance'
+import {classicyDesktopStateEventReducer} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {ClassicyDesktopState} from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopState'
+import {ClassicyMenuItem} from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 
 export type ClassicyDesktopIconState = {
     appId: string
@@ -41,10 +41,10 @@ const getGridPositionByCount = (count: number, theme: string) => {
         return getGridPosition(iconSize, iconPadding, 1, 1)
     }
 
-    // TODO: We return the first column if the total count is less, and we reutrn 1,1 if more than we can hold
+    // TODO: We return the first column if the total count is less, and we return 1,1 if more than we can hold
     // We need to do an offset on the max number of icons, but use the same positions.
     // For the middle part, we need to figure out how to convert a column count (e.g. the 35th box)
-    // to our matrix with an x/y coordiante.
+    // to our matrix with an x/y coordinate.
 }
 
 const getIconSize = (theme: string) => {
