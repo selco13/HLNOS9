@@ -1,9 +1,10 @@
-import { createContext } from 'react'
+import {createContext} from 'react'
 
-export const defaultAppContext = { elements: {}, windows: {} }
+export const defaultAppContext = {elements: {}, windows: {}}
 const ClassicyAppContext = createContext({
     appContext: defaultAppContext,
-    setAppContext: (ctx) => {},
+    setAppContext: (ctx) => {
+    },
 })
 
 export default ClassicyAppContext

@@ -103,7 +103,7 @@ type ClassicyFileSystemEntryMetadata = {
     _invisible?: boolean // The file is not normally visible, but can be accessed by apps.
 
     // Folders
-    // Used for stat'ing directories
+    // Used for stat-ing directories
     _count?: number
     _countHidden?: number
     _path?: string
@@ -112,7 +112,7 @@ type ClassicyFileSystemEntryMetadata = {
     // The contents of the file.
     _data?: any
 
-    // Used for stat'ing directories and files.
+    // Used for stat-ing directories and files.
     _size?: number
 }
 

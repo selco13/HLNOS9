@@ -1,8 +1,9 @@
-import { ClassicyDesktopIconState } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
-import { Howl } from 'howler'
+import {ClassicyDesktopIconState} from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
+import {ClassicyMenuItem} from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
+import {Howl} from 'howler'
 
-interface ClassicyStore {}
+interface ClassicyStore {
+}
 
 export interface ClassicyDesktopState {
     activeTheme: string
@@ -113,7 +114,7 @@ export const DefaultDesktopState: ClassicyDesktopState = {
             title: 'About This Computer',
             keyboardShortcut: '&#8984;S',
         },
-        { id: 'spacer' },
+        {id: 'spacer'},
     ],
     activeApp: 'finder.app',
     appSwitcherMenu: [

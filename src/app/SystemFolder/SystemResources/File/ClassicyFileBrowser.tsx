@@ -1,6 +1,6 @@
-import { getTheme } from '@/app/SystemFolder/Appearance/ClassicyAppearance'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
-import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
+import {getTheme} from '@/app/SystemFolder/Appearance/ClassicyAppearance'
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {ClassicyFileSystem} from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
 import ClassicyIcon from '@/app/SystemFolder/SystemResources/Icon/ClassicyIcon'
 import React from 'react'
 
@@ -14,13 +14,15 @@ type ClassicyFileBrowserProps = {
 }
 
 const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = ({
-    fs,
-    display = 'icons',
-    path,
-    appId,
-    dirOnClickFunc = () => {},
-    fileOnClickFunc = () => {},
-}) => {
+                                                                     fs,
+                                                                     display = 'icons',
+                                                                     path,
+                                                                     appId,
+                                                                     dirOnClickFunc = () => {
+                                                                     },
+                                                                     fileOnClickFunc = () => {
+                                                                     },
+                                                                 }) => {
     const desktopContext = useDesktop(),
         desktopEventDispatch = useDesktopDispatch()
 
@@ -47,7 +49,8 @@ const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = ({
                 return () => fileOnClickFunc(path + ':' + filename)
             }
             default: {
-                return () => {}
+                return () => {
+                }
             }
         }
     }
@@ -157,7 +160,7 @@ const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = ({
     }, [path, display, fs, desktopContext.activeTheme, holderRef])
 
     return (
-        <div style={{ position: 'absolute', width: '100%', height: '100%' }} ref={holderRef}>
+        <div style={{position: 'absolute', width: '100%', height: '100%'}} ref={holderRef}>
             {items}
         </div>
     )

@@ -21,7 +21,7 @@ const favicons: [number, number, string][] = [
     [96, 96, 'icon']
 ]
 
-export default function RootLayout({ children }) {
+export default function RootLayout({children}) {
     return (
         <html lang="en">
         <head>

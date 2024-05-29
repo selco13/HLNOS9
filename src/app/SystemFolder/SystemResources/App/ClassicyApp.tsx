@@ -1,9 +1,9 @@
-import { getTheme } from '@/app/SystemFolder/Appearance/ClassicyAppearance'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
-import { useSound } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import {getTheme} from '@/app/SystemFolder/Appearance/ClassicyAppearance'
+import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import {useSound} from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
-import { JSONTree } from 'react-json-tree'
+import {JSONTree} from 'react-json-tree'
 
 interface ClassicyAppProps {
     id: string
@@ -18,16 +18,16 @@ interface ClassicyAppProps {
 }
 
 const ClassicyApp: React.FC<ClassicyAppProps> = ({
-    id,
-    icon,
-    name,
-    openOnBoot,
-    noDesktopIcon,
-    appContext,
-    defaultWindow,
-    debug = false,
-    children,
-}) => {
+                                                     id,
+                                                     icon,
+                                                     name,
+                                                     openOnBoot,
+                                                     noDesktopIcon,
+                                                     appContext,
+                                                     defaultWindow,
+                                                     debug = false,
+                                                     children,
+                                                 }) => {
     const desktopContext = useDesktop()
     const desktopEventDispatch = useDesktopDispatch()
 
@@ -59,7 +59,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
     const onFocus = () => {
         desktopEventDispatch({
             type: 'ClassicyAppFocus',
-            app: { id: id },
+            app: {id: id},
         })
     }
 
@@ -84,18 +84,18 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
                 title={'DEBUG ' + name}
                 id={id + '_debugger'}
                 appId={id}
-                appMenu={[{ id: 'Debug', title: 'Debug' }]}
+                appMenu={[{id: 'Debug', title: 'Debug'}]}
             >
                 <h1>Providers</h1>
-                <hr />
+                <hr/>
                 <h2>appContext</h2>
-                <JSONTree data={appContext} theme={debuggerJSONTheme} />
-                <br />
+                <JSONTree data={appContext} theme={debuggerJSONTheme}/>
+                <br/>
                 <h2>desktopContext</h2>
-                <JSONTree data={desktopContext} theme={debuggerJSONTheme} />
-                <br />
+                <JSONTree data={desktopContext} theme={debuggerJSONTheme}/>
+                <br/>
                 <h2>soundPlayer</h2>
-                <JSONTree data={useSound} theme={debuggerJSONTheme} />
+                <JSONTree data={useSound} theme={debuggerJSONTheme}/>
             </ClassicyWindow>
         )
 
