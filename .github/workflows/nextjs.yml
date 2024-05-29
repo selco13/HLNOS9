@@ -89,7 +89,7 @@ jobs:
         run: bin/make_audio_sprites.sh
 
       - name: Copy public resources over
-        run: mkdir out && p -r public/* out/
+        run: mkdir -p out && cp -r public/* out/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
