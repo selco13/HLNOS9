@@ -85,7 +85,7 @@ describe('File System', () => {
             'Macintosh HD:Test Directory'
         )
         expect(rootDirectoryStat['_icon']).toEqual(
-            '/platinum/img/icons/system/folders/directory.png'
+            '/classicy/img/icons/system/folders/directory.png'
         )
         expect(rootDirectoryStat['_count']).toEqual(0)
         expect(rootDirectoryStat['_countHidden']).toEqual(0)

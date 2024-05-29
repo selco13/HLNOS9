@@ -4,7 +4,7 @@ A UI framework using native CSS/JS replications of the Mac OS 8.1 interface comp
 
 ## Demo
 
-[`See a demo here!`](https://robbiebyrd.github.io/platinum/)
+[`See a demo here!`](https://robbiebyrd.github.io/classicy/)
 
 ## Running Locally
 
@@ -575,7 +575,8 @@ the first time this has been done, and in fact, this isn't the first time that I
 project [https://github.com/robbiebyrd/platinum](https://github.com/robbiebyrd/platinum) was already in existence well
 before I decided to revisit this topic again after 4 years.
 
-I first created my version of [Classicy (as Platinum)](https://github.com/robbiebyrd/platinum) in 2019 by forking the amazing work
+I first created my version of [Classicy (as Platinum)](https://github.com/robbiebyrd/platinum) in 2019 by forking the
+amazing work
 of [npjg](https://github.com/npjg) and his [https://github.com/npjg/classic.css](https://github.com/npjg/classic.css)
 project. I extended it as part of [my project 9/11 Realtime](https://github.com/Keeping-History/rt911/) and used it as a
 time-representative user interface.
@@ -701,7 +702,8 @@ Now that I had my components defined, I sketched them out quickly, just for stru
 but I needed a canvas to start working. I created a blank ClassicyDesktop, ClassicyDesktopIcon, ClassicyWindow and
 ClassicyButton as a starting point, with no CSS. Then, I got to the hard, hard work.
 
-I first sketched out the components of a "Platinum" style Window. I knew that this would be my most complicated component, so I
+I first sketched out the components of a "Platinum" style Window. I knew that this would be my most complicated
+component, so I
 hoped sketching it out would also help me identify pieces I could break down into smaller components, as well as get an
 idea of the types of events and states I would need.
 
