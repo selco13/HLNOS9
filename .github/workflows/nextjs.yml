@@ -7,7 +7,7 @@ name: Deploy Next.js site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -89,7 +89,7 @@ jobs:
         run: bin/make_audio_sprites.sh
 
       - name: Copy public resources over
-        run: cp -r public/* out/
+        run: mkdir out && p -r public/* out/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
