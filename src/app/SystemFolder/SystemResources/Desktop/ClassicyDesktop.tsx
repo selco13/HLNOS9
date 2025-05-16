@@ -1,20 +1,21 @@
-import {getAllThemes, getThemeVars} from '@/app/SystemFolder/Appearance/ClassicyAppearance'
+import { getAllThemes, getThemeVars } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearance'
 import Finder from '@/app/SystemFolder/Finder/Finder'
-import {useDesktop, useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyContextualMenu from '@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu'
 import classicyDesktop from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktop.module.scss'
 import ClassicyDesktopIcon from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIcon'
 import ClassicyDesktopMenuBar from '@/app/SystemFolder/SystemResources/Desktop/MenuBar/ClassicyDesktopMenuBar'
-import {ClassicyMenuItem} from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
+import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import classNames from 'classnames'
-import React, {Suspense} from 'react'
-import '@/app/SystemFolder/Appearance/styles/fonts.scss'
+import React, { Suspense } from 'react'
+import '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/fonts.scss'
+import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
 
 interface ClassicyDesktopProps {
     children?: any
 }
 
-const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({children}) => {
+const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
     const [contextMenu, setContextMenu] = React.useState(false)
     const [contextMenuLocation, setContextMenuLocation] = React.useState([0, 0])
 
@@ -27,7 +28,7 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({children}) => {
     const desktopState = useDesktop()
     const desktopEventDispatch = useDesktopDispatch()
 
-    if (desktopState.availableThemes.length <= 0) {
+    if (desktopState.System.Manager.Appearance.availableThemes.length <= 0) {
         desktopEventDispatch({
             type: 'ClassicyDesktopLoadThemes',
             availableThemes: getAllThemes(),
@@ -99,20 +100,6 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({children}) => {
                 {
                     id: 'finder.app_ArrangeDesktopIcons',
                     title: 'Arrange...',
-                    menuChildren: [
-                        {
-                            id: 'finder.app_arrange_by_name',
-                            title: 'by Name',
-                        },
-                        {
-                            id: 'finder.app_arrange_by_kind',
-                            title: 'by Kind',
-                        },
-                        {
-                            id: 'finder.app_arrange_by_label',
-                            title: 'by Label',
-                        },
-                    ],
                 },
             ],
         },
@@ -127,7 +114,7 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({children}) => {
         },
     ]
 
-    const currentTheme = getThemeVars(desktopState.activeTheme)
+    const currentTheme = getThemeVars(desktopState.System.Manager.Appearance.activeTheme)
 
     React.useEffect(() => {
         desktopEventDispatch({
@@ -159,12 +146,13 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({children}) => {
                             }}
                         />
                     )}
-                    <ClassicyDesktopMenuBar/>
+                    <ClassicyDesktopMenuBar />
                     {contextMenu && (
-                        <ClassicyContextualMenu menuItems={defaultMenuItems} position={contextMenuLocation}/>
+                        <ClassicyContextualMenu menuItems={defaultMenuItems} position={contextMenuLocation} />
                     )}
-                    <Finder/>
-                    {desktopState.desktopIcons.map((i) => (
+                    <Finder />
+                    <ClassicyControlPanels />
+                    {desktopState.System.Manager.Desktop.icons.map((i) => (
                         <ClassicyDesktopIcon
                             appId={i.appId}
                             appName={i.appName}

@@ -1,5 +1,6 @@
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
-import {useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
+import { useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyControlGroup from '@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyInput from '@/app/SystemFolder/SystemResources/Input/ClassicyInput'
@@ -12,7 +13,6 @@ const Browser = () => {
     const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/network/internet-services.png`
 
     const desktopEventDispatch = useDesktopDispatch()
-    const [appContext] = React.useState({})
 
     const refAddressBar = React.useRef(null)
     const [iframeSrc, setIframeUrl] = React.useState('https://theoldnet.com')
@@ -22,14 +22,7 @@ const Browser = () => {
     }
 
     const quitApp = () => {
-        desktopEventDispatch({
-            type: 'ClassicyAppClose',
-            app: {
-                id: appId,
-                title: appName,
-                icon: appIcon,
-            },
-        })
+        desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
     }
 
     const appMenu = [
@@ -47,9 +40,9 @@ const Browser = () => {
     ]
 
     return (
-        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'demo'} appContext={appContext}>
+        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'browser'}>
             <ClassicyWindow
-                id={'demo'}
+                id={'browser'}
                 title={appName}
                 appId={appId}
                 scrollable={false}
@@ -68,7 +61,7 @@ const Browser = () => {
                     height="720"
                     width="1280"
                     allowFullScreen={true}
-                    style={{width: '100%', height: '100%', padding: '0', margin: '0'}}
+                    style={{ width: '100%', height: '100%', padding: '0', margin: '0' }}
                 ></iframe>
             </ClassicyWindow>
         </ClassicyApp>

@@ -1,9 +1,10 @@
 'use client'
 
 import soundManagerStyles from '@/app/SystemFolder/ControlPanels/SoundManager/SoundManager.module.scss'
-import {ClassicyAboutWindow} from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
+import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
-import {useDesktopDispatch} from '@/app/SystemFolder/SystemResources/AppManager/ClassicyAppManagerContext'
+import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
+import { useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyCheckbox from '@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox'
 import ClassicyControlGroup from '@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
@@ -15,6 +16,7 @@ import {
 } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
+import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
 
 export const SoundManager: React.FC = () => {
     const desktopEventDispatch = useDesktopDispatch()
@@ -39,14 +41,7 @@ export const SoundManager: React.FC = () => {
     }
 
     const quitApp = () => {
-        desktopEventDispatch({
-            type: 'ClassicyAppClose',
-            app: {
-                id: appId,
-                title: appName,
-                icon: appIcon,
-            },
-        })
+        desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
     }
 
     const appMenu = [
@@ -87,7 +82,7 @@ export const SoundManager: React.FC = () => {
     }
 
     return (
-        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'SoundManager_1'} openOnBoot={true}>
+        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'SoundManager_1'} openOnBoot={true} noDesktopIcon={true} addSystemMenu={true}>
             <ClassicyWindow
                 id={'SoundManager_1'}
                 title={appName}
@@ -111,36 +106,29 @@ export const SoundManager: React.FC = () => {
                     checked={!playerState.disabled.includes('*')}
                 />
                 <ClassicyDisclosure label={'Disable Sounds'}>
-                    <ClassicyControlLabel label={'These settings are not currently connected.'}/>
+                    <ClassicyControlLabel label={'These settings are not currently connected.'} />
                     <div className={soundManagerStyles.soundManagerControlGroupHolder}>
                         {getSoundLabelGroups().map((group: string) => (
-                            <ClassicyControlGroup label={group} columns={true} key={group}>
+                            <ClassicyControlGroup label={group} columns={true} key={appId + '_' + group}>
                                 {playerState.labels.map((item: ClassicySoundInfo) => (
-                                    <>
-                                        {item.group === group && (
-                                            <ClassicyCheckbox
-                                                id={'enable_sound_' + item.id}
-                                                label={item.label}
-                                                checked={playerState.disabled.includes('*')}
-                                            />
-                                        )}
-                                    </>
+                                    item.group === group && (
+                                        <ClassicyCheckbox
+                                            key={appId + '_' + group + item.id}
+                                            id={'enable_sound_' + item.id}
+                                            label={item.label}
+                                            checked={playerState.disabled.includes('*')}
+                                        />
+                                    )
                                 ))}
                             </ClassicyControlGroup>
                         ))}
                     </div>
                 </ClassicyDisclosure>
+                <ClassicyButton isDefault={false} onClick={quitApp}>
+                    Quit
+                </ClassicyButton>
             </ClassicyWindow>
-            {showAbout && (
-                <ClassicyAboutWindow
-                    appId={appId}
-                    appName={appName}
-                    appIcon={appIcon}
-                    hideFunc={() => {
-                        setShowAbout(false)
-                    }}
-                />
-            )}
+            {showAbout && getClassicyAboutWindow({ appId, appName, appIcon, hideFunc: () => setShowAbout(false) })}
         </ClassicyApp>
     )
 }

@@ -9,14 +9,16 @@ type ClassicyAboutWindowProps = {
     hideFunc: any
     appMenu?: any
 }
-
+export const getClassicyAboutWindow = (props: ClassicyAboutWindowProps) => {
+    return <ClassicyAboutWindow {...props} />
+}
 export const ClassicyAboutWindow: React.FC<ClassicyAboutWindowProps> = ({
-                                                                            appId,
-                                                                            appName,
-                                                                            appIcon,
-                                                                            hideFunc,
-                                                                            appMenu,
-                                                                        }) => {
+    appId,
+    appName,
+    appIcon,
+    hideFunc,
+    appMenu,
+}) => {
     return (
         <ClassicyWindow
             id="AppearanceManager_about"
@@ -32,9 +34,9 @@ export const ClassicyAboutWindow: React.FC<ClassicyAboutWindowProps> = ({
             appMenu={appMenu}
         >
             <div className={appearanceManagerStyles.appearanceManagerAbout}>
-                <img src={appIcon} alt="About"/>
+                <img src={appIcon} alt="About" />
                 <h1>{appName}</h1>
-                <h5>Not Copyright 1998 Apple Computer, Inc.</h5>
+                <h5>Not Copyright &copy; 1997 Apple Computer, Inc.</h5>
                 <ClassicyButton onClick={hideFunc}>OK</ClassicyButton>
             </div>
         </ClassicyWindow>
