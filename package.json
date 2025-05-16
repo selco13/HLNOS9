@@ -17,6 +17,7 @@
     "@mdxeditor/editor": "^3.0.6",
     "@tanstack/react-table": "^8.20.6",
     "classnames": "^2.5.1",
+    "dompurify": "^3.2.5",
     "howler": "^2.2.4",
     "next": "15.1.2",
     "react": "^18.2.0",

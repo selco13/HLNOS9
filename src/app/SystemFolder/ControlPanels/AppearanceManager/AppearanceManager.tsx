@@ -12,6 +12,7 @@ import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManage
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
 import ClassicyTabs from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs'
+import DOMPurify from 'dompurify'
 
 export const AppearanceManager: React.FC = () => {
     const appName: string = 'Appearance Manager'
@@ -184,7 +185,7 @@ export const AppearanceManager: React.FC = () => {
                     <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
                         <img
                             draggable={false}
-                            src={bg}
+                            src={DOMPurify.sanitize(bg)}
                             style={{ height: '100%', minWidth: '50%', userSelect: 'none' }}
                         />
                         <div style={{ width: '100%' }}>
