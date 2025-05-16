@@ -1,52 +1,42 @@
-import {ClassicyFinderContextData, DefaultClassicyFinderState} from "@/app/SystemFolder/Finder/FinderState";
-import React from 'react';
+import { ClassicyStore } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
 
-export const ClassicyFinderContext = React.createContext(DefaultClassicyFinderState);
-export const ClassicyFinderDispatchContext = React.createContext(null);
-
-type ClassicyFinderProviderProps = {
-    children?: any
-}
-
-export const ClassicyFinderProvider: React.FC<ClassicyFinderProviderProps> = ({children}) => {
-    let finderState = typeof window !== 'undefined'
-        ? JSON.parse(localStorage.getItem('classicyFinderState')) || DefaultClassicyFinderState
-        : DefaultClassicyFinderState;
-
-    const [finder, dispatch] = React.useReducer(classicyFinderEventHandler, finderState);
-
-    React.useEffect(() => {
-        localStorage.setItem('classicyFinderState', JSON.stringify(finder));
-    }, [finder])
-
-    return (
-        <ClassicyFinderContext.Provider value={finder}>
-            <ClassicyFinderDispatchContext.Provider value={dispatch}>
-                {children}
-            </ClassicyFinderDispatchContext.Provider>
-        </ClassicyFinderContext.Provider>
-    );
-}
-
-
-export function useFinder() {
-    return React.useContext(ClassicyFinderContext);
-}
-
-export function useFinderDispatch() {
-    return React.useContext(ClassicyFinderDispatchContext);
-}
-
-export const classicyFinderEventHandler = (ds: ClassicyFinderContextData, action) => {
+export const classicyFinderEventHandler = (ds: ClassicyStore, action) => {
+    const appId = 'Finder.app'
     switch (action.type) {
-        case "ClassicyFinderEmptyTrash": {
-            // TODO: We need to decide how to reset the state here.
-            break;
+        case 'ClassicyAppFinderOpenFolder': {
+            const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
+            ds.System.Manager.App.apps[appIndex].data['openPaths'] = Array.from(
+                new Set([...ds.System.Manager.App.apps[appIndex].data['openPaths'], action.path])
+            )
+            break
         }
-        case "ClassicyFinderOpenDirectory": {
-            ds.openPaths = [...ds.openPaths, action.path];
-            break;
+        case 'ClassicyAppFinderOpenFolders': {
+            const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
+            ds.System.Manager.App.apps[appIndex].data['openPaths'] = Array.from(
+                new Set([...ds.System.Manager.App.apps[appIndex].data['openPaths'], ...action.paths])
+            )
+            break
+        }
+
+        case 'ClassicyAppFinderCloseFolder': {
+            const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
+            ds.System.Manager.App.apps[appIndex].data['openPaths'] = ds.System.Manager.App.apps[appIndex].data[
+                'openPaths'
+            ].filter((p: string) => p !== action.path)
+            break
+        }
+
+        case 'ClassicyAppFinderEmptyTrash': {
+            break
         }
     }
-    return ds;
-};
+    return ds
+}
+
+//                eventData: {
+//                     app: {
+//                         id: action.app.id,
+//                         name: action.app.name,
+//                         icon: action.app.icon,
+//                     },
+//                 }
