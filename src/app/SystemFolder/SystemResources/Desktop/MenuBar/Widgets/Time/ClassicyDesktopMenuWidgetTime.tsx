@@ -31,7 +31,7 @@ const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps
         minutes: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCMinutes(),
         hours: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCHours(),
         seconds: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCSeconds(),
-        period: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCHours() >= 12 ? ' PM' : ' AM',
+        period: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCHours() > 12 ? ' PM' : ' AM',
     })
 
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -54,7 +54,7 @@ const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps
                 minutes: localDate.getMinutes(),
                 hours: localDate.getHours() === 0 ? 12 : localDate.getHours(),
                 seconds: localDate.getSeconds(),
-                period: localDate.getHours() > 12 ? ' PM' : ' AM',
+                period: localDate.getHours() < 12 ? ' AM' : ' PM',
             })
         }, 1000)
 
@@ -121,7 +121,7 @@ const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps
                             {convertToTwoDigit(time.seconds)}
                         </span>
                     )}
-                    {!militaryTime && displayPeriod && <span>&nbsp;{time.hours >= 12 ? 'PM' : 'AM'}</span>}
+                    {!militaryTime && displayPeriod && <span>&nbsp;{time.period}</span>}
                 </li>
             )}
         </>
