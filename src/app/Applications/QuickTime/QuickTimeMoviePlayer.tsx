@@ -143,8 +143,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
     }
 
     const seekToPct = (pct: number) => {
-        const duration = playerRef.current.getDuration()
-        playerRef.current.seekTo(pct * duration)
+        playerRef.current.seekTo(pct * playerRef.current.getDuration())
     }
 
     const escapeFullscreen = () => {
@@ -234,6 +233,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                 </button>
                 <div className={quickTimeStyles.quickTimePlayerVideoControlsProgressBarHolder}>
                     <input
+                        id={appId + '_' + name + '_progressBar'}
                         className={quickTimeStyles.quickTimePlayerVideoControlsProgressBar}
                         key={appId + '_' + name + '_progressBar'}
                         type="range"
@@ -242,7 +242,10 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                         step="0.01"
                         value={playerRef.current?.getCurrentTime() / playerRef.current?.getDuration()}
                         readOnly={false}
-                        onChange={(e) => seekToPct(parseFloat(e.target.value))}
+                        onChange={(e) => {
+                            e.preventDefault()
+                            seekToPct(parseFloat(e.target.value))
+                        }}
                     />
                 </div>
                 <p className={quickTimeStyles.quickTimePlayerVideoControlsTime}>
@@ -273,7 +276,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                     >
                         <input
                             className={quickTimeStyles.quickTimePlayerVideoControlsVolumeBar}
-                            id="volume"
+                            id={url + '_volume'}
                             type="range"
                             min="0"
                             max="1"
