@@ -33,12 +33,6 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
     const [check, setCheck] = React.useState<string>(inputs.find((input) => input.checked == true).id)
     const player = useSoundDispatch()
 
-    const handleOnClick = (e: ChangeEvent<HTMLInputElement>) => {
-        setCheck(e.target.id)
-        if (onClickFunc) {
-            onClickFunc(e)
-        }
-    }
     const handleOnChange = (e) => {
         setCheck(e.target.id)
         if (onClickFunc) {
