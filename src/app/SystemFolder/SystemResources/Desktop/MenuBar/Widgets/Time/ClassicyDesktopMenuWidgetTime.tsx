@@ -4,27 +4,12 @@ import classNames from 'classnames'
 import React from 'react'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 
-type ClassicyDesktopMenuWidgetTimeProps = {
-    hide?: boolean
-    militaryTime?: boolean
-    displaySeconds?: boolean
-    displayPeriod?: boolean
-    displayDay?: boolean
-    displayLongDay?: boolean
-    flashSeparators?: boolean
-}
-
-const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps> = ({
-    hide = false,
-    militaryTime = false,
-    displaySeconds = false,
-    displayPeriod = true,
-    displayDay = true,
-    displayLongDay = false,
-    flashSeparators = true,
-}) => {
+const ClassicyDesktopMenuWidgetTime: React.FC = ({}) => {
     const desktopContext = useDesktop()
     const desktopEventDispatch = useDesktopDispatch()
+
+    const { show, militaryTime, displaySeconds, displayPeriod, displayDay, displayLongDay, flashSeparators } =
+        desktopContext.System.Manager.DateAndTime
 
     const [time, setTime] = React.useState({
         day: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCDay(),
@@ -98,7 +83,7 @@ const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps
 
     return (
         <>
-            {!hide && (
+            {show && (
                 <li
                     className={classNames(
                         classicyMenuStyles.classicyMenuItem,
@@ -116,10 +101,10 @@ const ClassicyDesktopMenuWidgetTime: React.FC<ClassicyDesktopMenuWidgetTimeProps
                         {convertToTwoDigit(time.minutes)}
                     </span>
                     {displaySeconds && (
-                        <span>
+                        <>
                             <span className={toBlink()}>:</span>
-                            {convertToTwoDigit(time.seconds)}
-                        </span>
+                            <span>{convertToTwoDigit(time.seconds)}</span>
+                        </>
                     )}
                     {!militaryTime && displayPeriod && <span>&nbsp;{time.period}</span>}
                 </li>

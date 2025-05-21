@@ -56,8 +56,8 @@ const ClassicyDesktopMenuBar: React.FC = () => {
                 navClass={classicyDesktopMenuStyles.classicyDesktopMenu}
                 subNavClass={classicyMenuStyles.classicySubMenu}
             >
-                <ClassicyDesktopMenuWidgetSound></ClassicyDesktopMenuWidgetSound>
-                <ClassicyDesktopMenuWidgetTime displaySeconds={true}></ClassicyDesktopMenuWidgetTime>
+                <ClassicyDesktopMenuWidgetSound />
+                <ClassicyDesktopMenuWidgetTime />
             </ClassicyMenu>
         </nav>
     )

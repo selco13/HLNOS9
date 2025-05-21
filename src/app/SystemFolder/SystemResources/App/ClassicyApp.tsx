@@ -1,5 +1,4 @@
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
-import { useSound } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
 import { JSONTree } from 'react-json-tree'
@@ -9,7 +8,7 @@ interface ClassicyAppProps {
     id: string
     name: string
     icon: string
-    defaultWindow: string
+    defaultWindow?: string
     noDesktopIcon?: boolean
     addSystemMenu?: boolean
     debug?: boolean
@@ -88,7 +87,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
                 },
             })
         }
-        if (isAppActive()) {
+        if (isAppActive() && defaultWindow) {
             desktopEventDispatch({
                 type: 'ClassicyWindowFocus',
                 app: {
@@ -127,9 +126,6 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
                 <hr />
                 <h2>desktopContext</h2>
                 <JSONTree data={desktopContext} theme={debuggerJSONTheme} />
-                <br />
-                <h2>soundPlayer</h2>
-                <JSONTree data={useSound} theme={debuggerJSONTheme} />
             </ClassicyWindow>
         )
 

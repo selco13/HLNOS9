@@ -76,6 +76,13 @@ export interface ClassicyStoreSystem {
 export interface ClassicyStoreSystemDateAndTimeManager extends ClassicyStoreSystemManager {
     dateTime: string
     timeZoneOffset: string
+    militaryTime: boolean
+    displaySeconds: boolean
+    displayPeriod: boolean
+    displayDay: boolean
+    displayLongDay: boolean
+    flashSeparators: boolean
+    show: boolean
 }
 
 export interface ClassicyStoreSystemManager {}
@@ -225,8 +232,15 @@ export const DefaultDesktopState: ClassicyStore = {
     System: {
         Manager: {
             DateAndTime: {
+                show: true,
                 dateTime: new Date().toISOString(),
                 timeZoneOffset: (new Date().getTimezoneOffset() / -60).toString(),
+                militaryTime: false,
+                displaySeconds: true,
+                displayPeriod: true,
+                displayDay: true,
+                displayLongDay: false,
+                flashSeparators: true,
             },
             Sound: {
                 volume: 100,

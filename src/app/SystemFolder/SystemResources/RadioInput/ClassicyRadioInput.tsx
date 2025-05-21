@@ -2,14 +2,14 @@ import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabe
 import classicyRadioInputStyles from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput.module.scss'
 import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import classNames from 'classnames'
-import React, { MouseEventHandler } from 'react'
+import React, { ChangeEvent } from 'react'
 
 type ClassicyRadioInputProps = {
     name: string
     label?: string
     align?: 'rows' | 'columns'
     disabled?: boolean
-    onClickFunc?: MouseEventHandler
+    onClickFunc?: (e: ChangeEvent<HTMLInputElement>) => void
     inputs: ClassicyRadioInputValueProps[]
 }
 
@@ -30,10 +30,10 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
     onClickFunc,
     inputs,
 }) => {
-    const [check, setCheck] = React.useState<string>('')
+    const [check, setCheck] = React.useState<string>(inputs.find((input) => input.checked == true).id)
     const player = useSoundDispatch()
 
-    const handleOnClick = (e) => {
+    const handleOnClick = (e: ChangeEvent<HTMLInputElement>) => {
         setCheck(e.target.id)
         if (onClickFunc) {
             onClickFunc(e)
@@ -41,6 +41,9 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
     }
     const handleOnChange = (e) => {
         setCheck(e.target.id)
+        if (onClickFunc) {
+            onClickFunc(e)
+        }
     }
 
     return (
@@ -54,7 +57,7 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
             >
                 {inputs &&
                     inputs.map((item) => (
-                        <div key={name + item.id} onClick={handleOnClick}>
+                        <div key={name + item.id} className={classicyRadioInputStyles.classicyRadioInputMargin}>
                             <div
                                 className={classNames(
                                     classicyRadioInputStyles.classicyRadioInputWrapper,
@@ -83,7 +86,12 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
                                     }}
                                 />
                             </div>
-                            <ClassicyControlLabel labelFor={item.id} disabled={item.disabled} label={item.label} />
+                            <ClassicyControlLabel
+                                labelFor={item.id}
+                                disabled={item.disabled}
+                                label={item.label}
+                                onClickFunc={handleOnChange}
+                            />
                         </div>
                     ))}
             </div>

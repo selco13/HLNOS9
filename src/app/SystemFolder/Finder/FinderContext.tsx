@@ -32,11 +32,3 @@ export const classicyFinderEventHandler = (ds: ClassicyStore, action) => {
     }
     return ds
 }
-
-//                eventData: {
-//                     app: {
-//                         id: action.app.id,
-//                         name: action.app.name,
-//                         icon: action.app.icon,
-//                     },
-//                 }

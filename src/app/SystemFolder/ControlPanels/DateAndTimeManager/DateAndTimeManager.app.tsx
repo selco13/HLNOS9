@@ -7,11 +7,12 @@ import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import ClassicyControlGroup from '../../SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyDatePicker from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker'
 import ClassicyTimePicker from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker'
 import { ClassicyStore } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
+import ClassicyRadioInput from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput'
 
 export const DateAndTimeManagerApp: React.FC = () => {
     const appName: string = 'Date and Time Manager'
@@ -193,7 +194,7 @@ export const DateAndTimeManagerApp: React.FC = () => {
                 zoomable={false}
                 scrollable={false}
                 collapsable={false}
-                initialSize={[325, 220]}
+                initialSize={[325, 320]}
                 initialPosition={[300, 50]}
                 modal={true}
                 appMenu={appMenu}
@@ -223,6 +224,30 @@ export const DateAndTimeManagerApp: React.FC = () => {
                             options={timezones}
                             onChangeFunc={updateTimeZone}
                             selected={desktopContext.System.Manager.DateAndTime.timeZoneOffset?.toString()}
+                        />
+                    </ClassicyControlGroup>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <ClassicyControlGroup label={'Timezone'}>
+                        <ClassicyRadioInput
+                            inputs={[
+                                {
+                                    id: 'am',
+                                    label: '12-Hour',
+                                    checked: true,
+                                },
+                                {
+                                    id: 'pm',
+                                    label: 'Military Time',
+                                    disabled: true,
+                                },
+                            ]}
+                            name={'period_selector'}
+                            label={'Radio Buttons'}
+                            onClickFunc={(e: ChangeEvent<HTMLInputElement>) => {
+                                console.log(e.target.id)
+                                return
+                            }}
                         />
                     </ClassicyControlGroup>
                 </div>

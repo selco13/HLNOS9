@@ -19,6 +19,10 @@
   }
 }
 
+.classicyRadioInputMargin {
+  margin: 0 var(--window-control-size) 0 0;
+}
+
 .classicyRadioInputWrapper {
   width: calc(var(--window-control-size) / 1);
   height: calc(var(--window-control-size) / 1);

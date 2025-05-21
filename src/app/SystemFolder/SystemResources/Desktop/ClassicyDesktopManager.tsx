@@ -9,9 +9,12 @@ export interface ClassicyStoreSystemDesktopManagerIcon {
     appName: string
     icon: string
     label?: string
-    kind?: 'app_shortcut' | 'file'
+    kind: string
     location?: [number, number]
     onClickFunc: (event: MouseEvent) => void
+    event?: string
+    eventData?: any
+    contextMenu?: ClassicyMenuItem[]
 }
 
 export interface ClassicyStoreSystemDesktopManager extends ClassicyStoreSystemManager {

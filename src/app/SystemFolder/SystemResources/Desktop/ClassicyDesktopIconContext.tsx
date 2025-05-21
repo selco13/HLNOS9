@@ -1,20 +1,9 @@
 import { ClassicyTheme } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearance'
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import {
     classicyDesktopStateEventReducer,
     ClassicyStore,
 } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
-
-export type ClassicyDesktopIconState = {
-    appId: string
-    appName: string
-    icon: string
-    label?: string
-    kind?: string
-    contextMenu?: ClassicyMenuItem[]
-    location?: [number, number]
-    onClickFunc?: any
-}
+import { ClassicyStoreSystemDesktopManagerIcon } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopManager'
 
 const createGrid = (iconSize: number, iconPadding: number) => {
     return [
@@ -53,7 +42,7 @@ export const getIconSize = (theme: ClassicyTheme) => {
     return [theme.desktop.iconSize, theme.desktop.iconSize / 4]
 }
 
-const sortDesktopIcons = (icons: ClassicyDesktopIconState[], sortType: 'name' | 'kind' | 'label') => {
+const sortDesktopIcons = (icons: ClassicyStoreSystemDesktopManagerIcon[], sortType: 'name' | 'kind' | 'label') => {
     switch (sortType) {
         case 'name':
             return icons.sort(function (a, b) {
@@ -67,10 +56,10 @@ const sortDesktopIcons = (icons: ClassicyDesktopIconState[], sortType: 'name' | 
             })
         case 'kind':
             return icons.sort(function (a, b) {
-                if (a.kind.toLowerCase() > b.kind.toLowerCase()) {
+                if (a.kind?.toLowerCase() > b.kind?.toLowerCase()) {
                     return 1
                 }
-                if (a.kind.toLowerCase() < b.kind.toLowerCase()) {
+                if (a.kind?.toLowerCase() < b.kind?.toLowerCase()) {
                     return -1
                 }
                 return 0
@@ -78,7 +67,7 @@ const sortDesktopIcons = (icons: ClassicyDesktopIconState[], sortType: 'name' | 
     }
 }
 
-const cleanupDesktopIcons = (theme: ClassicyTheme, icons: ClassicyDesktopIconState[]) => {
+const cleanupDesktopIcons = (theme: ClassicyTheme, icons: ClassicyStoreSystemDesktopManagerIcon[]) => {
     let newDesktopIcons = []
     let startX: number = 1
     let startY: number = 0
@@ -86,9 +75,7 @@ const cleanupDesktopIcons = (theme: ClassicyTheme, icons: ClassicyDesktopIconSta
 
     let grid = createGrid(iconSize, iconPadding)
 
-    let sortedIcons = sortDesktopIcons(icons, 'name')
-
-    sortedIcons.forEach((icon) => {
+    icons.forEach((icon) => {
         if (startY >= grid[1]) {
             startY = 0
             startX += 1
@@ -117,6 +104,13 @@ export const classicyDesktopIconEventHandler = (ds: ClassicyStore, action) => {
             ds.System.Manager.Desktop.icons = cleanupDesktopIcons(
                 ds.System.Manager.Appearance.activeTheme,
                 ds.System.Manager.Desktop.icons
+            )
+            break
+        }
+        case 'ClassicyDesktopIconSort': {
+            ds.System.Manager.Desktop.icons = cleanupDesktopIcons(
+                ds.System.Manager.Appearance.activeTheme,
+                sortDesktopIcons(ds.System.Manager.Desktop.icons, action.sortBy || 'name')
             )
             break
         }
@@ -154,6 +148,8 @@ export const classicyDesktopIconEventHandler = (ds: ClassicyStore, action) => {
                     label: action.label,
                     kind: action.kind || 'icon',
                     onClickFunc: action.onClickFunc,
+                    event: action.event,
+                    eventData: action.eventData,
                 })
             }
             break

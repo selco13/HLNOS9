@@ -9,7 +9,7 @@ interface ClassicyDesktopIconProps {
     appName: string
     icon: string
     label?: string
-    kind?: 'app_shortcut' | 'file'
+    kind: string
     onClickFunc?: any
     event?: string
     eventData?: any
@@ -64,7 +64,8 @@ const ClassicyDesktopIcon: React.FC<ClassicyDesktopIconProps> = ({
     const launchIcon = () => {
         if (onClickFunc) {
             onClickFunc()
-        } else if (event && eventData) {
+        }
+        if (event && eventData) {
             desktopEventDispatch({
                 type: event,
                 ...eventData,

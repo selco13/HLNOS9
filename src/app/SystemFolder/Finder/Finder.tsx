@@ -91,19 +91,16 @@ const Finder = () => {
         const drives = fs.filterByType('', 'drive')
 
         Object.entries(drives).forEach(([path, metadata]) => {
-            const openFolderFunc = () => {
-                openFolder(path)
-            }
             desktopEventDispatch({
                 type: 'ClassicyDesktopIconAdd',
                 app: {
                     id: appId,
                     name: path,
                     icon: metadata['_icon'],
-                    onClickFunc: openFolderFunc,
-                    // We should use the event/eventData combo here
                 },
-                kind: '_drive',
+                event: 'ClassicyAppFinderOpenFolder',
+                eventData: { path },
+                kind: 'drive',
             })
         })
 
@@ -139,6 +136,7 @@ const Finder = () => {
             icon={appIcon}
             noDesktopIcon={true}
             defaultWindow={openPaths ? appName + ':' + openPaths.at(0) : 'Macintosh HD'}
+            debug={true}
         >
             {openPaths
                 .map((op) => {

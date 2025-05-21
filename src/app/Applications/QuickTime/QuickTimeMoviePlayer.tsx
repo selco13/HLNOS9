@@ -2,7 +2,7 @@ import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import quickTimeStyles from '@/app/Applications/QuickTime/QuickTime.module.scss'
 import screenfull from 'screenfull'
@@ -60,13 +60,13 @@ const QuickTimeMoviePlayer: React.FC = () => {
     ]
 
     return (
-        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'demo'}>
+        <ClassicyApp id={appId} name={appName} icon={appIcon}>
             {openDocuments.map((doc: QuickTimeDocument) => (
                 <ClassicyWindow
                     key={doc.name + '_' + doc.url}
                     id={appId + '_VideoPlayer_' + doc.name}
                     title={doc.name}
-                    minimumSize={[225, 0]}
+                    minimumSize={[300, 60]}
                     appId={appId}
                     closable={true}
                     resizable={true}
@@ -107,9 +107,9 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
     const playerRef = React.useRef(null)
     const [playing, setPlaying] = React.useState(false)
     const [volume, setVolume] = React.useState(0.5)
-    const [played, setPlayed] = React.useState(0)
     const [loop, setLoop] = React.useState(false)
     const [isFullscreen, setIsFullscreen] = React.useState(false)
+    const [showVolume, setShowVolume] = useState<boolean>(false)
 
     React.useEffect(() => {
         if (screenfull.isEnabled) {
@@ -118,23 +118,33 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
             })
         }
     }, [])
-    const handlePlayPause = React.useCallback(() => {
+
+    const handlePlayPause = useCallback(() => {
         setPlaying((prev) => !prev)
-    }, [playing])
+    }, [])
 
-    const seekForward = () => {
-        playerRef.current.seekTo(playerRef.current.getCurrentTime() + 10)
-    }
+    const seekForward = useCallback(() => {
+        seekTo(playerRef.current.getCurrentTime() + 10)
+    }, [playerRef])
 
-    const seekBackward = () => {
-        playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10)
-    }
+    const seekBackward = useCallback(() => {
+        seekTo(playerRef.current.getCurrentTime() - 10)
+    }, [playerRef])
 
-    const toggleFullscreen = () => {
+    const toggleFullscreen = useCallback(() => {
         if (!screenfull.isEnabled) {
             return
         }
         screenfull.toggle(playerRef.current.getInternalPlayer(), { navigationUI: 'hide' })
+    }, [playerRef])
+
+    const seekTo = (seconds: number) => {
+        playerRef.current.seekTo(seconds)
+    }
+
+    const seekToPct = (pct: number) => {
+        const duration = playerRef.current.getDuration()
+        playerRef.current.seekTo(pct * duration)
     }
 
     const escapeFullscreen = () => {
@@ -177,15 +187,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [handlePlayPause, seekForward, seekBackward, toggleFullscreen])
-
-    const handleClick = (e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        alert('Input was clicked!')
-    }
-
-    const [showVolume, setShowVolume] = useState<boolean>(false)
+    }, [handlePlayPause, seekForward, seekBackward, toggleFullscreen, type, loop])
 
     const volumeButtonRef = useRef(null)
 
@@ -198,6 +200,13 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
             return 'sound-66.png'
         }
         return 'sound-on.png'
+    }
+
+    const timeFriendly = (seconds: number) => {
+        const hours = Math.floor(seconds / 3600)
+        const minutes = Math.floor((seconds % 3600) / 60)
+        const secs = seconds % 60
+        return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
     }
 
     return (
@@ -213,7 +222,6 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                     width="100%"
                     height="100%"
                     volume={volume}
-                    onProgress={({ played }) => setPlayed(played)}
                     config={{ file: options }}
                 />
             </div>
@@ -232,10 +240,16 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                         min="0"
                         max="1"
                         step="0.01"
-                        value={played}
-                        readOnly={true}
+                        value={playerRef.current?.getCurrentTime() / playerRef.current?.getDuration()}
+                        readOnly={false}
+                        onChange={(e) => seekToPct(parseFloat(e.target.value))}
                     />
                 </div>
+                <p className={quickTimeStyles.quickTimePlayerVideoControlsTime}>
+                    {timeFriendly(
+                        parseInt(playerRef.current?.getDuration()) - parseInt(playerRef.current?.getCurrentTime())
+                    )}
+                </p>
                 <button onClick={seekBackward} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
                     <img
                         className={quickTimeStyles.quickTimePlayerVideoControlsIcon}

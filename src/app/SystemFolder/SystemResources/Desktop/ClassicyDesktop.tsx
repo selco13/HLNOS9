@@ -98,8 +98,24 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
                     },
                 },
                 {
-                    id: 'finder.app_ArrangeDesktopIcons',
-                    title: 'Arrange...',
+                    id: 'finder.app_ArrangeDesktopIconsName',
+                    title: 'Arrange By Name',
+                    onClickFunc: () => {
+                        desktopEventDispatch({
+                            type: 'ClassicyDesktopIconSort',
+                            sortBy: 'name',
+                        })
+                    },
+                },
+                {
+                    id: 'finder.app_ArrangeDesktopIconsKind',
+                    title: 'Arrange By Type',
+                    onClickFunc: () => {
+                        desktopEventDispatch({
+                            type: 'ClassicyDesktopIconSort',
+                            sortBy: 'kind',
+                        })
+                    },
                 },
             ],
         },
@@ -160,7 +176,8 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
                             label={i.label}
                             kind={i.kind}
                             key={i.appId}
-                            onClickFunc={i.onClickFunc}
+                            event={i.event}
+                            eventData={i.eventData}
                         />
                     ))}
                     {children}

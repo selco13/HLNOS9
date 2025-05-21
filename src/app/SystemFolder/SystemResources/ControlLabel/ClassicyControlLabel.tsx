@@ -14,6 +14,7 @@ interface ClassicyControlLabelProps {
     iconSize?: string
     direction?: ClassicyControlLabelDirections
     children?: any
+    onClickFunc?: Function
 }
 
 const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
@@ -25,6 +26,7 @@ const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
     icon,
     iconSize,
     children,
+    onClickFunc,
 }) => {
     const getDirectionClass = (direction: ClassicyControlLabelDirections) => {
         if (direction === 'right') {
@@ -62,6 +64,12 @@ const ClassicyControlLabel: React.FC<ClassicyControlLabelProps> = ({
                     display: 'flex',
                     flexDirection: ['left', 'bottom'].includes(direction) ? 'row' : 'row-reverse',
                     alignItems: icon ? 'center' : '',
+                }}
+                onClick={(e) => {
+                    e.preventDefault()
+                    if (onClickFunc) {
+                        onClickFunc(e)
+                    }
                 }}
             >
                 {icon && <img src={icon} width={imageSize(iconSize)} alt={label} />}
