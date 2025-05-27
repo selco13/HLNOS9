@@ -61,7 +61,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
         })
 
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex((w) => w.id === path)
+        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex((w) => w.id === appId + '_VideoPlayer_' + url)
         const ws = desktop.System.Manager.App.apps[appIndex].windows[windowIndex]
         if (ws) {
             ws.closed = false
@@ -108,7 +108,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
             {openFiles.length > 0 && openFiles.map((doc: QuickTimeDocument) => (
                 <ClassicyWindow
                     key={doc.name + '_' + doc.url}
-                    id={appId + '_VideoPlayer_' + doc.name + '_' + doc.url}
+                    id={appId + '_VideoPlayer_' + doc.url}
                     title={doc.name}
                     minimumSize={[300, 60]}
                     appId={appId}
@@ -209,7 +209,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
         const handleKeyDown = (event) => {
             const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
             const { windows } = desktop.System.Manager.App.apps[appIndex]
-            const a = windows.find((w) => w.id =  appId + '_VideoPlayer_' + name + '_' + url)
+            const a = windows.find((w) => w.id =  appId + '_VideoPlayer_'+ url)
             if (!a.focused) {
                 console.log(a.focused)
                 return
