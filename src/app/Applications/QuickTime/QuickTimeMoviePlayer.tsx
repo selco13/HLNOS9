@@ -209,12 +209,12 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
         const handleKeyDown = (event) => {
             const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
             const { windows } = desktop.System.Manager.App.apps[appIndex]
-            const a = windows.find((w) => w.id =  appId + '_VideoPlayer_'+ url)
+            const a = windows.find((w) => w.id = appId + '_VideoPlayer_' + url)
             if (!a.focused) {
                 console.log(a.focused)
                 return
             }
-                switch (event.key) {
+            switch (event.key) {
                 case ' ':
                     handlePlayPause()
                     event.preventDefault()
