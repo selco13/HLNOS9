@@ -297,6 +297,16 @@ export const DefaultDesktopState: ClassicyStore = {
                             openPaths: ['Macintosh HD'],
                         },
                     },
+                    {
+                        id: 'QuickTimePlayer.app',
+                        name: 'QuickTime Player',
+                        icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`,
+                        windows: [],
+                        open: false,
+                        data: {
+                            openFiles: [],
+                        },
+                    },
                 ],
             },
             Appearance: {

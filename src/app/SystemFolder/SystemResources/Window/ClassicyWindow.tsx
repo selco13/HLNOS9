@@ -161,7 +161,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         }
 
         if (ws.resizing) {
-            setSize([Math.abs(ws.position[0] - e.clientX), Math.abs(ws.position[1] - e.clientY)])
+            setSize([Math.abs(ws.position[0] - e.clientX) + 10, Math.abs(ws.position[1] - e.clientY) + 10])
         }
 
         if (ws.dragging) {

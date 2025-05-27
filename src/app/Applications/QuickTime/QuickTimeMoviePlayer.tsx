@@ -2,44 +2,88 @@ import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React, { useCallback, useRef, useState } from 'react'
+import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import quickTimeStyles from '@/app/Applications/QuickTime/QuickTime.module.scss'
 import screenfull from 'screenfull'
+import { parse } from '@plussub/srt-vtt-parser'
+import { timeFriendly, getVolumeIcon } from './QuickTimeUtils'
 
 export type QuickTimeDocument = {
     url: string
     name?: string
     type?: string
     options?: Record<string, any>
+    subtitlesUrl?: string
 }
 
 const QuickTimeMoviePlayer: React.FC = () => {
     const appName = 'QuickTime Player'
-    const appId = 'QuickTime Player.app'
+    const appId = 'QuickTimePlayer.app'
     const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`
 
     const desktopEventDispatch = useDesktopDispatch()
     const desktop = useDesktop()
 
-    const testingDocuments = [
-        {
-            url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
-            name: 'Buck Bunny',
-            options: {
-                forceHLS: true,
-                forceSafariHLS: false,
-            },
-            type: 'video',
-        },
-        {
-            url: 'http://www.samisite.com/sound/cropShadesofGrayMonkees.mp3',
-            name: 'Monkees',
-            type: 'audio',
-        },
-    ]
+    // Load Default Demo documents on open
+    useEffect(() => {
+        const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
+        const appData = desktop.System.Manager.App.apps[appIndex]?.data || {}
+        if (!appData?.hasOwnProperty('')) {
+            appData['openFiles'] = [
+                {
+                    url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
+                    name: 'Buck Bunny',
+                    options: {
+                        forceHLS: true,
+                        forceSafariHLS: false,
+                    },
+                    type: 'video',
+                },
+                {
+                    url: 'http://www.samisite.com/sound/cropShadesofGrayMonkees.mp3',
+                    name: 'Monkees',
+                    type: 'audio',
+                    subtitlesUrl: 'http://localhost:3000/test.srt',
+                },
+            ]
+        }
+        desktopEventDispatch({
+            type: 'ClassicyAppQuickTimeOpenFiles',
+            paths: appData['openFiles'],
+        })
+    }, [])
 
-    const [openDocuments, setOpenDocuments] = React.useState<QuickTimeDocument[]>(testingDocuments)
+    const openUrl = (url: string) => {
+        desktopEventDispatch({
+            type: 'ClassicyAppQuickTimeOpenFile',
+            url,
+        })
+
+        const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
+        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex((w) => w.id === path)
+        const ws = desktop.System.Manager.App.apps[appIndex].windows[windowIndex]
+        if (ws) {
+            ws.closed = false
+            desktopEventDispatch({
+                type: 'ClassicyWindowOpen',
+                app: {
+                    id: appId,
+                },
+                window: ws,
+            })
+            desktopEventDispatch({
+                type: 'ClassicyWindowFocus',
+                app: {
+                    id: appId,
+                },
+                window: ws,
+            })
+        }
+    }
+
+    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
+    const { openFiles } = desktop.System.Manager.App.apps[appIndex].data
 
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
@@ -61,10 +105,10 @@ const QuickTimeMoviePlayer: React.FC = () => {
 
     return (
         <ClassicyApp id={appId} name={appName} icon={appIcon}>
-            {openDocuments.map((doc: QuickTimeDocument) => (
+            {openFiles.length > 0 && openFiles.map((doc: QuickTimeDocument) => (
                 <ClassicyWindow
                     key={doc.name + '_' + doc.url}
-                    id={appId + '_VideoPlayer_' + doc.name}
+                    id={appId + '_VideoPlayer_' + doc.name + '_' + doc.url}
                     title={doc.name}
                     minimumSize={[300, 60]}
                     appId={appId}
@@ -73,7 +117,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                     zoomable={true}
                     scrollable={false}
                     collapsable={true}
-                    initialSize={[400, 0]}
+                    initialSize={[400, 100]}
                     initialPosition={[300, 50]}
                     modal={true}
                     appMenu={appMenu}
@@ -84,6 +128,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                         url={doc.url}
                         options={doc.options}
                         type={doc.type}
+                        subtitlesUrl={doc.subtitlesUrl}
                     />
                 </ClassicyWindow>
             ))}
@@ -99,9 +144,10 @@ type QuickTimeVideoEmbed = {
     url: string
     type: string
     options: {}
+    subtitlesUrl?: string
 }
 
-const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, options, type }) => {
+const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, options, type, subtitlesUrl }) => {
     const desktop = useDesktop()
 
     const playerRef = React.useRef(null)
@@ -110,6 +156,8 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
     const [loop, setLoop] = React.useState(false)
     const [isFullscreen, setIsFullscreen] = React.useState(false)
     const [showVolume, setShowVolume] = useState<boolean>(false)
+    const [subtitlesData, setSubtitlesData] = useState(null)
+    const [showSubtitles, setShowSubtitles] = useState(false)
 
     React.useEffect(() => {
         if (screenfull.isEnabled) {
@@ -117,6 +165,10 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                 setIsFullscreen(isFullscreen)
             })
         }
+    })
+
+    const toggleCC = useCallback(() => {
+        setShowSubtitles((prev) => !prev)
     }, [])
 
     const handlePlayPause = useCallback(() => {
@@ -155,7 +207,14 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
 
     React.useEffect(() => {
         const handleKeyDown = (event) => {
-            switch (event.key) {
+            const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
+            const { windows } = desktop.System.Manager.App.apps[appIndex]
+            const a = windows.find((w) => w.id =  appId + '_VideoPlayer_' + name + '_' + url)
+            if (!a.focused) {
+                console.log(a.focused)
+                return
+            }
+                switch (event.key) {
                 case ' ':
                     handlePlayPause()
                     event.preventDefault()
@@ -190,23 +249,14 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
 
     const volumeButtonRef = useRef(null)
 
-    const getVolumeIcon = () => {
-        if (volume === 0) {
-            return 'sound-off.png'
-        } else if (volume > 0 && volume < 0.3) {
-            return 'sound-33.png'
-        } else if (volume > 0.3 && volume < 0.7) {
-            return 'sound-66.png'
-        }
-        return 'sound-on.png'
-    }
-
-    const timeFriendly = (seconds: number) => {
-        const hours = Math.floor(seconds / 3600)
-        const minutes = Math.floor((seconds % 3600) / 60)
-        const secs = seconds % 60
-        return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
-    }
+    useEffect(() => {
+        if (!subtitlesUrl) return
+        fetch(subtitlesUrl)
+            .then((res) => res.text())
+            .then((text) => parse(text))
+            .then(setSubtitlesData)
+            .catch(() => setSubtitlesData(null))
+    }, [subtitlesUrl])
 
     return (
         <div className={quickTimeStyles.quickTimePlayerWrapper}>
@@ -223,6 +273,33 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                     volume={volume}
                     config={{ file: options }}
                 />
+                <Suspense>
+                    {showSubtitles &&
+                        subtitlesData?.entries?.length > 0 &&
+                        subtitlesData.entries.find((i) => {
+                            const time = playerRef.current?.getCurrentTime() * 1000
+                            return i.from < time && i.to > time
+                        }) && (
+                            <div
+                                className={
+                                    quickTimeStyles.quickTimePlayerCaptionsHolder +
+                                    ' ' +
+                                    quickTimeStyles.quickTimePlayerCaptionsHolderBottom +
+                                    ' ' +
+                                    quickTimeStyles.quickTimePlayerCaptionsHolderCenter
+                                }
+                            >
+                                <div className={quickTimeStyles.quickTimePlayerCaptions}>
+                                    {
+                                        subtitlesData.entries.find((i) => {
+                                            const time = playerRef.current?.getCurrentTime() * 1000
+                                            return i.from < time && i.to > time
+                                        })?.text
+                                    }
+                                </div>
+                            </div>
+                        )}
+                </Suspense>
             </div>
             <div className={quickTimeStyles.quickTimePlayerVideoControlsHolder}>
                 <button onClick={handlePlayPause} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
@@ -249,9 +326,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                     />
                 </div>
                 <p className={quickTimeStyles.quickTimePlayerVideoControlsTime}>
-                    {timeFriendly(
-                        parseInt(playerRef.current?.getDuration()) - parseInt(playerRef.current?.getCurrentTime())
-                    )}
+                    {timeFriendly(playerRef.current?.getCurrentTime())}
                 </p>
                 <button onClick={seekBackward} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
                     <img
@@ -265,6 +340,15 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/forward-button.svg`}
                     />
                 </button>
+                {subtitlesUrl && (
+                    <button onClick={toggleCC} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
+                        <img
+                            className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/CC.png`}
+                        />
+                    </button>
+                )}
+
                 {showVolume && (
                     <div
                         style={{
