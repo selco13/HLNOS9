@@ -148,7 +148,7 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
                     type={inputType}
                     ref={ref}
                     disabled={disabled}
-                    defaultValue={minutes}
+                    defaultValue={String(minutes).padStart(2, '0')}
                     onChange={(e) => handleTimePartChange(e, 'minutes')}
                     onBlur={(e) => handleTimePartChange(e, 'minutes')}
                     maxLength={2}
@@ -162,7 +162,7 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
                     type={inputType}
                     ref={ref}
                     disabled={disabled}
-                    defaultValue={seconds}
+                    defaultValue={String(seconds).padStart(2, '0')}
                     onChange={(e) => handleTimePartChange(e, 'seconds')}
                     onBlur={(e) => handleTimePartChange(e, 'seconds')}
                     maxLength={2}

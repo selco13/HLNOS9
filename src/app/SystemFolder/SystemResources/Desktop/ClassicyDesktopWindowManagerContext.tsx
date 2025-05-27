@@ -14,7 +14,35 @@ const initialWindowState = {
     contextMenuShown: false,
 }
 
-export const classicyWindowEventHandler = (ds: ClassicyStore, action) => {
+const notEmpty = <T,>(value: T | null | undefined): value is T => value != null;
+
+type ClassicyWindowAction =
+    // Open the Window's Context Menu
+    | { type: 'ClassicyWindowMenu'; menuBar: any } 
+    // Open a Window
+    | { type: 'ClassicyWindowOpen'; app: { id: string }; window: {id: string; minimumSize: [number, number], size:  [number, number], position: [number, number]} }
+    // Focus a Window
+    | { type: 'ClassicyWindowFocus'; app: { id: string, appMenu: any }; window: { id: string } }
+    // Close a Window
+    | { type: 'ClassicyWindowClose'; app: { id: string }; window: { id: string } }
+    // Close a Window and destroy it's entry
+    | { type: 'ClassicyWindowDestroy'; app: { id: string }; window: { id: string } }
+    // Collapse (or Minimize) a window
+    | { type: 'ClassicyWindowCollapse'; app: { id: string }; window: { id: string } }
+    // Expand (or Un-Minimize) a window
+    | { type: 'ClassicyWindowExpand'; app: { id: string }; window: { id: string } }
+    // Drag a window around
+    | { type: 'ClassicyWindowDrag'; app: { id: string }; window: { id: string }; dragging: boolean }
+    // Zoom a Window
+    | { type: 'ClassicyWindowZoom'; app: { id: string }; window: { id: string }; zoomed: boolean }
+    // Set a Window's Position
+    | { type: 'ClassicyWindowPosition'; app: { id: string }; window: { id: string }; position: [number, number] }
+    // Resize a Window
+    | { type: 'ClassicyWindowResize'; app: { id: string }; window: { id: string }; resizing: boolean; size: [number, number] }
+    // Move a Window
+    | { type: 'ClassicyWindowMove'; app: { id: string }; window: { id: string }; position: [number, number]; moving: boolean }
+
+export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWindowAction) => {
     const updateWindow = (appId: string, windowId: string, updates: any) => {
         ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
             if (a.id === appId) {
@@ -59,6 +87,17 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action) => {
             ds = updateWindow(action.app.id, action.window.id, { closed: true })
             break
 
+        case 'ClassicyWindowDestroy':
+            ds = updateWindow(action.app.id, action.window.id, { closed: true })
+            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
+                if (a.id === action.app.id) {
+                    a.windows = a.windows.map((w) => (w.id === action.window.id ? null : w)).filter(notEmpty)
+                }
+                return a
+            })
+                break
+    
+    
         case 'ClassicyWindowMenu':
             ds.System.Manager.Desktop.appMenu = action.menuBar
             break

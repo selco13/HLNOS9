@@ -30,7 +30,7 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
     onClickFunc,
     inputs,
 }) => {
-    const [check, setCheck] = React.useState<string>(inputs.find((input) => input.checked == true).id)
+    const [check, setCheck] = React.useState<string>(inputs.findLast((input) => input.checked === true)?.id || '')
     const player = useSoundDispatch()
 
     const handleOnChange = (e) => {
@@ -52,7 +52,7 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
                 {inputs &&
                     inputs.map((item) => (
                         <div key={name + item.id} className={classicyRadioInputStyles.classicyRadioInputMargin}>
-                            <div
+                                <div
                                 className={classNames(
                                     classicyRadioInputStyles.classicyRadioInputWrapper,
                                     check === item.id ? classicyRadioInputStyles.classicyRadioInputWrapperChecked : '',
@@ -63,7 +63,6 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
                                     id={item.id}
                                     name={name}
                                     disabled={item.disabled}
-                                    checked={check === item.id || item.checked}
                                     className={classNames(
                                         classicyRadioInputStyles.classicyRadioInput,
                                         item.isDefault ? classicyRadioInputStyles.classicyRadioInputDefault : '',

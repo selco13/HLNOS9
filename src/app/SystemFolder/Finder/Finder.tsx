@@ -6,6 +6,10 @@ import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWi
 import React, { useEffect } from 'react'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 
+type PathSettingsProps = {
+    _viewType: 'list' | 'icons'
+}
+
 const Finder = () => {
     const appName: string = 'Finder'
     const appId: string = 'Finder.app'
@@ -14,10 +18,6 @@ const Finder = () => {
     const desktop = useDesktop()
 
     const [pathSettings, setPathSettings] = React.useState<Record<string, PathSettingsProps>>({})
-
-    type PathSettingsProps = {
-        _viewType: 'list' | 'icons'
-    }
 
     useEffect(() => {
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)

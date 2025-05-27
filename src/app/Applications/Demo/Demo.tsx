@@ -54,6 +54,7 @@ const Demo: React.FC = () => {
                     modal={true}
                     appMenu={appMenu}
                 >
+                    <div style={{padding: '.5em', display: "flex", flexDirection: "column", gap: "1em"}}>
                     <ClassicyPopUpMenu
                         id={'select_theme'}
                         small={false}
@@ -65,7 +66,8 @@ const Demo: React.FC = () => {
                     />
                     <ClassicyProgressBar value={59}></ClassicyProgressBar>
                     <ClassicyInput id={'test'} labelTitle={'Text Input'}></ClassicyInput>
-                    <ClassicyControlGroup label={'Test Radio Inputs'}>
+                    </div>
+                                        <ClassicyControlGroup label={'Test Radio Inputs'}>
                         <ClassicyRadioInput
                             inputs={[
                                 {
@@ -73,15 +75,18 @@ const Demo: React.FC = () => {
                                     isDefault: true,
                                     disabled: false,
                                     label: 'Radio Button 1 (Default)',
+                                    checked: false
                                 },
                                 {
                                     id: 'test2',
                                     label: 'Radio Button 2 (Regular)',
+                                    checked: false
                                 },
                                 {
                                     id: 'test3',
                                     mixed: true,
                                     label: 'Radio Button 3 (Mixed)',
+                                    checked: false
                                 },
                             ]}
                             name={'test_radio'}
@@ -93,13 +98,14 @@ const Demo: React.FC = () => {
                                     id: 'test4',
                                     disabled: true,
                                     label: 'Radio Button 4 (Disabled)',
+                                    checked: false
                                 },
                                 {
                                     id: 'test5',
-                                    checked: true,
                                     disabled: true,
                                     mixed: true,
                                     label: 'Radio Button 6 (Disabled + Checked + Mixed)',
+                                    checked: true
                                 },
                             ]}
                             name={'test_radio_disabled'}

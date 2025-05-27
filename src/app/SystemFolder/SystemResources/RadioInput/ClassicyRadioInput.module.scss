@@ -65,8 +65,7 @@
 
 .classicyRadioInput {
   position: relative;
-  top: calc(var(--window-border-size) / -1);
-  left: calc(var(--window-border-size) / -4);
+  margin: 2px;
   opacity: 0;
   border-width: calc(var(--window-control-size) / 3);
   border-style: solid;
@@ -90,8 +89,7 @@
 }
 
 .classicyRadioInputMixed {
-  top: calc(var(--window-control-size) / 8);
-  left: calc(var(--window-border-size) / -4);
+  margin-top:calc(var(--window-control-size) / 2.5);
   width: calc(var(--window-control-size) / 1);
   height: calc(var(--window-control-size) / 4);
   border-width: calc(var(--window-control-size) / 8);

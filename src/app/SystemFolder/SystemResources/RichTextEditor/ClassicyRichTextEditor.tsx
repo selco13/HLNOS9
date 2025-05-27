@@ -36,7 +36,9 @@ const ClassicyRichTextEditor: FC<ClassicyRichTextEditorProps> = ({ content, edit
                         toolbarContents: () => (
                             <>
                                 <UndoRedo />
-                                <BoldItalicUnderlineToggles />
+                                <BoldItalicUnderlineToggles options={['Bold']} />
+                                <BoldItalicUnderlineToggles options={['Italic']} />
+                                <BoldItalicUnderlineToggles options={['Underline']} />
                                 <CodeToggle></CodeToggle>
                                 <InsertThematicBreak></InsertThematicBreak>
                             </>

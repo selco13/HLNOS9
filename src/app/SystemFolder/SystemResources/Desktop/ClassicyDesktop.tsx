@@ -10,6 +10,7 @@ import classNames from 'classnames'
 import React, { Suspense } from 'react'
 import '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/fonts.scss'
 import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
+import ClassicyBoot from '@/app/SystemFolder/SystemResources/Boot/ClassicyBoot'
 
 interface ClassicyDesktopProps {
     children?: any
@@ -141,8 +142,8 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
 
     return (
         <>
-            <Suspense>
-                <div
+        <Suspense fallback={<ClassicyBoot />}>
+        <div
                     id={'classicyDesktop'}
                     style={currentTheme as React.CSSProperties}
                     className={classNames(classicyDesktop.classicyDesktop)}

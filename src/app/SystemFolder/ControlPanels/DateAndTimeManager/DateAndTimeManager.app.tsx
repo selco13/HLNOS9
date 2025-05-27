@@ -228,22 +228,21 @@ export const DateAndTimeManagerApp: React.FC = () => {
                     </ClassicyControlGroup>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <ClassicyControlGroup label={'Timezone'}>
+                    <ClassicyControlGroup label={'Time Format'}>
                         <ClassicyRadioInput
                             inputs={[
                                 {
-                                    id: 'am',
+                                    id: '12',
                                     label: '12-Hour',
                                     checked: true,
                                 },
                                 {
-                                    id: 'pm',
+                                    id: '24',
                                     label: 'Military Time',
                                     disabled: true,
                                 },
                             ]}
                             name={'period_selector'}
-                            label={'Radio Buttons'}
                             onClickFunc={(e: ChangeEvent<HTMLInputElement>) => {
                                 console.log(e.target.id)
                                 return
