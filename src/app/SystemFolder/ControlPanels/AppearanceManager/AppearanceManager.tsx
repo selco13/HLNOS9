@@ -26,7 +26,7 @@ export const AppearanceManager: React.FC = () => {
 
     const [showAbout, setShowAbout] = React.useState(false)
     const [bg, setBg] = React.useState<string>(
-        desktopContext.System.Manager.Appearance.activeTheme.desktop.backgroundImage
+        desktopContext.System.Manager.Appearance.activeTheme.desktop.backgroundImage || `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/wallpapers/default.png`
     )
 
     const themesList = desktopContext.System.Manager.Appearance.availableThemes.map((a: any) =>
