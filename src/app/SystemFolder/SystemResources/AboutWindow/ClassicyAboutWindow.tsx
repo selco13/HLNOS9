@@ -1,13 +1,14 @@
 import appearanceManagerStyles from '@/app/SystemFolder/ControlPanels/AppearanceManager/AppearanceManager.module.scss'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
+import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 
 type ClassicyAboutWindowProps = {
     appId: string
     appName: string
     appIcon: string
     hideFunc: any
-    appMenu?: any
+    appMenu?: ClassicyMenuItem[]
 }
 export const getClassicyAboutWindow = (props: ClassicyAboutWindowProps) => {
     return <ClassicyAboutWindow {...props} />
