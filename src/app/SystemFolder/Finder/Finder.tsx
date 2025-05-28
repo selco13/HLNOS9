@@ -76,12 +76,6 @@ const Finder = () => {
         })
     }
 
-    const emptyTrash = () => {
-        desktopEventDispatch({
-            type: 'ClassicyAppFinderEmptyTrash',
-        })
-    }
-
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
     }

@@ -1,5 +1,5 @@
 import ClassicyBoot from '@/app/SystemFolder/SystemResources/Boot/ClassicyBoot'
-import { ClassicySoundManagerProvider } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import { ClassicySoundManagerProvider } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import React, { createContext, Suspense, useContext, useReducer } from 'react'
 import { classicyDesktopStateEventReducer, ClassicyStore, DefaultDesktopState } from './ClassicyAppManager'
 

@@ -41,6 +41,23 @@ const Demo: React.FC = () => {
         <>
             <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'demo'} addSystemMenu={false}>
                 <ClassicyWindow
+                    id={'demo23'}
+                    appId={appId}
+                    closable={false}
+                    resizable={false}
+                    zoomable={false}
+                    scrollable={false}
+                    collapsable={false}
+                    initialSize={[400, 0]}
+                    initialPosition={[300, 50]}
+                    modal={true}
+                    appMenu={appMenu}
+                    hidden={false}
+                    color={'red'}
+                >
+                    <ClassicyButton>OK</ClassicyButton>
+                </ClassicyWindow>
+                <ClassicyWindow
                     id={'demo2'}
                     title={appName}
                     appId={appId}
@@ -54,20 +71,20 @@ const Demo: React.FC = () => {
                     modal={true}
                     appMenu={appMenu}
                 >
-                    <div style={{padding: '.5em', display: "flex", flexDirection: "column", gap: "1em"}}>
-                    <ClassicyPopUpMenu
-                        id={'select_theme'}
-                        small={false}
-                        options={[
-                            { value: 'hello', label: 'Hello' },
-                            { value: 'hello2', label: 'Hello again!' },
-                        ]}
-                        selected={'hello'}
-                    />
-                    <ClassicyProgressBar value={59}></ClassicyProgressBar>
-                    <ClassicyInput id={'test'} labelTitle={'Text Input'}></ClassicyInput>
+                    <div style={{ padding: '.5em', display: 'flex', flexDirection: 'column', gap: '1em' }}>
+                        <ClassicyPopUpMenu
+                            id={'select_theme'}
+                            small={false}
+                            options={[
+                                { value: 'hello', label: 'Hello' },
+                                { value: 'hello2', label: 'Hello again!' },
+                            ]}
+                            selected={'hello'}
+                        />
+                        <ClassicyProgressBar value={59}></ClassicyProgressBar>
+                        <ClassicyInput id={'test'} labelTitle={'Text Input'}></ClassicyInput>
                     </div>
-                                        <ClassicyControlGroup label={'Test Radio Inputs'}>
+                    <ClassicyControlGroup label={'Test Radio Inputs'}>
                         <ClassicyRadioInput
                             inputs={[
                                 {
@@ -75,18 +92,18 @@ const Demo: React.FC = () => {
                                     isDefault: true,
                                     disabled: false,
                                     label: 'Radio Button 1 (Default)',
-                                    checked: false
+                                    checked: false,
                                 },
                                 {
                                     id: 'test2',
                                     label: 'Radio Button 2 (Regular)',
-                                    checked: false
+                                    checked: false,
                                 },
                                 {
                                     id: 'test3',
                                     mixed: true,
                                     label: 'Radio Button 3 (Mixed)',
-                                    checked: false
+                                    checked: false,
                                 },
                             ]}
                             name={'test_radio'}
@@ -98,14 +115,14 @@ const Demo: React.FC = () => {
                                     id: 'test4',
                                     disabled: true,
                                     label: 'Radio Button 4 (Disabled)',
-                                    checked: false
+                                    checked: false,
                                 },
                                 {
                                     id: 'test5',
                                     disabled: true,
                                     mixed: true,
                                     label: 'Radio Button 6 (Disabled + Checked + Mixed)',
-                                    checked: true
+                                    checked: true,
                                 },
                             ]}
                             name={'test_radio_disabled'}

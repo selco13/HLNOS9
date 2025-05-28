@@ -1,5 +1,5 @@
 import classicyButtonStyles from '@/app/SystemFolder/SystemResources/Button/ClassicyButton.module.scss'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import classNames from 'classnames'
 import React from 'react'
 

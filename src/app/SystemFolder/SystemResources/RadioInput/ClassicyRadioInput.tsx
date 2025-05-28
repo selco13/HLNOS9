@@ -1,6 +1,6 @@
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyRadioInputStyles from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput.module.scss'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import classNames from 'classnames'
 import React, { ChangeEvent } from 'react'
 
@@ -52,7 +52,7 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
                 {inputs &&
                     inputs.map((item) => (
                         <div key={name + item.id} className={classicyRadioInputStyles.classicyRadioInputMargin}>
-                                <div
+                            <div
                                 className={classNames(
                                     classicyRadioInputStyles.classicyRadioInputWrapper,
                                     check === item.id ? classicyRadioInputStyles.classicyRadioInputWrapperChecked : '',

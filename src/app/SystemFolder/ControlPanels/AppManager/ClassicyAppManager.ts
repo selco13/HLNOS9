@@ -1,5 +1,4 @@
 import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
-import { ClassicyStoreSystemSoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySound'
 import {
     ClassicyStoreSystemAppearanceManager,
     ClassicyTheme,
@@ -11,8 +10,9 @@ import {
 import { classicyWindowEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopWindowManagerContext'
 import { classicyDesktopIconEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
 import themesData from '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/themes.json'
-import { classicyDateTimeManagerEventHandler } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/DateAndTimeManager.app'
+import { classicyDateTimeManagerEventHandler } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/ClassicyDateAndTimeManager.app'
 import { classicyFinderEventHandler } from '@/app/SystemFolder/Finder/FinderContext'
+import { ClassicyStoreSystemSoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
 export interface ClassicyStoreSystemAppManager extends ClassicyStoreSystemManager {
     apps: ClassicyStoreSystemApp[]

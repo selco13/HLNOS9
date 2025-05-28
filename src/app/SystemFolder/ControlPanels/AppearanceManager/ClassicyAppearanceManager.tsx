@@ -8,12 +8,12 @@ import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
 import ClassicyTabs from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs'
+import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
-export const AppearanceManager: React.FC = () => {
+export const ClassicyAppearanceManager: React.FC = () => {
     const appName: string = 'Appearance Manager'
     const appId: string = 'AppearanceManager.app'
     const appIcon: string = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/appearance-manager/app.png`

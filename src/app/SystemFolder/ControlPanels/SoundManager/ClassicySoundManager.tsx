@@ -1,6 +1,6 @@
 'use client'
 
-import soundManagerStyles from '@/app/SystemFolder/ControlPanels/SoundManager/SoundManager.module.scss'
+import soundManagerStyles from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManager.module.scss'
 import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
@@ -13,12 +13,12 @@ import {
     ClassicySoundInfo,
     useSound,
     useSoundDispatch,
-} from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+} from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
-import ClassicyButton from "@/app/SystemFolder/SystemResources/Button/ClassicyButton";
+import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 
-export const SoundManager: React.FC = () => {
+export const ClassicySoundManager: React.FC = () => {
     const desktopEventDispatch = useDesktopDispatch()
 
     const playerState = useSound()
@@ -82,7 +82,15 @@ export const SoundManager: React.FC = () => {
     }
 
     return (
-        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'SoundManager_1'} openOnBoot={true} noDesktopIcon={true} addSystemMenu={true}>
+        <ClassicyApp
+            id={appId}
+            name={appName}
+            icon={appIcon}
+            defaultWindow={'SoundManager_1'}
+            openOnBoot={true}
+            noDesktopIcon={true}
+            addSystemMenu={true}
+        >
             <ClassicyWindow
                 id={'SoundManager_1'}
                 title={appName}
@@ -110,16 +118,17 @@ export const SoundManager: React.FC = () => {
                     <div className={soundManagerStyles.soundManagerControlGroupHolder}>
                         {getSoundLabelGroups().map((group: string) => (
                             <ClassicyControlGroup label={group} columns={true} key={appId + '_' + group}>
-                                {playerState.labels.map((item: ClassicySoundInfo) => (
-                                    item.group === group && (
-                                        <ClassicyCheckbox
-                                            key={appId + '_' + group + item.id}
-                                            id={'enable_sound_' + item.id}
-                                            label={item.label}
-                                            checked={playerState.disabled.includes('*')}
-                                        />
-                                    )
-                                ))}
+                                {playerState.labels.map(
+                                    (item: ClassicySoundInfo) =>
+                                        item.group === group && (
+                                            <ClassicyCheckbox
+                                                key={appId + '_' + group + item.id}
+                                                id={'enable_sound_' + item.id}
+                                                label={item.label}
+                                                checked={playerState.disabled.includes('*')}
+                                            />
+                                        )
+                                )}
                             </ClassicyControlGroup>
                         ))}
                     </div>

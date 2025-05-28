@@ -14,7 +14,7 @@ import ClassicyTimePicker from '@/app/SystemFolder/SystemResources/TimePicker/Cl
 import { ClassicyStore } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
 import ClassicyRadioInput from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput'
 
-export const DateAndTimeManagerApp: React.FC = () => {
+export const ClassicyDateAndTimeManagerApp: React.FC = () => {
     const appName: string = 'Date and Time Manager'
     const appId: string = 'DateAndTimeManager.app'
     const appIcon: string = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/date-time-manager/date-time-manager.png`

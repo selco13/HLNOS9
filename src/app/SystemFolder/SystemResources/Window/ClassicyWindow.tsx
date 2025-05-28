@@ -2,7 +2,7 @@
 
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import classicyWindowStyle from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss'
 import { ClassicyWindowState } from '@/app/SystemFolder/SystemResources/Window/ClassicyWindowContext'
 import classNames from 'classnames'
@@ -30,6 +30,7 @@ interface ClassicyWindowProps {
     contextMenu?: ClassicyMenuItem[]
     onCloseFunc?: any
     children?: React.ReactNode
+    color?: string
 }
 
 const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
@@ -44,6 +45,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     resizable = true,
     scrollable = true,
     modal = false,
+    color = 'default',
     growable,
     initialSize = [350, 0],
     initialPosition = [0, 0],
@@ -374,6 +376,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                         ws.moving === true ? classicyWindowStyle.classicyWindowDragging : '',
                         ws.resizing === true ? classicyWindowStyle.classicyWindowResizing : '',
                         modal === true ? classicyWindowStyle.classicyWindowModal : '',
+                        modal && color == 'red' ? classicyWindowStyle.classicyWindowRed : '',
                         scrollable === true ? '' : classicyWindowStyle.classicyWindowNoScroll
                     )}
                     onMouseMove={changeWindow}

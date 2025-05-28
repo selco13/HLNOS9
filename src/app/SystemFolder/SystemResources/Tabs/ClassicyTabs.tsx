@@ -1,7 +1,7 @@
 import classicyTabStyles from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs.module.scss'
 import React from 'react'
 import tabMaskImage from './tab.svg'
-import { useSoundDispatch } from '@/app/SystemFolder/SystemResources/SoundManager/ClassicySoundManagerContext'
+import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
 interface TabProps {
     tabs: TabIndividual[]

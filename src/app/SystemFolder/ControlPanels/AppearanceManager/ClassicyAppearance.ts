@@ -1,8 +1,8 @@
 import { intToHex } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyColors'
 import { intToPct, intToPx } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicySize'
 import themesData from '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/themes.json'
-import { ClassicyThemeSound } from '../SoundManager/ClassicySound'
 import { ClassicyStoreSystemManager } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
+import { ClassicyThemeSound } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
 export interface ClassicyStoreSystemAppearanceManager extends ClassicyStoreSystemManager {
     availableThemes?: ClassicyTheme[]
@@ -118,7 +118,10 @@ const makeThemeStyle = (theme: ClassicyTheme) => {
         '--desktop-background-color': intToHex(theme.desktop.backgroundColor),
         '--desktop-background-repeat': theme.desktop.backgroundRepeat,
         '--desktop-background-position': theme.desktop.backgroundPosition,
-        '--desktop-background-size': typeof theme.desktop.backgroundSize === 'number' ? intToPct(theme.desktop.backgroundSize) : theme.desktop.backgroundSize,
+        '--desktop-background-size':
+            typeof theme.desktop.backgroundSize === 'number'
+                ? intToPct(theme.desktop.backgroundSize)
+                : theme.desktop.backgroundSize,
     }
 }
 

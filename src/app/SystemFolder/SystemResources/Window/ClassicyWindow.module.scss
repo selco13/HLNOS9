@@ -115,7 +115,8 @@
 }
 
 .classicyWindowResizing {
-  border: calc(var(--window-padding-size) / 4) black dotted !important;
+  border: calc(var(--window-padding-size) / 4) dotted !important;
+  border-color: black !important;
   background: transparent !important;
   box-shadow: none !important;
 
@@ -134,7 +135,8 @@
 }
 
 .classicyWindowDragging {
-  border: calc(var(--window-padding-size) / 4) black dotted !important;
+  border: calc(var(--window-padding-size) / 4) dotted !important;
+  border-color: black !important;
   background: transparent !important;
   box-shadow: none !important;
 
@@ -146,6 +148,38 @@
   }
 
   .classicyWindowTitle {
+  }
+}
+
+.classicyWindowRed {
+  @include appearance.platinumWindowBorder;
+  border-color: var(--color-error) !important;
+
+  .classicyWindowTitleBar {
+    background-color: #f7cecd !important;
+
+    .classicyWindowTitle {
+      .classicyWindowTitleText {
+        //color: red !important;
+      }
+
+      .classicyWindowTitleCenter {
+        background: assets.$title-bar-center-red;
+      }
+
+      .classicyWindowTitleLeft,
+      .classicyWindowTitleRight {
+        background: assets.$title-bar-center-red;
+
+        &:after {
+          background-image: assets.$title-bar-right-red;
+        }
+
+        &:before {
+          background-image: assets.$title-bar-left-red;
+        }
+      }
+    }
   }
 }
 
@@ -197,7 +231,7 @@
         height: 1.5em !important;
         cursor: default;
         user-select: none;
-        color: grey;
+        color: var(--color-system-05);
         user-drag: none;
       }
 

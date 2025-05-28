@@ -1,4 +1,4 @@
-import appearanceManagerStyles from '@/app/SystemFolder/ControlPanels/AppearanceManager/AppearanceManager.module.scss'
+import appearanceManagerStyles from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearanceManager.module.scss'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'

@@ -1,16 +1,16 @@
 'use client'
 
-import {AppearanceManager} from '@/app/SystemFolder/ControlPanels/AppearanceManager/AppearanceManager'
-import {SoundManager} from '@/app/SystemFolder/ControlPanels/SoundManager/SoundManager'
+import { ClassicyAppearanceManager } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearanceManager'
+import { ClassicySoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManager'
 import React from 'react'
-import {DateAndTimeManagerApp} from "@/app/SystemFolder/ControlPanels/DateAndTimeManager/DateAndTimeManager.app";
+import { ClassicyDateAndTimeManagerApp } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/ClassicyDateAndTimeManager.app'
 
 export default function ClassicyControlPanels() {
     return (
         <>
-            <AppearanceManager/>
-            <SoundManager/>
-            <DateAndTimeManagerApp/>
+            <ClassicyAppearanceManager />
+            <ClassicySoundManager />
+            <ClassicyDateAndTimeManagerApp />
         </>
     )
 }
