@@ -3,7 +3,7 @@
 
 .classicyInputHolder {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-direction: row;
   width: calc(100% - var(--window-padding-size) * 2);
   padding: var(--window-padding-size);
