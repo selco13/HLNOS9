@@ -44,7 +44,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                     url: 'http://www.samisite.com/sound/cropShadesofGrayMonkees.mp3',
                     name: 'Monkees',
                     type: 'audio',
-                    subtitlesUrl: 'http://localhost:3000/test.srt',
+                    subtitlesUrl: '/test.srt',
                 },
             ]
         }
