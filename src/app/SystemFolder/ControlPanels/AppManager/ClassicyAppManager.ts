@@ -123,7 +123,6 @@ export class ClassicyAppManagerHandler {
     public openApp(ds: ClassicyStore, appId: string, appName: string, appIcon: string) {
         const findApp = this.getAppIndex(ds, appId)
         if (findApp >= 0) {
-            console.log('found open app ' + ds.System.Manager.App.apps[findApp])
             ds.System.Manager.App.apps[findApp].open = true
             ds.System.Manager.App.apps[findApp].windows = ds.System.Manager.App.apps[findApp].windows.map((w) => {
                 w.closed = false
@@ -131,7 +130,6 @@ export class ClassicyAppManagerHandler {
             })
             this.focusApp(ds, appId)
         } else {
-            console.log('app not found open ' + ds.System.Manager.App.apps)
             ds.System.Manager.App.apps.push({
                 id: appId,
                 name: appName,

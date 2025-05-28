@@ -7,7 +7,7 @@ import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 import ClassicyControlGroup from '../../SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyDatePicker from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker'
 import ClassicyTimePicker from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker'
@@ -243,10 +243,6 @@ export const DateAndTimeManagerApp: React.FC = () => {
                                 },
                             ]}
                             name={'period_selector'}
-                            onClickFunc={(e: ChangeEvent<HTMLInputElement>) => {
-                                console.log(e.target.id)
-                                return
-                            }}
                         />
                     </ClassicyControlGroup>
                 </div>

@@ -214,7 +214,6 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
             const { windows } = desktop.System.Manager.App.apps[appIndex]
             const a = windows.find((w) => (w.id = appId + '_VideoPlayer_' + url))
             if (!a.focused) {
-                console.log(a.focused)
                 return
             }
             switch (event.key) {
