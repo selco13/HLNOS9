@@ -27,6 +27,8 @@ export const classicyFinderEventHandler = (ds: ClassicyStore, action) => {
         }
 
         case 'ClassicyAppFinderEmptyTrash': {
+            localStorage.removeItem('classicyDesktopState')
+
             break
         }
     }
