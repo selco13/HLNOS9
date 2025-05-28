@@ -113,7 +113,8 @@ const Finder = () => {
                 icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/desktop/trash-full.png`,
             },
             kind: 'trash',
-            onClickFunc: emptyTrash,
+            event: 'ClassicyAppFinderEmptyTrash',
+            eventData: {},
         })
     }, [fs])
 
