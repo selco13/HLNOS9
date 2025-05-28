@@ -1,5 +1,6 @@
 import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import {
+    ClassicyAppManagerHandler,
     ClassicyStore,
     ClassicyStoreSystemManager,
 } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
@@ -68,14 +69,8 @@ export const classicyDesktopEventHandler = (ds: ClassicyStore, action) => {
         }
         case 'ClassicyDesktopFocus': {
             if ('e' in action && action.e.target.id === 'classicyDesktop') {
-                ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                    a.focused = false
-                    a.windows = a.windows.map((w) => {
-                        w.focused = false
-                        return w
-                    })
-                    return a
-                })
+                const mgr = new ClassicyAppManagerHandler()
+                ds = mgr.deFocusApps(ds)
 
                 const appI = ds.System.Manager.App.apps.findIndex((a) => (a.id = 'Finder.app'))
                 ds.System.Manager.App.apps[appI].focused = true

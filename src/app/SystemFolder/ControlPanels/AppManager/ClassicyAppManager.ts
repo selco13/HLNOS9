@@ -92,7 +92,7 @@ export class ClassicyAppManagerHandler {
         return ds.System.Manager.App.apps.findIndex((d) => d.id === appId)
     }
 
-    deFocusApps(ds: ClassicyStore) {
+    public deFocusApps(ds: ClassicyStore) {
         ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
             a.focused = false
             a.windows = a.windows.map((w) => {
@@ -104,7 +104,7 @@ export class ClassicyAppManagerHandler {
         return ds
     }
 
-    focusApp(ds: ClassicyStore, appId: string) {
+    public focusApp(ds: ClassicyStore, appId: string) {
         const findApp = this.getAppIndex(ds, appId)
         ds = this.deFocusApps(ds)
         ds.System.Manager.App.apps[findApp].focused = true
@@ -120,9 +120,10 @@ export class ClassicyAppManagerHandler {
         }
     }
 
-    openApp(ds: ClassicyStore, appId: string, appName: string, appIcon: string) {
+    public openApp(ds: ClassicyStore, appId: string, appName: string, appIcon: string) {
         const findApp = this.getAppIndex(ds, appId)
         if (findApp >= 0) {
+            console.log('found open app ' + ds.System.Manager.App.apps[findApp])
             ds.System.Manager.App.apps[findApp].open = true
             ds.System.Manager.App.apps[findApp].windows = ds.System.Manager.App.apps[findApp].windows.map((w) => {
                 w.closed = false
@@ -130,6 +131,7 @@ export class ClassicyAppManagerHandler {
             })
             this.focusApp(ds, appId)
         } else {
+            console.log('app not found open ' + ds.System.Manager.App.apps)
             ds.System.Manager.App.apps.push({
                 id: appId,
                 name: appName,
@@ -141,7 +143,7 @@ export class ClassicyAppManagerHandler {
         }
     }
 
-    closeApp(ds: ClassicyStore, appId: string) {
+    public closeApp(ds: ClassicyStore, appId: string) {
         const findApp = this.getAppIndex(ds, appId)
         if (findApp >= 0) {
             ds.System.Manager.App.apps[findApp].open = false
@@ -150,7 +152,7 @@ export class ClassicyAppManagerHandler {
         }
     }
 
-    activateApp(ds: ClassicyStore, appId: string) {
+    public activateApp(ds: ClassicyStore, appId: string) {
         ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
             a.focused = a.id === appId
             return a
