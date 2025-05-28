@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "run": "yarn build-web && yarn serve",
-    "dev": "yarn next dev --turbopack",
+    "dev": "yarn next dev",
     "build": "yarn build-audio && yarn build-web",
     "serve": "http-server out/ -p 3000",
     "build-audio": "./bin/make_audio_sprites.sh",
