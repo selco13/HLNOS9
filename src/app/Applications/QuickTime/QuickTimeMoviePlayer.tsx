@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player'
 import quickTimeStyles from '@/app/Applications/QuickTime/QuickTime.module.scss'
 import screenfull from 'screenfull'
 import { parse } from '@plussub/srt-vtt-parser'
-import { timeFriendly, getVolumeIcon } from './QuickTimeUtils'
+import { getVolumeIcon, timeFriendly } from './QuickTimeUtils'
 
 export type QuickTimeDocument = {
     url: string
@@ -61,7 +61,9 @@ const QuickTimeMoviePlayer: React.FC = () => {
         })
 
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex((w) => w.id === appId + '_VideoPlayer_' + url)
+        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex(
+            (w) => w.id === appId + '_VideoPlayer_' + url
+        )
         const ws = desktop.System.Manager.App.apps[appIndex].windows[windowIndex]
         if (ws) {
             ws.closed = false
@@ -105,33 +107,34 @@ const QuickTimeMoviePlayer: React.FC = () => {
 
     return (
         <ClassicyApp id={appId} name={appName} icon={appIcon}>
-            {openFiles.length > 0 && openFiles.map((doc: QuickTimeDocument) => (
-                <ClassicyWindow
-                    key={doc.name + '_' + doc.url}
-                    id={appId + '_VideoPlayer_' + doc.url}
-                    title={doc.name}
-                    minimumSize={[300, 60]}
-                    appId={appId}
-                    closable={true}
-                    resizable={true}
-                    zoomable={true}
-                    scrollable={false}
-                    collapsable={true}
-                    initialSize={[400, 100]}
-                    initialPosition={[300, 50]}
-                    modal={true}
-                    appMenu={appMenu}
-                >
-                    <QuickTimeVideoEmbed
+            {openFiles.length > 0 &&
+                openFiles.map((doc: QuickTimeDocument) => (
+                    <ClassicyWindow
+                        key={doc.name + '_' + doc.url}
+                        id={appId + '_VideoPlayer_' + doc.url}
+                        title={doc.name}
+                        minimumSize={[300, 60]}
                         appId={appId}
-                        name={doc.name}
-                        url={doc.url}
-                        options={doc.options}
-                        type={doc.type}
-                        subtitlesUrl={doc.subtitlesUrl}
-                    />
-                </ClassicyWindow>
-            ))}
+                        closable={true}
+                        resizable={true}
+                        zoomable={true}
+                        scrollable={false}
+                        collapsable={true}
+                        initialSize={[400, 100]}
+                        initialPosition={[300, 50]}
+                        modal={true}
+                        appMenu={appMenu}
+                    >
+                        <QuickTimeVideoEmbed
+                            appId={appId}
+                            name={doc.name}
+                            url={doc.url}
+                            options={doc.options}
+                            type={doc.type}
+                            subtitlesUrl={doc.subtitlesUrl}
+                        />
+                    </ClassicyWindow>
+                ))}
         </ClassicyApp>
     )
 }
@@ -209,7 +212,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
         const handleKeyDown = (event) => {
             const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
             const { windows } = desktop.System.Manager.App.apps[appIndex]
-            const a = windows.find((w) => w.id = appId + '_VideoPlayer_' + url)
+            const a = windows.find((w) => (w.id = appId + '_VideoPlayer_' + url))
             if (!a.focused) {
                 console.log(a.focused)
                 return
@@ -384,7 +387,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                     ref={volumeButtonRef}
                 >
                     <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/sound-manager/${getVolumeIcon()}`}
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/sound-manager/${getVolumeIcon(volume)}`}
                         className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
                     />
                 </button>
