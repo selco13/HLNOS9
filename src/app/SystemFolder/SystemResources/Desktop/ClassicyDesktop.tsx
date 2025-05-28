@@ -7,10 +7,9 @@ import ClassicyDesktopIcon from '@/app/SystemFolder/SystemResources/Desktop/Clas
 import ClassicyDesktopMenuBar from '@/app/SystemFolder/SystemResources/Desktop/MenuBar/ClassicyDesktopMenuBar'
 import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import classNames from 'classnames'
-import React, { Suspense } from 'react'
+import React from 'react'
 import '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/fonts.scss'
 import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
-import ClassicyBoot from '@/app/SystemFolder/SystemResources/Boot/ClassicyBoot'
 
 interface ClassicyDesktopProps {
     children?: any
@@ -133,57 +132,46 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
 
     const currentTheme = getThemeVars(desktopState.System.Manager.Appearance.activeTheme)
 
-    React.useEffect(() => {
-        desktopEventDispatch({
-            type: 'ClassicyDesktopFocus',
-            menuBar: defaultMenuItems,
-        })
-    }, [])
-
     return (
         <>
-        <Suspense fallback={<ClassicyBoot />}>
-        <div
-                    id={'classicyDesktop'}
-                    style={currentTheme as React.CSSProperties}
-                    className={classNames(classicyDesktop.classicyDesktop)}
-                    onMouseMove={resizeSelectBox}
-                    onContextMenu={toggleDesktopContextMenu}
-                    onClick={clearSelectBox}
-                    onMouseDown={startSelectBox}
-                >
-                    {selectBox && (
-                        <div
-                            className={classicyDesktop.classicyDesktopSelect}
-                            style={{
-                                left: selectBoxStart[0],
-                                top: selectBoxStart[1],
-                                width: selectBoxSize[0],
-                                height: selectBoxSize[1],
-                            }}
-                        />
-                    )}
-                    <ClassicyDesktopMenuBar />
-                    {contextMenu && (
-                        <ClassicyContextualMenu menuItems={defaultMenuItems} position={contextMenuLocation} />
-                    )}
-                    <Finder />
-                    <ClassicyControlPanels />
-                    {desktopState.System.Manager.Desktop.icons.map((i) => (
-                        <ClassicyDesktopIcon
-                            appId={i.appId}
-                            appName={i.appName}
-                            icon={i.icon}
-                            label={i.label}
-                            kind={i.kind}
-                            key={i.appId}
-                            event={i.event}
-                            eventData={i.eventData}
-                        />
-                    ))}
-                    {children}
-                </div>
-            </Suspense>
+            <div
+                id={'classicyDesktop'}
+                style={currentTheme as React.CSSProperties}
+                className={classNames(classicyDesktop.classicyDesktop)}
+                onMouseMove={resizeSelectBox}
+                onContextMenu={toggleDesktopContextMenu}
+                onClick={clearSelectBox}
+                onMouseDown={startSelectBox}
+            >
+                {selectBox && (
+                    <div
+                        className={classicyDesktop.classicyDesktopSelect}
+                        style={{
+                            left: selectBoxStart[0],
+                            top: selectBoxStart[1],
+                            width: selectBoxSize[0],
+                            height: selectBoxSize[1],
+                        }}
+                    />
+                )}
+                <ClassicyDesktopMenuBar />
+                {contextMenu && <ClassicyContextualMenu menuItems={defaultMenuItems} position={contextMenuLocation} />}
+                <Finder />
+                <ClassicyControlPanels />
+                {desktopState.System.Manager.Desktop.icons.map((i) => (
+                    <ClassicyDesktopIcon
+                        appId={i.appId}
+                        appName={i.appName}
+                        icon={i.icon}
+                        label={i.label}
+                        kind={i.kind}
+                        key={i.appId}
+                        event={i.event}
+                        eventData={i.eventData}
+                    />
+                ))}
+                {children}
+            </div>
         </>
     )
 }

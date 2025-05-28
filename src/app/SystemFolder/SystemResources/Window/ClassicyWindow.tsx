@@ -65,7 +65,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const windowRef = React.useRef(null)
 
-    const app = useMemo(() => {
+    const appIndex = useMemo(() => {
         return desktopContext.System.Manager.App.apps.findIndex((app) => app.id === appId)
     }, [appId, desktopContext.System.Manager.App.apps])
 
@@ -84,7 +84,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
             menuBar: appMenu || [],
             contextMenuShown: false,
         }
-        let window = desktopContext.System.Manager.App.apps[app].windows.find((w) => w.id === id)
+        let window = desktopContext.System.Manager.App.apps[appIndex].windows.find((w) => w.id === id)
         if (!window) {
             window = {
                 id,
@@ -99,7 +99,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         }
         return window
     }, [
-        app,
+        appIndex,
         appId,
         appMenu,
         contextMenu,
@@ -119,7 +119,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                 id: appId,
             },
         })
-    }, [appId, desktopContext.System.Manager.App.apps, desktopEventDispatch, ws])
+    }, [appId, desktopContext.System.Manager.App.apps[appIndex], ws])
 
     const startResizeWindow = () => {
         desktopEventDispatch({
@@ -219,10 +219,10 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                 },
                 window: ws,
             })
-            desktopEventDispatch({
-                type: 'ClassicyWindowContextMenu',
-                contextMenu: contextMenu || [],
-            })
+            // desktopEventDispatch({
+            //     type: 'ClassicyWindowContextMenu',
+            //     contextMenu: contextMenu || [],
+            // })
         }
     }
 
@@ -281,15 +281,15 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     }
 
     const setContextMenu = (toShow: boolean, atPosition: [number, number]) => {
-        desktopEventDispatch({
-            type: 'ClassicyWindowContextMenu',
-            contextMenu: toShow,
-            position: atPosition,
-            window: ws,
-            app: {
-                id: appId,
-            },
-        })
+        // desktopEventDispatch({
+        //     type: 'ClassicyWindowContextMenu',
+        //     contextMenu: toShow,
+        //     position: atPosition,
+        //     window: ws,
+        //     app: {
+        //         id: appId,
+        //     },
+        // })
     }
 
     const hideContextMenu = (e) => {

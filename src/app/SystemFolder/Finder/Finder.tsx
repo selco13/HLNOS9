@@ -68,6 +68,7 @@ const Finder = () => {
     const openFile = (path: string) => {
         // TODO: Need to write this logic
     }
+
     const closeFolder = (path: string) => {
         desktopEventDispatch({
             type: 'ClassicyAppFinderCloseFolder',
