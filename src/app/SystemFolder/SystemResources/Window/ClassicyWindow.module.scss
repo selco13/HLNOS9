@@ -51,8 +51,11 @@
 }
 
 .classicyWindowResizerDimmed {
+  border-top: 1px solid var(--color-system-05) !important;
+  border-left: 1px solid var(--color-system-05) !important;
   background-image: none !important;
-  box-shadow: var(--color-system-07) -2px -2px 0;
+  box-shadow: var(--color-system-03) 1px 1px 0,
+  var(--color-system-03) -3px -3px 0;
 }
 
 .classicyWindowActive {
@@ -119,10 +122,6 @@
   box-shadow: none !important;
 
   .classicyWindowResizer {
-    right: -2em !important;
-    bottom: -2em !important;
-    width: 4em !important;
-    height: 4em !important;
     cursor: grabbing !important; /* Use grabbing cursor while actively resizing */
   }
 
@@ -201,7 +200,7 @@
     .classicyWindowIcon {
       max-width: calc(var(--window-control-size) * 2);
       max-height: calc(var(--window-control-size) * 2);
-      padding: 0 var(--window-padding-size);
+      padding: 0 calc(var(--window-padding-size) / 2);
 
       img {
         height: 100%;
@@ -220,6 +219,7 @@
       .classicyWindowTitleText {
         font-size: var(--ui-font-size);
         overflow: hidden;
+        align-content: flex-start;
         height: 1.5em !important;
         cursor: default;
         user-select: none;
@@ -289,24 +289,23 @@
   .classicyWindowResizer {
     position: absolute;
     z-index: 999;
-    right: calc(var(--window-padding-size) + var(--window-border-size) * 2);
-    bottom: calc(var(--window-padding-size) + var(--window-border-size) * 2);
-    width: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 1);
-    height: calc(var(--window-padding-size) * 3 + var(--window-border-size) * 1);
-    margin: calc(var(--window-border-size) * -3) calc(var(--window-border-size) * -2);
+    right: calc(var(--window-padding-size) + var(--window-border-size) * -1);
+    bottom: calc(var(--window-padding-size) + var(--window-border-size) * -2);
+    width: calc(var(--window-padding-size) * 2.5 + var(--window-border-size) * 1);
+    height: calc(var(--window-padding-size) * 2.5 + var(--window-border-size) * 1);
+    margin: calc(var(--window-border-size) * -1) calc(var(--window-border-size) * -1);
     padding: 0;
     cursor: grab;
     user-select: none;
-    border-top: 1px solid var(--color-system-01);
-    border-left: 1px solid var(--color-system-01);
+    border-top: 1px solid var(--color-system-07);
+    border-left: 1px solid var(--color-system-07);
     background-color: var(--color-system-03);
     background-image: assets.$resizer;
     background-repeat: no-repeat;
     background-position: center;
     background-size: var(--window-control-size);
     box-shadow: var(--color-system-03) 1px 1px 0,
-    var(--color-system-03) -1px -1px 0,
-    var(--color-system-07) -2px -2px 0;
+    var(--color-system-03) -1px -1px 0;
   }
 
   .classicyWindowContents {

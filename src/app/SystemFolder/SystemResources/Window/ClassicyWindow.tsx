@@ -248,6 +248,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const setCollapse = (toCollapse: boolean) => {
         if (toCollapse) {
+            setZoom(false)
             player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowCollapse' })
             desktopEventDispatch({
                 type: 'ClassicyWindowCollapse',
