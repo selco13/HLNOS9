@@ -77,6 +77,7 @@
       .classicyWindowTitleLeft,
       .classicyWindowTitleRight {
         background: assets.$title-bar-center;
+        background-size: auto 100%;
 
         &:after {
           position: relative;
@@ -85,22 +86,18 @@
           display: block;
           float: right;
           width: var(--window-padding-size);
-          height: calc(var(--window-control-size) * 1.25);
           content: ' ';
           background-image: assets.$title-bar-right;
           background-repeat: no-repeat;
-          background-size: contain;
         }
 
         &:before {
           position: relative;
           left: calc((var(--window-padding-size) * -1) / 2);
           display: block;
-          height: calc(var(--window-control-size) * 1.25);
           content: ' ';
           background-image: assets.$title-bar-left;
           background-repeat: no-repeat;
-          background-size: contain;
         }
       }
     }
@@ -159,6 +156,7 @@
     .classicyWindowTitle {
       .classicyWindowTitleCenter {
         background: assets.$title-bar-center-red;
+        background-size: auto 100%;
       }
 
       .classicyWindowTitleLeft,
@@ -201,9 +199,9 @@
     column-gap: calc(var(--window-border-size) * 4);
 
     .classicyWindowIcon {
-      width: calc(var(--window-control-size) * 1.5);
-      height: calc(var(--window-control-size) * 1.5);
-      padding: 0 calc(var(--window-padding-size) / 2);
+      max-width: calc(var(--window-control-size) * 2);
+      max-height: calc(var(--window-control-size) * 2);
+      padding: 0 var(--window-padding-size);
 
       img {
         height: 100%;
@@ -220,8 +218,9 @@
       text-align: center;
 
       .classicyWindowTitleText {
-        font-size: calc(var(--ui-font-size) * .875);
+        font-size: var(--ui-font-size);
         overflow: hidden;
+        height: 1.5em !important;
         cursor: default;
         user-select: none;
         color: var(--color-system-05);
@@ -232,7 +231,8 @@
         flex-grow: 1;
         width: auto;
         height: calc(var(--window-control-size) * 1.25);
-        margin: 0;
+        margin: calc(var(--window-padding-size) / 2) var(--window-padding-size);
+        margin-top: 0;
         padding: 0;
       }
 
@@ -241,7 +241,8 @@
         flex-grow: 1;
         width: auto;
         height: calc(var(--window-control-size) * 1.25);
-        margin: 0 var(--window-padding-size);
+        margin: calc(var(--window-padding-size) / 2) var(--window-padding-size);
+        margin-top: 0;
         padding: 0;
       }
 
@@ -359,5 +360,5 @@
 }
 
 .classicyWindowTitleBarModal {
-  padding: var(--window-padding-size) calc(var(--window-padding-size) / 1) !important;
+  padding: calc(var(--window-padding-size) / 1.25) calc(var(--window-padding-size) / 1.25) !important;
 }
