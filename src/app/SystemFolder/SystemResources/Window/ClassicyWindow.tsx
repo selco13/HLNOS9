@@ -271,15 +271,20 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const toggleZoom = () => {
         if (zoomable) {
-            setZoom(!ws.zoomed)
+            setZoom(!ws.zoomed, false)
         }
     }
 
-    const setZoom = (toZoom: boolean) => {
+    const setZoom = (toZoom: boolean, playSound: boolean = true) => {
         if (ws.collapsed) {
             setCollapse(false)
         }
-        player({ type: 'ClassicySoundPlay', sound: 'ClassicyWindowZoom' })
+        if (!playSound) {
+            player({
+                type: 'ClassicySoundPlay',
+                sound: toZoom ? 'ClassicyWindowZoomMinimize' : 'ClassicyWindowZoomMinimize',
+            })
+        }
         desktopEventDispatch({
             type: 'ClassicyWindowZoom',
             zoomed: toZoom,
