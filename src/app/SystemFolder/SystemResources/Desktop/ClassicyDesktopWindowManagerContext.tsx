@@ -14,18 +14,22 @@ const initialWindowState = {
     contextMenuShown: false,
 }
 
-const notEmpty = <T,>(value: T | null | undefined): value is T => value != null;
+const notEmpty = <T,>(value: T | null | undefined): value is T => value != null
 
 type ClassicyWindowAction =
     // Open the Window's Context Menu
-    | { type: 'ClassicyWindowMenu'; menuBar: any } 
+    | { type: 'ClassicyWindowMenu'; menuBar: any }
     // Open a Window
-    | { type: 'ClassicyWindowOpen'; app: { id: string }; window: {id: string; minimumSize: [number, number], size:  [number, number], position: [number, number]} }
+    | {
+          type: 'ClassicyWindowOpen'
+          app: { id: string }
+          window: { id: string; minimumSize: [number, number]; size: [number, number]; position: [number, number] }
+      }
     // Focus a Window
-    | { type: 'ClassicyWindowFocus'; app: { id: string, appMenu: any }; window: { id: string } }
+    | { type: 'ClassicyWindowFocus'; app: { id: string; appMenu: any }; window: { id: string } }
     // Close a Window
     | { type: 'ClassicyWindowClose'; app: { id: string }; window: { id: string } }
-    // Close a Window and destroy it's entry
+    // Close a Window and destroy its entry
     | { type: 'ClassicyWindowDestroy'; app: { id: string }; window: { id: string } }
     // Collapse (or Minimize) a window
     | { type: 'ClassicyWindowCollapse'; app: { id: string }; window: { id: string } }
@@ -38,9 +42,21 @@ type ClassicyWindowAction =
     // Set a Window's Position
     | { type: 'ClassicyWindowPosition'; app: { id: string }; window: { id: string }; position: [number, number] }
     // Resize a Window
-    | { type: 'ClassicyWindowResize'; app: { id: string }; window: { id: string }; resizing: boolean; size: [number, number] }
+    | {
+          type: 'ClassicyWindowResize'
+          app: { id: string }
+          window: { id: string }
+          resizing: boolean
+          size: [number, number]
+      }
     // Move a Window
-    | { type: 'ClassicyWindowMove'; app: { id: string }; window: { id: string }; position: [number, number]; moving: boolean }
+    | {
+          type: 'ClassicyWindowMove'
+          app: { id: string }
+          window: { id: string }
+          position: [number, number]
+          moving: boolean
+      }
 
 export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWindowAction) => {
     const updateWindow = (appId: string, windowId: string, updates: any) => {
@@ -95,9 +111,8 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
                 }
                 return a
             })
-                break
-    
-    
+            break
+
         case 'ClassicyWindowMenu':
             ds.System.Manager.Desktop.appMenu = action.menuBar
             break

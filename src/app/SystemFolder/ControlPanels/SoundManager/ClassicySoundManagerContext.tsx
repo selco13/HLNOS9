@@ -37,6 +37,7 @@ enum ClassicySoundActionTypes {
     ClassicySoundStop,
     ClassicySoundPlay,
     ClassicySoundPlayInterrupt,
+    ClassicySoundPlayError,
     ClassicySoundLoad,
     ClassicySoundSet,
     ClassicySoundDisable,
@@ -118,6 +119,13 @@ export const ClassicySoundStateEventReducer = (ss: ClassicySoundState, action: C
             if (playerCanPlayInterrupt(ss, action.sound)) {
                 ss.soundPlayer.stop()
                 ss.soundPlayer.play(action.sound)
+            }
+            break
+        }
+        case ClassicySoundActionTypes.ClassicySoundPlayError: {
+            if (playerCanPlayInterrupt(ss, action.sound)) {
+                ss.soundPlayer.stop()
+                ss.soundPlayer.play(action.sound || 'ClassicyAlertWildEep')
             }
             break
         }

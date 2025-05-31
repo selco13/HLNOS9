@@ -93,7 +93,9 @@ const ClassicyDesktopMenuWidgetTime: React.FC = ({}) => {
                     onDoubleClick={openDateTimeManager}
                 >
                     {displayDay && (
-                        <span>{displayLongDay ? daysOfWeek[time.day] : daysOfWeek[time.day].slice(0, 3)}&nbsp;</span>
+                        <span className={classicyDesktopMenuWidgetTimeStyles.classicyDesktopMenuTimeSeparatorRight}>
+                            {displayLongDay ? daysOfWeek[time.day] : daysOfWeek[time.day].slice(0, 3)}
+                        </span>
                     )}
                     <span> {militaryTime ? convertToTwoDigit(time.hours) : convertTo12HourPeriod(time.hours)}</span>
                     <span>
@@ -106,7 +108,11 @@ const ClassicyDesktopMenuWidgetTime: React.FC = ({}) => {
                             <span>{convertToTwoDigit(time.seconds)}</span>
                         </>
                     )}
-                    {!militaryTime && displayPeriod && <span>&nbsp;{time.period}</span>}
+                    {!militaryTime && displayPeriod && (
+                        <span className={classicyDesktopMenuWidgetTimeStyles.classicyDesktopMenuTimeSeparatorLeft}>
+                            {time.period}
+                        </span>
+                    )}
                 </li>
             )}
         </>

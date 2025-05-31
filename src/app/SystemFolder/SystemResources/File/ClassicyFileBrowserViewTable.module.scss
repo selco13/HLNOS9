@@ -59,11 +59,12 @@
   position: relative;
   padding: var(--window-padding-size);
 
-  @include appearance.platinumWindowHeaderBorder;
+  @include appearance.platinumWindowBorder;
 }
 
 .classicyFileBrowserViewTableColumnHeader:first-child {
-  @include appearance.platinumWindowHeaderBorder;
+  @include appearance.platinumWindowHeaderBorderDepressed;
+  background-color: var(--color-system-04);
 }
 
 .classicyFileBrowserViewTableColumnHeaderGroup {

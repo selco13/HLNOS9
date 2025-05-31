@@ -263,8 +263,8 @@ export const ClassicyAppearanceManager: React.FC = () => {
                 appMenu={appMenu}
             >
                 <ClassicyTabs tabs={tabs} />
-                <ClassicyButton onClick={cleanupIcons}>Cleanup Icons</ClassicyButton>
-                <ClassicyButton onClick={quitApp}>Quit</ClassicyButton>
+                <ClassicyButton onClickFunc={cleanupIcons}>Cleanup Icons</ClassicyButton>
+                <ClassicyButton onClickFunc={quitApp}>Quit</ClassicyButton>
             </ClassicyWindow>
             {showAbout && getClassicyAboutWindow({ appId, appName, appIcon, hideFunc: () => setShowAbout(false) })}
         </ClassicyApp>

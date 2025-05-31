@@ -94,68 +94,72 @@
       44000,
       135.01133786848385
     ],
-    "ClassicyThump": [
+    "ClassicyTabClick": [
       46000,
+      161.8140589569137
+    ],
+    "ClassicyThump": [
+      48000,
       144.39909297052367
     ],
     "ClassicyWindowClose": [
-      48000,
+      50000,
       135.01133786848385
     ],
     "ClassicyWindowCollapse": [
-      50000,
+      52000,
       119.99999999999744
     ],
     "ClassicyWindowControlClickDown": [
-      52000,
+      54000,
       11.678004535149
     ],
     "ClassicyWindowControlClickUp": [
-      54000,
+      56000,
       56.66666666666487
     ],
     "ClassicyWindowExpand": [
-      56000,
+      58000,
       235.01133786847817
     ],
     "ClassicyWindowFocus": [
-      58000,
+      60000,
       30.000000000001137
     ],
     "ClassicyWindowMoveIdle": [
-      60000,
+      62000,
       381.67800453514644
     ],
     "ClassicyWindowMoveMoving": [
-      62000,
-      853.3333333333317
+      64000,
+      853.3333333333388
     ],
     "ClassicyWindowMoveStop": [
-      64000,
+      66000,
       200.00000000000284
     ],
     "ClassicyWindowOpen": [
-      66000,
+      68000,
       306.666666666672
     ],
     "ClassicyWindowResizeIdle": [
-      68000,
+      70000,
       381.67800453514644
     ],
     "ClassicyWindowResizeResizing": [
-      70000,
+      72000,
       873.3333333333348
     ],
     "ClassicyWindowResizeStop": [
-      72000,
+      74000,
       306.666666666672
     ],
     "ClassicyWindowZoomMaximize": [
-      74000,
+      76000,
       71.67800453514417
     ],
     "ClassicyWindowZoomMinimize": [
-      76000,
+      78000,
       66.66666666666288
     ]
   }

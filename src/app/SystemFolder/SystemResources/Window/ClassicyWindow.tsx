@@ -30,7 +30,7 @@ interface ClassicyWindowProps {
     contextMenu?: ClassicyMenuItem[]
     onCloseFunc?: any
     children?: React.ReactNode
-    color?: string
+    type?: string
 }
 
 const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
@@ -45,7 +45,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     resizable = true,
     scrollable = true,
     modal = false,
-    color = 'default',
+    type = 'default',
     growable,
     initialSize = [350, 0],
     initialPosition = [0, 0],
@@ -139,6 +139,10 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const startMoveWindow = (e) => {
         e.preventDefault()
+        if (modal && type == 'error') {
+            // Don't allow modal error dialogs to move
+            return
+        }
         setClickPosition([
             e.clientX - windowRef.current.getBoundingClientRect().left,
             e.clientY - windowRef.current.getBoundingClientRect().top,
@@ -231,6 +235,9 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     React.useEffect(() => {
         // This ensures that once a window has opened it becomes the focus.
         setActive()
+        if (modal && type == 'error') {
+            player({ type: 'ClassicySoundPlayError' })
+        }
     }, [])
 
     const toggleCollapse = () => {
@@ -376,7 +383,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                         ws.moving === true ? classicyWindowStyle.classicyWindowDragging : '',
                         ws.resizing === true ? classicyWindowStyle.classicyWindowResizing : '',
                         modal === true ? classicyWindowStyle.classicyWindowModal : '',
-                        modal && color == 'red' ? classicyWindowStyle.classicyWindowRed : '',
+                        modal && type == 'error' ? classicyWindowStyle.classicyWindowRed : '',
                         scrollable === true ? '' : classicyWindowStyle.classicyWindowNoScroll
                     )}
                     onMouseMove={changeWindow}
@@ -411,19 +418,19 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                             >
                                 {titleBar()}
                             </div>
-                            {collapsable && (
-                                <div className={classicyWindowStyle.classicyWindowControlBox}>
-                                    <div
-                                        className={classicyWindowStyle.classicyWindowCollapseBox}
-                                        onClick={toggleCollapse}
-                                    ></div>
-                                </div>
-                            )}
                             {zoomable && (
                                 <div className={classicyWindowStyle.classicyWindowControlBox}>
                                     <div
                                         className={classicyWindowStyle.classicyWindowZoomBox}
                                         onClick={toggleZoom}
+                                    ></div>
+                                </div>
+                            )}
+                            {collapsable && (
+                                <div className={classicyWindowStyle.classicyWindowControlBox}>
+                                    <div
+                                        className={classicyWindowStyle.classicyWindowCollapseBox}
+                                        onClick={toggleCollapse}
                                     ></div>
                                 </div>
                             )}

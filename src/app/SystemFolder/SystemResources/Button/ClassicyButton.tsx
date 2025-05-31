@@ -6,7 +6,7 @@ import React from 'react'
 type ClassicyButtonProps = {
     isDefault?: boolean
     disabled?: boolean
-    onClick?: any
+    onClickFunc?: any
     children?: any
     buttonShape?: 'rectangle' | 'square'
     buttonSize?: 'medium' | 'small'
@@ -19,7 +19,7 @@ const ClassicyButton: React.FC<ClassicyButtonProps> = ({
     buttonShape = 'rectangle',
     buttonSize,
     disabled = false,
-    onClick = null,
+    onClickFunc = null,
     children,
 }) => {
     const player = useSoundDispatch()
@@ -35,7 +35,7 @@ const ClassicyButton: React.FC<ClassicyButtonProps> = ({
                 buttonShape === 'square' ? classicyButtonStyles.classicyButtonShapeSquare : '',
                 buttonSize === 'small' ? classicyButtonStyles.classicyButtonSmall : ''
             )}
-            onClick={onClick}
+            onClick={onClickFunc}
             onMouseDown={() => {
                 player({ type: 'ClassicySoundPlay', sound: 'ClassicyButtonClickDown' })
             }}

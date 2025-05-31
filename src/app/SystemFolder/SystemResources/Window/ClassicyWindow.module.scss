@@ -20,11 +20,12 @@
   top: 0;
   display: flex;
   @include appearance.platinumWindowHeaderBorder;
+  @include appearance.platinumWindowInnerBoxShadowOuter;
+
   @include appearance.no-select;
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  width: calc(100% - var(--window-padding-size) * 2 - calc(var(--window-border-size) * 2));
   height: var(--window-control-size);
   padding: var(--window-padding-size);
   background: var(--color-system-03);
@@ -121,12 +122,11 @@
   box-shadow: none !important;
 
   .classicyWindowResizer {
-    //top: 2em !important;
     right: -2em !important;
     bottom: -2em !important;
     width: 4em !important;
     height: 4em !important;
-    cursor: grabbing !important;
+    cursor: grabbing !important; /* Use grabbing cursor while actively resizing */
   }
 
   * {
@@ -135,34 +135,28 @@
 }
 
 .classicyWindowDragging {
+  cursor: grabbing !important; /* Set cursor for the dragging element itself */
   border: calc(var(--window-padding-size) / 4) dotted !important;
   border-color: black !important;
   background: transparent !important;
   box-shadow: none !important;
 
   * {
-    cursor: grabbing;
-    user-select: none;
+    user-select: none; /* Prevent text selection while dragging */
     opacity: 0;
-    user-drag: none;
-  }
-
-  .classicyWindowTitle {
+    user-drag: none; /* Prevent accidental dragging of child elements */
   }
 }
 
 .classicyWindowRed {
   @include appearance.platinumWindowBorder;
+  z-index: 99999 !important;
   border-color: var(--color-error) !important;
 
   .classicyWindowTitleBar {
     background-color: #f7cecd !important;
 
     .classicyWindowTitle {
-      .classicyWindowTitleText {
-        //color: red !important;
-      }
-
       .classicyWindowTitleCenter {
         background: assets.$title-bar-center-red;
       }
@@ -187,7 +181,7 @@
   position: absolute;
   z-index: 20;
   max-height: calc(100% - var(--window-control-size) * 4 - var(--window-padding-size));
-  padding: var(--window-padding-size);
+  padding: calc(var(--window-padding-size) / 1.25);
 
   background-color: var(--color-window-frame);
   @include appearance.platinumWindowBorder;
@@ -204,7 +198,7 @@
     text-align: center;
     border: none;
     box-shadow: none;
-    column-gap: var(--window-padding-size);
+    column-gap: calc(var(--window-border-size) * 4);
 
     .classicyWindowIcon {
       max-width: calc(var(--window-control-size) * 2);

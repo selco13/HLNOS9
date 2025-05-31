@@ -38,7 +38,7 @@ export const ClassicyAboutWindow: React.FC<ClassicyAboutWindowProps> = ({
                 <img src={appIcon} alt="About" />
                 <h1>{appName}</h1>
                 <h5>Not Copyright &copy; 1997 Apple Computer, Inc.</h5>
-                <ClassicyButton onClick={hideFunc}>OK</ClassicyButton>
+                <ClassicyButton onClickFunc={hideFunc}>OK</ClassicyButton>
             </div>
         </ClassicyWindow>
     )

@@ -53,7 +53,7 @@ const Browser = () => {
             >
                 <ClassicyControlGroup columns={true}>
                     <ClassicyInput id={'browserAddress'} ref={refAddressBar}></ClassicyInput>
-                    <ClassicyButton onClick={goBook}>Submit</ClassicyButton>
+                    <ClassicyButton onClickFunc={goBook}>Submit</ClassicyButton>
                 </ClassicyControlGroup>
                 <iframe
                     title="myBook"

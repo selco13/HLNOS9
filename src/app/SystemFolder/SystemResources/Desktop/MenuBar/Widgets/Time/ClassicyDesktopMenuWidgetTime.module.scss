@@ -8,6 +8,14 @@
   }
 }
 
+.classicyDesktopMenuTimeSeparatorRight {
+  margin-right: calc(var(--window-padding-size))
+}
+
+.classicyDesktopMenuTimeSeparatorLeft {
+  margin-left: calc(var(--window-border-size) * 2)
+}
+
 .textBlinker {
   animation: blinker 2s steps(1, end) infinite;
 }

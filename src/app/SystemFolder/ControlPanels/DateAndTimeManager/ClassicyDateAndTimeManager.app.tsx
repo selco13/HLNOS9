@@ -246,7 +246,7 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
                         />
                     </ClassicyControlGroup>
                 </div>
-                <ClassicyButton isDefault={false} onClick={quitApp}>
+                <ClassicyButton isDefault={false} onClickFunc={quitApp}>
                     Quit
                 </ClassicyButton>
             </ClassicyWindow>

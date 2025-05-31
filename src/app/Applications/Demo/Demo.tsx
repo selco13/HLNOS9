@@ -11,6 +11,7 @@ import ClassicyProgressBar from '@/app/SystemFolder/SystemResources/ProgressBar/
 import ClassicyRadioInput from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React from 'react'
+import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 
 const Demo: React.FC = () => {
     const appName = 'Demo'
@@ -21,6 +22,18 @@ const Demo: React.FC = () => {
 
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
+    }
+
+    const closeDemoWindow = () => {
+        desktopEventDispatch({
+            type: 'ClassicyWindowClose',
+            app: {
+                id: appId,
+            },
+            window: {
+                id: 'demo23',
+            },
+        })
     }
 
     const appMenu = [
@@ -48,14 +61,18 @@ const Demo: React.FC = () => {
                     zoomable={false}
                     scrollable={false}
                     collapsable={false}
-                    initialSize={[400, 0]}
-                    initialPosition={[300, 50]}
+                    initialSize={[0, 0]}
+                    initialPosition={[300, 300]}
                     modal={true}
                     appMenu={appMenu}
                     hidden={false}
-                    color={'red'}
+                    type={'error'}
                 >
-                    <ClassicyButton>OK</ClassicyButton>
+                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '.5em' }}>
+                        <img src={'/img/icons/system/error.png'} />
+                        <ClassicyControlLabel label={'This is an error modal dialog.'}></ClassicyControlLabel>
+                    </div>
+                    <ClassicyButton onClickFunc={closeDemoWindow}>OK</ClassicyButton>
                 </ClassicyWindow>
                 <ClassicyWindow
                     id={'demo2'}
@@ -159,7 +176,7 @@ const Demo: React.FC = () => {
                         <p style={{ fontFamily: 'var(--header-font)' }}>HELLO!</p>
                     </ClassicyDisclosure>
                     <ClassicyButton isDefault={true}>Do Nothing</ClassicyButton>
-                    <ClassicyButton isDefault={false} onClick={quitApp}>
+                    <ClassicyButton isDefault={false} onClickFunc={quitApp}>
                         Quit
                     </ClassicyButton>
                     <ClassicyButton isDefault={false} disabled={true}>

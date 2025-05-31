@@ -133,7 +133,7 @@ export const ClassicySoundManager: React.FC = () => {
                         ))}
                     </div>
                 </ClassicyDisclosure>
-                <ClassicyButton isDefault={false} onClick={quitApp}>
+                <ClassicyButton isDefault={false} onClickFunc={quitApp}>
                     Quit
                 </ClassicyButton>
             </ClassicyWindow>

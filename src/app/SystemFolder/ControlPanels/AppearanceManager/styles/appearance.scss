@@ -26,10 +26,22 @@
   box-shadow: inset var(--window-border-size) var(--window-border-size) var(--color-window-border-outset);
 }
 
+@mixin platinumWindowHeaderBorderDepressed {
+  box-shadow: inset calc(var(--window-border-size) * -1) calc(var(--window-border-size) * -1) var(--color-system-05),
+  inset calc(var(--window-border-size) * 2) calc(var(--window-border-size) * 2) var(--color-system-06);
+  border-radius: 0 !important;
+  color: var(--color-black);
+}
+
 @mixin platinumWindowInnerBoxShadow {
   box-shadow: calc(var(--window-border-size) * -1) calc(var(--window-border-size) * -1) var(--color-system-05),
   calc(var(--window-border-size) * 1) calc(var(--window-border-size) * 1) var(--color-window-border-outset);
 }
+
+@mixin platinumWindowInnerBoxShadowOuter {
+  box-shadow: calc(var(--window-border-size) * -1) calc(var(--window-border-size) * -1) var(--color-system-05);
+}
+
 
 @mixin platinumWindowInnerBorder {
   border: var(--window-border-size) solid var(--color-window-border);
