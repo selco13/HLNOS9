@@ -27,8 +27,8 @@
   background-position: left bottom;
   background-size: 100%;
   mask-repeat: no-repeat;
-  mask-size: 97%;
-  mask-position: center bottom;
+  mask-size: 98% 98%;
+  mask-position: center center;
 }
 
 .classicyTabButtonWrapper {
@@ -36,8 +36,8 @@
   border-top: var(--window-border-size) solid;
   background-color: var(--color-system-07);
   mask-repeat: no-repeat;
+  mask-size: 100% 100%;
   mask-position: center bottom;
-  mask-size: cover;
 }
 
 .classicyTabButtonActive {
