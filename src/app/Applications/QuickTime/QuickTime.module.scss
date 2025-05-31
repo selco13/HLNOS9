@@ -14,20 +14,17 @@
   flex-direction: column;
   width: 100%;
   height: calc(100% - var(--window-control-size) * 1);
-  min-height: calc(var(--window-control-size) * 2);
+  min-height: calc(var(--window-control-size) * 1.5);
 }
 
 .quickTimePlayerVideoControlsHolder {
   @include appearance.no-select;
   position: absolute;
-  bottom: calc(var(--window-padding-size) * .75);
+  bottom: calc(var(--window-border-size) * 1);
   display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: center;
-  width: calc(100% - var(--window-control-size) * 3.5);
+  width: calc(100% - var(--window-control-size) * 2);
 
-  height: calc(var(--window-control-size) * 2);
+  height: calc(var(--window-control-size) * 1.5);
   margin-bottom: calc(var(--window-padding-size) - var(--window-border-size));
   background: var(--color-system-03);
   justify-items: center;
@@ -40,7 +37,7 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  height: calc(var(--window-control-size) * 2);
+  height: calc(var(--window-control-size) * 1.5);
   margin: 0;
   padding: 0 var(--window-padding-size);
   @include appearance.platinumWindowUndepressable;
@@ -48,9 +45,6 @@
   border-radius: 0;
   aspect-ratio: 1/1 !important;
 
-  img {
-    filter: drop-shadow(var(--window-border-size) var(--window-border-size) 0px rgba(0, 0, 0, 0.5));
-  }
 }
 
 .quickTimePlayerVideoControlsButton {
@@ -58,7 +52,7 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  height: calc(var(--window-control-size) * 2);
+  height: calc(var(--window-control-size) * 1.5);
   margin: 0;
   padding: 0;
   @include appearance.platinumWindowDepressable;
@@ -72,8 +66,8 @@
 }
 
 .quickTimePlayerVideoControlsIcon {
-  width: calc(var(--window-control-size) * 1.25);
-  height: calc(var(--window-control-size) * 1);
+  width: calc(var(--window-control-size) * .875);
+  height: calc(var(--window-control-size) * .875);
 }
 
 .quickTimePlayerVideoControlsPlayIcon {
@@ -124,7 +118,7 @@
 
 .quickTimePlayerVideoControlsProgressBar::-webkit-slider-thumb, .quickTimePlayerVideoControlsVolumeBar::-webkit-slider-thumb {
   width: calc(var(--window-control-size) * 1.25);
-  height: calc(var(--window-control-size) * 2);
+  height: calc(var(--window-control-size) * 1.5);
   margin-top: calc(
           var(--window-control-size) * -0.5
   ); /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
@@ -150,7 +144,7 @@
 .quickTimePlayerVideoControlsVolumeBar::-webkit-slider-runnable-track {
   //height: calc(var(--window-control-size) * 0.825);
   width: calc(var(--window-control-size) * 1);
-  height: calc(var(--window-control-size) * 2);
+  height: calc(var(--window-control-size) * 1.5);
   margin-top: calc(var(--window-control-size) * 0.25);
   margin-right: calc(var(--window-padding-size) * .5);
   margin-left: calc(var(--window-padding-size) * .75);
@@ -172,8 +166,8 @@
 
 
 .quickTimePlayerVideoControlsProgressBar::-webkit-slider-runnable-track {
-  height: calc(var(--window-control-size) * 0.825);
-  margin-top: calc(var(--window-control-size) * 0.25);
+  height: calc(var(--window-control-size) * 0.75);
+  margin-top: calc(var(--window-control-size) * -0.25);
   margin-right: calc(var(--window-padding-size) * 1);
   margin-left: calc(var(--window-padding-size) * 0.5);
   cursor: pointer;
