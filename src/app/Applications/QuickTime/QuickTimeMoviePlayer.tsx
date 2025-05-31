@@ -29,7 +29,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
     useEffect(() => {
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
         const appData = desktop.System.Manager.App.apps[appIndex]?.data || {}
-        if (!appData?.hasOwnProperty('openFiles')) {
+        if (!appData?.hasOwnProperty('')) {
             appData['openFiles'] = [
                 {
                     url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
