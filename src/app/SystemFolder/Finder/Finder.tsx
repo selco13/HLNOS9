@@ -5,6 +5,7 @@ import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/Clas
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { useEffect } from 'react'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
+import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 
 type PathSettingsProps = {
     _viewType: 'list' | 'icons'
@@ -18,6 +19,7 @@ const Finder = () => {
     const desktop = useDesktop()
 
     const [pathSettings, setPathSettings] = React.useState<Record<string, PathSettingsProps>>({})
+    const [showAbout, setShowAbout] = React.useState(false)
 
     useEffect(() => {
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
@@ -193,7 +195,9 @@ const Finder = () => {
                                         {
                                             id: appId + '_' + op + '_help_about',
                                             title: 'About',
-                                            onClickFunc: () => {},
+                                            onClickFunc: () => {
+                                                setShowAbout(true)
+                                            },
                                         },
                                     ],
                                 },
@@ -210,6 +214,7 @@ const Finder = () => {
                         </ClassicyWindow>
                     )
                 })}
+            {showAbout && getClassicyAboutWindow({ appId, appName, appIcon, hideFunc: () => setShowAbout(false) })}
         </ClassicyApp>
     )
 }

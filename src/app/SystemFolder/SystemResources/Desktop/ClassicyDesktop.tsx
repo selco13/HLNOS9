@@ -10,6 +10,7 @@ import classNames from 'classnames'
 import React from 'react'
 import '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/fonts.scss'
 import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
+import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 
 interface ClassicyDesktopProps {
     children?: any
@@ -18,6 +19,7 @@ interface ClassicyDesktopProps {
 const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
     const [contextMenu, setContextMenu] = React.useState(false)
     const [contextMenuLocation, setContextMenuLocation] = React.useState([0, 0])
+    const [showAbout, setShowAbout] = React.useState(false)
 
     const [selectBoxStart, setSelectBoxStart] = React.useState([0, 0])
     const [selectBoxSize, setSelectBoxSize] = React.useState([0, 0])
@@ -127,6 +129,15 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
         {
             id: 'finder_help',
             title: 'Help',
+            menuChildren: [
+                {
+                    id: 'finder_help_about',
+                    title: 'About',
+                    onClickFunc: () => {
+                        setShowAbout(true)
+                    },
+                },
+            ],
         },
     ]
 
@@ -158,6 +169,13 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
                 {contextMenu && <ClassicyContextualMenu menuItems={defaultMenuItems} position={contextMenuLocation} />}
                 <Finder />
                 <ClassicyControlPanels />
+                {showAbout &&
+                    getClassicyAboutWindow({
+                        appId: 'Finder.app',
+                        appName: 'Finder',
+                        appIcon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/macos.svg`,
+                        hideFunc: () => setShowAbout(false),
+                    })}
                 {desktopState.System.Manager.Desktop.icons.map((i) => (
                     <ClassicyDesktopIcon
                         appId={i.appId}
