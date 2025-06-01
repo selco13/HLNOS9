@@ -119,7 +119,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                         resizable={true}
                         zoomable={true}
                         scrollable={false}
-                        collapsable={true}
+                        collapsable={false}
                         initialSize={[400, 100]}
                         initialPosition={[300, 50]}
                         modal={true}
@@ -318,7 +318,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
                         type="range"
                         min="0"
                         max="1"
-                        step="0.01"
+                        step="0.001"
                         value={playerRef.current?.getCurrentTime() / playerRef.current?.getDuration()}
                         readOnly={false}
                         onChange={(e) => {
