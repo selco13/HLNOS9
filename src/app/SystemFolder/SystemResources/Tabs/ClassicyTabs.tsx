@@ -1,5 +1,5 @@
 import classicyTabStyles from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs.module.scss'
-import React from 'react'
+import React, { useState } from 'react'
 import tabMaskImage from './tab.svg'
 import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
@@ -13,7 +13,7 @@ interface TabIndividual {
 }
 
 const ClassicyTabs: React.FC<TabProps> = ({ tabs }) => {
-    const [activeTab, setActiveTab] = React.useState(0)
+    const [activeTab, setActiveTab] = useState(0)
     const player = useSoundDispatch()
 
     const handleTabClick = (e) => {

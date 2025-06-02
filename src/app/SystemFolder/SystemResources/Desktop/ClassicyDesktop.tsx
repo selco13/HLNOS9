@@ -7,7 +7,7 @@ import ClassicyDesktopIcon from '@/app/SystemFolder/SystemResources/Desktop/Clas
 import ClassicyDesktopMenuBar from '@/app/SystemFolder/SystemResources/Desktop/MenuBar/ClassicyDesktopMenuBar'
 import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import classNames from 'classnames'
-import React from 'react'
+import React, { CSSProperties, useState } from 'react'
 import '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/fonts.scss'
 import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
 import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
@@ -17,13 +17,13 @@ interface ClassicyDesktopProps {
 }
 
 const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
-    const [contextMenu, setContextMenu] = React.useState(false)
-    const [contextMenuLocation, setContextMenuLocation] = React.useState([0, 0])
-    const [showAbout, setShowAbout] = React.useState(false)
+    const [contextMenu, setContextMenu] = useState(false)
+    const [contextMenuLocation, setContextMenuLocation] = useState([0, 0])
+    const [showAbout, setShowAbout] = useState(false)
 
-    const [selectBoxStart, setSelectBoxStart] = React.useState([0, 0])
-    const [selectBoxSize, setSelectBoxSize] = React.useState([0, 0])
-    const [selectBox, setSelectBox] = React.useState(false)
+    const [selectBoxStart, setSelectBoxStart] = useState([0, 0])
+    const [selectBoxSize, setSelectBoxSize] = useState([0, 0])
+    const [selectBox, setSelectBox] = useState(false)
 
     const clickOffset = [10, 10]
 
@@ -147,7 +147,7 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
         <>
             <div
                 id={'classicyDesktop'}
-                style={currentTheme as React.CSSProperties}
+                style={currentTheme as CSSProperties}
                 className={classNames(classicyDesktop.classicyDesktop)}
                 onMouseMove={resizeSelectBox}
                 onContextMenu={toggleDesktopContextMenu}

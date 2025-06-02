@@ -1,7 +1,7 @@
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
 import ClassicyIcon from '@/app/SystemFolder/SystemResources/Icon/ClassicyIcon'
-import React from 'react'
+import React, { RefObject, useEffect, useState } from 'react'
 import { getIconSize } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
 import { ClassicyTheme } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearance'
 
@@ -11,7 +11,7 @@ type ClassicyFileBrowserViewIconsProps = {
     appId: string
     dirOnClickFunc?: (path: string) => void
     fileOnClickFunc?: (path: string) => void
-    holderRef: React.RefObject<HTMLDivElement>
+    holderRef: RefObject<HTMLDivElement>
 }
 
 const ClassicyFileBrowserViewIcons: React.FC<ClassicyFileBrowserViewIconsProps> = ({
@@ -25,7 +25,7 @@ const ClassicyFileBrowserViewIcons: React.FC<ClassicyFileBrowserViewIconsProps> 
     const desktopContext = useDesktop(),
         desktopEventDispatch = useDesktopDispatch()
 
-    const [items, setItems] = React.useState([])
+    const [items, setItems] = useState([])
 
     const iconImageByType = (byType: string) => {
         switch (byType) {
@@ -80,7 +80,7 @@ const ClassicyFileBrowserViewIcons: React.FC<ClassicyFileBrowserViewIconsProps> 
         return [iconPadding + Math.floor(iconSize * 2 * startX), iconPadding + Math.floor(iconSize * 2 * startY)]
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         const containerMeasure: [number, number] = [
             holderRef.current.getBoundingClientRect().width,
             holderRef.current.getBoundingClientRect().height,

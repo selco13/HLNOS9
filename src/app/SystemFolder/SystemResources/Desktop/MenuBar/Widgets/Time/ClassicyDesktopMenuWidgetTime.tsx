@@ -1,7 +1,7 @@
 import classicyDesktopMenuWidgetTimeStyles from '@/app/SystemFolder/SystemResources/Desktop/MenuBar/Widgets/Time/ClassicyDesktopMenuWidgetTime.module.scss'
 import classicyMenuStyles from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 
 const ClassicyDesktopMenuWidgetTime: React.FC = ({}) => {
@@ -11,7 +11,7 @@ const ClassicyDesktopMenuWidgetTime: React.FC = ({}) => {
     const { show, militaryTime, displaySeconds, displayPeriod, displayDay, displayLongDay, flashSeparators } =
         desktopContext.System.Manager.DateAndTime
 
-    const [time, setTime] = React.useState({
+    const [time, setTime] = useState({
         day: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCDay(),
         minutes: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCMinutes(),
         hours: new Date(desktopContext.System.Manager.DateAndTime.dateTime).getUTCHours(),
@@ -21,7 +21,7 @@ const ClassicyDesktopMenuWidgetTime: React.FC = ({}) => {
 
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
-    React.useEffect(() => {
+    useEffect(() => {
         const intervalId = setInterval(() => {
             const date = new Date(desktopContext.System.Manager.DateAndTime.dateTime)
             date.setSeconds(date.getSeconds() + 1)

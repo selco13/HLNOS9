@@ -12,11 +12,11 @@ import {
     toolbarPlugin,
     UndoRedo,
 } from '@mdxeditor/editor'
-import { FC } from 'react'
+import { FC, MutableRefObject } from 'react'
 
 interface ClassicyRichTextEditorProps {
     content: string
-    editorRef?: React.MutableRefObject<MDXEditorMethods | null>
+    editorRef?: MutableRefObject<MDXEditorMethods | null>
 }
 
 const ClassicyRichTextEditor: FC<ClassicyRichTextEditorProps> = ({ content, editorRef }) => {

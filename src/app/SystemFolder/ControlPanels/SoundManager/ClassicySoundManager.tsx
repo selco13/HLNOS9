@@ -15,7 +15,7 @@ import {
     useSoundDispatch,
 } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { useState } from 'react'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 
 export const ClassicySoundManager: React.FC = () => {
@@ -28,9 +28,9 @@ export const ClassicySoundManager: React.FC = () => {
     const appId: string = 'SoundManager.app'
     const appIcon: string = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/sound-manager/app.png`
 
-    const [showAbout, setShowAbout] = React.useState(false)
+    const [showAbout, setShowAbout] = useState(false)
 
-    const [enableAllSounds, setEnableAllSounds] = React.useState(false)
+    const [enableAllSounds, setEnableAllSounds] = useState(false)
 
     const changeSounds = (e) => {
         setEnableAllSounds(!!e.target.checked)

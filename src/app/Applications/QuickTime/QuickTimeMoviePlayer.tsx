@@ -153,16 +153,17 @@ type QuickTimeVideoEmbed = {
 const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, options, type, subtitlesUrl }) => {
     const desktop = useDesktop()
 
-    const playerRef = React.useRef(null)
-    const [playing, setPlaying] = React.useState(false)
-    const [volume, setVolume] = React.useState(0.5)
-    const [loop, setLoop] = React.useState(false)
-    const [isFullscreen, setIsFullscreen] = React.useState(false)
+    const [playing, setPlaying] = useState(false)
+    const [volume, setVolume] = useState(0.5)
+    const [loop, setLoop] = useState(false)
+    const [isFullscreen, setIsFullscreen] = useState(false)
     const [showVolume, setShowVolume] = useState<boolean>(false)
     const [subtitlesData, setSubtitlesData] = useState(null)
     const [showSubtitles, setShowSubtitles] = useState(false)
 
-    React.useEffect(() => {
+    const playerRef = useRef(null)
+
+    useEffect(() => {
         if (screenfull.isEnabled) {
             screenfull.on('change', () => {
                 setIsFullscreen(isFullscreen)
@@ -208,7 +209,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
         screenfull.exit()
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handleKeyDown = (event) => {
             const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
             const { windows } = desktop.System.Manager.App.apps[appIndex]

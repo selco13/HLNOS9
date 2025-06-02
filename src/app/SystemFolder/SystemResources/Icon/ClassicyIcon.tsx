@@ -1,6 +1,6 @@
 import classicyIconStyles from '@/app/SystemFolder/SystemResources/Icon/ClassicyIcon.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 interface ClassicyIconProps {
     appId: string
@@ -23,11 +23,11 @@ const ClassicyIcon: React.FC<ClassicyIconProps> = ({
     onClickFunc,
     invisible = false,
 }) => {
-    const [position, setPosition] = React.useState<[number, number]>(initialPosition)
-    const [dragging, setDragging] = React.useState<boolean>(false)
-    const [active, setActive] = React.useState<boolean>(false)
+    const [position, setPosition] = useState<[number, number]>(initialPosition)
+    const [dragging, setDragging] = useState<boolean>(false)
+    const [active, setActive] = useState<boolean>(false)
 
-    const iconRef = React.useRef(null)
+    const iconRef = useRef(null)
 
     const id = appId + '.shortcut'
 

@@ -1,7 +1,7 @@
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyPopUpMenuStyle from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 type classicyPopUpMenuOptions = {
     value: string
@@ -24,9 +24,9 @@ const ClassicyPopUpMenu: React.FC<classicyPopUpMenuProps> = ({
     small = false,
     onChangeFunc,
 }) => {
-    const [selectedItem, setSelectedItem] = React.useState(selected)
+    const [selectedItem, setSelectedItem] = useState(selected)
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         setSelectedItem(e.target.value)
         if (onChangeFunc) {
             onChangeFunc(e)

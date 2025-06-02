@@ -1,5 +1,5 @@
 import { ClassicySoundManagerProvider } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
-import React, { createContext, useContext, useReducer } from 'react'
+import React, { createContext, useContext, useEffect, useReducer } from 'react'
 import { classicyDesktopStateEventReducer, ClassicyStore, DefaultDesktopState } from './ClassicyAppManager'
 
 const ClassicyDesktopContext = createContext<ClassicyStore>(null)
@@ -22,7 +22,7 @@ export const ClassicyDesktopProvider = ({ children }) => {
 
     const [desktop, dispatch] = useReducer(classicyDesktopStateEventReducer, desktopState)
 
-    React.useEffect(() => {
+    useEffect(() => {
         localStorage.setItem('classicyDesktopState', JSON.stringify(desktop))
     }, [desktop])
 

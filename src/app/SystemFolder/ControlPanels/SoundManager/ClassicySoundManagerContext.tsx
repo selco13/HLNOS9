@@ -1,12 +1,12 @@
 import { Howl } from 'howler'
-import React from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
 import fetch from 'sync-fetch'
 import soundData from '../../../../../public/sounds/platinum/platinum.json'
 import soundLabels from './ClassicySoundManagerLabels.json'
 import { ClassicyStoreSystemManager } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
 
-export const ClassicySoundManagerContext = React.createContext(null)
-export const ClassicySoundDispatchContext = React.createContext(null)
+export const ClassicySoundManagerContext = createContext(null)
+export const ClassicySoundDispatchContext = createContext(null)
 
 export interface ClassicyStoreSystemSoundManager extends ClassicyStoreSystemManager {
     volume: number
@@ -87,11 +87,11 @@ export const loadSoundTheme = (soundThemeURL: string): Howl => {
 }
 
 export function useSound() {
-    return React.useContext(ClassicySoundManagerContext)
+    return useContext(ClassicySoundManagerContext)
 }
 
 export function useSoundDispatch() {
-    return React.useContext(ClassicySoundDispatchContext)
+    return useContext(ClassicySoundDispatchContext)
 }
 
 const playerCanPlayInterrupt = ({ disabled, soundPlayer }: ClassicySoundState, sound: string) => {
@@ -151,7 +151,7 @@ export const ClassicySoundStateEventReducer = (ss: ClassicySoundState, action: C
 }
 
 export const ClassicySoundManagerProvider: React.FC<{ children: any }> = ({ children }) => {
-    const [sound, soundDispatch] = React.useReducer(ClassicySoundStateEventReducer, initialPlayer)
+    const [sound, soundDispatch] = useReducer(ClassicySoundStateEventReducer, initialPlayer)
 
     return (
         <ClassicySoundManagerContext.Provider value={sound}>

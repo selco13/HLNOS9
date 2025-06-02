@@ -6,7 +6,7 @@ import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/
 import classicyWindowStyle from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss'
 import { ClassicyWindowState } from '@/app/SystemFolder/SystemResources/Window/ClassicyWindowContext'
 import classNames from 'classnames'
-import React, { useEffect, useMemo } from 'react'
+import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import ClassicyContextualMenu from '@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu'
 
 interface ClassicyWindowProps {
@@ -25,11 +25,11 @@ interface ClassicyWindowProps {
     initialSize?: [number, number]
     initialPosition?: [number, number]
     minimumSize?: [number, number]
-    header?: React.ReactNode
+    header?: ReactNode
     appMenu?: ClassicyMenuItem[]
     contextMenu?: ClassicyMenuItem[]
     onCloseFunc?: any
-    children?: React.ReactNode
+    children?: ReactNode
     type?: string
 }
 
@@ -56,8 +56,8 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     onCloseFunc,
     children,
 }) => {
-    const [size, setSize] = React.useState<[number, number]>(initialSize)
-    const [clickPosition, setClickPosition] = React.useState<[number, number]>([0, 0])
+    const [size, setSize] = useState<[number, number]>(initialSize)
+    const [clickPosition, setClickPosition] = useState<[number, number]>([0, 0])
 
     const clickOffset = [10, 10]
 
@@ -65,7 +65,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
     const desktopEventDispatch = useDesktopDispatch()
     let player = useSoundDispatch()
 
-    const windowRef = React.useRef(null)
+    const windowRef = useRef(null)
 
     const appIndex = useMemo(() => {
         return desktopContext.System.Manager.App.apps.findIndex((app) => app.id === appId)
@@ -232,7 +232,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         // This ensures that once a window has opened it becomes the focus.
         setActive()
         if (modal && type == 'error') {

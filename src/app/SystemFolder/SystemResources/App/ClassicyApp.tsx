@@ -1,6 +1,6 @@
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { JSONTree } from 'react-json-tree'
 import { intToHex } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyColors'
 
@@ -67,7 +67,7 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
         })
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (addSystemMenu) {
             desktopEventDispatch({
                 type: 'ClassicyDesktopAppMenuAdd',

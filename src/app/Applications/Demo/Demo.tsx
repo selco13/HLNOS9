@@ -88,17 +88,22 @@ const Demo: React.FC = () => {
                     modal={true}
                     appMenu={appMenu}
                 >
-                    <div style={{ padding: '.5em', display: 'flex', flexDirection: 'column', gap: '1em' }}>
-                        <ClassicyPopUpMenu
-                            id={'select_theme'}
-                            small={false}
-                            options={[
-                                { value: 'hello', label: 'Hello' },
-                                { value: 'hello2', label: 'Hello again!' },
-                            ]}
-                            selected={'hello'}
-                        />
-                        <ClassicyProgressBar value={59}></ClassicyProgressBar>
+                    <div style={{ padding: '.5em', display: 'flex', flexDirection: 'column' }}>
+                        <ClassicyControlGroup label={'Pop Up Menu'}>
+                            <ClassicyPopUpMenu
+                                id={'select_theme'}
+                                small={false}
+                                options={[
+                                    { value: 'hello', label: 'Hello' },
+                                    { value: 'hello2', label: 'Hello again!' },
+                                ]}
+                                selected={'hello'}
+                            />
+                        </ClassicyControlGroup>
+                        <ClassicyControlGroup label={'Progress Bars'}>
+                            <ClassicyProgressBar value={59}></ClassicyProgressBar>
+                            <ClassicyProgressBar indeterminate={true}></ClassicyProgressBar>
+                        </ClassicyControlGroup>
                         <ClassicyInput id={'test'} labelTitle={'Text Input'}></ClassicyInput>
                     </div>
                     <ClassicyControlGroup label={'Test Radio Inputs'}>

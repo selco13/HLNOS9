@@ -1,5 +1,5 @@
 import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
-import React from 'react'
+import React, { useRef } from 'react'
 import ClassicyFileBrowserViewIcons from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserViewIcons'
 import ClassicyFileBrowserViewTable from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserViewTable'
 
@@ -20,7 +20,7 @@ const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = ({
     dirOnClickFunc = () => {},
     fileOnClickFunc = () => {},
 }) => {
-    const holderRef = React.useRef(null)
+    const holderRef = useRef(null)
 
     return (
         <div style={{ position: 'absolute', width: '100%', height: '100%' }} ref={holderRef}>

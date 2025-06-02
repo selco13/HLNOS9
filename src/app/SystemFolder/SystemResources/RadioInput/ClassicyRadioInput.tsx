@@ -2,7 +2,7 @@ import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabe
 import classicyRadioInputStyles from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput.module.scss'
 import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import classNames from 'classnames'
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 type ClassicyRadioInputProps = {
     name: string
@@ -30,7 +30,7 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
     onClickFunc,
     inputs,
 }) => {
-    const [check, setCheck] = React.useState<string>(inputs.findLast((input) => input.checked === true)?.id || '')
+    const [check, setCheck] = useState<string>(inputs.findLast((input) => input.checked === true)?.id || '')
     const player = useSoundDispatch()
 
     const handleOnChange = (e) => {
@@ -69,6 +69,8 @@ const ClassicyRadioInput: React.FC<ClassicyRadioInputProps> = ({
                                         item.mixed ? classicyRadioInputStyles.classicyRadioInputMixed : ''
                                     )}
                                     type={'radio'}
+                                    value={item.id}
+                                    defaultChecked={item.checked}
                                     tabIndex={0}
                                     onChange={handleOnChange}
                                     onMouseDown={() => {

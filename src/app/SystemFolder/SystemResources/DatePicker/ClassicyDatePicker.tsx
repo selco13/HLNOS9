@@ -1,7 +1,7 @@
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyDatePickerStyles from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 
 interface ClassicyDatePickerProps {
@@ -28,14 +28,12 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
     const desktop = useDesktop()
     const desktopEventDispatch = useDesktopDispatch()
 
-    const [selectedDate, setSelectedDate] = React.useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
-    const [month, setMonth] = React.useState<string>(
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
+    const [month, setMonth] = useState<string>(
         (new Date(desktop.System.Manager.DateAndTime.dateTime).getMonth() + 1).toString()
     )
-    const [day, setDay] = React.useState<string>(
-        new Date(desktop.System.Manager.DateAndTime.dateTime).getDate().toString()
-    )
-    const [year, setYear] = React.useState<string>(
+    const [day, setDay] = useState<string>(new Date(desktop.System.Manager.DateAndTime.dateTime).getDate().toString())
+    const [year, setYear] = useState<string>(
         new Date(desktop.System.Manager.DateAndTime.dateTime).getFullYear().toString()
     )
 
@@ -54,7 +52,7 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
         e.target.select()
     }
 
-    const handleDatePartChange = (e: React.ChangeEvent<HTMLInputElement>, part: 'month' | 'day' | 'year') => {
+    const handleDatePartChange = (e: ChangeEvent<HTMLInputElement>, part: 'month' | 'day' | 'year') => {
         let inputValue = parseInt(e.currentTarget.value)
 
         if (isNaN(inputValue)) {

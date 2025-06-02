@@ -36,31 +36,33 @@
   }
 }
 
-@property --my-var {
+@property --slide-var {
   syntax: '<length>';
   inherits: false;
   initial-value: 0px;
 }
 
-@keyframes a {
-  from {
-    --my-var: 0px;
-  }
-  to {
-    --my-var: 40px;
-  }
-}
 
 .classicyProgressIndeterminate {
+  @keyframes stripeSlide {
+    from {
+      --slide-var: 0px;
+    }
+    to {
+      --slide-var: 40px;
+    }
+  }
+
   progress[value] {
     &::-webkit-progress-value {
-      animation: a 3s linear infinite;
-      background: repeating-linear-gradient(
+      animation: stripeSlide 3s linear infinite;
+      animation-play-state: running;
+      background-image: repeating-linear-gradient(
                       45deg,
-                      white var(--my-var),
-                      white calc(var(--my-var) + 10px),
-                      var(--color-theme-04) calc(var(--my-var) + 10px),
-                      var(--color-theme-04) calc(var(--my-var) + 20px)
+                      white var(--slide-var),
+                      white calc(var(--slide-var) + 10px),
+                      var(--color-theme-04) calc(var(--slide-var) + 10px),
+                      var(--color-theme-04) calc(var(--slide-var) + 20px)
       ) !important;
       mask: linear-gradient(0deg, var(--color-black), white, var(--color-black)) luminance;
     }

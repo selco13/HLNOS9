@@ -2,7 +2,7 @@ import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels
 
 import classicyDesktopIconStyles from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIcon.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 interface ClassicyDesktopIconProps {
     appId: string
@@ -25,13 +25,13 @@ const ClassicyDesktopIcon: React.FC<ClassicyDesktopIconProps> = ({
     event,
     eventData,
 }) => {
-    const [clickPosition, setClickPosition] = React.useState<[number, number]>([0, 0])
-    const [dragging, setDragging] = React.useState<boolean>(false)
+    const [clickPosition, setClickPosition] = useState<[number, number]>([0, 0])
+    const [dragging, setDragging] = useState<boolean>(false)
 
     const desktopContext = useDesktop()
     const desktopEventDispatch = useDesktopDispatch()
 
-    const iconRef = React.useRef(null)
+    const iconRef = useRef(null)
 
     const id = appId + '.shortcut'
 

@@ -1,7 +1,7 @@
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyTimePickerStyles from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 
@@ -27,17 +27,17 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
     const desktop = useDesktop()
     const desktopEventDispatch = useDesktopDispatch()
 
-    const [selectedDate, setSelectedDate] = React.useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
-    const [hour, setHour] = React.useState<string>(
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
+    const [hour, setHour] = useState<string>(
         new Date(desktop.System.Manager.DateAndTime.dateTime).getHours().toString()
     )
-    const [minutes, setMinutes] = React.useState<string>(
+    const [minutes, setMinutes] = useState<string>(
         new Date(desktop.System.Manager.DateAndTime.dateTime).getMinutes().toString()
     )
-    const [seconds, setSeconds] = React.useState<string>(
+    const [seconds, setSeconds] = useState<string>(
         new Date(desktop.System.Manager.DateAndTime.dateTime).getSeconds().toString()
     )
-    const [period, setPeriod] = React.useState<string>(
+    const [period, setPeriod] = useState<string>(
         new Date(desktop.System.Manager.DateAndTime.dateTime).getHours() < 12 ? 'am' : 'pm'
     )
 
@@ -47,10 +47,7 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
         }
     }
 
-    const handlePeriodChange = (
-        e: React.ChangeEvent<HTMLInputElement>,
-        part: 'hour' | 'minutes' | 'seconds' | 'period'
-    ) => {
+    const handlePeriodChange = (e: ChangeEvent<HTMLInputElement>, part: 'hour' | 'minutes' | 'seconds' | 'period') => {
         setPeriod(e.target.value)
 
         let updatedDate = new Date(selectedDate)
@@ -69,7 +66,7 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
         handleDateChange(updatedDate)
     }
 
-    const handleTimePartChange = (e: React.ChangeEvent<HTMLInputElement>, part: 'hour' | 'minutes' | 'seconds') => {
+    const handleTimePartChange = (e: ChangeEvent<HTMLInputElement>, part: 'hour' | 'minutes' | 'seconds') => {
         let inputValue = parseInt(e.currentTarget.value)
 
         if (isNaN(inputValue)) {

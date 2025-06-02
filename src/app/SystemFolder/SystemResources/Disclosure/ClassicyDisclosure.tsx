@@ -1,7 +1,7 @@
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyDisclosureStyles from '@/app/SystemFolder/SystemResources/Disclosure/ClassicyDisclosure.module.scss'
 import classNames from 'classnames'
-import React from 'react'
+import React, { useState } from 'react'
 
 type ClassicyDisclosureTriangleDirections = 'up' | 'right' | 'down' | 'left'
 
@@ -12,7 +12,7 @@ type ClassicyDisclosureProps = {
 }
 
 const ClassicyDisclosure: React.FC<ClassicyDisclosureProps> = ({ direction = 'right', label = '', children }) => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
     const triangleClassOpenName =
         'classicyDisclosureTriangle' +
         direction.charAt(0).toUpperCase() +

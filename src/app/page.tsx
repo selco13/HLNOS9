@@ -7,6 +7,7 @@ import { ClassicyDesktopProvider } from '@/app/SystemFolder/ControlPanels/AppMan
 import ClassicyDesktop from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktop'
 import React from 'react'
 import QuickTimeMoviePlayer from '@/app/Applications/QuickTime/QuickTimeMoviePlayer'
+import EPG from '@/app/Applications/EPG/EPG'
 
 export default function Home() {
     return (
@@ -14,6 +15,7 @@ export default function Home() {
             <ClassicyDesktop>
                 <Demo />
                 <QuickTimeMoviePlayer />
+                <EPG />
                 <Browser />
                 <SimpleText />
             </ClassicyDesktop>

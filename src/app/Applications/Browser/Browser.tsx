@@ -5,7 +5,7 @@ import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyBu
 import ClassicyControlGroup from '@/app/SystemFolder/SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyInput from '@/app/SystemFolder/SystemResources/Input/ClassicyInput'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 const Browser = () => {
     const appName = 'Browser'
@@ -14,8 +14,8 @@ const Browser = () => {
 
     const desktopEventDispatch = useDesktopDispatch()
 
-    const refAddressBar = React.useRef(null)
-    const [iframeSrc, setIframeUrl] = React.useState('https://theoldnet.com')
+    const refAddressBar = useRef(null)
+    const [iframeSrc, setIframeUrl] = useState('https://theoldnet.com')
 
     const goBook = () => {
         setIframeUrl(refAddressBar.current.value)

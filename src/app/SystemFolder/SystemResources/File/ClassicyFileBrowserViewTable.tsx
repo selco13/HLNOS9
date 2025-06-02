@@ -2,7 +2,7 @@ import {
     ClassicyFileSystem,
     ClassicyFileSystemEntryMetadata,
 } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import {
     createColumnHelper,
     flexRender,
@@ -31,7 +31,7 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
     dirOnClickFunc = () => {},
     fileOnClickFunc = () => {},
 }) => {
-    const fileList = React.useMemo<ClassicyFileSystemEntryMetadata[]>(() => {
+    const fileList = useMemo<ClassicyFileSystemEntryMetadata[]>(() => {
         const a = Object.entries(fs.filterByType(path, ['file', 'directory']))
         const directoryListing = a.map(([d, e]) => {
             let g = e
@@ -54,7 +54,7 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
 
     const columnHelper = createColumnHelper<ClassicyFileSystemEntryMetadata>()
 
-    const columns = React.useMemo(
+    const columns = useMemo(
         () => [
             columnHelper.accessor((row) => row._name, {
                 id: '_name',
@@ -90,7 +90,8 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
         []
     )
 
-    const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({}) //manage your own row selection state
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) //manage your own row selection state
+    const [selectedRow, setSelectedRow] = useState<string>()
 
     const table = useReactTable({
         data: fileList,
@@ -112,8 +113,6 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
             }
         }
     }
-
-    const [selectedRow, setSelectedRow] = React.useState<string>()
 
     const selectRow = (path: string) => {
         setSelectedRow(path)

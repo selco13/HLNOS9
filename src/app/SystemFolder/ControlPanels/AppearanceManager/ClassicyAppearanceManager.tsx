@@ -9,7 +9,7 @@ import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyBu
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { useState } from 'react'
 import ClassicyTabs from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs'
 import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
@@ -24,8 +24,8 @@ export const ClassicyAppearanceManager: React.FC = () => {
 
     const player = useSoundDispatch()
 
-    const [showAbout, setShowAbout] = React.useState(false)
-    const [bg, setBg] = React.useState<string>(
+    const [showAbout, setShowAbout] = useState(false)
+    const [bg, setBg] = useState<string>(
         desktopContext.System.Manager.Appearance.activeTheme.desktop.backgroundImage ||
             `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/wallpapers/default.png`
     )

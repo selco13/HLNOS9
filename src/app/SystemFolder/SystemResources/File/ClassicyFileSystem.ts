@@ -1,4 +1,5 @@
 import { sha512 } from 'sha512-crypt-ts'
+import { ReactNode } from 'react'
 
 export enum ClassicyFileSystemEntryFileType {
     File = 'file',
@@ -97,7 +98,7 @@ export type ClassicyFileSystemEntryMetadata = {
 
     // Icon data
     _icon?: string
-    _badge?: React.ReactNode
+    _badge?: ReactNode
 
     // Modification data
     _createdOn?: Date

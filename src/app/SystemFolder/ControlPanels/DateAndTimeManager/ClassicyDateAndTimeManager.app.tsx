@@ -7,7 +7,7 @@ import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import ClassicyControlGroup from '../../SystemResources/ControlGroup/ClassicyControlGroup'
 import ClassicyDatePicker from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker'
 import ClassicyTimePicker from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker'
@@ -22,7 +22,7 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
     const desktopContext = useDesktop(),
         desktopEventDispatch = useDesktopDispatch()
 
-    const [showAbout, setShowAbout] = React.useState(false)
+    const [showAbout, setShowAbout] = useState(false)
 
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
@@ -34,7 +34,7 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
             dateTime: date,
         })
     }
-    const updateTimeZone = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const updateTimeZone = (e: ChangeEvent<HTMLSelectElement>) => {
         desktopEventDispatch({
             type: 'ClassicyManagerDateTimeTZSet',
             tzOffset: e.target.value,
@@ -194,18 +194,18 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
                 zoomable={false}
                 scrollable={false}
                 collapsable={false}
-                initialSize={[325, 320]}
+                initialSize={[350, 320]}
                 initialPosition={[300, 50]}
                 modal={true}
                 appMenu={appMenu}
             >
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div style={{ width: '40%' }}>
+                    <div style={{ width: '42%' }}>
                         <ClassicyControlGroup label={'Current Date'}>
                             <ClassicyDatePicker id={'date'} labelTitle={''} prefillValue={date}></ClassicyDatePicker>
                         </ClassicyControlGroup>
                     </div>
-                    <div style={{ width: '60%' }}>
+                    <div style={{ width: '58%' }}>
                         <ClassicyControlGroup label={'Current Time'}>
                             <ClassicyTimePicker
                                 id={'time'}
