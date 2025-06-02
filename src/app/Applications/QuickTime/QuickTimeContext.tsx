@@ -18,23 +18,27 @@ export const classicyQuickTimeEventHandler = (ds: ClassicyStore, action: classic
     if (!ds.System.Manager.App.apps[appIndex].data['openDocuments']) {
         ds.System.Manager.App.apps[appIndex].data['openDocuments'] = []
     }
+    const openDocUrls = ds.System.Manager.App.apps[appIndex].data['openDocuments'].map((app) => app.url)
     switch (action.type) {
-        case 'ClassicyAppQuickTimeOpenFile': {
-            ds.System.Manager.App.apps[appIndex].data['openDocuments'] = Array.from(
-                new Set([...ds.System.Manager.App.apps[appIndex].data['openDocuments'], action.document])
-            )
+        case 'ClassicyAppQuickTimeOpenDocument': {
+            if (Array.isArray(openDocUrls) && !openDocUrls.includes(action.document.url)) {
+                ds.System.Manager.App.apps[appIndex].data['openDocuments'] = Array.from(
+                    new Set([...ds.System.Manager.App.apps[appIndex].data['openDocuments'], action.document])
+                )
+            }
             break
         }
         case 'ClassicyAppQuickTimeOpenDocuments': {
+            const docs = action.documents.filter((doc) => !openDocUrls.includes(doc.url))
             ds.System.Manager.App.apps[appIndex].data['openDocuments'] = Array.from(
-                new Set([...ds.System.Manager.App.apps[appIndex].data['openDocuments'], ...action.documents])
+                new Set([...ds.System.Manager.App.apps[appIndex].data['openDocuments'], ...docs])
             )
             break
         }
         case 'ClassicyAppQuickTimeCloseDocument': {
             ds.System.Manager.App.apps[appIndex].data['openDocuments'] = ds.System.Manager.App.apps[appIndex].data[
                 'openDocuments'
-            ].filter((p: classicyQuickTimeDocument) => p.url !== action.document.url)
+            ].filter((p: classicyQuickTimeDocument) => p.url != action.document.url)
             break
         }
     }

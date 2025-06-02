@@ -166,7 +166,13 @@ const ClassicyDesktop: React.FC<ClassicyDesktopProps> = ({ children }) => {
                     />
                 )}
                 <ClassicyDesktopMenuBar />
-                {contextMenu && <ClassicyContextualMenu menuItems={defaultMenuItems} position={contextMenuLocation} />}
+                {contextMenu && (
+                    <ClassicyContextualMenu
+                        name={'desktopContextMenu'}
+                        menuItems={defaultMenuItems}
+                        position={contextMenuLocation}
+                    />
+                )}
                 <Finder />
                 <ClassicyControlPanels />
                 {showAbout &&

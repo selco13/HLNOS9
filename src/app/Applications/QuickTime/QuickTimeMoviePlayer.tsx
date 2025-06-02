@@ -27,10 +27,10 @@ const QuickTimeMoviePlayer: React.FC = () => {
 
     // Load Default Demo documents on open
     useEffect(() => {
-        const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
         const appData = desktop.System.Manager.App.apps[appIndex]?.data || {}
-        if (!appData?.hasOwnProperty('openDocuments')) {
-            appData['openDocuments'] = [
+        if (!appData['openDocuments'] || appData['openDocuments'].length === 0) {
+            console.log('set default')
+            const defaultDocs = [
                 {
                     url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
                     name: 'Buck Bunny',
@@ -47,20 +47,29 @@ const QuickTimeMoviePlayer: React.FC = () => {
                     subtitlesUrl: `${process.env.NEXT_PUBLIC_BASE_PATH}/test.srt`,
                 },
             ]
+            desktopEventDispatch({
+                type: 'ClassicyAppQuickTimeOpenDocuments',
+                documents: defaultDocs,
+                debug: true,
+            })
+        } else {
+            desktopEventDispatch({
+                type: 'ClassicyAppQuickTimeOpenDocuments',
+                documents: appData['openDocuments'],
+                debug: true,
+            })
         }
-        desktopEventDispatch({
-            type: 'ClassicyAppQuickTimeOpenDocuments',
-            documents: appData['openDocuments'],
-        })
     }, [])
+
+    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
+    const { openDocuments } = desktop.System.Manager.App.apps[appIndex]?.data
 
     const openUrl = (url: string) => {
         desktopEventDispatch({
-            type: 'ClassicyAppQuickTimeOpenDocuments',
+            type: 'ClassicyAppQuickTimeOpenDocument',
             document: { url: url },
         })
 
-        const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
         const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex(
             (w) => w.id === appId + '_VideoPlayer_' + url
         )
@@ -83,9 +92,6 @@ const QuickTimeMoviePlayer: React.FC = () => {
             })
         }
     }
-
-    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    const { openDocuments } = desktop.System.Manager.App.apps[appIndex].data
 
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
@@ -128,9 +134,8 @@ const QuickTimeMoviePlayer: React.FC = () => {
                         appMenu={appMenu}
                         onCloseFunc={() =>
                             desktopEventDispatch({
-                                type: 'ClassicyAppQuickTimeCloseFile',
-                                url: doc.url,
-                                debug: true,
+                                type: 'ClassicyAppQuickTimeCloseDocument',
+                                document: doc,
                             })
                         }
                     >

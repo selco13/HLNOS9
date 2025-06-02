@@ -52,6 +52,7 @@ const ClassicyDesktopMenuBar: React.FC = () => {
     return (
         <nav className={classicyDesktopMenuStyles.classicyDesktopMenuBar}>
             <ClassicyMenu
+                name={'desktopMenuBar'}
                 menuItems={defaultMenuItems}
                 navClass={classicyDesktopMenuStyles.classicyDesktopMenu}
                 subNavClass={classicyMenuStyles.classicySubMenu}

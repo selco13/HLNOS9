@@ -13,6 +13,7 @@ import themesData from '@/app/SystemFolder/ControlPanels/AppearanceManager/style
 import { classicyDateTimeManagerEventHandler } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/ClassicyDateAndTimeManager.app'
 import { classicyFinderEventHandler } from '@/app/SystemFolder/Finder/FinderContext'
 import { ClassicyStoreSystemSoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
+import { classicyQuickTimeEventHandler } from '@/app/Applications/QuickTime/QuickTimeContext'
 
 export interface ClassicyStoreSystemAppManager extends ClassicyStoreSystemManager {
     apps: ClassicyStoreSystemApp[]
@@ -209,6 +210,8 @@ export const classicyDesktopStateEventReducer = (ds: ClassicyStore, action) => {
             ds = classicyWindowEventHandler(ds, action)
         } else if (action.type.startsWith('ClassicyAppFinder')) {
             ds = classicyFinderEventHandler(ds, action)
+        } else if (action.type.startsWith('ClassicyAppQuickTime')) {
+            ds = classicyQuickTimeEventHandler(ds, action)
         } else if (action.type.startsWith('ClassicyDesktopIcon')) {
             ds = classicyDesktopIconEventHandler(ds, action)
         } else if (action.type.startsWith('ClassicyDesktop')) {
@@ -288,9 +291,7 @@ export const DefaultDesktopState: ClassicyStore = {
                         icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`,
                         windows: [],
                         open: false,
-                        data: {
-                            openFiles: [],
-                        },
+                        data: {},
                     },
                 ],
             },

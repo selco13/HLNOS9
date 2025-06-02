@@ -401,6 +401,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                     <>
                         {contextMenu && ws.contextMenu && (
                             <ClassicyContextualMenu
+                                name={[appId, id, 'contextMenu'].join('_')}
                                 menuItems={contextMenu}
                                 position={clickPosition}
                             ></ClassicyContextualMenu>

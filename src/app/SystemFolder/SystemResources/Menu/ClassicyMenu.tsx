@@ -20,17 +20,18 @@ export interface ClassicyMenuItem {
 }
 
 interface ClassicyMenuProps {
+    name: string
     menuItems: ClassicyMenuItem[]
     navClass?: string
     subNavClass?: string
     children?: any
 }
 
-const ClassicyMenu: React.FC<ClassicyMenuProps> = ({ menuItems, navClass, subNavClass, children }) => {
+const ClassicyMenu: React.FC<ClassicyMenuProps> = ({ name, menuItems, navClass, subNavClass, children }) => {
     if (menuItems && menuItems.length > 0) {
         return (
             <div className={classicyMenuStyles.classicyMenuWrapper}>
-                <ul className={classNames(navClass)}>
+                <ul className={classNames(navClass)} key={name + '_menu'}>
                     {menuItems.map((item: ClassicyMenuItem) => (
                         <ClassicyMenuItem key={item?.id} menuItem={item} subNavClass={subNavClass} />
                     ))}
@@ -102,6 +103,7 @@ const ClassicyMenuItem: React.FC<{ menuItem: ClassicyMenuItem; subNavClass: stri
                 {newMenuItem}
                 {menuItem.menuChildren && menuItem.menuChildren.length > 0 && (
                     <ClassicyMenu
+                        name={menuItem.id + '_subitem'}
                         menuItems={menuItem.menuChildren}
                         subNavClass={subNavClass}
                         navClass={subNavClass}
