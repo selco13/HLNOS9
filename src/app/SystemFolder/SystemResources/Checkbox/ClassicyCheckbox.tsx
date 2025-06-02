@@ -1,7 +1,7 @@
 import classicyCheckboxStyles from '@/app/SystemFolder/SystemResources/Checkbox/ClassicyCheckbox.module.scss'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classNames from 'classnames'
-import React, { MouseEvent, MouseEventHandler, useState } from 'react'
+import React, { useState } from 'react'
 
 type ClassicyCheckboxProps = {
     id: string
@@ -9,7 +9,7 @@ type ClassicyCheckboxProps = {
     mixed?: boolean
     isDefault?: boolean
     disabled?: boolean
-    onClickFunc?: MouseEventHandler
+    onClickFunc?: React.MouseEventHandler
     label?: string
 }
 const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = ({
@@ -23,7 +23,7 @@ const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = ({
 }) => {
     const [check, setChecked] = useState<boolean>(checked)
 
-    const handleOnClick = (e: MouseEvent<Element, MouseEvent>) => {
+    const handleOnClick = (e: React.MouseEvent<Element, MouseEvent>) => {
         if (!disabled) {
             setChecked(check)
         }
