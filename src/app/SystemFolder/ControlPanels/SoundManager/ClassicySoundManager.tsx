@@ -30,10 +30,10 @@ export const ClassicySoundManager: React.FC = () => {
 
     const [showAbout, setShowAbout] = useState(false)
 
-    const [enableAllSounds, setEnableAllSounds] = useState(false)
+    const [enableAllSounds, setEnableAllSounds] = useState(true)
 
     const changeSounds = (e) => {
-        setEnableAllSounds(!!e.target.checked)
+        setEnableAllSounds(!e.target.checked)
         player({
             type: 'ClassicySoundDisable',
             disabled: enableAllSounds ? [] : ['*'],
@@ -111,7 +111,7 @@ export const ClassicySoundManager: React.FC = () => {
                     isDefault={true}
                     label={'Enable Interface Sounds'}
                     onClickFunc={changeSounds}
-                    checked={!playerState.disabled.includes('*')}
+                    checked={playerState.disabled.includes('*')}
                 />
                 <ClassicyDisclosure label={'Disable Sounds'}>
                     <ClassicyControlLabel label={'These settings are not currently connected.'} />
@@ -125,7 +125,7 @@ export const ClassicySoundManager: React.FC = () => {
                                                 key={appId + '_' + group + item.id}
                                                 id={'enable_sound_' + item.id}
                                                 label={item.label}
-                                                checked={playerState.disabled.includes('*')}
+                                                checked={!playerState.disabled.includes('*')}
                                             />
                                         )
                                 )}
