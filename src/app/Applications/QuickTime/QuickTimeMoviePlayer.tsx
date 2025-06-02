@@ -113,7 +113,6 @@ const QuickTimeMoviePlayer: React.FC = () => {
 
     return (
         <ClassicyApp id={appId} name={appName} icon={appIcon}>
-            <pre>{JSON.stringify(openDocuments)}</pre>
             {Array.isArray(openDocuments) &&
                 openDocuments.length > 0 &&
                 openDocuments.map((doc: QuickTimeDocument) => (
