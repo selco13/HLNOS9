@@ -1,33 +1,40 @@
 import { ClassicyStore } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
 
+type classicyQuickTimeDocument = {
+    url: string
+    name?: string
+    options?: any
+    type?: 'video' | 'audio'
+}
 type classicyQuickTimeEvent = {
     type: string
-    url?: string
-    urls?: string[]
+    document?: classicyQuickTimeDocument
+    documents?: classicyQuickTimeDocument[]
 }
 
 export const classicyQuickTimeEventHandler = (ds: ClassicyStore, action: classicyQuickTimeEvent) => {
     const appId = 'QuickTimePlayer.app'
+    const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
+    if (!ds.System.Manager.App.apps[appIndex].data['openDocuments']) {
+        ds.System.Manager.App.apps[appIndex].data['openDocuments'] = []
+    }
     switch (action.type) {
         case 'ClassicyAppQuickTimeOpenFile': {
-            const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
-            ds.System.Manager.App.apps[appIndex].data['openFiles'] = Array.from(
-                new Set([...ds.System.Manager.App.apps[appIndex].data['openFiles'], action.url])
+            ds.System.Manager.App.apps[appIndex].data['openDocuments'] = Array.from(
+                new Set([...ds.System.Manager.App.apps[appIndex].data['openDocuments'], action.document])
             )
             break
         }
-        case 'ClassicyAppQuickTimeOpenFiles': {
-            const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
-            ds.System.Manager.App.apps[appIndex].data['openPaths'] = Array.from(
-                new Set([...ds.System.Manager.App.apps[appIndex].data['openPaths'], ...action.urls])
+        case 'ClassicyAppQuickTimeOpenDocuments': {
+            ds.System.Manager.App.apps[appIndex].data['openDocuments'] = Array.from(
+                new Set([...ds.System.Manager.App.apps[appIndex].data['openDocuments'], ...action.documents])
             )
             break
         }
-        case 'ClassicyAppQuickTimeCloseFile': {
-            const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
-            ds.System.Manager.App.apps[appIndex].data['openFiles'] = ds.System.Manager.App.apps[appIndex].data[
-                'openFiles'
-            ].filter((p: string) => p !== action.url)
+        case 'ClassicyAppQuickTimeCloseDocument': {
+            ds.System.Manager.App.apps[appIndex].data['openDocuments'] = ds.System.Manager.App.apps[appIndex].data[
+                'openDocuments'
+            ].filter((p: classicyQuickTimeDocument) => p.url !== action.document.url)
             break
         }
     }

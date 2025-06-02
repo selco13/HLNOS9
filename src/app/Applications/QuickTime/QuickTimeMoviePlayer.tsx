@@ -29,8 +29,8 @@ const QuickTimeMoviePlayer: React.FC = () => {
     useEffect(() => {
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
         const appData = desktop.System.Manager.App.apps[appIndex]?.data || {}
-        if (!appData?.hasOwnProperty('')) {
-            appData['openFiles'] = [
+        if (!appData?.hasOwnProperty('openDocuments')) {
+            appData['openDocuments'] = [
                 {
                     url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
                     name: 'Buck Bunny',
@@ -49,15 +49,15 @@ const QuickTimeMoviePlayer: React.FC = () => {
             ]
         }
         desktopEventDispatch({
-            type: 'ClassicyAppQuickTimeOpenFiles',
-            paths: appData['openFiles'],
+            type: 'ClassicyAppQuickTimeOpenDocuments',
+            documents: appData['openDocuments'],
         })
     }, [])
 
     const openUrl = (url: string) => {
         desktopEventDispatch({
-            type: 'ClassicyAppQuickTimeOpenFile',
-            url,
+            type: 'ClassicyAppQuickTimeOpenDocuments',
+            document: { url: url },
         })
 
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
@@ -85,7 +85,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
     }
 
     const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    const { openFiles } = desktop.System.Manager.App.apps[appIndex].data
+    const { openDocuments } = desktop.System.Manager.App.apps[appIndex].data
 
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
@@ -107,8 +107,10 @@ const QuickTimeMoviePlayer: React.FC = () => {
 
     return (
         <ClassicyApp id={appId} name={appName} icon={appIcon}>
-            {openFiles.length > 0 &&
-                openFiles.map((doc: QuickTimeDocument) => (
+            <pre>{JSON.stringify(openDocuments)}</pre>
+            {Array.isArray(openDocuments) &&
+                openDocuments.length > 0 &&
+                openDocuments.map((doc: QuickTimeDocument) => (
                     <ClassicyWindow
                         key={doc.name + '_' + doc.url}
                         id={appId + '_VideoPlayer_' + doc.url}
@@ -124,6 +126,13 @@ const QuickTimeMoviePlayer: React.FC = () => {
                         initialPosition={[300, 50]}
                         modal={true}
                         appMenu={appMenu}
+                        onCloseFunc={() =>
+                            desktopEventDispatch({
+                                type: 'ClassicyAppQuickTimeCloseFile',
+                                url: doc.url,
+                                debug: true,
+                            })
+                        }
                     >
                         <QuickTimeVideoEmbed
                             appId={appId}

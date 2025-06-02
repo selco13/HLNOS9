@@ -105,7 +105,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         appId,
         appMenu,
         contextMenu,
-        desktopContext.System.Manager.App.apps,
+        desktopContext.System.Manager.App.apps[appIndex],
         hidden,
         id,
         initialPosition,
