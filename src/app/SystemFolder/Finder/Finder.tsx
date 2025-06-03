@@ -25,7 +25,7 @@ const Finder = () => {
         const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
         const appData = desktop.System.Manager.App.apps[appIndex].data || {}
         if (!appData?.hasOwnProperty('openPaths')) {
-            appData['openPaths'] = ['Macintosh HD']
+            appData['openPaths'] = []
         }
         desktopEventDispatch({
             type: 'ClassicyAppFinderOpenFolders',
@@ -68,7 +68,12 @@ const Finder = () => {
     }
 
     const openFile = (path: string) => {
-        // TODO: Need to write this logic
+        const file = fs.resolve(path)
+        desktopEventDispatch({
+            type: 'ClassicyAppFinderOpenFile',
+            debug: true,
+            file,
+        })
     }
 
     const closeFolder = (path: string) => {

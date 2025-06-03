@@ -61,16 +61,57 @@
 .epgHeaderTime {
   font-family: var(--body-font), sans-serif;
   font-size: calc(var(--ui-font-size) * 0.85);
+  position: relative;
+  width: 100%;
   padding-top: calc(var(--window-border-size) * 2);
-  padding-left: 0.5em;
   border-left: calc(var(--window-border-size) * 2) solid var(--color-theme-05);
+}
+
+.epgHeaderTimeInner {
+  z-index: 10;
+  padding-left: 0.5em;
+}
+
+@property --slide-var {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+
+@keyframes stripeSlide {
+  from {
+    --slide-var: 0px;
+  }
+  to {
+    --slide-var: calc(var(--window-control-size) * 2);
+  }
 }
 
 .epgGridSetup {
   display: grid;
   width: 100%;
+}
+
+.epgGridAnimatedBackground {
+  animation: stripeSlide 1s linear infinite;
+  animation-play-state: running;
   background-color: var(--color-system-03);
   background-repeat: repeat;
+  background-position: var(--slide-var) center;
   background-size: calc(var(--window-control-size) * 2);
   background-blend-mode: lighten;
+
+}
+
+
+.epgGridSetupBorder {
+  width: calc(100% - var(--window-border-size) * 2);
+  @include appearance.platinumWindowControlBoxBorder;
+}
+
+.epgHolder {
+  width: calc(100% - var(--window-border-size) * 2);
+  height: 100%;
+  background-color: var(--color-system-03);
 }

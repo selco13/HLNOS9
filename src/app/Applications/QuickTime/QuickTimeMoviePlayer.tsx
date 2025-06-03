@@ -13,17 +13,24 @@ export type QuickTimeDocument = {
     url: string
     name?: string
     type?: string
+    icon?: string
     options?: Record<string, any>
     subtitlesUrl?: string
 }
 
+export const QuickTimeAppInfo = {
+    name: 'QuickTime Player',
+    id: 'QuickTime.app',
+    icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`,
+}
+
 const QuickTimeMoviePlayer: React.FC = () => {
-    const appName = 'QuickTime Player'
-    const appId = 'QuickTimePlayer.app'
-    const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`
+    const { name: appName, id: appId, icon: appIcon } = QuickTimeAppInfo
 
     const desktopEventDispatch = useDesktopDispatch()
     const desktop = useDesktop()
+
+    const defaultDocumentIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/movie.png`
 
     // Load Default Demo documents on open
     useEffect(() => {
@@ -34,6 +41,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                 {
                     url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
                     name: 'Buck Bunny',
+                    icon: defaultDocumentIcon,
                     options: {
                         forceHLS: true,
                         forceSafariHLS: false,
@@ -44,6 +52,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                     url: 'http://www.samisite.com/sound/cropShadesofGrayMonkees.mp3',
                     name: 'Monkees',
                     type: 'audio',
+                    icon: defaultDocumentIcon,
                     subtitlesUrl: `${process.env.NEXT_PUBLIC_BASE_PATH}/test.srt`,
                 },
             ]
@@ -62,12 +71,12 @@ const QuickTimeMoviePlayer: React.FC = () => {
     }, [])
 
     const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    const { openDocuments } = desktop.System.Manager.App.apps[appIndex]?.data
+    const openDocuments = desktop.System.Manager.App.apps[appIndex]?.data['openFiles']
 
-    const openUrl = (url: string) => {
+    const openUrl = (name: string, url: string, iconUrl?: string) => {
         desktopEventDispatch({
             type: 'ClassicyAppQuickTimeOpenDocument',
-            document: { url: url },
+            document: { name, url: url, icon: iconUrl || defaultDocumentIcon },
         })
 
         const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex(
@@ -120,6 +129,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                         key={doc.name + '_' + doc.url}
                         id={appId + '_VideoPlayer_' + doc.url}
                         title={doc.name}
+                        icon={doc.icon || undefined}
                         minimumSize={[300, 60]}
                         appId={appId}
                         closable={true}

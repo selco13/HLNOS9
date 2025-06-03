@@ -3,7 +3,7 @@ import classicyTimePickerStyles from '@/app/SystemFolder/SystemResources/TimePic
 import classNames from 'classnames'
 import React, { ChangeEvent, useState } from 'react'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import { useDesktop } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 
 interface ClassicyTimePickerProps {
     id: string
@@ -25,7 +25,6 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
     ref
 ) {
     const desktop = useDesktop()
-    const desktopEventDispatch = useDesktopDispatch()
 
     const [selectedDate, setSelectedDate] = useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
     const [hour, setHour] = useState<string>(

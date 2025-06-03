@@ -81,6 +81,37 @@ let defaultFSContent = {
                 _data: 'File Contents',
             },
         },
+        Videos: {
+            _type: ClassicyFileSystemEntryFileType.Directory,
+            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
+            'BuckBunny.mov': {
+                _type: ClassicyFileSystemEntryFileType.File,
+                _creator: 'QuickTime',
+                _format: 'Video',
+                _mimeType: 'text/plain',
+                _data: JSON.stringify({
+                    url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
+                    name: 'Buck Bunny',
+                    options: {
+                        forceHLS: true,
+                        forceSafariHLS: false,
+                    },
+                    type: 'video',
+                }),
+            },
+            'Monkees.mp3': {
+                _type: ClassicyFileSystemEntryFileType.File,
+                _creator: 'QuickTime',
+                _format: 'Audio',
+                _mimeType: 'text/plain',
+                _data: JSON.stringify({
+                    url: 'http://www.samisite.com/sound/cropShadesofGrayMonkees.mp3',
+                    name: 'Monkees',
+                    type: 'audio',
+                    subtitlesUrl: `${process.env.NEXT_PUBLIC_BASE_PATH}/test.srt`,
+                }),
+            },
+        },
     },
 }
 
@@ -88,6 +119,10 @@ export type ClassicyFileSystemEntryMetadata = {
     // The type of file
     _type: ClassicyFileSystemEntryFileType
     _mimeType?: string
+
+    // The Creator and Format are used to determine which application to open the file with.
+    _creator?: string
+    _format?: string
 
     // Standard fields
     _label?: string
