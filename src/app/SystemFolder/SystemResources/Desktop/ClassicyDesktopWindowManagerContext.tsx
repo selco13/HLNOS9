@@ -2,6 +2,7 @@ import {
     ClassicyStore,
     ClassicyStoreSystemAppWindow,
 } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
+import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 
 const initialWindowState = {
     closed: false,
@@ -18,15 +19,21 @@ const notEmpty = <T,>(value: T | null | undefined): value is T => value != null
 
 type ClassicyWindowAction =
     // Open the Window's Context Menu
-    | { type: 'ClassicyWindowMenu'; menuBar: any }
+    | { type: 'ClassicyWindowMenu'; menuBar: ClassicyMenuItem[] }
     // Open a Window
     | {
           type: 'ClassicyWindowOpen'
           app: { id: string }
-          window: { id: string; minimumSize: [number, number]; size: [number, number]; position: [number, number] }
+          window: {
+              id: string
+              minimumSize: [number, number]
+              size: [number, number]
+              position: [number, number]
+              menuBar?: ClassicyMenuItem[]
+          }
       }
     // Focus a Window
-    | { type: 'ClassicyWindowFocus'; app: { id: string; appMenu: any }; window: { id: string } }
+    | { type: 'ClassicyWindowFocus'; app: { id: string; menuBar: ClassicyMenuItem[] }; window: { id: string } }
     // Close a Window
     | { type: 'ClassicyWindowClose'; app: { id: string }; window: { id: string } }
     // Close a Window and destroy its entry
@@ -82,6 +89,7 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
                     position: action.window.position,
                     closed: false,
                     hidden: false,
+                    menuBar: action.window.menuBar,
                 } as ClassicyStoreSystemAppWindow)
             }
             break
@@ -91,7 +99,7 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
                     a.focused = true
                     a.windows = a.windows.map((w) => {
                         w.focused = w.id == action.window.id
-                        ds.System.Manager.Desktop.appMenu = action.app.appMenu
+                        ds.System.Manager.Desktop.appMenu = action.app.menuBar
                         return w
                     })
                 }

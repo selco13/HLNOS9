@@ -51,7 +51,7 @@ export interface ClassicyStoreSystemAppWindow {
     dragging?: boolean
     moving?: boolean
     modal?: boolean
-    appMenu?: ClassicyMenuItem[]
+    menuBar?: ClassicyMenuItem[]
     contextMenu?: ClassicyMenuItem[]
     showContextMenu?: boolean
     options?: Record<string, any>[]
