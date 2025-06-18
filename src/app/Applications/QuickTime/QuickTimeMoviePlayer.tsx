@@ -31,12 +31,13 @@ const QuickTimeMoviePlayer: React.FC = () => {
     const desktop = useDesktop()
 
     const defaultDocumentIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/movie.png`
+    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
+    const openDocuments = desktop.System.Manager.App.apps[appIndex]?.data['openFiles']
 
     // Load Default Demo documents on open
     useEffect(() => {
         const appData = desktop.System.Manager.App.apps[appIndex]?.data || {}
         if (!appData['openDocuments'] || appData['openDocuments'].length === 0) {
-            console.log('set default')
             const defaultDocs = [
                 {
                     url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
@@ -69,9 +70,6 @@ const QuickTimeMoviePlayer: React.FC = () => {
             })
         }
     }, [])
-
-    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    const openDocuments = desktop.System.Manager.App.apps[appIndex]?.data['openFiles']
 
     const openUrl = (name: string, url: string, iconUrl?: string) => {
         desktopEventDispatch({

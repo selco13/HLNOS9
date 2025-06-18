@@ -142,6 +142,20 @@ export class ClassicyAppManagerHandler {
         }
     }
 
+    public loadApp(ds: ClassicyStore, appId: string, appName: string, appIcon: string) {
+        const findApp = this.getAppIndex(ds, appId)
+        if (findApp < 0) {
+            ds.System.Manager.App.apps.push({
+                id: appId,
+                name: appName,
+                icon: appIcon,
+                windows: [],
+                open: true,
+                data: {},
+            })
+        }
+    }
+
     public closeApp(ds: ClassicyStore, appId: string) {
         const findApp = this.getAppIndex(ds, appId)
         if (findApp >= 0) {
@@ -174,6 +188,10 @@ export const classicyAppEventHandler = (ds: ClassicyStore, action) => {
     switch (action.type) {
         case 'ClassicyAppOpen': {
             handler.openApp(ds, action.app.id, action.app.name, action.app.icon)
+            break
+        }
+        case 'ClassicyAppLoad': {
+            handler.loadApp(ds, action.app.id, action.app.name, action.app.icon)
             break
         }
         case 'ClassicyAppClose': {

@@ -19,7 +19,7 @@ export const classicyQuickTimeEventHandler = (ds: ClassicyStore, action: classic
     const appIndex = ds.System.Manager.App.apps.findIndex((app) => app.id === appId)
     if (appIndex === -1) {
         ds = classicyAppEventHandler(ds, {
-            type: 'ClassicyAppOpen',
+            type: 'ClassicyAppLoad',
             app: QuickTimeAppInfo,
         })
     }
@@ -42,7 +42,6 @@ export const classicyQuickTimeEventHandler = (ds: ClassicyStore, action: classic
         }
         case 'ClassicyAppQuickTimeOpenDocuments': {
             const docs = action.documents.filter((doc) => !openDocUrls.includes(doc.url))
-            console.log(docs, action.documents)
             ds.System.Manager.App.apps[appIndex].data['openFiles'] = Array.from(
                 new Set([...ds.System.Manager.App.apps[appIndex].data['openFiles'], ...docs])
             )
