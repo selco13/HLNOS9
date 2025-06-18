@@ -71,7 +71,6 @@ const Finder = () => {
         const file = fs.resolve(path)
         desktopEventDispatch({
             type: 'ClassicyAppFinderOpenFile',
-            debug: true,
             file,
         })
     }

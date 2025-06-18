@@ -299,7 +299,6 @@ export const DefaultDesktopState: ClassicyStore = {
                         open: true,
                         focused: true,
                         noDesktopIcon: true,
-                        debug: false,
                         openOnBoot: true,
                         data: {},
                     },

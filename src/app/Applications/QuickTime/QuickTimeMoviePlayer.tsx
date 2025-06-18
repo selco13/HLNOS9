@@ -60,13 +60,11 @@ const QuickTimeMoviePlayer: React.FC = () => {
             desktopEventDispatch({
                 type: 'ClassicyAppQuickTimeOpenDocuments',
                 documents: defaultDocs,
-                debug: true,
             })
         } else {
             desktopEventDispatch({
                 type: 'ClassicyAppQuickTimeOpenDocuments',
                 documents: appData['openDocuments'],
-                debug: true,
             })
         }
     }, [])

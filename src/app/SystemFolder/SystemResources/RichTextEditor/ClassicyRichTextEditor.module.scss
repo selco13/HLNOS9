@@ -35,6 +35,8 @@
       flex-direction: row;
       flex-grow: 1;
       justify-content: center;
+      border-radius: 0 !important;
+      background: var(--color-system-02);
 
       button {
         display: flex;
