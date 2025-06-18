@@ -33,7 +33,7 @@ type ClassicyWindowAction =
           }
       }
     // Focus a Window
-    | { type: 'ClassicyWindowFocus'; app: { id: string; menuBar: ClassicyMenuItem[] }; window: { id: string } }
+    | { type: 'ClassicyWindowFocus'; app: { id: string }; window: { id: string; menuBar: ClassicyMenuItem[] } }
     // Close a Window
     | { type: 'ClassicyWindowClose'; app: { id: string }; window: { id: string } }
     // Close a Window and destroy its entry
@@ -99,7 +99,7 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
                     a.focused = true
                     a.windows = a.windows.map((w) => {
                         w.focused = w.id == action.window.id
-                        ds.System.Manager.Desktop.appMenu = action.app.menuBar
+                        ds.System.Manager.Desktop.appMenu = action.window.menuBar
                         return w
                     })
                 }
