@@ -1,172 +1,10 @@
 import { sha512 } from 'sha512-crypt-ts'
-import { ReactNode } from 'react'
-
-export enum ClassicyFileSystemEntryFileType {
-    File = 'file',
-    Shortcut = 'shortcut',
-    AppShortcut = 'app_shortcut',
-    Drive = 'drive',
-    Directory = 'directory',
-}
-
-let defaultFSContent = {
-    'Macintosh HD': {
-        _type: ClassicyFileSystemEntryFileType.Drive,
-        _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/drives/disk.png`,
-        Applications: {
-            _type: ClassicyFileSystemEntryFileType.Directory,
-            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
-            'TextEdit.app': {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-                _invisible: true,
-            },
-            'Calculator.app': {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-                _invisible: true,
-            },
-        },
-        Library: {
-            _type: ClassicyFileSystemEntryFileType.Directory,
-            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
-            Extensions: {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/mac.png`,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-        },
-        'System Folder': {
-            _type: ClassicyFileSystemEntryFileType.Directory,
-            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
-            Finder: {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-            System: {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-        },
-        Users: {
-            _type: ClassicyFileSystemEntryFileType.Directory,
-            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
-            Guest: {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-            Shared: {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-        },
-        Utilities: {
-            _type: ClassicyFileSystemEntryFileType.Directory,
-            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
-            'Disk Utility.app': {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-            'Terminal.app': {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _mimeType: 'text/plain',
-                _data: 'File Contents',
-            },
-        },
-        Videos: {
-            _type: ClassicyFileSystemEntryFileType.Directory,
-            _icon: `${process.env.NEXT_PUBLIC_BASE_PATH}/img/icons/system/folders/directory.png`,
-            'BuckBunny.mov': {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _creator: 'QuickTime',
-                _format: 'Video',
-                _mimeType: 'text/plain',
-                _data: JSON.stringify({
-                    url: 'https://cdn1.911realtime.org/transcoded/newsw/2001-09-11/NEWSW_20010911_040000_The_National.m3u8',
-                    name: 'Buck Bunny',
-                    options: {
-                        forceHLS: true,
-                        forceSafariHLS: false,
-                    },
-                    type: 'video',
-                }),
-            },
-            'Monkees.mp3': {
-                _type: ClassicyFileSystemEntryFileType.File,
-                _creator: 'QuickTime',
-                _format: 'Audio',
-                _mimeType: 'text/plain',
-                _data: JSON.stringify({
-                    url: 'http://www.samisite.com/sound/cropShadesofGrayMonkees.mp3',
-                    name: 'Monkees',
-                    type: 'audio',
-                    subtitlesUrl: `${process.env.NEXT_PUBLIC_BASE_PATH}/test.srt`,
-                }),
-            },
-        },
-    },
-}
-
-export type ClassicyFileSystemEntryMetadata = {
-    // The type of file
-    _type: ClassicyFileSystemEntryFileType
-    _mimeType?: string
-
-    // The Creator and Format are used to determine which application to open the file with.
-    _creator?: string
-    _format?: string
-
-    // Standard fields
-    _label?: string
-    _comments?: string
-
-    // The URL if the file is a 'shortcut' type
-    _url?: string
-
-    // Icon data
-    _icon?: string
-    _badge?: ReactNode
-
-    // Modification data
-    _createdOn?: Date
-    _modifiedOn?: Date
-    _versions?: ClassicyFileSystemEntry[]
-
-    // Entry Settings
-    _readOnly?: boolean // The file cannot be modified. It's name can be changed.
-    _nameLocked?: boolean // If true, the name cannot be changed.
-    _trashed?: boolean // If true, this entry is in the trash and will not show, except in the Trash.
-    _system?: boolean // The file is a system file and cannot be modified. It is also marked with an additional icon.
-    _invisible?: boolean // The file is not normally visible, but can be accessed by apps.
-
-    // Folders
-    // Used for stat-ing directories
-    _count?: number
-    _countHidden?: number
-    _path?: string
-
-    // Files
-    // The contents of the file.
-    _data?: any
-
-    // Used for stat-ing directories and files.
-    _size?: number
-
-    // Optional useful field for storing the name.
-    _name?: string
-}
-
-export type ClassicyFileSystemEntry = {
-    [entry: string]: any
-} & ClassicyFileSystemEntryMetadata
+import { DefaultFSContent } from '@/app/SystemFolder/SystemResources/File/DefaultClassicyFileSystem'
+import {
+    ClassicyFileSystemEntry,
+    ClassicyFileSystemEntryFileType,
+    ClassicyFileSystemEntryMetadata,
+} from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystemModel'
 
 export type ClassicyPathOrFileSystemEntry = string | ClassicyFileSystemEntry
 
@@ -175,7 +13,7 @@ export class ClassicyFileSystem {
     fs: ClassicyFileSystemEntry
     separator: string
 
-    constructor(basePath: string = '', defaultFS: any = defaultFSContent, separator: string = ':') {
+    constructor(basePath: string = '', defaultFS: any = DefaultFSContent, separator: string = ':') {
         this.basePath = basePath
         this.fs =
             typeof window !== 'undefined' ? JSON.parse(localStorage.getItem(this.basePath)) || defaultFS : defaultFS

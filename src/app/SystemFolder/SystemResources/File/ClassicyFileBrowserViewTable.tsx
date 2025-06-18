@@ -1,18 +1,16 @@
-import {
-    ClassicyFileSystem,
-    ClassicyFileSystemEntryMetadata,
-} from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
+import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
 import React, { useMemo, useState } from 'react'
 import {
     createColumnHelper,
     flexRender,
     getCoreRowModel,
-    RowSelectionState,
+    getSortedRowModel,
     useReactTable,
 } from '@tanstack/react-table'
 import { capitalizeFirst, iconImageByType } from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserUtils'
 import classicyFileBrowserViewTableStyles from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserViewTable.module.scss'
 import classNames from 'classnames'
+import { ClassicyFileSystemEntryMetadata } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystemModel'
 
 type ClassicyFileBrowserViewTableProps = {
     fs: ClassicyFileSystem
@@ -23,6 +21,12 @@ type ClassicyFileBrowserViewTableProps = {
     fileOnClickFunc?: any
 }
 
+type ColumnSort = {
+    id: string
+    desc: boolean
+}
+type SortingState = ColumnSort[]
+
 const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> = ({
     fs,
     path,
@@ -31,6 +35,23 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
     dirOnClickFunc = () => {},
     fileOnClickFunc = () => {},
 }) => {
+    const [selectedRow, setSelectedRow] = useState<string>()
+    const [sorting, setSorting] = useState<SortingState>([{ id: '_name', desc: false }])
+
+    const openFileOrFolder = (properties, path: string, filename: string) => {
+        switch (properties['_type']) {
+            case 'directory': {
+                return dirOnClickFunc(path + ':' + filename)
+            }
+            case 'file': {
+                return fileOnClickFunc(path + ':' + filename)
+            }
+            default: {
+                return () => {}
+            }
+        }
+    }
+
     const fileList = useMemo<ClassicyFileSystemEntryMetadata[]>(() => {
         const a = Object.entries(fs.filterByType(path, ['file', 'directory']))
         const directoryListing = a.map(([d, e]) => {
@@ -90,33 +111,16 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
         []
     )
 
-    const [rowSelection, setRowSelection] = useState<RowSelectionState>({}) //manage your own row selection state
-    const [selectedRow, setSelectedRow] = useState<string>()
-
     const table = useReactTable({
         data: fileList,
-        columns: columns,
+        columns,
         getCoreRowModel: getCoreRowModel(),
-        getRowId: (row) => row._path,
+        getSortedRowModel: getSortedRowModel(),
+        state: {
+            sorting,
+        },
+        onSortingChange: setSorting,
     })
-
-    const openFileOrFolder = (properties, path: string, filename: string) => {
-        switch (properties['_type']) {
-            case 'directory': {
-                return dirOnClickFunc(path + ':' + filename)
-            }
-            case 'file': {
-                return fileOnClickFunc(path + ':' + filename)
-            }
-            default: {
-                return () => {}
-            }
-        }
-    }
-
-    const selectRow = (path: string) => {
-        setSelectedRow(path)
-    }
 
     return (
         <div
@@ -136,15 +140,38 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
                                     align={'left'}
                                     className={classNames(
                                         classicyFileBrowserViewTableStyles.classicyFileBrowserViewTableColumnHeader,
-                                        header.column.getIsResizing() ? 'isResizing' : ''
+                                        header.column.getIsResizing() ? 'isResizing' : '',
+                                        header.id == sorting[0].id
+                                            ? classicyFileBrowserViewTableStyles.classicyFileBrowserViewTableColumnHeaderSelected
+                                            : ''
                                     )}
                                     style={{
                                         width: header.id === '_icon' ? iconSize : 'auto',
                                     }}
+                                    onClick={(e) => {
+                                        console.log(header.column.getIsSorted())
+                                        if (
+                                            header.column.getIsSorted() == false ||
+                                            header.column.getIsSorted() == 'desc'
+                                        ) {
+                                            header.column.toggleSorting(false, false)
+                                        } else {
+                                            header.column.toggleSorting(true, false)
+                                        }
+                                    }}
                                 >
-                                    {header.isPlaceholder
-                                        ? null
-                                        : flexRender(header.column.columnDef.header, header.getContext())}
+                                    {!header.isPlaceholder &&
+                                        flexRender(header.column.columnDef.header, header.getContext())}
+                                    {header.id == sorting[0].id && (
+                                        <img
+                                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/ui/menu-dropdown-arrow-up.svg`}
+                                            height={'50%'}
+                                            style={{
+                                                margin: '0 var(--window-padding-size)',
+                                                transform: `rotate(${sorting[0].desc === true ? '0deg' : '180deg'})`,
+                                            }}
+                                        />
+                                    )}
                                     {header.column.getCanResize() && (
                                         <div
                                             onMouseDown={header.getResizeHandler()}
@@ -171,7 +198,7 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
                                     : null
                             )}
                             onDoubleClick={() => openFileOrFolder(row.original, path, row.original._name)}
-                            onClick={() => selectRow(row.id)}
+                            onClick={() => setSelectedRow(row.id)}
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <td key={cell.id} style={{ width: cell.column.getSize(), margin: 0, padding: 0 }}>

@@ -37,7 +37,6 @@ const ClassicyFileBrowser: React.FC<ClassicyFileBrowserProps> = ({
                                 iconSize={18}
                             />
                         )
-
                     default:
                         return (
                             <ClassicyFileBrowserViewIcons

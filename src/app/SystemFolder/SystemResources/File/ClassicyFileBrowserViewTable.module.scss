@@ -62,7 +62,7 @@
   @include appearance.platinumWindowBoxShadow;
 }
 
-.classicyFileBrowserViewTableColumnHeader:first-child {
+.classicyFileBrowserViewTableColumnHeaderSelected {
   @include appearance.platinumWindowHeaderBorderDepressed;
   background-color: var(--color-system-04);
 }
