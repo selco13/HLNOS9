@@ -10,7 +10,7 @@ import {
     RowSelectionState,
     useReactTable,
 } from '@tanstack/react-table'
-import { capitalizeFirst } from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserUtils'
+import { capitalizeFirst, iconImageByType } from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserUtils'
 import classicyFileBrowserViewTableStyles from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowserViewTable.module.scss'
 import classNames from 'classnames'
 
@@ -116,17 +116,6 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
 
     const selectRow = (path: string) => {
         setSelectedRow(path)
-    }
-
-    const iconImageByType = (byType: string) => {
-        switch (byType) {
-            case 'directory': {
-                return `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/folders/directory.png`
-            }
-            default: {
-                return `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/files/file.png`
-            }
-        }
     }
 
     return (
