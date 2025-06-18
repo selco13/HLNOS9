@@ -92,19 +92,35 @@ const EPG: React.FC<ClassicyEPGProps> = ({
         return channel.grid.map((gridItem) => {
             const totalGridSlots = gridWidth / minutesPerGrid
 
+            const itemStart = new Date(gridItem.start)
+            const itemEnd = new Date(gridItem.end)
             let gridProgramStart = (Date.parse(gridItem.start) - gridStartTime.getTime()) / 60000 / minutesPerGrid
             let gridProgramEnd = (Date.parse(gridItem.end) - Date.parse(gridItem.start)) / 60000 / minutesPerGrid
 
-            const currentTime = new Date(desktop.System.Manager.DateAndTime.dateTime)
-            currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
-            const highlight = new Date(gridItem.start) <= currentTime && new Date(gridItem.end) >= currentTime
+            const gridEndTime = new Date(gridStartTime)
+            gridEndTime.setMinutes(gridEndTime.getMinutes() + gridWidth)
 
-            if (gridProgramStart + 2 > totalGridSlots || gridProgramEnd <= 0) {
-                return
+            if (gridProgramStart < 0) {
+                gridProgramEnd = gridProgramStart + gridProgramEnd
+                gridProgramStart = 0
             }
+
             if (gridProgramEnd > gridWidth / minutesPerGrid) {
                 gridProgramEnd = totalGridSlots
             }
+
+            if (
+                gridProgramEnd <= 0 ||
+                itemStart > gridEndTime ||
+                itemEnd < gridStartTime ||
+                gridProgramStart + 2 > totalGridSlots
+            ) {
+                return
+            }
+
+            const currentTime = new Date(desktop.System.Manager.DateAndTime.dateTime)
+            currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
+            const highlight = itemStart <= currentTime && itemEnd >= currentTime
 
             return (
                 <div
