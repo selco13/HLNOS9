@@ -150,7 +150,7 @@ export class ClassicyAppManagerHandler {
                 name: appName,
                 icon: appIcon,
                 windows: [],
-                open: true,
+                open: false,
                 data: {},
             })
         }
