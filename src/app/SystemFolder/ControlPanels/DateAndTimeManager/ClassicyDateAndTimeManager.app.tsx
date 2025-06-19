@@ -1,18 +1,18 @@
 'use client'
 
+import { ClassicyStore } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
+import ClassicyDatePicker from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
+import ClassicyRadioInput from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput'
+import ClassicyTimePicker from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { ChangeEvent, useState } from 'react'
 import ClassicyControlGroup from '../../SystemResources/ControlGroup/ClassicyControlGroup'
-import ClassicyDatePicker from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker'
-import ClassicyTimePicker from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker'
-import { ClassicyStore } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
-import ClassicyRadioInput from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput'
 
 export const ClassicyDateAndTimeManagerApp: React.FC = () => {
     const appName: string = 'Date and Time Manager'
@@ -28,12 +28,20 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
     }
 
-    const updateSystemTime = (date: Date) => {
+    const updateSystemTime = (updatedDate: Date) => {
         desktopEventDispatch({
             type: 'ClassicyManagerDateTimeSet',
-            dateTime: date,
+            dateTime: updatedDate,
         })
     }
+
+    const updateDate = (updatedDate: Date) => {
+        desktopEventDispatch({
+            type: 'ClassicyManagerDateTimeSet',
+            dateTime: updatedDate,
+        })
+    }
+
     const updateTimeZone = (e: ChangeEvent<HTMLSelectElement>) => {
         desktopEventDispatch({
             type: 'ClassicyManagerDateTimeTZSet',
@@ -202,7 +210,12 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <div style={{ width: '42%' }}>
                         <ClassicyControlGroup label={'Current Date'}>
-                            <ClassicyDatePicker id={'date'} labelTitle={''} prefillValue={date}></ClassicyDatePicker>
+                            <ClassicyDatePicker
+                                id={'date'}
+                                labelTitle={''}
+                                prefillValue={date}
+                                onChangeFunc={updateDate}
+                            ></ClassicyDatePicker>
                         </ClassicyControlGroup>
                     </div>
                     <div style={{ width: '58%' }}>

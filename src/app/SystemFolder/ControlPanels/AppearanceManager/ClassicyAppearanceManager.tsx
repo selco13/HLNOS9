@@ -1,17 +1,17 @@
 'use client'
 
 import { getTheme } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearance'
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
+import ClassicyTabs from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { useState } from 'react'
-import ClassicyTabs from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs'
-import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 
 export const ClassicyAppearanceManager: React.FC = () => {
     const appName: string = 'Appearance Manager'
@@ -187,6 +187,7 @@ export const ClassicyAppearanceManager: React.FC = () => {
                             draggable={false}
                             src={bg}
                             style={{ height: '100%', minWidth: '50%', userSelect: 'none' }}
+                            alt={'Background'}
                         />
                         <div style={{ width: '100%' }}>
                             <ClassicyControlLabel label={'Desktop Background'} direction={'left'} />

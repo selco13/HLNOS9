@@ -1,8 +1,8 @@
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyDatePickerStyles from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker.module.scss'
 import classNames from 'classnames'
 import React, { ChangeEvent, useState } from 'react'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 
 interface ClassicyDatePickerProps {
     id: string
@@ -37,16 +37,6 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
         new Date(desktop.System.Manager.DateAndTime.dateTime).getFullYear().toString()
     )
 
-    const handleDateChange = () => {
-        desktopEventDispatch({
-            type: 'ClassicyManagerDateTimeSet',
-            dateTime: selectedDate,
-        })
-        if (onChangeFunc) {
-            onChangeFunc()
-        }
-    }
-
     const selectText = (e) => {
         e.target.focus()
         e.target.select()
@@ -76,7 +66,9 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
                     return
                 }
                 const monthInt = updatedDate.getMonth()
-                if (inputValue > monthsAndDays[monthInt]) return
+                if (inputValue > monthsAndDays[monthInt]) {
+                    return
+                }
                 updatedDate.setDate(inputValue)
                 setDay(e.currentTarget.value)
                 break
@@ -90,7 +82,10 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
         }
 
         setSelectedDate(updatedDate)
-        handleDateChange()
+
+        if (onChangeFunc) {
+            onChangeFunc(updatedDate)
+        }
     }
 
     return (

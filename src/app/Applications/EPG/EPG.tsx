@@ -1,11 +1,11 @@
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
+import classNames from 'classnames'
 import React, { ReactElement, useMemo, useState } from 'react'
 import epgStyles from './EPG.module.scss'
-import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
-import classNames from 'classnames'
 import data from './testdata.json' with { type: 'json' }
 
 interface ClassicyEPGProps {
@@ -164,6 +164,7 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                 {gridStartTime.toLocaleDateString([], { month: 'numeric', day: 'numeric', year: 'numeric' })}
             </div>,
         ]
+
         for (let i = 1; i <= gridWidth / minutesPerGrid; i += gridTimeWidth / minutesPerGrid) {
             const d = new Date(gridStartTime.getTime() + (i - 1) * minutesPerGrid * 60000)
             headers.push(
@@ -185,14 +186,7 @@ const EPG: React.FC<ClassicyEPGProps> = ({
             )
         }
         return headers
-    }, [
-        gridStartTime,
-        gridWidth,
-        minutesPerGrid,
-        gridTimeWidth,
-        desktop.System.Manager.DateAndTime.dateTime,
-        desktop.System.Manager.DateAndTime.timeZoneOffset,
-    ])
+    }, [gridStartTime, gridWidth, minutesPerGrid, gridTimeWidth])
 
     const epgData = useMemo(() => {
         return gridData.map((channel, channelIndex) => {
@@ -214,7 +208,7 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                 </>
             )
         })
-    }, [gridStartTime, desktop.System.Manager.DateAndTime.dateTime])
+    }, [gridData, getProgramData])
 
     const jumpBack = () => {
         setGridStartTime(new Date(gridStartTime.getTime() - 30 * 60 * 1000))
@@ -229,9 +223,8 @@ const EPG: React.FC<ClassicyEPGProps> = ({
         currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
         setGridStartTime(roundDownToNearestMinuntes(currentTime, gridTimeWidth))
     }
-
-    const currentDate = new Date(desktop.System.Manager.DateAndTime.dateTime)
-    currentDate.setHours(currentDate.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
+    const currentTime = new Date(desktop.System.Manager.DateAndTime.dateTime)
+    currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
 
     return (
         <>
@@ -257,9 +250,38 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                             style={{
                                 gridTemplateColumns: `${channelHeaderWidth}fr repeat(${gridWidth / minutesPerGrid}, 1fr)`,
                                 backgroundColor: 'var(--color-white)',
+                                position: 'relative',
                             }}
                         >
-                            {epgHeader}
+                            <>
+                                {gridStartTime < currentTime && (
+                                    <div
+                                        style={{
+                                            gridColumnStart: Math.floor(
+                                                2 +
+                                                    (currentTime.getTime() - gridStartTime.getTime()) /
+                                                        1000 /
+                                                        60 /
+                                                        minutesPerGrid
+                                            ),
+                                            gridColumnEnd: Math.floor(
+                                                3 +
+                                                    (currentTime.getTime() - gridStartTime.getTime()) /
+                                                        1000 /
+                                                        60 /
+                                                        minutesPerGrid
+                                            ),
+                                            position: 'absolute',
+                                            right: 0,
+                                            top: 0,
+                                            color: 'red',
+                                        }}
+                                    >
+                                        |
+                                    </div>
+                                )}
+                                {epgHeader}
+                            </>
                         </div>
                         <div
                             className={classNames([
