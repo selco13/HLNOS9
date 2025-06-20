@@ -1,12 +1,12 @@
+import quickTimeStyles from '@/app/Applications/QuickTime/QuickTime.module.scss'
+import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
+import { parse } from '@plussub/srt-vtt-parser'
 import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
-import quickTimeStyles from '@/app/Applications/QuickTime/QuickTime.module.scss'
 import screenfull from 'screenfull'
-import { parse } from '@plussub/srt-vtt-parser'
 import { getVolumeIcon, timeFriendly } from './QuickTimeUtils'
 
 export type QuickTimeDocument = {
@@ -31,12 +31,11 @@ const QuickTimeMoviePlayer: React.FC = () => {
     const desktop = useDesktop()
 
     const defaultDocumentIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/movie.png`
-    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    const openDocuments = desktop.System.Manager.App.apps[appIndex]?.data['openFiles']
+    const openDocuments = desktop.System.Manager.App.apps[appId]?.data['openFiles']
 
     // Load Default Demo documents on open
     useEffect(() => {
-        const appData = desktop.System.Manager.App.apps[appIndex]?.data || {}
+        const appData = desktop.System.Manager.App.apps[appId]?.data || {}
         if (!appData['openDocuments'] || appData['openDocuments'].length === 0) {
             const defaultDocs = [
                 {
@@ -75,10 +74,10 @@ const QuickTimeMoviePlayer: React.FC = () => {
             document: { name, url: url, icon: iconUrl || defaultDocumentIcon },
         })
 
-        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex(
+        const windowIndex = desktop.System.Manager.App.apps[appId].windows.findIndex(
             (w) => w.id === appId + '_VideoPlayer_' + url
         )
-        const ws = desktop.System.Manager.App.apps[appIndex].windows[windowIndex]
+        const ws = desktop.System.Manager.App.apps[appId].windows[windowIndex]
         if (ws) {
             ws.closed = false
             desktopEventDispatch({
@@ -230,8 +229,7 @@ const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({ appId, name, url, 
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-            const { windows } = desktop.System.Manager.App.apps[appIndex]
+            const { windows } = desktop.System.Manager.App.apps[appId]
             const a = windows.find((w) => (w.id = appId + '_VideoPlayer_' + url))
             if (!a.focused) {
                 return

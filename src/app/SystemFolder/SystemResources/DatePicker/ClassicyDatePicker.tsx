@@ -1,8 +1,12 @@
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import { useDesktop } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import classicyDatePickerStyles from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePicker.module.scss'
+import {
+    validateDayOfMonth,
+    validateMonth,
+} from '@/app/SystemFolder/SystemResources/DatePicker/ClassicyDatePickerUtils'
 import classNames from 'classnames'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 
 interface ClassicyDatePickerProps {
     id: string
@@ -16,8 +20,6 @@ interface ClassicyDatePickerProps {
     ref?: any
 }
 
-const monthsAndDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
 const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
     HTMLInputElement,
     ClassicyDatePickerProps
@@ -26,7 +28,6 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
     ref
 ) {
     const desktop = useDesktop()
-    const desktopEventDispatch = useDesktopDispatch()
 
     const [selectedDate, setSelectedDate] = useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
     const [month, setMonth] = useState<string>(
@@ -40,6 +41,12 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
     const selectText = (e) => {
         e.target.focus()
         e.target.select()
+    }
+
+    const handleDateChange = (date: Date) => {
+        if (onChangeFunc) {
+            onChangeFunc(date)
+        }
     }
 
     const handleDatePartChange = (e: ChangeEvent<HTMLInputElement>, part: 'month' | 'day' | 'year') => {
@@ -62,13 +69,7 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
                 setMonth(e.currentTarget.value)
                 break
             case 'day':
-                if (inputValue < 1 || inputValue > 31) {
-                    return
-                }
-                const monthInt = updatedDate.getMonth()
-                if (inputValue > monthsAndDays[monthInt]) {
-                    return
-                }
+                inputValue = validateDayOfMonth(inputValue, parseInt(month))
                 updatedDate.setDate(inputValue)
                 setDay(e.currentTarget.value)
                 break
@@ -82,10 +83,42 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
         }
 
         setSelectedDate(updatedDate)
+        handleDateChange(updatedDate)
+    }
 
-        if (onChangeFunc) {
-            onChangeFunc(updatedDate)
+    const incrementDatePartChange = (e: KeyboardEvent<HTMLInputElement>, part: 'month' | 'day' | 'year') => {
+        let updatedDate = new Date(selectedDate)
+        let modifier = 0
+
+        switch (e.key) {
+            case 'ArrowDown':
+                modifier = -1
+                break
+            case 'ArrowUp':
+                modifier = 1
+                break
         }
+
+        switch (part) {
+            case 'month':
+                let currentMonth = validateMonth(parseInt(month) + modifier)
+                updatedDate.setHours(currentMonth)
+                setMonth(currentMonth.toString())
+                break
+            case 'day':
+                let currentDay = validateDayOfMonth(parseInt(day) + modifier, parseInt(month))
+                updatedDate.setDate(currentDay)
+                setDay(currentDay.toString())
+                break
+            case 'year':
+                let currentYear = parseInt(year) + modifier
+                updatedDate.setFullYear(currentYear)
+                setYear(currentYear.toString())
+                break
+        }
+
+        setSelectedDate(updatedDate)
+        handleDateChange(updatedDate)
     }
 
     return (
@@ -110,6 +143,7 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
                         tabIndex={0}
                         onChange={(e) => handleDatePartChange(e, 'month')}
                         onBlur={(e) => handleDatePartChange(e, 'month')}
+                        onKeyDown={(e) => incrementDatePartChange(e, 'month')}
                         onClick={selectText}
                         name={id + '_month'}
                         type={inputType}
@@ -125,6 +159,7 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
                         tabIndex={0}
                         onChange={(e) => handleDatePartChange(e, 'day')}
                         onBlur={(e) => handleDatePartChange(e, 'day')}
+                        onKeyDown={(e) => incrementDatePartChange(e, 'day')}
                         onClick={selectText}
                         name={id + '_day'}
                         type={inputType}
@@ -141,6 +176,7 @@ const ClassicyDatePicker: React.FC<ClassicyDatePickerProps> = React.forwardRef<
                         onClick={selectText}
                         onChange={(e) => handleDatePartChange(e, 'year')}
                         onBlur={(e) => handleDatePartChange(e, 'year')}
+                        onKeyDown={(e) => incrementDatePartChange(e, 'year')}
                         name={id + '_year'}
                         type={inputType}
                         ref={ref}

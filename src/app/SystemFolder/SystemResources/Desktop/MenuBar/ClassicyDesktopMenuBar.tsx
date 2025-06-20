@@ -24,14 +24,14 @@ const ClassicyDesktopMenuBar: React.FC = () => {
         })
     }
 
-    let activeAppObject = desktopContext.System.Manager.App.apps.filter((app) => app.focused)
+    let activeAppObject = Object.values(desktopContext.System.Manager.App.apps).filter((app) => app.focused)
 
     const appSwitcherMenuMenuItem: ClassicyMenuItem = {
         id: 'app-switcher',
         image: activeAppObject?.at(0)?.icon || '',
         title: activeAppObject?.at(0)?.name || 'Finder',
         className: classicyDesktopMenuStyles.classicyDesktopMenuAppSwitcher,
-        menuChildren: desktopContext.System.Manager.App.apps
+        menuChildren: Object.values(desktopContext.System.Manager.App.apps)
             .filter((a) => a.open)
             .map((app) => ({
                 id: app.id,

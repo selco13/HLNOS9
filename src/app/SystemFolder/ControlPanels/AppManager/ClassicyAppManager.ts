@@ -1,22 +1,22 @@
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
+import { classicyQuickTimeEventHandler } from '@/app/Applications/QuickTime/QuickTimeContext'
 import {
     ClassicyStoreSystemAppearanceManager,
     ClassicyTheme,
 } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearance'
+import themesData from '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/themes.json'
+import { classicyDateTimeManagerEventHandler } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/ClassicyDateAndTimeManager.app'
+import { ClassicyStoreSystemSoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
+import { classicyFinderEventHandler } from '@/app/SystemFolder/Finder/FinderContext'
+import { classicyDesktopIconEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
 import {
     classicyDesktopEventHandler,
     ClassicyStoreSystemDesktopManager,
 } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopManager'
 import { classicyWindowEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopWindowManagerContext'
-import { classicyDesktopIconEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
-import themesData from '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/themes.json'
-import { classicyDateTimeManagerEventHandler } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/ClassicyDateAndTimeManager.app'
-import { classicyFinderEventHandler } from '@/app/SystemFolder/Finder/FinderContext'
-import { ClassicyStoreSystemSoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
-import { classicyQuickTimeEventHandler } from '@/app/Applications/QuickTime/QuickTimeContext'
+import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 
 export interface ClassicyStoreSystemAppManager extends ClassicyStoreSystemManager {
-    apps: ClassicyStoreSystemApp[]
+    apps: Record<string, ClassicyStoreSystemApp>
 }
 
 export interface ClassicyStoreSystemApp {
@@ -90,94 +90,92 @@ export interface ClassicyStoreSystemManager {}
 
 export class ClassicyAppManagerHandler {
     public getAppIndex(ds: ClassicyStore, appId: string) {
-        return ds.System.Manager.App.apps.findIndex((d) => d.id === appId)
+        return ds.System.Manager.App.apps[appId]
     }
 
     public deFocusApps(ds: ClassicyStore) {
-        ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-            a.focused = false
-            a.windows = a.windows.map((w) => {
+        Object.entries(ds.System.Manager.App.apps).forEach(([key]) => {
+            ds.System.Manager.App.apps[key].focused = false
+            ds.System.Manager.App.apps[key].windows = ds.System.Manager.App.apps[key].windows.map((w) => {
                 w.focused = false
                 return w
             })
-            return a
         })
         return ds
     }
 
     public focusApp(ds: ClassicyStore, appId: string) {
-        const findApp = this.getAppIndex(ds, appId)
         ds = this.deFocusApps(ds)
-        ds.System.Manager.App.apps[findApp].focused = true
-        const focusedWindow = ds.System.Manager.App.apps[findApp].windows.findIndex((w) => w.default)
+        if (ds.System.Manager.App.apps[appId]) {
+            ds.System.Manager.App.apps[appId].focused = true
+        }
+        const focusedWindow = ds.System.Manager.App.apps[appId]?.windows.findIndex((w) => w.default)
         if (focusedWindow >= 0) {
-            ds.System.Manager.App.apps[findApp].windows[focusedWindow].closed = false
-            ds.System.Manager.App.apps[findApp].windows[focusedWindow].focused = true
-            ds.System.Manager.Desktop.appMenu = ds.System.Manager.App.apps[findApp].appMenu
-        } else if (ds.System.Manager.App.apps[findApp].windows.length > 0) {
-            ds.System.Manager.App.apps[findApp].windows[0].closed = false
-            ds.System.Manager.App.apps[findApp].windows[0].focused = true
-            ds.System.Manager.Desktop.appMenu = ds.System.Manager.App.apps[findApp].appMenu
+            ds.System.Manager.App.apps[appId].windows[focusedWindow].closed = false
+            ds.System.Manager.App.apps[appId].windows[focusedWindow].focused = true
+            ds.System.Manager.Desktop.appMenu = ds.System.Manager.App.apps[appId].appMenu
+        } else if (ds.System.Manager.App.apps[appId]?.windows.length > 0) {
+            ds.System.Manager.App.apps[appId].windows[0].closed = false
+            ds.System.Manager.App.apps[appId].windows[0].focused = true
+            ds.System.Manager.Desktop.appMenu = ds.System.Manager.App.apps[appId].appMenu
         }
     }
 
     public openApp(ds: ClassicyStore, appId: string, appName: string, appIcon: string) {
-        const findApp = this.getAppIndex(ds, appId)
-        if (findApp >= 0) {
-            ds.System.Manager.App.apps[findApp].open = true
-            ds.System.Manager.App.apps[findApp].windows = ds.System.Manager.App.apps[findApp].windows.map((w) => {
+        const findApp = ds.System.Manager.App.apps[appId]
+        if (findApp) {
+            ds.System.Manager.App.apps[appId].open = true
+            ds.System.Manager.App.apps[appId].windows = ds.System.Manager.App.apps[appId].windows.map((w) => {
                 w.closed = false
                 return w
             })
             this.focusApp(ds, appId)
         } else {
-            ds.System.Manager.App.apps.push({
+            ds.System.Manager.App.apps[appId] = {
                 id: appId,
                 name: appName,
                 icon: appIcon,
                 windows: [],
                 open: true,
                 data: {},
-            })
+            }
         }
     }
 
     public loadApp(ds: ClassicyStore, appId: string, appName: string, appIcon: string) {
-        const findApp = this.getAppIndex(ds, appId)
-        if (findApp < 0) {
-            ds.System.Manager.App.apps.push({
+        const findApp = ds.System.Manager.App.apps[appId]
+        if (!findApp) {
+            ds.System.Manager.App.apps[appId] = {
                 id: appId,
                 name: appName,
                 icon: appIcon,
                 windows: [],
                 open: false,
                 data: {},
-            })
+            }
         }
     }
 
     public closeApp(ds: ClassicyStore, appId: string) {
-        const findApp = this.getAppIndex(ds, appId)
-        if (findApp >= 0) {
-            ds.System.Manager.App.apps[findApp].open = false
-            ds.System.Manager.App.apps[findApp].focused = false
-            ds.System.Manager.App.apps[findApp].windows.map((w) => (w.closed = true))
+        const findApp = ds.System.Manager.App.apps[appId]
+        if (findApp) {
+            ds.System.Manager.App.apps[appId].open = false
+            ds.System.Manager.App.apps[appId].focused = false
+            ds.System.Manager.App.apps[appId].windows?.map((w) => (w.closed = true))
         }
     }
 
     public activateApp(ds: ClassicyStore, appId: string) {
-        ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-            a.focused = a.id === appId
-            return a
+        Object.entries(ds.System.Manager.App.apps).forEach(([key]) => {
+            ds.System.Manager.App.apps[key].focused = key === appId
         })
-        ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-            if (a.id !== appId) {
-                a.windows = a.windows.map((w) => {
+        Object.entries(ds.System.Manager.App.apps).forEach(([key]) => {
+            if (key !== appId) {
+                ds.System.Manager.App.apps[key].windows = ds.System.Manager.App.apps[key].windows.map((w) => {
                     w.focused = false
                     return w
                 })
             }
-            return a
         })
     }
 }
@@ -197,8 +195,10 @@ export const classicyAppEventHandler = (ds: ClassicyStore, action) => {
         case 'ClassicyAppClose': {
             handler.closeApp(ds, action.app.id)
             const lastOpenApp = () => {
-                const openApps = ds.System.Manager.App.apps.filter((w) => w.open)
-                return openApps[0].id
+                const openApps = Object.values(ds.System.Manager.App.apps).find((value) => {
+                    return value.open === true
+                })
+                return openApps[0]?.id
             }
             handler.focusApp(ds, lastOpenApp())
             break
@@ -290,8 +290,8 @@ export const DefaultDesktopState: ClassicyStore = {
                 },
             },
             App: {
-                apps: [
-                    {
+                apps: {
+                    'Finder.app': {
                         id: 'Finder.app',
                         name: 'Finder',
                         icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/macos.svg`,
@@ -302,7 +302,7 @@ export const DefaultDesktopState: ClassicyStore = {
                         openOnBoot: true,
                         data: {},
                     },
-                    {
+                    'QuickTimePlayer.app': {
                         id: 'QuickTimePlayer.app',
                         name: 'QuickTime Player',
                         icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`,
@@ -310,7 +310,7 @@ export const DefaultDesktopState: ClassicyStore = {
                         open: false,
                         data: {},
                     },
-                ],
+                },
             },
             Appearance: {
                 availableThemes: themesData as unknown as ClassicyTheme[],

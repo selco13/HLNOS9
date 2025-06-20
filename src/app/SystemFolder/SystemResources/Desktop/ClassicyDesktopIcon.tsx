@@ -97,8 +97,8 @@ const ClassicyDesktopIcon: React.FC<ClassicyDesktopIconProps> = ({
     let thisLocation = getIconLocation()
 
     const isLaunched = () => {
-        const idx = desktopContext.System.Manager.App.apps.findIndex((o) => o.id === appId && o.open)
-        return idx > -1
+        const idx = desktopContext.System.Manager.App.apps[appId]
+        return !!idx
     }
 
     const stopChangeIcon = () => {

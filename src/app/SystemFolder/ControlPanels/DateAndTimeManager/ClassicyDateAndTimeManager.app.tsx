@@ -14,10 +14,12 @@ import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWi
 import React, { ChangeEvent, useState } from 'react'
 import ClassicyControlGroup from '../../SystemResources/ControlGroup/ClassicyControlGroup'
 
-export const ClassicyDateAndTimeManagerApp: React.FC = () => {
+export const ClassicyDateAndTimeManager: React.FC = () => {
     const appName: string = 'Date and Time Manager'
     const appId: string = 'DateAndTimeManager.app'
     const appIcon: string = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/date-time-manager/date-time-manager.png`
+
+    const [period, setPeriod] = useState<string>('am')
 
     const desktopContext = useDesktop(),
         desktopEventDispatch = useDesktopDispatch()
@@ -29,20 +31,33 @@ export const ClassicyDateAndTimeManagerApp: React.FC = () => {
     }
 
     const updateSystemTime = (updatedDate: Date) => {
+        const date = new Date(desktopContext.System.Manager.DateAndTime.dateTime)
+
+        let hoursToSet = period == 'am' ? updatedDate.getHours() : updatedDate.getHours() + 12
+        if (period == 'am' && updatedDate.getHours() == 12) {
+            hoursToSet = 0
+        }
+        date.setHours(hoursToSet, updatedDate.getMinutes(), updatedDate.getSeconds())
         desktopEventDispatch({
             type: 'ClassicyManagerDateTimeSet',
-            dateTime: updatedDate,
+            dateTime: date,
         })
     }
 
     const updateDate = (updatedDate: Date) => {
+        const date = new Date(desktopContext.System.Manager.DateAndTime.dateTime)
+        date.setMonth(updatedDate.getMonth())
+        date.setDate(updatedDate.getDate())
+        date.setFullYear(updatedDate.getFullYear())
+
         desktopEventDispatch({
             type: 'ClassicyManagerDateTimeSet',
-            dateTime: updatedDate,
+            dateTime: date,
         })
     }
 
     const updateTimeZone = (e: ChangeEvent<HTMLSelectElement>) => {
+        setPeriod(e.target.value)
         desktopEventDispatch({
             type: 'ClassicyManagerDateTimeTZSet',
             tzOffset: e.target.value,

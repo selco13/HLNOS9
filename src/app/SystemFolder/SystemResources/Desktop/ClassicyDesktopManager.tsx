@@ -1,9 +1,9 @@
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import {
     ClassicyAppManagerHandler,
     ClassicyStore,
     ClassicyStoreSystemManager,
 } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
+import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import React from 'react'
 
 export interface ClassicyStoreSystemDesktopManagerIcon {
@@ -73,8 +73,7 @@ export const classicyDesktopEventHandler = (ds: ClassicyStore, action) => {
                 const mgr = new ClassicyAppManagerHandler()
                 ds = mgr.deFocusApps(ds)
 
-                const appI = ds.System.Manager.App.apps.findIndex((a) => (a.id = 'Finder.app'))
-                ds.System.Manager.App.apps[appI].focused = true
+                ds.System.Manager.App.apps['Finder.app'].focused = true
                 ds.System.Manager.Desktop.selectedIcons = []
                 ds.System.Manager.Desktop.showContextMenu = false
                 ds.System.Manager.Desktop.selectBox.active = true

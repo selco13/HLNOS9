@@ -1,13 +1,13 @@
 'use client'
 
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
-import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import { useSoundDispatch } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
+import ClassicyContextualMenu from '@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu'
+import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/ClassicyMenu'
 import classicyWindowStyle from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow.module.scss'
 import { ClassicyWindowState } from '@/app/SystemFolder/SystemResources/Window/ClassicyWindowContext'
 import classNames from 'classnames'
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
-import ClassicyContextualMenu from '@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu'
 
 interface ClassicyWindowProps {
     title?: string
@@ -67,10 +67,6 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
 
     const windowRef = useRef(null)
 
-    const appIndex = useMemo(() => {
-        return desktopContext.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    }, [appId, desktopContext.System.Manager.App.apps])
-
     const ws = useMemo(() => {
         const initialWindowState: ClassicyWindowState = {
             collapsed: false,
@@ -86,7 +82,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
             menuBar: appMenu || [],
             contextMenuShown: false,
         }
-        let window = desktopContext.System.Manager.App.apps[appIndex].windows.find((w) => w.id === id)
+        let window = desktopContext.System.Manager.App.apps[appId]?.windows.find((w) => w.id === id)
         if (!window) {
             window = {
                 id,
@@ -101,11 +97,11 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
         }
         return window
     }, [
-        appIndex,
+        appId,
         appId,
         appMenu,
         contextMenu,
-        desktopContext.System.Manager.App.apps[appIndex],
+        desktopContext.System.Manager.App.apps[appId],
         hidden,
         id,
         initialPosition,
@@ -121,7 +117,7 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                 id: appId,
             },
         })
-    }, [appId, desktopContext.System.Manager.App.apps[appIndex], ws])
+    }, [appId, desktopContext.System.Manager.App.apps[appId], ws])
 
     const startResizeWindow = () => {
         desktopEventDispatch({

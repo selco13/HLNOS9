@@ -1,4 +1,3 @@
-import { useDesktop } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import classicyTimePickerStyles from '@/app/SystemFolder/SystemResources/TimePicker/ClassicyTimePicker.module.scss'
@@ -24,21 +23,11 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
     { id, inputType = 'text', labelTitle, placeholder, prefillValue, disabled = false, isDefault, onChangeFunc },
     ref
 ) {
-    const desktop = useDesktop()
-
-    const [selectedDate, setSelectedDate] = useState<Date>(new Date(desktop.System.Manager.DateAndTime.dateTime))
-    const [hour, setHour] = useState<string>(
-        new Date(desktop.System.Manager.DateAndTime.dateTime).getHours().toString()
-    )
-    const [minutes, setMinutes] = useState<string>(
-        new Date(desktop.System.Manager.DateAndTime.dateTime).getMinutes().toString()
-    )
-    const [seconds, setSeconds] = useState<string>(
-        new Date(desktop.System.Manager.DateAndTime.dateTime).getSeconds().toString()
-    )
-    const [period, setPeriod] = useState<string>(
-        new Date(desktop.System.Manager.DateAndTime.dateTime).getHours() < 12 ? 'am' : 'pm'
-    )
+    const [selectedDate, setSelectedDate] = useState<Date>(prefillValue)
+    const [hour, setHour] = useState<string>(prefillValue.getHours().toString())
+    const [minutes, setMinutes] = useState<string>(prefillValue.getMinutes().toString())
+    const [seconds, setSeconds] = useState<string>(prefillValue.getSeconds().toString())
+    const [period, setPeriod] = useState<string>(prefillValue.getHours() < 12 ? 'am' : 'pm')
 
     const handleDateChange = (date: Date) => {
         if (onChangeFunc) {

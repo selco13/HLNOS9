@@ -67,21 +67,17 @@ type ClassicyWindowAction =
 
 export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWindowAction) => {
     const updateWindow = (appId: string, windowId: string, updates: any) => {
-        ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-            if (a.id === appId) {
-                a.windows = a.windows.map((w) => (w.id === windowId ? { ...w, ...updates } : w))
-            }
-            return a
-        })
+        ds.System.Manager.App.apps[appId].windows = ds.System.Manager.App.apps[appId].windows.map((w) =>
+            w.id === windowId ? { ...w, ...updates } : w
+        )
         return ds
     }
 
     switch (action.type) {
         case 'ClassicyWindowOpen':
-            const app = ds.System.Manager.App.apps.findIndex((app) => app.id === action.app.id)
-            const window = ds.System.Manager.App.apps[app].windows.findIndex((w) => w.id === action.window.id)
+            const window = ds.System.Manager.App.apps[action.app.id].windows.findIndex((w) => w.id === action.window.id)
             if (window < 0) {
-                ds.System.Manager.App.apps[app].windows.push({
+                ds.System.Manager.App.apps[action.app.id].windows.push({
                     ...initialWindowState,
                     id: action.window.id,
                     minimumSize: action.window.minimumSize,
@@ -94,17 +90,14 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
             }
             break
         case 'ClassicyWindowFocus':
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.focused = true
-                    a.windows = a.windows.map((w) => {
-                        w.focused = w.id == action.window.id
-                        ds.System.Manager.Desktop.appMenu = action.window.menuBar
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].focused = true
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    w.focused = w.id == action.window.id
+                    ds.System.Manager.Desktop.appMenu = action.window.menuBar
+                    return w
                 }
-                return a
-            })
+            )
             break
 
         case 'ClassicyWindowClose':
@@ -113,12 +106,9 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
 
         case 'ClassicyWindowDestroy':
             ds = updateWindow(action.app.id, action.window.id, { closed: true })
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => (w.id === action.window.id ? null : w)).filter(notEmpty)
-                }
-                return a
-            })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows
+                .map((w) => (w.id === action.window.id ? null : w))
+                .filter(notEmpty)
             break
 
         case 'ClassicyWindowMenu':
@@ -126,99 +116,78 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
             break
 
         case 'ClassicyWindowResize':
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.resizing = action.resizing
-                            w.size = action.size
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.resizing = action.resizing
+                        w.size = action.size
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
         case 'ClassicyWindowDrag':
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.dragging = action.dragging
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.dragging = action.dragging
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
         case 'ClassicyWindowZoom':
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.zoomed = action.zoomed
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.zoomed = action.zoomed
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
         case 'ClassicyWindowCollapse':
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.collapsed = true
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.collapsed = true
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
         case 'ClassicyWindowExpand':
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.collapsed = false
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.collapsed = false
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
 
         case 'ClassicyWindowMove': {
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.position = action.position
-                            w.moving = action.moving
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.position = action.position
+                        w.moving = action.moving
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
         }
         case 'ClassicyWindowPosition': {
-            ds.System.Manager.App.apps = ds.System.Manager.App.apps.map((a) => {
-                if (a.id === action.app.id) {
-                    a.windows = a.windows.map((w) => {
-                        if (w.id == action.window.id) {
-                            w.position = action.position
-                        }
-                        return w
-                    })
+            ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
+                (w) => {
+                    if (w.id == action.window.id) {
+                        w.position = action.position
+                    }
+                    return w
                 }
-                return a
-            })
+            )
             break
         }
         // case 'ClassicyWindowContextMenu': {

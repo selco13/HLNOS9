@@ -1,11 +1,11 @@
-import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
+import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
+import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 import ClassicyFileBrowser from '@/app/SystemFolder/SystemResources/File/ClassicyFileBrowser'
 import { ClassicyFileSystem } from '@/app/SystemFolder/SystemResources/File/ClassicyFileSystem'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { useEffect, useMemo, useState } from 'react'
-import { quitAppHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
-import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 
 type PathSettingsProps = {
     _viewType: 'list' | 'icons'
@@ -22,8 +22,7 @@ const Finder = () => {
     const [showAbout, setShowAbout] = useState(false)
 
     useEffect(() => {
-        const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-        const appData = desktop.System.Manager.App.apps[appIndex].data || {}
+        const appData = desktop.System.Manager.App.apps[appId]?.data || {}
         if (!appData?.hasOwnProperty('openPaths')) {
             appData['openPaths'] = []
         }
@@ -45,9 +44,8 @@ const Finder = () => {
             path,
         })
 
-        const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-        const windowIndex = desktop.System.Manager.App.apps[appIndex].windows.findIndex((w) => w.id === path)
-        const ws = desktop.System.Manager.App.apps[appIndex].windows[windowIndex]
+        const windowIndex = desktop.System.Manager.App.apps[appId].windows.findIndex((w) => w.id === path)
+        const ws = desktop.System.Manager.App.apps[appId].windows[windowIndex]
         if (ws) {
             ws.closed = false
             desktopEventDispatch({
@@ -128,8 +126,7 @@ const Finder = () => {
         )
     }
 
-    const appIndex = desktop.System.Manager.App.apps.findIndex((app) => app.id === appId)
-    const { openPaths } = desktop.System.Manager.App.apps[appIndex].data
+    const { openPaths } = desktop.System.Manager.App.apps[appId]?.data || {}
 
     return (
         <ClassicyApp

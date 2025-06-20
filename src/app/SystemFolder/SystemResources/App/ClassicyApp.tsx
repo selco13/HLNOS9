@@ -1,8 +1,8 @@
+import { intToHex } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyColors'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { useEffect } from 'react'
 import { JSONTree } from 'react-json-tree'
-import { intToHex } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyColors'
 
 interface ClassicyAppProps {
     id: string
@@ -51,13 +51,11 @@ const ClassicyApp: React.FC<ClassicyAppProps> = ({
     }
 
     const isAppOpen = () => {
-        const appOpen = desktopContext.System.Manager.App.apps.find((i) => i.id === id && i.open)
-        return !!appOpen
+        return desktopContext.System.Manager.App.apps[id]?.open
     }
 
     const isAppActive = () => {
-        let activeAppObject = desktopContext.System.Manager.App.apps.find((app) => app.focused)
-        return activeAppObject.id == id
+        return desktopContext.System.Manager.App.apps[id]?.focused
     }
 
     const onFocus = () => {
