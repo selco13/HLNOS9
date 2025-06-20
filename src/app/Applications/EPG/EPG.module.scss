@@ -101,9 +101,19 @@
   background-position: var(--slide-var) center;
   background-size: calc(var(--window-control-size) * 2);
   background-blend-mode: lighten;
-
 }
 
+.epgIndicatorHolder {
+  position: absolute;
+  height: 100%;
+}
+
+.epgIndicator {
+  top: 0;
+  right: 0;
+  width: var(--window-border-size);
+  background-color: var(--color-theme-02);
+}
 
 .epgGridSetupBorder {
   width: calc(100% - var(--window-border-size) * 2);
@@ -111,7 +121,6 @@
 }
 
 .epgHolder {
+  position: relative;
   width: calc(100% - var(--window-border-size) * 2);
-  height: 100%;
-  background-color: var(--color-system-03);
 }

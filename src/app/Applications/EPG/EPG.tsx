@@ -52,17 +52,18 @@ const EPG: React.FC<ClassicyEPGProps> = ({
     const appName = 'EPG'
     const appId = 'EPG.app'
     const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/folders/directory.png`
-
-    const desktopEventDispatch = useDesktopDispatch()
     const desktop = useDesktop()
 
-    if (!gridStart) {
-        const gs = new Date(desktop.System.Manager.DateAndTime.dateTime)
-        gs.setHours(gs.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
-        gridStart = gs
-    }
+    const desktopEventDispatch = useDesktopDispatch()
+    const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
+    const initialGridStart = gridStart || new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
 
-    const [gridStartTime, setGridStartTime] = useState(roundDownToNearestMinuntes(gridStart, gridTimeWidth))
+    const [gridStartTime, setGridStartTime] = useState(roundDownToNearestMinuntes(initialGridStart, gridTimeWidth))
+    const gridEndTime = useMemo(() => {
+        const endTime = new Date(gridStartTime)
+        endTime.setMinutes(endTime.getMinutes() + gridWidth)
+        return endTime
+    }, [gridStartTime, gridWidth])
 
     const quitApp = () => {
         desktopEventDispatch(quitAppHelper(appId, appName, appIcon))
@@ -97,9 +98,6 @@ const EPG: React.FC<ClassicyEPGProps> = ({
             let gridProgramStart = (Date.parse(gridItem.start) - gridStartTime.getTime()) / 60000 / minutesPerGrid
             let gridProgramEnd = (Date.parse(gridItem.end) - Date.parse(gridItem.start)) / 60000 / minutesPerGrid
 
-            const gridEndTime = new Date(gridStartTime)
-            gridEndTime.setMinutes(gridEndTime.getMinutes() + gridWidth)
-
             if (gridProgramStart < 0) {
                 gridProgramEnd = gridProgramStart + gridProgramEnd
                 gridProgramStart = 0
@@ -118,9 +116,11 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                 return
             }
 
-            const currentTime = new Date(desktop.System.Manager.DateAndTime.dateTime)
-            currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
+            const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
+            const currentTime = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
             const highlight = itemStart <= currentTime && itemEnd >= currentTime
+
+            if (!gridItem) return null
 
             return (
                 <div
@@ -219,12 +219,14 @@ const EPG: React.FC<ClassicyEPGProps> = ({
     }
 
     const jumpToNow = () => {
-        const currentTime = new Date(desktop.System.Manager.DateAndTime.dateTime)
-        currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
-        setGridStartTime(roundDownToNearestMinuntes(currentTime, gridTimeWidth))
+        const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
+        const now = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
+
+        setGridStartTime(roundDownToNearestMinuntes(now, gridTimeWidth))
     }
-    const currentTime = new Date(desktop.System.Manager.DateAndTime.dateTime)
-    currentTime.setHours(currentTime.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
+
+    const currentTime = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
+    const indicator = Math.floor((currentTime.getTime() - gridStartTime.getTime()) / (1000 * 60 * minutesPerGrid))
 
     return (
         <>
@@ -244,57 +246,44 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                     modal={false}
                     appMenu={appMenu}
                 >
-                    <div className={epgStyles.epgHolder}>
-                        <div
-                            className={epgStyles.epgGridSetup}
-                            style={{
-                                gridTemplateColumns: `${channelHeaderWidth}fr repeat(${gridWidth / minutesPerGrid}, 1fr)`,
-                                backgroundColor: 'var(--color-white)',
-                                position: 'relative',
-                            }}
-                        >
-                            <>
-                                {gridStartTime < currentTime && (
+                    <div style={{ backgroundColor: 'var(--color-system-03)', height: '100%' }}>
+                        <div className={epgStyles.epgHolder}>
+                            {gridStartTime < currentTime && currentTime < gridEndTime && (
+                                <div
+                                    className={classNames(epgStyles.epgGridSetup, epgStyles.epgIndicatorHolder)}
+                                    style={{
+                                        gridTemplateColumns: `${channelHeaderWidth}fr repeat(${gridWidth / minutesPerGrid}, 1fr)`,
+                                    }}
+                                >
                                     <div
-                                        style={{
-                                            gridColumnStart: Math.floor(
-                                                2 +
-                                                    (currentTime.getTime() - gridStartTime.getTime()) /
-                                                        1000 /
-                                                        60 /
-                                                        minutesPerGrid
-                                            ),
-                                            gridColumnEnd: Math.floor(
-                                                3 +
-                                                    (currentTime.getTime() - gridStartTime.getTime()) /
-                                                        1000 /
-                                                        60 /
-                                                        minutesPerGrid
-                                            ),
-                                            position: 'absolute',
-                                            right: 0,
-                                            top: 0,
-                                            color: 'red',
-                                        }}
-                                    >
-                                        |
-                                    </div>
-                                )}
+                                        className={epgStyles.epgIndicator}
+                                        style={{ gridColumnStart: indicator + 2, gridColumnEnd: indicator + 3 }}
+                                    ></div>
+                                </div>
+                            )}
+                            <div
+                                className={epgStyles.epgGridSetup}
+                                style={{
+                                    gridTemplateColumns: `${channelHeaderWidth}fr repeat(${gridWidth / minutesPerGrid}, 1fr)`,
+                                    backgroundColor: 'var(--color-white)',
+                                    position: 'relative',
+                                }}
+                            >
                                 {epgHeader}
-                            </>
-                        </div>
-                        <div
-                            className={classNames([
-                                epgStyles.epgGridSetup,
-                                epgStyles.epgGridSetupBorder,
-                                epgStyles.epgGridAnimatedBackground,
-                            ])}
-                            style={{
-                                gridTemplateColumns: `${channelHeaderWidth}fr repeat(${gridWidth / minutesPerGrid}, 1fr)`,
-                                backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/ui/stripe.svg)`,
-                            }}
-                        >
-                            {epgData}
+                            </div>
+                            <div
+                                className={classNames([
+                                    epgStyles.epgGridSetup,
+                                    epgStyles.epgGridSetupBorder,
+                                    epgStyles.epgGridAnimatedBackground,
+                                ])}
+                                style={{
+                                    gridTemplateColumns: `${channelHeaderWidth}fr repeat(${gridWidth / minutesPerGrid}, 1fr)`,
+                                    backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/ui/stripe.svg)`,
+                                }}
+                            >
+                                {epgData}
+                            </div>
                         </div>
                         <div>
                             <ClassicyButton onClickFunc={jumpBack}>&lt;&lt;</ClassicyButton>
