@@ -251,7 +251,7 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                                         className={epgStyles.epgIndicator}
                                         style={{ gridColumnStart: indicator + 2, gridColumnEnd: indicator + 3 }}
                                     >
-                                        &nbsp;
+                                        <div className={epgStyles.epgIndicatorCenter}></div>
                                     </div>
                                 </div>
                             )}

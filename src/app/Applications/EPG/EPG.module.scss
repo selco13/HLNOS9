@@ -113,7 +113,8 @@
 .epgIndicatorHolder {
   position: absolute;
   z-index: 10;
-  height: 100%;
+  height: calc(100% - var(--window-border-size) * 3);
+  justify-items: center;
 }
 
 .epgIndicator {
@@ -121,8 +122,17 @@
   top: 0;
   right: 0;
   width: 100%;
-  opacity: .5;
+  opacity: .35;
+  border-right: 1px solid var(--color-theme-01);
+  border-left: 1px solid var(--color-theme-07);
   background: linear-gradient(0.25turn, var(--color-theme-05), var(--color-theme-03));
+}
+
+.epgIndicatorCenter {
+  width: 1px;
+  height: 100%;
+  margin: 0 auto;
+  background-color: var(--color-theme-05);
 }
 
 .epgGridSetupBorder {
