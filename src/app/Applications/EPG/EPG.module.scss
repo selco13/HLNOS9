@@ -121,10 +121,10 @@
   z-index: 1;
   top: 0;
   right: 0;
-  width: 100%;
+  width: 50%;
   opacity: .35;
-  border-right: 1px solid var(--color-theme-02);
-  border-left: 1px solid var(--color-theme-06);
+  border-right: 1px solid var(--color-theme-03);
+  border-left: 1px solid var(--color-theme-05);
   background: linear-gradient(0.25turn, var(--color-theme-05), var(--color-theme-03));
 }
 
@@ -132,7 +132,7 @@
   width: 1px;
   height: 100%;
   margin: 0 auto;
-  background-color: var(--color-theme-07);
+  background-color: var(--color-theme-06);
 }
 
 .epgGridSetupBorder {
