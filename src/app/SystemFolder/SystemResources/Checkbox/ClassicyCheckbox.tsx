@@ -21,25 +21,22 @@ const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = ({
     onClickFunc,
     label,
 }) => {
-    const [check, setChecked] = useState<boolean>(checked)
+    const [check, setCheck] = useState<boolean>(checked)
 
     const handleOnClick = (e: React.MouseEvent<Element, MouseEvent>) => {
         if (!disabled) {
-            setChecked(check)
+            setCheck(!check)
         }
         if (onClickFunc) {
             onClickFunc(e)
         }
     }
-    const onCheck = () => {
-        setChecked(!check)
-    }
 
     return (
-        <div className={classicyCheckboxStyles.ClassicyCheckboxGroup} onClick={handleOnClick}>
+        <div className={classicyCheckboxStyles.ClassicyCheckboxGroup}>
             <input
                 type={'checkbox'}
-                onChange={onCheck}
+                onClick={handleOnClick}
                 tabIndex={0}
                 id={id}
                 checked={check}
@@ -50,7 +47,7 @@ const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = ({
                     mixed ? classicyCheckboxStyles.ClassicyCheckboxMixed : ''
                 )}
             />
-            <ClassicyControlLabel label={label} labelFor={id} disabled={disabled} />
+            <ClassicyControlLabel label={label} labelFor={id} disabled={disabled} onClickFunc={handleOnClick} />
         </div>
     )
 }

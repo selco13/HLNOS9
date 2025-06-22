@@ -41,6 +41,7 @@
 .classicyWindowInactive {
   z-index: unset;
   user-select: none;
+  filter: contrast(.6) brightness(1.25);
   @include scrollbars.scrollbars-inactive();
 }
 

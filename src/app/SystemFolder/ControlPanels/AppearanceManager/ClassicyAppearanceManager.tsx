@@ -184,7 +184,7 @@ export const ClassicyAppearanceManager: React.FC = () => {
                             alt={'Background'}
                         />
                         <div style={{ width: '100%' }}>
-                            <ClassicyControlLabel label={'Desktop Background'} direction={'left'} />
+                            <ClassicyControlLabel label={'Patterns'} direction={'left'} />
                             <ClassicyPopUpMenu
                                 id={'bg'}
                                 options={backgrounds}
@@ -199,9 +199,11 @@ export const ClassicyAppearanceManager: React.FC = () => {
         {
             title: 'Fonts',
             children: (
-                <div>
-                    <div>
-                        <ClassicyControlLabel label={'System Font'} direction={'left'} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
+                        <div style={{ width: '50%' }}>
+                            <ClassicyControlLabel label={'Large System Font'} direction={'left'} />
+                        </div>
                         <ClassicyPopUpMenu
                             id={'ui'}
                             options={fonts}
@@ -209,8 +211,10 @@ export const ClassicyAppearanceManager: React.FC = () => {
                             onChangeFunc={changeFont}
                         ></ClassicyPopUpMenu>
                     </div>
-                    <div>
-                        <ClassicyControlLabel label={'Body Font'} direction={'left'} />
+                    <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
+                        <div style={{ width: '50%' }}>
+                            <ClassicyControlLabel label={'Small System Font'} direction={'left'} />
+                        </div>
                         <ClassicyPopUpMenu
                             id={'body'}
                             options={fonts}
@@ -218,8 +222,10 @@ export const ClassicyAppearanceManager: React.FC = () => {
                             onChangeFunc={changeFont}
                         ></ClassicyPopUpMenu>
                     </div>
-                    <div>
-                        <ClassicyControlLabel label={'Header Font'} direction={'left'} />
+                    <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
+                        <div style={{ width: '50%' }}>
+                            <ClassicyControlLabel label={'Header Font'} direction={'left'} />
+                        </div>
                         <ClassicyPopUpMenu
                             id={'header'}
                             options={fonts}
@@ -254,12 +260,22 @@ export const ClassicyAppearanceManager: React.FC = () => {
                 collapsable={false}
                 initialSize={[500, 0]}
                 initialPosition={[300, 50]}
-                modal={true}
+                modal={false}
                 appMenu={appMenu}
             >
-                <ClassicyTabs tabs={tabs} />
-                <ClassicyButton onClickFunc={cleanupIcons}>Cleanup Icons</ClassicyButton>
-                <ClassicyButton onClickFunc={quitApp}>Quit</ClassicyButton>
+                <div
+                    style={{
+                        backgroundColor: 'var(--color-system-03)',
+                        height: '100%',
+                        width: '100%',
+                        padding: 'var(--window-padding-size)',
+                        boxSizing: 'border-box',
+                    }}
+                >
+                    <ClassicyTabs tabs={tabs} />
+                    <ClassicyButton onClickFunc={cleanupIcons}>Cleanup Icons</ClassicyButton>
+                    <ClassicyButton onClickFunc={quitApp}>Quit</ClassicyButton>
+                </div>
             </ClassicyWindow>
             {showAbout && getClassicyAboutWindow({ appId, appName, appIcon, hideFunc: () => setShowAbout(false) })}
         </ClassicyApp>

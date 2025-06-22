@@ -97,39 +97,49 @@ export const ClassicySoundManager: React.FC = () => {
                 collapsable={false}
                 initialSize={[500, 0]}
                 initialPosition={[300, 50]}
-                modal={true}
+                modal={false}
                 appMenu={appMenu}
             >
-                <ClassicyCheckbox
-                    id={'disable_sounds'}
-                    isDefault={true}
-                    label={'Enable Interface Sounds'}
-                    onClickFunc={changeSounds}
-                    checked={playerState.disabled.includes('*')}
-                />
-                <ClassicyDisclosure label={'Disable Sounds'}>
-                    <ClassicyControlLabel label={'These settings are not currently connected.'} />
-                    <div className={soundManagerStyles.soundManagerControlGroupHolder}>
-                        {getSoundLabelGroups().map((group: string) => (
-                            <ClassicyControlGroup label={group} columns={true} key={appId + '_' + group}>
-                                {playerState.labels.map(
-                                    (item: ClassicySoundInfo) =>
-                                        item.group === group && (
-                                            <ClassicyCheckbox
-                                                key={appId + '_' + group + item.id}
-                                                id={'enable_sound_' + item.id}
-                                                label={item.label}
-                                                checked={!playerState.disabled.includes('*')}
-                                            />
-                                        )
-                                )}
-                            </ClassicyControlGroup>
-                        ))}
-                    </div>
-                </ClassicyDisclosure>
-                <ClassicyButton isDefault={false} onClickFunc={quitApp}>
-                    Quit
-                </ClassicyButton>
+                <div
+                    style={{
+                        backgroundColor: 'var(--color-system-03)',
+                        height: '100%',
+                        width: '100%',
+                        padding: 'var(--window-padding-size)',
+                        boxSizing: 'border-box',
+                    }}
+                >
+                    <ClassicyCheckbox
+                        id={'disable_sounds'}
+                        isDefault={true}
+                        label={'Enable Interface Sounds'}
+                        onClickFunc={changeSounds}
+                        checked={playerState.disabled.includes('*')}
+                    />
+                    <ClassicyDisclosure label={'Disable Sounds'}>
+                        <ClassicyControlLabel label={'These settings are not currently connected.'} />
+                        <div className={soundManagerStyles.soundManagerControlGroupHolder}>
+                            {getSoundLabelGroups().map((group: string) => (
+                                <ClassicyControlGroup label={group} columns={true} key={appId + '_' + group}>
+                                    {playerState.labels.map(
+                                        (item: ClassicySoundInfo) =>
+                                            item.group === group && (
+                                                <ClassicyCheckbox
+                                                    key={appId + '_' + group + item.id}
+                                                    id={'enable_sound_' + item.id}
+                                                    label={item.label}
+                                                    checked={!playerState.disabled.includes('*')}
+                                                />
+                                            )
+                                    )}
+                                </ClassicyControlGroup>
+                            ))}
+                        </div>
+                    </ClassicyDisclosure>
+                    <ClassicyButton isDefault={false} onClickFunc={quitApp}>
+                        Quit
+                    </ClassicyButton>
+                </div>
             </ClassicyWindow>
             {showAbout && getClassicyAboutWindow({ appId, appName, appIcon, hideFunc: () => setShowAbout(false) })}
         </ClassicyApp>

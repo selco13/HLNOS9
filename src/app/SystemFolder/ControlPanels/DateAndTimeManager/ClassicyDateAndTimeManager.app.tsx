@@ -211,66 +211,76 @@ export const ClassicyDateAndTimeManager: React.FC = () => {
                 zoomable={false}
                 scrollable={false}
                 collapsable={false}
-                initialSize={[350, 320]}
+                initialSize={[350, 290]}
                 initialPosition={[300, 50]}
-                modal={true}
+                modal={false}
                 appMenu={appMenu}
             >
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <div style={{ width: '42%' }}>
-                        <ClassicyControlGroup label={'Current Date'}>
-                            <ClassicyDatePicker
-                                id={'date'}
-                                labelTitle={''}
-                                prefillValue={date}
-                                onChangeFunc={updateSystemDate}
-                            ></ClassicyDatePicker>
+                <div
+                    style={{
+                        backgroundColor: 'var(--color-system-03)',
+                        height: '100%',
+                        width: '100%',
+                        padding: 'var(--window-padding-size)',
+                        boxSizing: 'border-box',
+                    }}
+                >
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <div style={{ width: '42%' }}>
+                            <ClassicyControlGroup label={'Current Date'}>
+                                <ClassicyDatePicker
+                                    id={'date'}
+                                    labelTitle={''}
+                                    prefillValue={date}
+                                    onChangeFunc={updateSystemDate}
+                                ></ClassicyDatePicker>
+                            </ClassicyControlGroup>
+                        </div>
+                        <div style={{ width: '58%' }}>
+                            <ClassicyControlGroup label={'Current Time'}>
+                                <ClassicyTimePicker
+                                    id={'time'}
+                                    labelTitle={''}
+                                    onChangeFunc={updateSystemTime}
+                                    prefillValue={date}
+                                ></ClassicyTimePicker>
+                            </ClassicyControlGroup>
+                        </div>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <ClassicyControlGroup label={'Timezone'}>
+                            <ClassicyPopUpMenu
+                                id={'timezone'}
+                                small={false}
+                                options={timezones}
+                                onChangeFunc={updateSystemTimeZone}
+                                selected={desktopContext.System.Manager.DateAndTime.timeZoneOffset?.toString()}
+                            />
                         </ClassicyControlGroup>
                     </div>
-                    <div style={{ width: '58%' }}>
-                        <ClassicyControlGroup label={'Current Time'}>
-                            <ClassicyTimePicker
-                                id={'time'}
-                                labelTitle={''}
-                                onChangeFunc={updateSystemTime}
-                                prefillValue={date}
-                            ></ClassicyTimePicker>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <ClassicyControlGroup label={'Time Format'}>
+                            <ClassicyRadioInput
+                                inputs={[
+                                    {
+                                        id: '12',
+                                        label: '12-Hour',
+                                        checked: true,
+                                    },
+                                    {
+                                        id: '24',
+                                        label: 'Military Time',
+                                        disabled: true,
+                                    },
+                                ]}
+                                name={'period_selector'}
+                            />
                         </ClassicyControlGroup>
                     </div>
+                    <ClassicyButton isDefault={false} onClickFunc={quitApp}>
+                        Quit
+                    </ClassicyButton>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <ClassicyControlGroup label={'Timezone'}>
-                        <ClassicyPopUpMenu
-                            id={'timezone'}
-                            small={false}
-                            options={timezones}
-                            onChangeFunc={updateSystemTimeZone}
-                            selected={desktopContext.System.Manager.DateAndTime.timeZoneOffset?.toString()}
-                        />
-                    </ClassicyControlGroup>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <ClassicyControlGroup label={'Time Format'}>
-                        <ClassicyRadioInput
-                            inputs={[
-                                {
-                                    id: '12',
-                                    label: '12-Hour',
-                                    checked: true,
-                                },
-                                {
-                                    id: '24',
-                                    label: 'Military Time',
-                                    disabled: true,
-                                },
-                            ]}
-                            name={'period_selector'}
-                        />
-                    </ClassicyControlGroup>
-                </div>
-                <ClassicyButton isDefault={false} onClickFunc={quitApp}>
-                    Quit
-                </ClassicyButton>
             </ClassicyWindow>
             {showAbout && getClassicyAboutWindow({ appId, appName, appIcon, hideFunc: () => setShowAbout(false) })}
         </ClassicyApp>

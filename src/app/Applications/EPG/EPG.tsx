@@ -221,9 +221,9 @@ const EPG: React.FC<ClassicyEPGProps> = ({
 
     return (
         <>
-            <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'demo'}>
+            <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={appId + '_main'}>
                 <ClassicyWindow
-                    id={'demo2'}
+                    id={appId + '_main'}
                     title={appName}
                     appId={appId}
                     closable={true}
