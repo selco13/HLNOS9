@@ -23,18 +23,32 @@ const News: React.FC = () => {
     const appName = 'News'
     const appId = 'News.app'
     const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/applications/news/app.png`
+    const appMenu = [
+        {
+            id: 'file',
+            title: 'File',
+            menuChildren: [quitMenuItemHelper(appId, appName, appIcon)],
+        },
+    ]
 
     const desktopEventDispatch = useDesktopDispatch(),
         desktop = useDesktop()
 
-    let entries = data as Entry[]
-    entries.sort((a, b) => new Date(b.end_date).getTime() - new Date(a.end_date).getTime())
-
     const [limit, setLimit] = useState<number>(10)
     const [offset, setOffset] = useState<number>(0)
     const [thumbStyle, setThumbStyle] = useState<'small' | 'large'>('small')
-
     const [openDocuments, setOpenDocuments] = useState<number[]>([])
+
+    let entries = data as Entry[]
+    entries.sort((a, b) => new Date(b.end_date).getTime() - new Date(a.end_date).getTime())
+
+    let displayEntries = entries
+        .filter((entry: Entry) => {
+            const startDate = new Date(entry.start_date)
+            startDate.setHours(startDate.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
+            return new Date(desktop.System.Manager.DateAndTime.dateTime) > new Date(entry.start_date)
+        })
+        .slice(offset, offset + limit)
 
     const openDocumentDetails = (docId: number) => {
         setOpenDocuments(Array.from(new Set([...openDocuments, docId])))
@@ -60,13 +74,6 @@ const News: React.FC = () => {
             })
         }
     }
-    const appMenu = [
-        {
-            id: 'file',
-            title: 'File',
-            menuChildren: [quitMenuItemHelper(appId, appName, appIcon)],
-        },
-    ]
 
     const paginate = (direction: 'forward' | 'back' | 'now') => {
         if (direction === 'now') {
@@ -93,211 +100,199 @@ const News: React.FC = () => {
         )
     }
 
-    let displayEntries = entries
-        .filter((entry: Entry) => {
-            const startDate = new Date(entry.start_date)
-            startDate.setHours(startDate.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
-            return new Date(desktop.System.Manager.DateAndTime.dateTime) > new Date(entry.start_date)
-        })
-        .slice(offset, offset + limit)
-
     return (
-        <>
-            <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'latest_news'} addSystemMenu={false}>
+        <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'latest_news'} addSystemMenu={false}>
+            <ClassicyWindow
+                id={'latest_news'}
+                title={'Latest News'}
+                appId={appId}
+                icon={appIcon}
+                closable={true}
+                resizable={true}
+                zoomable={true}
+                scrollable={true}
+                collapsable={true}
+                initialSize={[500, 300]}
+                initialPosition={[300, 50]}
+                minimumSize={[500, 300]}
+                modal={false}
+                appMenu={appMenu}
+            >
+                <div style={{}} className={styles.newsHeader}>
+                    <div style={{ flexGrow: 1, marginLeft: 'var(--window-padding-size)' }}>
+                        <ClassicyPopUpMenu
+                            id={'per_page'}
+                            small={false}
+                            label={'Per Page'}
+                            onChangeFunc={(e) => setLimit(parseInt(e.target.value))}
+                            options={[
+                                { value: '2', label: '2' },
+                                { value: '10', label: '10' },
+                                { value: '20', label: '20' },
+                                { value: '50', label: '50' },
+                                { value: '100', label: '100' },
+                            ]}
+                            selected={limit.toString()}
+                        />
+                    </div>
+                    <div style={{ flexGrow: 1 }}>
+                        <ClassicyPopUpMenu
+                            id={'thumb_size'}
+                            small={false}
+                            label={'Size'}
+                            onChangeFunc={(e) => setThumbStyle(e.target.value)}
+                            options={[
+                                { value: 'small', label: 'Small' },
+                                { value: 'large', label: 'Large' },
+                            ]}
+                            selected={'hello'}
+                        />
+                    </div>
+                    <ClassicyButton onClickFunc={(e) => paginate('back')}>&lt;&lt;</ClassicyButton>
+                    <ClassicyButton onClickFunc={(e) => paginate('now')}>Now</ClassicyButton>
+                    <ClassicyButton onClickFunc={(e) => paginate('forward')}>&gt;&gt;</ClassicyButton>
+                </div>
+                <div style={{ padding: '.5em' }}>
+                    <h1>Latest News</h1>
+                    {displayEntries.length > 0 && (
+                        <p style={{ fontFamily: 'var(--ui-font)', fontSize: 'calc(var(--ui-font-size) * .8)' }}>
+                            From {new Date(displayEntries.at(0)?.start_date).toLocaleString()} to{' '}
+                            {new Date(displayEntries.at(-1)?.end_date).toLocaleString()}
+                        </p>
+                    )}
+                    <ul
+                        style={{
+                            fontFamily: 'var(--header-font)',
+                            padding: '0 calc(var(--window-control-size) * 2)',
+                        }}
+                    >
+                        {displayEntries.map((entry, index) => (
+                            <li
+                                key={entry.id}
+                                style={{
+                                    margin: '0',
+                                    borderTop: '1px solid black',
+                                    padding: 'calc(var(--window-control-size) ) 0',
+                                    listStyle: !entry.image || thumbStyle == 'small' ? 'outside' : 'none',
+                                    clear: 'both',
+                                    fontSize:
+                                        thumbStyle == 'small' ? 'var(--ui-font-size)' : 'calc(var(--ui-font-size)*2)',
+                                }}
+                            >
+                                {entry.image && (
+                                    <img
+                                        src={
+                                            'https://web.archive.org/web/20240807120239if_/http://cdn.historycommons.org/images/events/FAA_jet_2050081722-33361.jpg'
+                                        }
+                                        style={{
+                                            width: thumbStyle == 'small' ? '10%' : '100%',
+                                            aspectRatio: thumbStyle == 'small' ? 1 : 'auto',
+                                            objectFit: 'cover',
+                                            float: 'right',
+                                            paddingBottom: 'var(--window-control-size)',
+                                        }}
+                                    />
+                                )}
+                                <a
+                                    href={'#'}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        e.stopPropagation()
+                                        openDocumentDetails(entry.id)
+                                    }}
+                                >
+                                    {entry.title}
+                                </a>
+                                <br />
+                                <span
+                                    style={{
+                                        fontFamily: 'var(--ui-font)',
+                                        fontSize:
+                                            thumbStyle == 'small'
+                                                ? 'calc(var(--ui-font-size)*.7)'
+                                                : 'calc(var(--ui-font-size)*1)',
+                                    }}
+                                >
+                                    {' '}
+                                    {new Date(entry.start_date).toLocaleString('en-US', {
+                                        month: 'numeric',
+                                        day: 'numeric',
+                                        year: 'numeric',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                    })}{' '}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </ClassicyWindow>
+            {openDocuments.map((docId: number) => (
                 <ClassicyWindow
-                    id={'latest_news'}
-                    title={'Latest News'}
-                    appId={appId}
+                    onCloseFunc={() => {
+                        setOpenDocuments(openDocuments.filter((d) => d !== docId))
+                    }}
+                    id={appId + '_newsitem_' + docId}
+                    key={appId + '_newsitem_' + docId}
                     icon={appIcon}
+                    title={getDoc(docId)?.title}
+                    appId={appId}
                     closable={true}
                     resizable={true}
                     zoomable={true}
                     scrollable={true}
                     collapsable={true}
                     initialSize={[400, 400]}
-                    initialPosition={[300, 50]}
+                    initialPosition={[10 + getWindowOpenOffset(), 20 + getWindowOpenOffset()]}
                     modal={false}
                     appMenu={appMenu}
                 >
-                    <div style={{}} className={styles.newsHeader}>
-                        <div style={{ flexGrow: 1, marginLeft: 'var(--window-padding-size)' }}>
-                            <ClassicyPopUpMenu
-                                id={'per_page'}
-                                small={false}
-                                label={'Per Page'}
-                                onChangeFunc={(e) => setLimit(parseInt(e.target.value))}
-                                options={[
-                                    { value: '2', label: '2' },
-                                    { value: '10', label: '10' },
-                                    { value: '20', label: '20' },
-                                    { value: '50', label: '50' },
-                                    { value: '100', label: '100' },
-                                ]}
-                                selected={limit.toString()}
-                            />
-                        </div>
-                        <div style={{ flexGrow: 1 }}>
-                            <ClassicyPopUpMenu
-                                id={'thumb_size'}
-                                small={false}
-                                label={'Size'}
-                                onChangeFunc={(e) => setThumbStyle(e.target.value)}
-                                options={[
-                                    { value: 'small', label: 'Small' },
-                                    { value: 'large', label: 'Large' },
-                                ]}
-                                selected={'hello'}
-                            />
-                        </div>
-                        <ClassicyButton onClickFunc={(e) => paginate('back')}>&lt;&lt;</ClassicyButton>
-                        <ClassicyButton onClickFunc={(e) => paginate('now')}>Now</ClassicyButton>
-                        <ClassicyButton onClickFunc={(e) => paginate('forward')}>&gt;&gt;</ClassicyButton>
-                    </div>
                     <div style={{ padding: '.5em' }}>
-                        <h1>Latest News</h1>
-                        {displayEntries.length > 0 && (
-                            <p style={{ fontFamily: 'var(--ui-font)', fontSize: 'calc(var(--ui-font-size) * .8)' }}>
-                                From {new Date(displayEntries.at(0)?.start_date).toLocaleString()} to{' '}
-                                {new Date(displayEntries.at(-1)?.end_date).toLocaleString()}
-                            </p>
-                        )}
-                        <ul
+                        <h1
                             style={{
+                                margin: 'var(--window-padding-size) 0',
                                 fontFamily: 'var(--header-font)',
-                                padding: '0 calc(var(--window-control-size) * 2)',
                             }}
                         >
-                            {displayEntries.map((entry, index) => (
-                                <li
-                                    key={entry.id}
-                                    style={{
-                                        margin: '0',
-                                        borderTop: '1px solid black',
-                                        padding: 'calc(var(--window-control-size) ) 0',
-                                        listStyle: !entry.image || thumbStyle == 'small' ? 'outside' : 'none',
-                                        clear: 'both',
-                                        fontSize:
-                                            thumbStyle == 'small'
-                                                ? 'var(--ui-font-size)'
-                                                : 'calc(var(--ui-font-size)*2)',
-                                    }}
-                                >
-                                    {entry.image && (
-                                        <img
-                                            src={
-                                                'https://web.archive.org/web/20240807120239if_/http://cdn.historycommons.org/images/events/FAA_jet_2050081722-33361.jpg'
-                                            }
-                                            style={{
-                                                width: thumbStyle == 'small' ? '10%' : '100%',
-                                                aspectRatio: thumbStyle == 'small' ? 1 : 'auto',
-                                                objectFit: 'cover',
-                                                float: 'right',
-                                                paddingBottom: 'var(--window-control-size)',
-                                            }}
-                                        />
-                                    )}
-                                    <a
-                                        href={'#'}
-                                        onClick={(e) => {
-                                            e.preventDefault()
-                                            e.stopPropagation()
-                                            openDocumentDetails(entry.id)
-                                        }}
-                                    >
-                                        {entry.title}
-                                    </a>
-                                    <br />
-                                    <span
-                                        style={{
-                                            fontFamily: 'var(--ui-font)',
-                                            fontSize:
-                                                thumbStyle == 'small'
-                                                    ? 'calc(var(--ui-font-size)*.7)'
-                                                    : 'calc(var(--ui-font-size)*1)',
-                                        }}
-                                    >
-                                        {' '}
-                                        {new Date(entry.start_date).toLocaleString('en-US', {
-                                            month: 'numeric',
-                                            day: 'numeric',
-                                            year: 'numeric',
-                                            hour: 'numeric',
-                                            minute: 'numeric',
-                                            second: 'numeric',
-                                        })}{' '}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
+                            {getDoc(docId)?.title}
+                        </h1>
+                        <h6 style={{ margin: 'var(--window-padding-size) 0' }}>
+                            {new Date(getDoc(docId)?.start_date).toLocaleDateString()}{' '}
+                            {new Date(getDoc(docId)?.start_date).toLocaleTimeString()} - {getDoc(docId)?.source}
+                        </h6>
+
+                        <hr style={{ borderTop: 'black 1px solid' }} />
+                        {getDoc(docId)?.image && (
+                            <figure>
+                                <img src={getDoc(docId)?.image} style={{ width: '100%' }} />
+                                <figcaption>{getDoc(docId)?.image_caption}</figcaption>
+                            </figure>
+                        )}
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                gap: 'var(--window-padding-size)',
+                            }}
+                        >
+                            <p
+                                style={{
+                                    fontSize: 'var(--ui-font-size)',
+                                    color: 'var(--color-theme-05)',
+                                }}
+                            >
+                                •••
+                            </p>
+                            <div
+                                style={{ fontFamily: 'var(--body-font)' }}
+                                dangerouslySetInnerHTML={{ __html: getDoc(docId)?.content }}
+                            ></div>
+                        </div>
                     </div>
                 </ClassicyWindow>
-
-                {openDocuments.map((docId: number) => (
-                    <ClassicyWindow
-                        onCloseFunc={() => {
-                            setOpenDocuments(openDocuments.filter((d) => d !== docId))
-                        }}
-                        id={appId + '_newsitem_' + docId}
-                        key={appId + '_newsitem_' + docId}
-                        icon={appIcon}
-                        title={getDoc(docId)?.title}
-                        appId={appId}
-                        closable={true}
-                        resizable={true}
-                        zoomable={true}
-                        scrollable={true}
-                        collapsable={true}
-                        initialSize={[400, 400]}
-                        initialPosition={[10 + getWindowOpenOffset(), 20 + getWindowOpenOffset()]}
-                        modal={false}
-                        appMenu={appMenu}
-                    >
-                        <div style={{ padding: '.5em' }}>
-                            <h1
-                                style={{
-                                    margin: 'var(--window-padding-size) 0',
-                                    fontFamily: 'var(--header-font)',
-                                }}
-                            >
-                                {getDoc(docId)?.title}
-                            </h1>
-                            <h6 style={{ margin: 'var(--window-padding-size) 0' }}>
-                                {new Date(getDoc(docId)?.start_date).toLocaleDateString()}{' '}
-                                {new Date(getDoc(docId)?.start_date).toLocaleTimeString()} - {getDoc(docId)?.source}
-                            </h6>
-
-                            <hr style={{ borderTop: 'black 1px solid' }} />
-                            {getDoc(docId)?.image && (
-                                <figure>
-                                    <img src={getDoc(docId)?.image} style={{ width: '100%' }} />
-                                    <figcaption>{getDoc(docId)?.image_caption}</figcaption>
-                                </figure>
-                            )}
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    gap: 'var(--window-padding-size)',
-                                }}
-                            >
-                                <p
-                                    style={{
-                                        fontSize: 'var(--ui-font-size)',
-                                        color: 'var(--color-theme-05)',
-                                    }}
-                                >
-                                    •••
-                                </p>
-                                <div
-                                    style={{ fontFamily: 'var(--body-font)' }}
-                                    dangerouslySetInnerHTML={{ __html: getDoc(docId)?.content }}
-                                ></div>
-                            </div>
-                        </div>
-                    </ClassicyWindow>
-                ))}
-            </ClassicyApp>
-        </>
+            ))}
+        </ClassicyApp>
     )
 }
 
