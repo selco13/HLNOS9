@@ -46,7 +46,7 @@ const Browser = () => {
                     <ClassicyButton onClickFunc={goBook}>Submit</ClassicyButton>
                 </ClassicyControlGroup>
                 <iframe
-                    title="myBook"
+                    title="browserIframe"
                     src={iframeSrc}
                     height="720"
                     width="1280"

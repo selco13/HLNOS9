@@ -42,13 +42,13 @@ const News: React.FC = () => {
     let entries = data as Entry[]
     entries.sort((a, b) => new Date(b.end_date).getTime() - new Date(a.end_date).getTime())
 
-    let displayEntries = entries
-        .filter((entry: Entry) => {
-            const startDate = new Date(entry.start_date)
-            startDate.setHours(startDate.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
-            return new Date(desktop.System.Manager.DateAndTime.dateTime) > new Date(entry.start_date)
-        })
-        .slice(offset, offset + limit)
+    const filteredEntries = entries.filter((entry: Entry) => {
+        const startDate = new Date(entry.start_date)
+        startDate.setHours(startDate.getHours() + parseInt(desktop.System.Manager.DateAndTime.timeZoneOffset))
+        return new Date(desktop.System.Manager.DateAndTime.dateTime) > new Date(entry.start_date)
+    })
+
+    const displayEntries = filteredEntries.slice(offset, offset + limit)
 
     const openDocumentDetails = (docId: number) => {
         setOpenDocuments(Array.from(new Set([...openDocuments, docId])))
@@ -79,7 +79,9 @@ const News: React.FC = () => {
         if (direction === 'now') {
             setOffset(0)
         } else if (direction === 'back') {
-            setOffset(offset + limit)
+            if (filteredEntries.length - (offset + limit) > 0) {
+                setOffset(offset + limit)
+            }
         } else if (offset - limit >= 0 && offset < entries.length) {
             setOffset(offset - limit)
         } else {
@@ -153,13 +155,41 @@ const News: React.FC = () => {
                     <ClassicyButton onClickFunc={(e) => paginate('forward')}>&gt;&gt;</ClassicyButton>
                 </div>
                 <div style={{ padding: '.5em' }}>
-                    <h1>Latest News</h1>
+                    <h1
+                        style={{
+                            padding: '0',
+                            margin: 0,
+                            backgroundImage: 'linear-gradient(.25turn, white, var(--color-system-05))',
+                        }}
+                    >
+                        Latest News
+                    </h1>
                     {displayEntries.length > 0 && (
-                        <p style={{ fontFamily: 'var(--ui-font)', fontSize: 'calc(var(--ui-font-size) * .8)' }}>
-                            From {new Date(displayEntries.at(0)?.start_date).toLocaleString()} to{' '}
-                            {new Date(displayEntries.at(-1)?.end_date).toLocaleString()}
-                        </p>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            <p style={{ fontFamily: 'var(--ui-font)', fontSize: 'calc(var(--ui-font-size) * .8)' }}>
+                                From {new Date(displayEntries.at(0)?.start_date).toLocaleString()} to{' '}
+                                {new Date(displayEntries.at(-1)?.end_date).toLocaleString()}
+                            </p>
+                            <p style={{ fontFamily: 'var(--ui-font)', fontSize: 'calc(var(--ui-font-size) * .8)' }}>
+                                Total Articles:{' '}
+                                {
+                                    entries.filter((e) => {
+                                        return (
+                                            new Date(e.start_date).getTime() <
+                                            new Date(desktop.System.Manager.DateAndTime.dateTime).getTime()
+                                        )
+                                    }).length
+                                }
+                            </p>
+                        </div>
                     )}
+                    <hr />
+
                     <ul
                         style={{
                             fontFamily: 'var(--header-font)',
@@ -171,10 +201,9 @@ const News: React.FC = () => {
                                 key={entry.id}
                                 style={{
                                     margin: '0',
-                                    borderTop: '1px solid black',
+                                    borderBottom: '1px solid black',
                                     padding: 'calc(var(--window-control-size) ) 0',
                                     listStyle: !entry.image || thumbStyle == 'small' ? 'outside' : 'none',
-                                    clear: 'both',
                                     fontSize:
                                         thumbStyle == 'small' ? 'var(--ui-font-size)' : 'calc(var(--ui-font-size)*2)',
                                 }}
@@ -189,7 +218,9 @@ const News: React.FC = () => {
                                             aspectRatio: thumbStyle == 'small' ? 1 : 'auto',
                                             objectFit: 'cover',
                                             float: 'right',
-                                            paddingBottom: 'var(--window-control-size)',
+                                            marginBottom: 'var(--window-control-size)',
+                                            marginLeft: 'var(--window-control-size)',
+                                            borderRadius: 'calc(var(--window-control-size)/2)',
                                         }}
                                     />
                                 )}
@@ -201,7 +232,16 @@ const News: React.FC = () => {
                                         openDocumentDetails(entry.id)
                                     }}
                                 >
-                                    {entry.title}
+                                    <h1
+                                        style={{
+                                            fontSize:
+                                                thumbStyle == 'small'
+                                                    ? 'calc(var(--ui-font-size))'
+                                                    : 'calc(var(--ui-header-size))',
+                                        }}
+                                    >
+                                        {entry.title}
+                                    </h1>
                                 </a>
                                 <br />
                                 <span

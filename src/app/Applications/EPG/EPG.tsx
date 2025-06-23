@@ -53,24 +53,6 @@ const EPG: React.FC<ClassicyEPGProps> = ({
     const appName = 'EPG'
     const appId = 'EPG.app'
     const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/applications/epg/tv.png`
-    const desktop = useDesktop()
-
-    const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
-    const initialGridStart = gridStart || new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
-
-    const [gridStartTime, setGridStartTime] = useState(roundDownToNearestMinuntes(initialGridStart, gridTimeWidth))
-    const gridEndTime = useMemo(() => {
-        const endTime = new Date(gridStartTime)
-        endTime.setMinutes(endTime.getMinutes() + gridWidth)
-        return endTime
-    }, [gridStartTime, gridWidth])
-
-    const [showSettings, setShowSettings] = useState<boolean>(false)
-
-    const testClick = (e) => {
-        alert(e.target.id)
-    }
-
     const appMenu = [
         {
             id: 'file',
@@ -79,7 +61,39 @@ const EPG: React.FC<ClassicyEPGProps> = ({
         },
     ]
 
+    const desktop = useDesktop()
+
+    const [showSettings, setShowSettings] = useState<boolean>(false)
+
     const gridData = data as EPGChannel[]
+
+    const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
+    const initialGridStart = gridStart || new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
+    const [gridStartTime, setGridStartTime] = useState(roundDownToNearestMinuntes(initialGridStart, gridTimeWidth))
+
+    const gridEndTime = useMemo(() => {
+        const endTime = new Date(gridStartTime)
+        endTime.setMinutes(endTime.getMinutes() + gridWidth)
+        return endTime
+    }, [gridStartTime, gridWidth])
+
+    const currentTime = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
+    const indicator = Math.floor((currentTime.getTime() - gridStartTime.getTime()) / (1000 * 60 * minutesPerGrid))
+
+    const jumpBack = () => {
+        setGridStartTime(new Date(gridStartTime.getTime() - 30 * 60 * 1000))
+    }
+
+    const jumpForward = () => {
+        setGridStartTime(new Date(gridStartTime.getTime() + 30 * 60 * 1000))
+    }
+
+    const jumpToNow = () => {
+        const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
+        const now = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
+
+        setGridStartTime(roundDownToNearestMinuntes(now, gridTimeWidth))
+    }
 
     const getProgramData = (channel: EPGChannel, channelIndex: number) => {
         return channel.grid.map((gridItem) => {
@@ -163,7 +177,6 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                 <div
                     key={d.toLocaleTimeString()}
                     className={epgStyles.epgHeaderTime}
-                    onDoubleClick={testClick}
                     style={{
                         gridColumn: `${i + 1} / span ${minutesPerGrid + 1}`,
                     }}
@@ -201,24 +214,6 @@ const EPG: React.FC<ClassicyEPGProps> = ({
             )
         })
     }, [gridData, getProgramData])
-
-    const jumpBack = () => {
-        setGridStartTime(new Date(gridStartTime.getTime() - 30 * 60 * 1000))
-    }
-
-    const jumpForward = () => {
-        setGridStartTime(new Date(gridStartTime.getTime() + 30 * 60 * 1000))
-    }
-
-    const jumpToNow = () => {
-        const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
-        const now = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
-
-        setGridStartTime(roundDownToNearestMinuntes(now, gridTimeWidth))
-    }
-
-    const currentTime = new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
-    const indicator = Math.floor((currentTime.getTime() - gridStartTime.getTime()) / (1000 * 60 * minutesPerGrid))
 
     return (
         <>
