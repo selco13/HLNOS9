@@ -1,4 +1,6 @@
-# [Classicy (Previously Platinum)](https://classicy.ing)
+# [Classicy](https://classicy.ing)
+
+##### Previously Platinum
 
 A UI framework using native CSS/JS replications of the Mac OS 8.1 interface components.
 
@@ -6,7 +8,7 @@ A UI framework using native CSS/JS replications of the Mac OS 8.1 interface comp
 
 ## Demo
 
-[`See a demo here!`](https://robbiebyrd.github.io/classicy/)
+### [See a demo here!](https://robbiebyrd.github.io/classicy/)
 
 ## Running Locally
 
@@ -36,11 +38,6 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     ```
 
 4. Open your web browser to [http://localhost:3000](http://localhost:3000) .
-
-5. To view the Classicy UI Components, run the Storybook Development server.
-    ```bash
-    yarn storybook
-    ```
 
 ## Acknowledgements
 
@@ -391,7 +388,8 @@ hours and hours using [Kaleidoscope](https://en.wikipedia.org/wiki/Kaleidoscope_
 UI. Luckily, Apple created a theme file for it's default Platinum UI, allowing us to peruse the Resource fork for some
 juicy UI morsels.
 
-In the **Macintosh HD: System Folder:Appearance:Theme Files** is a filed named `Apple platinum`. I copied this folder from
+In the **Macintosh HD: System Folder:Appearance:Theme Files** is a filed named `Apple platinum`. I copied this folder
+from
 my SheepShaver instance to my local machine and opened up Resforge to dive in. I also copied and opened up the
 Appearance Control Panel, found in the **Macintosh HD:System Folder:Control Panels** folder.
 
