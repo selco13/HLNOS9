@@ -234,6 +234,9 @@ const News: React.FC = () => {
 
                 {openDocuments.map((docId: number) => (
                     <ClassicyWindow
+                        onCloseFunc={() => {
+                            setOpenDocuments(openDocuments.filter((d) => d !== docId))
+                        }}
                         id={appId + '_newsitem_' + docId}
                         key={appId + '_newsitem_' + docId}
                         icon={appIcon}
