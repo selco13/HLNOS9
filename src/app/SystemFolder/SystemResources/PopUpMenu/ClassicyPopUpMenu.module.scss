@@ -22,19 +22,21 @@
 
 .classicyPopUpMenuWrapper {
   display: flex;
+  align-items: center;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
 }
 
 .classicyPopUpMenu {
   font-family: var(--ui-font);
   font-size: .75em;
-
   line-height: 1.1;
 
   position: relative;
 
   display: grid;
+
   align-items: center;
   height: calc(var(--window-control-size) * 2.125);
 

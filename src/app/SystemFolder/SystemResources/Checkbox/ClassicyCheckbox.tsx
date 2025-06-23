@@ -9,7 +9,7 @@ type ClassicyCheckboxProps = {
     mixed?: boolean
     isDefault?: boolean
     disabled?: boolean
-    onClickFunc?: React.MouseEventHandler
+    onClickFunc?: (checked: boolean) => void
     label?: string
 }
 const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = ({
@@ -24,11 +24,11 @@ const ClassicyCheckbox: React.FC<ClassicyCheckboxProps> = ({
     const [check, setCheck] = useState<boolean>(checked)
 
     const handleOnClick = (e: React.MouseEvent<Element, MouseEvent>) => {
+        if (onClickFunc) {
+            onClickFunc(!check)
+        }
         if (!disabled) {
             setCheck(!check)
-        }
-        if (onClickFunc) {
-            onClickFunc(e)
         }
     }
 

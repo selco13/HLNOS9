@@ -122,6 +122,18 @@ export const classicyDesktopEventHandler = (ds: ClassicyStore, action) => {
             ds.System.Manager.Appearance.activeTheme.desktop.backgroundSize = 'auto'
             break
         }
+        case 'ClassicyDesktopChangeBackgroundPosition': {
+            ds.System.Manager.Appearance.activeTheme.desktop.backgroundPosition = action.backgroundPosition
+            break
+        }
+        case 'ClassicyDesktopChangeBackgroundRepeat': {
+            ds.System.Manager.Appearance.activeTheme.desktop.backgroundRepeat = action.backgroundRepeat
+            break
+        }
+        case 'ClassicyDesktopChangeBackgroundSize': {
+            ds.System.Manager.Appearance.activeTheme.desktop.backgroundSize = action.backgroundSize
+            break
+        }
         case 'ClassicyDesktopChangeFont': {
             switch (action.fontType) {
                 case 'body':

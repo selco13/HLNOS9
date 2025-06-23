@@ -8,10 +8,16 @@ import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitAppHelper, quitMenuItemHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
+import ClassicyInput from '@/app/SystemFolder/SystemResources/Input/ClassicyInput'
 import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/ClassicyPopUpMenu'
 import ClassicyTabs from '@/app/SystemFolder/SystemResources/Tabs/ClassicyTabs'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { useState } from 'react'
+
+function isValidUrlWithRegex(url: string): boolean {
+    const urlPattern = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i
+    return urlPattern.test(url)
+}
 
 export const ClassicyAppearanceManager: React.FC = () => {
     const appName: string = 'Appearance Manager'
@@ -20,9 +26,8 @@ export const ClassicyAppearanceManager: React.FC = () => {
     const packageIcon: string = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/appearance-manager/platinum.png`
 
     const desktopContext = useDesktop(),
-        desktopEventDispatch = useDesktopDispatch()
-
-    const player = useSoundDispatch()
+        desktopEventDispatch = useDesktopDispatch(),
+        player = useSoundDispatch()
 
     const [showAbout, setShowAbout] = useState(false)
     const [bg, setBg] = useState<string>(
@@ -104,6 +109,37 @@ export const ClassicyAppearanceManager: React.FC = () => {
         desktopEventDispatch({
             type: 'ClassicyDesktopChangeBackground',
             backgroundImage: '/img/wallpapers/' + e.target.value,
+        })
+    }
+
+    const setBackgroundURL = (e) => {
+        if (isValidUrlWithRegex(e.target.value)) {
+            setBg(e.target.value)
+            desktopEventDispatch({
+                type: 'ClassicyDesktopChangeBackground',
+                backgroundImage: e.target.value,
+            })
+        }
+    }
+
+    const alignBackground = (e) => {
+        desktopEventDispatch({
+            type: 'ClassicyDesktopChangeBackgroundPosition',
+            backgroundPosition: e.target.value,
+        })
+    }
+
+    const repeatBackground = (e) => {
+        desktopEventDispatch({
+            type: 'ClassicyDesktopChangeBackgroundRepeat',
+            backgroundRepeat: e.target.value,
+        })
+    }
+
+    const backgroundSize = (e) => {
+        desktopEventDispatch({
+            type: 'ClassicyDesktopChangeBackgroundSize',
+            backgroundSize: e.target.value,
         })
     }
 
@@ -191,6 +227,60 @@ export const ClassicyAppearanceManager: React.FC = () => {
                                 onChangeFunc={changeBackground}
                                 selected={bg.split('/').pop()}
                             ></ClassicyPopUpMenu>
+                            <br />
+                            <ClassicyControlLabel label={'Picture'} direction={'left'} />
+                            <ClassicyInput id={'custom_background_image_url'} onChangeFunc={setBackgroundURL} />
+                            <br />
+                            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1em' }}>
+                                <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
+                                    <ClassicyControlLabel label={'Align'} direction={'left'} />
+                                    <ClassicyPopUpMenu
+                                        onChangeFunc={alignBackground}
+                                        id={'position_custom_background_image'}
+                                        small={false}
+                                        options={[
+                                            { value: 'center', label: 'Center' },
+                                            { value: 'top left', label: 'Top Left' },
+                                            { value: 'top right', label: 'Top Right' },
+                                            { value: 'top center', label: 'Top Center' },
+                                            { value: 'bottom left', label: 'Bottom Left' },
+                                            { value: 'bottom right', label: 'Bottom Right' },
+                                            { value: 'bottom center', label: 'Bottom Center' },
+                                            // { value: 'tile', label: 'Tile on Screen' },
+                                        ]}
+                                        selected={'center'}
+                                    />
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
+                                    <ClassicyControlLabel label={'Repeat'} direction={'left'} />
+                                    <ClassicyPopUpMenu
+                                        onChangeFunc={repeatBackground}
+                                        id={'repeat_background_image'}
+                                        small={false}
+                                        options={[
+                                            { value: 'repeat', label: 'Repeat' },
+                                            { value: 'repeat-x', label: 'Repeat Horizontally' },
+                                            { value: 'repeat-y', label: 'Repeat Vertically' },
+                                            { value: 'no-repeat', label: 'No Repeat' },
+                                        ]}
+                                        selected={'repeat'}
+                                    />
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'row', gap: '1em' }}>
+                                    <ClassicyControlLabel label={'Size'} direction={'left'} />
+                                    <ClassicyPopUpMenu
+                                        onChangeFunc={backgroundSize}
+                                        id={'repeat_background_image'}
+                                        small={false}
+                                        options={[
+                                            { value: 'normal', label: 'Normal' },
+                                            { value: 'cover', label: 'Stretch' },
+                                            { value: 'contain', label: 'Fill' },
+                                        ]}
+                                        selected={'repeat'}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </>

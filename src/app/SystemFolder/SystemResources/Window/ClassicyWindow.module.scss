@@ -212,9 +212,11 @@
     }
 
     .classicyWindowTitle {
+      position: relative;
       display: flex;
       flex-direction: row;
       flex-grow: 1;
+      max-width: calc(100% - var(--window-control-size) * 4 - var(--window-padding-size) * 1 - var(--window-border-size));
       text-align: center;
 
       .classicyWindowTitleText {
@@ -226,6 +228,13 @@
         user-select: none;
         color: var(--color-system-05);
         user-drag: none;
+
+        & > p {
+          overflow: hidden;
+          margin: 0;
+          text-wrap: nowrap;
+          text-overflow: ellipsis;
+        }
       }
 
       .classicyWindowTitleCenter {
@@ -360,4 +369,10 @@
 
 .classicyWindowTitleBarModal {
   padding: calc(var(--window-padding-size) / 1.25) calc(var(--window-padding-size) / 1.25) !important;
+
+  & .classicyWindowTitle {
+    width: 100% !important;
+    max-width: 100% !important;
+
+  }
 }

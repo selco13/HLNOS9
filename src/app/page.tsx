@@ -3,6 +3,7 @@
 import Browser from '@/app/Applications/Browser/Browser'
 import Demo from '@/app/Applications/Demo/Demo'
 import EPG from '@/app/Applications/EPG/EPG'
+import News from '@/app/Applications/News/News'
 import QuickTimeMoviePlayer from '@/app/Applications/QuickTime/QuickTimeMoviePlayer'
 import SimpleText from '@/app/Applications/SimpleText/SimpleText'
 import { ClassicyDesktopProvider } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
@@ -15,6 +16,7 @@ export default function Home() {
             <ClassicyDesktop>
                 <Browser />
                 <Demo />
+                <News />
                 <EPG />
                 <QuickTimeMoviePlayer />
                 <SimpleText />

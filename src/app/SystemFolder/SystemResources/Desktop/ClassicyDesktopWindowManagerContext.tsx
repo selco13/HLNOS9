@@ -90,6 +90,7 @@ export const classicyWindowEventHandler = (ds: ClassicyStore, action: ClassicyWi
             }
             break
         case 'ClassicyWindowFocus':
+            if (!ds.System.Manager.App.apps[action.app.id]) break
             ds.System.Manager.App.apps[action.app.id].focused = true
             ds.System.Manager.App.apps[action.app.id].windows = ds.System.Manager.App.apps[action.app.id].windows.map(
                 (w) => {

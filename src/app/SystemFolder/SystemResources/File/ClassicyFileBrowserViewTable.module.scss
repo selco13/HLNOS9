@@ -2,28 +2,20 @@
 
 .resizer {
   position: absolute;
+  z-index: 500;
   top: 0;
   right: 0;
-  width: 5px;
+  width: 15px;
   height: 100%;
   cursor: col-resize;
-  user-select: none;
-  background: transparent;
-  touch-action: none;
-}
 
-.resizer.isResizing {
-}
-
-@media (hover: hover) {
-  .resizer {
-    opacity: 0;
-  }
-
-  *:hover > .resizer {
-    opacity: 1;
+  &:hover {
   }
 }
+
+.isResizing {
+}
+
 
 .classicyFileBrowserViewTableContainer {
   position: absolute;

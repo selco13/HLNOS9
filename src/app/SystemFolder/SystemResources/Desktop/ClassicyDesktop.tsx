@@ -1,6 +1,8 @@
 import { getAllThemes, getThemeVars } from '@/app/SystemFolder/ControlPanels/AppearanceManager/ClassicyAppearance'
-import Finder from '@/app/SystemFolder/Finder/Finder'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
+import Finder from '@/app/SystemFolder/Finder/Finder'
+import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 import ClassicyContextualMenu from '@/app/SystemFolder/SystemResources/ContextualMenu/ClassicyContextualMenu'
 import classicyDesktop from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktop.module.scss'
 import ClassicyDesktopIcon from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIcon'
@@ -9,8 +11,6 @@ import { ClassicyMenuItem } from '@/app/SystemFolder/SystemResources/Menu/Classi
 import classNames from 'classnames'
 import React, { CSSProperties, useState } from 'react'
 import '@/app/SystemFolder/ControlPanels/AppearanceManager/styles/fonts.scss'
-import ClassicyControlPanels from '@/app/SystemFolder/ControlPanels/ClassicyControlPanels'
-import { getClassicyAboutWindow } from '@/app/SystemFolder/SystemResources/AboutWindow/ClassicyAboutWindow'
 
 interface ClassicyDesktopProps {
     children?: any

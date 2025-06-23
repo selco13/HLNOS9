@@ -120,6 +120,7 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
             sorting,
         },
         onSortingChange: setSorting,
+        columnResizeMode: 'onChange',
     })
 
     return (
@@ -177,7 +178,9 @@ const ClassicyFileBrowserViewTable: React.FC<ClassicyFileBrowserViewTableProps> 
                                             onTouchStart={header.getResizeHandler()}
                                             className={classNames(
                                                 classicyFileBrowserViewTableStyles.resizer,
-                                                header.column.getIsResizing() ? 'isResizing' : ''
+                                                header.column.getIsResizing()
+                                                    ? classicyFileBrowserViewTableStyles.isResizing
+                                                    : ''
                                             )}
                                         ></div>
                                     )}

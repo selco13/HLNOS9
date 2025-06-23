@@ -1,7 +1,8 @@
-import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import { useDesktop } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitMenuItemHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
+import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import classNames from 'classnames'
 import React, { ReactElement, useMemo, useState } from 'react'
@@ -51,10 +52,9 @@ const EPG: React.FC<ClassicyEPGProps> = ({
 }) => {
     const appName = 'EPG'
     const appId = 'EPG.app'
-    const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/folders/directory.png`
+    const appIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/applications/epg/tv.png`
     const desktop = useDesktop()
 
-    const desktopEventDispatch = useDesktopDispatch()
     const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
     const initialGridStart = gridStart || new Date(new Date(dateTime).getTime() + parseInt(timeZoneOffset) * 3600000)
 
@@ -64,6 +64,8 @@ const EPG: React.FC<ClassicyEPGProps> = ({
         endTime.setMinutes(endTime.getMinutes() + gridWidth)
         return endTime
     }, [gridStartTime, gridWidth])
+
+    const [showSettings, setShowSettings] = useState<boolean>(false)
 
     const testClick = (e) => {
         alert(e.target.id)
@@ -78,7 +80,6 @@ const EPG: React.FC<ClassicyEPGProps> = ({
     ]
 
     const gridData = data as EPGChannel[]
-    const defaultDocumentIcon = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/movie.png`
 
     const getProgramData = (channel: EPGChannel, channelIndex: number) => {
         return channel.grid.map((gridItem) => {
@@ -222,6 +223,29 @@ const EPG: React.FC<ClassicyEPGProps> = ({
     return (
         <>
             <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={appId + '_main'}>
+                {showSettings && (
+                    <ClassicyWindow
+                        id={appId + '_settings'}
+                        title={appName}
+                        appId={appId}
+                        closable={false}
+                        resizable={false}
+                        zoomable={false}
+                        scrollable={false}
+                        collapsable={false}
+                        initialSize={[200, 100]}
+                        initialPosition={[100, 100]}
+                        minimumSize={[200, 100]}
+                        modal={true}
+                        hidden={true}
+                        appMenu={appMenu}
+                    >
+                        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                            <ClassicyControlLabel label={'Nothing Here'}></ClassicyControlLabel>
+                            <ClassicyButton onClickFunc={() => setShowSettings(!showSettings)}>Close</ClassicyButton>
+                        </div>
+                    </ClassicyWindow>
+                )}
                 <ClassicyWindow
                     id={appId + '_main'}
                     title={appName}
@@ -232,13 +256,19 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                     scrollable={true}
                     collapsable={true}
                     initialSize={[800, 400]}
-                    initialPosition={[300, 50]}
+                    initialPosition={[100, 50]}
                     minimumSize={[600, 300]}
                     modal={false}
                     appMenu={appMenu}
                 >
                     <div style={{ backgroundColor: 'var(--color-system-03)', height: '100%' }}>
-                        <div className={epgStyles.epgHolder}>
+                        <div>
+                            <ClassicyButton onClickFunc={() => setShowSettings(!showSettings)}>Settings</ClassicyButton>
+                            <ClassicyButton onClickFunc={jumpBack}>&lt;&lt;</ClassicyButton>
+                            <ClassicyButton onClickFunc={jumpToNow}>Now</ClassicyButton>
+                            <ClassicyButton onClickFunc={jumpForward}>&gt;&gt;</ClassicyButton>
+                        </div>
+                        <div className={epgStyles.epgHolder} style={{ borderTop: '1px solid var(--color-system-07)' }}>
                             {gridStartTime < currentTime && currentTime < gridEndTime && (
                                 <div
                                     className={classNames(epgStyles.epgGridSetup, epgStyles.epgIndicatorHolder)}
@@ -278,11 +308,6 @@ const EPG: React.FC<ClassicyEPGProps> = ({
                             >
                                 {epgData}
                             </div>
-                        </div>
-                        <div>
-                            <ClassicyButton onClickFunc={jumpBack}>&lt;&lt;</ClassicyButton>
-                            <ClassicyButton onClickFunc={jumpForward}>&gt;&gt;</ClassicyButton>
-                            <ClassicyButton onClickFunc={jumpToNow}>Now</ClassicyButton>
                         </div>
                     </div>
                 </ClassicyWindow>

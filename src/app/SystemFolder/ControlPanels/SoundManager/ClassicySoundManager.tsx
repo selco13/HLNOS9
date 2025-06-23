@@ -30,14 +30,29 @@ export const ClassicySoundManager: React.FC = () => {
 
     const [showAbout, setShowAbout] = useState(false)
 
-    const [enableAllSounds, setEnableAllSounds] = useState(true)
-
-    const changeSounds = (e) => {
-        setEnableAllSounds(!e.target.checked)
+    const changeSounds = (checked: boolean) => {
         player({
             type: 'ClassicySoundDisable',
-            disabled: enableAllSounds ? [] : ['*'],
+            disabled: checked ? [] : ['*'],
+            debug: true,
         })
+    }
+
+    const disableSounds = (checked: boolean, sound: string) => {
+        console.log(sound, checked)
+        if (checked) {
+            player({
+                type: 'ClassicySoundEnableOne',
+                enabled: sound,
+                debug: true,
+            })
+        } else {
+            player({
+                type: 'ClassicySoundDisableOne',
+                disabled: sound,
+                debug: true,
+            })
+        }
     }
 
     const quitApp = () => {
@@ -114,7 +129,7 @@ export const ClassicySoundManager: React.FC = () => {
                         isDefault={true}
                         label={'Enable Interface Sounds'}
                         onClickFunc={changeSounds}
-                        checked={playerState.disabled.includes('*')}
+                        checked={!playerState.disabled.includes('*')}
                     />
                     <ClassicyDisclosure label={'Disable Sounds'}>
                         <ClassicyControlLabel label={'These settings are not currently connected.'} />
@@ -129,6 +144,7 @@ export const ClassicySoundManager: React.FC = () => {
                                                     id={'enable_sound_' + item.id}
                                                     label={item.label}
                                                     checked={!playerState.disabled.includes('*')}
+                                                    onClickFunc={(checked: boolean) => disableSounds(checked, item.id)}
                                                 />
                                             )
                                     )}

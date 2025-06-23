@@ -98,17 +98,17 @@ const Finder = () => {
             })
         })
 
-        desktopEventDispatch({
-            type: 'ClassicyDesktopIconAdd',
-            app: {
-                id: 'finder_trash',
-                name: 'Trash',
-                icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/desktop/trash-full.png`,
-            },
-            kind: 'trash',
-            event: 'ClassicyAppFinderEmptyTrash',
-            eventData: {},
-        })
+        // desktopEventDispatch({
+        //     type: 'ClassicyDesktopIconAdd',
+        //     app: {
+        //         id: 'finder_trash',
+        //         name: 'Trash',
+        //         icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/desktop/trash-full.png`,
+        //     },
+        //     kind: 'trash',
+        //     event: 'ClassicyAppFinderEmptyTrash',
+        //     eventData: {},
+        // })
     }, [fs])
 
     const getHeaderString = (dir) => {

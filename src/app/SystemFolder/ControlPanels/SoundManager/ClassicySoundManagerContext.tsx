@@ -1,9 +1,9 @@
+import { ClassicyStoreSystemManager } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
 import { Howl } from 'howler'
 import React, { createContext, useContext, useReducer } from 'react'
 import fetch from 'sync-fetch'
 import soundData from '../../../../../public/sounds/platinum/platinum.json'
 import soundLabels from './ClassicySoundManagerLabels.json'
-import { ClassicyStoreSystemManager } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManager'
 
 export const ClassicySoundManagerContext = createContext(null)
 export const ClassicySoundDispatchContext = createContext(null)
@@ -41,6 +41,8 @@ enum ClassicySoundActionTypes {
     ClassicySoundLoad,
     ClassicySoundSet,
     ClassicySoundDisable,
+    ClassicySoundDisableOne,
+    ClassicySoundEnableOne,
     ClassicyVolumeSet,
 }
 
@@ -48,7 +50,8 @@ interface ClassicySoundAction {
     type: ClassicySoundActionTypes
     sound?: string
     file?: string
-    disabled?: string[]
+    disabled?: string | string[]
+    enabled?: string | string[]
     soundPlayer?: any
 }
 
@@ -103,6 +106,12 @@ const playerCanPlay = (ss: ClassicySoundState, sound: string) => {
 }
 
 export const ClassicySoundStateEventReducer = (ss: ClassicySoundState, action: ClassicySoundAction) => {
+    if ('debug' in action) {
+        console.group('Sound Event')
+        console.log('Action: ', action)
+        console.log('Start State: ', ss)
+    }
+
     const validatedAction = ClassicySoundActionTypes[action.type as unknown as keyof typeof ClassicySoundActionTypes]
     switch (validatedAction) {
         case ClassicySoundActionTypes.ClassicySoundStop: {
@@ -131,7 +140,7 @@ export const ClassicySoundStateEventReducer = (ss: ClassicySoundState, action: C
         }
         case ClassicySoundActionTypes.ClassicySoundLoad: {
             ss.soundPlayer = loadSoundTheme(process.env.NEXT_PUBLIC_BASE_PATH + action.file)
-            ss.disabled = action.disabled
+            ss.disabled = Array.isArray(action.disabled) ? action.disabled : [action.disabled]
             break
         }
         case ClassicySoundActionTypes.ClassicySoundSet: {
@@ -143,10 +152,26 @@ export const ClassicySoundStateEventReducer = (ss: ClassicySoundState, action: C
             break
         }
         case ClassicySoundActionTypes.ClassicySoundDisable: {
-            ss.disabled = action.disabled
+            ss.disabled = Array.isArray(action.disabled) ? action.disabled : [action.disabled]
+            break
+        }
+        case ClassicySoundActionTypes.ClassicySoundDisableOne: {
+            let disabled = Array.isArray(action.disabled) ? action.disabled : [action.disabled]
+            ss.disabled.push(...disabled)
+            ss.disabled = Array.from(new Set(ss.disabled))
+            break
+        }
+        case ClassicySoundActionTypes.ClassicySoundEnableOne: {
+            let enabled = Array.isArray(action.enabled) ? action.enabled : [action.enabled]
+            ss.disabled = ss.disabled.filter((item) => !enabled.includes(item))
             break
         }
     }
+    if ('debug' in action) {
+        console.log('End State: ', ss)
+        console.groupEnd()
+    }
+
     return ss
 }
 

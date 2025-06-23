@@ -352,7 +352,9 @@ const ClassicyWindow: React.FC<ClassicyWindowProps> = ({
                     <div className={classicyWindowStyle.classicyWindowIcon}>
                         <img src={icon} alt={title} />
                     </div>
-                    <div className={classicyWindowStyle.classicyWindowTitleText}>{title}</div>
+                    <div className={classicyWindowStyle.classicyWindowTitleText}>
+                        <p>{title}</p>
+                    </div>
                     <div className={classicyWindowStyle.classicyWindowTitleRight}></div>
                 </>
             )

@@ -11,7 +11,7 @@ import ClassicyPopUpMenu from '@/app/SystemFolder/SystemResources/PopUpMenu/Clas
 import ClassicyProgressBar from '@/app/SystemFolder/SystemResources/ProgressBar/ClassicyProgressBar'
 import ClassicyRadioInput from '@/app/SystemFolder/SystemResources/RadioInput/ClassicyRadioInput'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Demo: React.FC = () => {
     const appName = 'Demo'
@@ -31,10 +31,22 @@ const Demo: React.FC = () => {
                 id: appId,
             },
             window: {
-                id: 'demo23',
+                id: 'demo_error_modal',
             },
         })
     }
+
+    useEffect(() => {
+        desktopEventDispatch({
+            type: 'ClassicyWindowFocus',
+            app: {
+                id: appId,
+            },
+            window: {
+                id: 'demo_error_modal',
+            },
+        })
+    }, [])
 
     const appMenu = [
         {
@@ -48,7 +60,7 @@ const Demo: React.FC = () => {
         <>
             <ClassicyApp id={appId} name={appName} icon={appIcon} defaultWindow={'demo'} addSystemMenu={false}>
                 <ClassicyWindow
-                    id={'demo23'}
+                    id={'demo_error_modal'}
                     appId={appId}
                     closable={false}
                     resizable={false}

@@ -211,6 +211,7 @@ const ClassicyTimePicker: React.FC<ClassicyTimePickerProps> = React.forwardRef<
                     { label: 'am', value: 'am' },
                     { label: 'pm', value: 'pm' },
                 ]}
+                style={{ minWidth: 'calc(var(--ui-font-size) * 4)' }}
                 onChangeFunc={handlePeriodChange}
             ></ClassicyPopUpMenu>
         </div>

@@ -6,6 +6,7 @@ import React, { ChangeEvent, useState } from 'react'
 type classicyPopUpMenuOptions = {
     value: string
     label: string
+    icon?: string
 }
 
 type classicyPopUpMenuProps = {
@@ -15,12 +16,14 @@ type classicyPopUpMenuProps = {
     selected?: string
     small?: boolean
     onChangeFunc?: any
+    style?: any
 }
 const ClassicyPopUpMenu: React.FC<classicyPopUpMenuProps> = ({
     id,
     label,
     options,
     selected,
+    style,
     small = false,
     onChangeFunc,
 }) => {
@@ -37,7 +40,7 @@ const ClassicyPopUpMenu: React.FC<classicyPopUpMenuProps> = ({
         <div className={classicyPopUpMenuStyle.classicyPopUpMenuWrapper}>
             {label && <ClassicyControlLabel label={label} direction={'right'}></ClassicyControlLabel>}
             <div
-                style={{ flexGrow: '2' }}
+                style={{ flexGrow: '2', ...style }}
                 className={classNames(
                     classicyPopUpMenuStyle.classicyPopUpMenu,
                     small ? classicyPopUpMenuStyle.classicyPopUpMenuSmall : ''
