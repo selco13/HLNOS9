@@ -194,13 +194,12 @@ export const classicyAppEventHandler = (ds: ClassicyStore, action) => {
         }
         case 'ClassicyAppClose': {
             handler.closeApp(ds, action.app.id)
-            const lastOpenApp = () => {
-                const openApps = Object.values(ds.System.Manager.App.apps).find((value) => {
-                    return value.open === true
-                })
-                return openApps[0]?.id
+            const lastOpenApp = Object.values(ds.System.Manager.App.apps).find((value) => {
+                return value.open === true
+            })
+            if (lastOpenApp) {
+                handler.focusApp(ds, lastOpenApp.id)
             }
-            handler.focusApp(ds, lastOpenApp())
             break
         }
         case 'ClassicyAppFocus': {

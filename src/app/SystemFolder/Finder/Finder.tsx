@@ -20,6 +20,8 @@ const Finder = () => {
     const [pathSettings, setPathSettings] = useState<Record<string, PathSettingsProps>>({})
     const [showAbout, setShowAbout] = useState(false)
 
+    const { openPaths } = desktop.System.Manager.App.apps[appId]?.data || {}
+
     useEffect(() => {
         const appData = desktop.System.Manager.App.apps[appId]?.data || {}
         if (!appData?.hasOwnProperty('openPaths')) {
@@ -120,8 +122,6 @@ const Finder = () => {
             fs.formatSize(dir['_size'])
         )
     }
-
-    const { openPaths } = desktop.System.Manager.App.apps[appId]?.data || {}
 
     return (
         <ClassicyApp

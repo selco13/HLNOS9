@@ -243,7 +243,6 @@ const News: React.FC = () => {
                                         {entry.title}
                                     </h1>
                                 </a>
-                                <br />
                                 <span
                                     style={{
                                         fontFamily: 'var(--ui-font)',
