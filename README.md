@@ -62,11 +62,10 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     - ℹ️ The ubiquitous Finder
     - Menubar
         - ✅ System Menu
-        - ℹ️App Switcher
-            - Does not currently switch apps on click
+        - ✅ App Switcher
         - ✅ Widgets
-            - ℹ️Date/Time
-                - Need to create Control Panel widget to adjust settings
+            - ✅ Date/Time
+            - ✅ Sound
     - Icons
         - ✅ App Shortcuts
         - ✅ Cleanup
@@ -76,13 +75,11 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     - ✅ Load sound theme from JSON
     - ✅ Audio Sprites support
     - ℹ️ Sound Manager Control Panel
-        - ⚠️ Sound Event Handler
-            - NOTE: This is under development and subject to change.
+        - ℹ️ Sound Event Handler
             - ✅ Event dispatcher/player
-            - Automatic event intercept and play for known events (map audio sprites to events)
+            - ℹ️ Automatic event intercept and play for known events (map audio sprites to events)
 - Appearance Manager Control Panel (Theme Manager)
-    - ℹ️ Appearance Manager Control Panel
-        - Currently, does not allow creating custom themes, but can switch between loaded themes
+    - ✅ Appearance Manager Control Panel
     - ✅ System
         - ✅ Load theme from JSON
         - ✅ System events for modifying theme
@@ -108,20 +105,20 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
         - Modal
             - Dialog
                 - ✅ Movable
-                - Non-movable
+                - ✅ Non-movable
             - Alert
-                - Movable
+                - ✅ Movable
                 - Non-movable
         - ✅ Modeless
     - ✅ Standard
 - System
-    - ⚠️ File System
-        - ⚠️ Integrated into Finder.app
+    - ✅ File System
+        - ✅ Integrated into Finder.app
 - UI Components
     - ✅ Text Input
     - ✅ Text Area
     - ✅ Button
-    - Tabs
+    - ✅ Tabs
     - ✅ Radio Button
     - ✅ Drop-down menu
     - Multi-select menu
@@ -129,13 +126,14 @@ You will need Node.js v20.11 or higher. You will also need the `yarn` package ma
     - ✅ Bevel Button
     - Slider
     - Spinner
-    - Date/Time Picker
+    - ✅ Date Picker
+    - ✅ Time Picker
     - ✅ Expandable (Disclosure)
     - ✅ Fieldset
     - ✅ Separator
     - ✅ Progress
     - Menu
-        - ✅ Contextual Menu
+        - Contextual Menu
         - Submenu
     - Gallery Picker (Slider)
     - Color Picker
