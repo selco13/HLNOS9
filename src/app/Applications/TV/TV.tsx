@@ -7,6 +7,7 @@ import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWi
 import React, { useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
 import data from './testdata.json' with { type: 'json' }
+import styles from './TV.module.scss'
 
 interface ClassicyTVProps {}
 
@@ -73,47 +74,20 @@ const TV: React.FC<ClassicyTVProps> = ({}) => {
                     modal={false}
                     appMenu={appMenu}
                 >
-                    <div
-                        style={{
-                            width: '100%',
-                            minHeight: '100%',
-                            margin: 0,
-                            padding: 0,
-                            backgroundColor: 'var(--color-system-03)',
-                        }}
-                    >
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                width: '100%',
-                                flexWrap: 'wrap',
-                            }}
-                        >
+                    <div className={styles.tvContainer}>
+                        <div className={styles.tvVideosHolder}>
                             {data.slice(0, 12).map((item, index) => (
                                 <div
                                     key={item.id}
                                     style={{
-                                        flexGrow: 1,
-                                        display: 'flex',
-                                        justifyContent: 'space-around',
                                         width: activePlayer == item.id ? '100%' : '',
-                                        order: activePlayer == item.id ? -1 : 0,
+                                        order: activePlayer == item.id ? -1 : index,
                                     }}
                                     onClick={() => setActivePlayer(item.id)}
                                 >
                                     {activePlayer != item.id && (
-                                        <div style={{ position: 'absolute' }}>
-                                            <p
-                                                style={{
-                                                    margin: 0,
-                                                    padding: 0,
-                                                    fontFamily: 'var(--ui-font)',
-                                                    fontSize: 'calc(var(--ui-font-size)*.75)',
-                                                }}
-                                            >
-                                                {item.source}
-                                            </p>
+                                        <div className={styles.tvChannelTitleHolder}>
+                                            <p className={styles.tvChannelTitle}>{item.source}</p>
                                         </div>
                                     )}
                                     <ReactPlayer
@@ -125,7 +99,7 @@ const TV: React.FC<ClassicyTVProps> = ({}) => {
                                         playsinline={true}
                                         volume={activePlayer == item.id ? 1 : 0}
                                         width={activePlayer == item.id ? '100%' : 'auto'}
-                                        height={activePlayer == item.id ? '32em' : '4em'}
+                                        height={activePlayer == item.id ? 'auto' : '4em'}
                                         config={item.url.endsWith('m3u8') ? hlsOptions : {}}
                                     />
                                 </div>
