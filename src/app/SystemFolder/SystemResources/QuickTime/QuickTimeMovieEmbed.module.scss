@@ -1,11 +1,10 @@
-@use '../../SystemFolder/ControlPanels/AppearanceManager/styles/appearance';
+@use '../../ControlPanels/AppearanceManager/styles/appearance';
 
 .quickTimePlayerVideoHolder {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - var(--window-control-size) * 2);
   @include appearance.no-select;
 }
 
@@ -19,7 +18,6 @@
 
 .quickTimePlayerVideoControlsHolder {
   @include appearance.no-select;
-  position: absolute;
   bottom: calc(var(--window-border-size) * 1);
   display: flex;
   width: calc(100% - var(--window-control-size) * 2);

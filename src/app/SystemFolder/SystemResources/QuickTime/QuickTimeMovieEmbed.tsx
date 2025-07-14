@@ -1,5 +1,5 @@
-import quickTimeStyles from '@/app/Applications/QuickTime/QuickTime.module.scss'
 import { useDesktop } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
+import quickTimeStyles from '@/app/SystemFolder/SystemResources/QuickTime/QuickTimeMovieEmbed.module.scss'
 import { parse } from '@plussub/srt-vtt-parser'
 import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import ReactPlayer from 'react-player'
@@ -11,8 +11,11 @@ type QuickTimeVideoEmbed = {
     name: string
     url: string
     type: 'audio' | 'video'
-    options: {}
+    options?: {}
     subtitlesUrl?: string
+    autoPlay?: boolean
+    hideControls?: boolean
+    controlsDocked?: boolean
 }
 
 export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
@@ -22,10 +25,13 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
     options,
     type,
     subtitlesUrl,
+    autoPlay,
+    hideControls,
+    controlsDocked,
 }) => {
     const desktop = useDesktop()
 
-    const [playing, setPlaying] = useState(false)
+    const [playing, setPlaying] = useState(autoPlay)
     const [volume, setVolume] = useState(0.5)
     const [loop, setLoop] = useState(false)
     const [isFullscreen, setIsFullscreen] = useState(false)
@@ -119,12 +125,15 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [handlePlayPause, seekForward, seekBackward, toggleFullscreen, type, loop])
+    }, [handlePlayPause, seekForward, seekBackward, toggleFullscreen, type, loop, appId, url])
 
     const volumeButtonRef = useRef(null)
 
     useEffect(() => {
-        if (!subtitlesUrl) return
+        if (!subtitlesUrl) {
+            return
+        }
+
         fetch(subtitlesUrl)
             .then((res) => res.text())
             .then((text) => parse(text))
@@ -133,8 +142,18 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
     }, [subtitlesUrl])
 
     return (
-        <div className={quickTimeStyles.quickTimePlayerWrapper}>
-            <div className={quickTimeStyles.quickTimePlayerVideoHolder}>
+        <div
+            className={quickTimeStyles.quickTimePlayerWrapper}
+            style={{ height: controlsDocked ? 'calc(100% - var(--window-control-size) * 1)' : '100%' }}
+        >
+            <div
+                className={quickTimeStyles.quickTimePlayerVideoHolder}
+                style={{
+                    height: controlsDocked
+                        ? 'calc(100% - var(--window-control-size) * 1)'
+                        : 'calc(100% - var(--window-border-size) * 4)',
+                }}
+            >
                 <ReactPlayer
                     ref={playerRef}
                     url={url}
@@ -145,7 +164,7 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
                     width="100%"
                     height="100%"
                     volume={volume}
-                    config={{ file: options }}
+                    config={options}
                 />
                 <Suspense>
                     {showSubtitles &&
@@ -175,101 +194,109 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
                         )}
                 </Suspense>
             </div>
-            <div className={quickTimeStyles.quickTimePlayerVideoControlsHolder}>
-                <button onClick={handlePlayPause} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
-                    <img
-                        className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/${playing ? 'pause' : 'play'}-button.svg`}
-                    />
-                </button>
-                <div className={quickTimeStyles.quickTimePlayerVideoControlsProgressBarHolder}>
-                    <input
-                        id={appId + '_' + name + '_progressBar'}
-                        className={quickTimeStyles.quickTimePlayerVideoControlsProgressBar}
-                        key={appId + '_' + name + '_progressBar'}
-                        type="range"
-                        min="0" // Zero percent
-                        max="1" // 100 percent
-                        step="0.001" // 1 percent
-                        value={playerRef.current?.getCurrentTime() / playerRef.current?.getDuration()}
-                        readOnly={false}
-                        onChange={(e) => {
-                            seekToPct(parseFloat(e.target.value))
-                        }}
-                    />
-                </div>
-                <p className={quickTimeStyles.quickTimePlayerVideoControlsTime}>
-                    {timeFriendly(playerRef.current?.getCurrentTime())}
-                </p>
-                <button onClick={seekBackward} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
-                    <img
-                        className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/backward-button.svg`}
-                    />
-                </button>
-                <button onClick={seekForward} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
-                    <img
-                        className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/forward-button.svg`}
-                    />
-                </button>
-                {subtitlesUrl && (
-                    <button onClick={toggleCC} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
+            {!hideControls && (
+                <div
+                    className={quickTimeStyles.quickTimePlayerVideoControlsHolder}
+                    style={{ position: controlsDocked ? 'absolute' : 'relative' }}
+                >
+                    <button onClick={handlePlayPause} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
                         <img
                             className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
-                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/CC.png`}
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/${playing ? 'pause' : 'play'}-button.svg`}
                         />
                     </button>
-                )}
-
-                {showVolume && (
-                    <div
-                        style={{
-                            zIndex: 999999,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
+                    <div className={quickTimeStyles.quickTimePlayerVideoControlsProgressBarHolder}>
                         <input
-                            className={quickTimeStyles.quickTimePlayerVideoControlsVolumeBar}
-                            id={url + '_volume'}
+                            id={appId + '_' + name + '_progressBar'}
+                            className={quickTimeStyles.quickTimePlayerVideoControlsProgressBar}
+                            key={appId + '_' + name + '_progressBar'}
                             type="range"
-                            min="0"
-                            max="1"
-                            step="0.1"
-                            style={{
-                                left: volumeButtonRef.current.left,
-                            }}
-                            value={1 - volume}
-                            onClick={() => {
-                                setShowVolume(false)
-                            }}
+                            min="0" // Zero percent
+                            max="1" // 100 percent
+                            step="0.001" // 1 percent
+                            value={playerRef.current?.getCurrentTime() / playerRef.current?.getDuration()}
+                            readOnly={false}
                             onChange={(e) => {
-                                setVolume(1 - parseFloat(e.target.value))
+                                seekToPct(parseFloat(e.target.value))
                             }}
                         />
                     </div>
-                )}
-                <button
-                    className={quickTimeStyles.quickTimePlayerVideoControlsButton}
-                    onClick={() => setShowVolume(!showVolume)}
-                    ref={volumeButtonRef}
-                >
-                    <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/sound-manager/${getVolumeIcon(volume)}`}
-                        className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
-                    />
-                </button>
-                {type != 'audio' && (
-                    <button onClick={toggleFullscreen} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
+                    <p className={quickTimeStyles.quickTimePlayerVideoControlsTime}>
+                        {timeFriendly(playerRef.current?.getCurrentTime())}
+                    </p>
+                    <button onClick={seekBackward} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
                         <img
                             className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
-                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/fullscreen-button.svg`}
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/backward-button.svg`}
                         />
                     </button>
-                )}
-            </div>
+                    <button onClick={seekForward} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
+                        <img
+                            className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/forward-button.svg`}
+                        />
+                    </button>
+                    {subtitlesUrl && (
+                        <button onClick={toggleCC} className={quickTimeStyles.quickTimePlayerVideoControlsButton}>
+                            <img
+                                className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/CC.png`}
+                            />
+                        </button>
+                    )}
+
+                    {showVolume && (
+                        <div
+                            style={{
+                                zIndex: 999999,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <input
+                                className={quickTimeStyles.quickTimePlayerVideoControlsVolumeBar}
+                                id={url + '_volume'}
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.1"
+                                style={{
+                                    left: volumeButtonRef.current.left,
+                                }}
+                                value={1 - volume}
+                                onClick={() => {
+                                    setShowVolume(false)
+                                }}
+                                onChange={(e) => {
+                                    setVolume(1 - parseFloat(e.target.value))
+                                }}
+                            />
+                        </div>
+                    )}
+                    <button
+                        className={quickTimeStyles.quickTimePlayerVideoControlsButton}
+                        onClick={() => setShowVolume(!showVolume)}
+                        ref={volumeButtonRef}
+                    >
+                        <img
+                            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/control-panels/sound-manager/${getVolumeIcon(volume)}`}
+                            className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
+                        />
+                    </button>
+                    {type != 'audio' && (
+                        <button
+                            onClick={toggleFullscreen}
+                            className={quickTimeStyles.quickTimePlayerVideoControlsButton}
+                        >
+                            <img
+                                className={quickTimeStyles.quickTimePlayerVideoControlsIcon}
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/fullscreen-button.svg`}
+                            />
+                        </button>
+                    )}
+                </div>
+            )}
         </div>
     )
 }

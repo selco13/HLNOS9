@@ -7,6 +7,8 @@ import themesData from '@/app/SystemFolder/ControlPanels/AppearanceManager/style
 import { classicyDateTimeManagerEventHandler } from '@/app/SystemFolder/ControlPanels/DateAndTimeManager/ClassicyDateAndTimeManager.app'
 import { ClassicyStoreSystemSoundManager } from '@/app/SystemFolder/ControlPanels/SoundManager/ClassicySoundManagerContext'
 import { classicyFinderEventHandler } from '@/app/SystemFolder/Finder/FinderContext'
+import { classicyQuickTimeMoviePlayerEventHandler } from '@/app/SystemFolder/QuickTime/MoviePlayer/MoviePlayerContext'
+import { classicyQuickTimePictureViewerEventHandler } from '@/app/SystemFolder/QuickTime/PictureViewer/PictureViewerContext'
 import { classicyDesktopIconEventHandler } from '@/app/SystemFolder/SystemResources/Desktop/ClassicyDesktopIconContext'
 import {
     classicyDesktopEventHandler,
@@ -194,12 +196,14 @@ export const classicyAppEventHandler = (ds: ClassicyStore, action) => {
         }
         case 'ClassicyAppClose': {
             handler.closeApp(ds, action.app.id)
-            const lastOpenApp = Object.values(ds.System.Manager.App.apps).find((value) => {
+            const openApps = Object.values(ds.System.Manager.App.apps).find((value) => {
                 return value.open === true
             })
-            if (lastOpenApp) {
-                handler.focusApp(ds, lastOpenApp.id)
+
+            if (openApps?.id) {
+                handler.focusApp(ds, openApps.id)
             }
+
             break
         }
         case 'ClassicyAppFocus': {
@@ -227,8 +231,10 @@ export const classicyDesktopStateEventReducer = (ds: ClassicyStore, action) => {
             ds = classicyWindowEventHandler(ds, action)
         } else if (action.type.startsWith('ClassicyAppFinder')) {
             ds = classicyFinderEventHandler(ds, action)
-        } else if (action.type.startsWith('ClassicyAppQuickTime')) {
-            ds = classicyQuickTimeEventHandler(ds, action)
+        } else if (action.type.startsWith('ClassicyAppMoviePlayer')) {
+            ds = classicyQuickTimeMoviePlayerEventHandler(ds, action)
+        } else if (action.type.startsWith('ClassicyAppPictureViewer')) {
+            ds = classicyQuickTimePictureViewerEventHandler(ds, action)
         } else if (action.type.startsWith('ClassicyDesktopIcon')) {
             ds = classicyDesktopIconEventHandler(ds, action)
         } else if (action.type.startsWith('ClassicyDesktop')) {

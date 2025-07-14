@@ -1,11 +1,11 @@
-import { QuickTimeVideoEmbed } from '@/app/Applications/QuickTime/QuickTimeMovieEmbed'
 import { useDesktop, useDesktopDispatch } from '@/app/SystemFolder/ControlPanels/AppManager/ClassicyAppManagerContext'
 import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitMenuItemHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
+import { QuickTimeVideoEmbed } from '@/app/SystemFolder/SystemResources/QuickTime/QuickTimeMovieEmbed'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
 import React, { useEffect } from 'react'
 
-export type QuickTimeDocument = {
+export type QuickTimeMovieDocument = {
     url: string
     name?: string
     type?: 'audio' | 'video'
@@ -14,14 +14,14 @@ export type QuickTimeDocument = {
     subtitlesUrl?: string
 }
 
-export const QuickTimeAppInfo = {
-    name: 'QuickTime Player',
-    id: 'QuickTimePlayer.app',
+export const MoviePlayerAppInfo = {
+    name: 'Movie Player',
+    id: 'MoviePlayer.app',
     icon: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/img/icons/system/quicktime/player.png`,
 }
 
-const QuickTimeMoviePlayer: React.FC = () => {
-    const { name: appName, id: appId, icon: appIcon } = QuickTimeAppInfo
+const MoviePlayer: React.FC = () => {
+    const { name: appName, id: appId, icon: appIcon } = MoviePlayerAppInfo
 
     const desktopEventDispatch = useDesktopDispatch()
     const desktop = useDesktop()
@@ -46,12 +46,12 @@ const QuickTimeMoviePlayer: React.FC = () => {
                 },
             ]
             desktopEventDispatch({
-                type: 'ClassicyAppQuickTimeOpenDocuments',
+                type: 'ClassicyAppMoviePlayerOpenDocuments',
                 documents: defaultDocs,
             })
         } else {
             desktopEventDispatch({
-                type: 'ClassicyAppQuickTimeOpenDocuments',
+                type: 'ClassicyAppMoviePlayerOpenDocuments',
                 documents: appData['openDocuments'],
             })
         }
@@ -59,12 +59,12 @@ const QuickTimeMoviePlayer: React.FC = () => {
 
     const openUrl = (name: string, url: string, iconUrl?: string) => {
         desktopEventDispatch({
-            type: 'ClassicyAppQuickTimeOpenDocument',
+            type: 'ClassicyAppMoviePlayerOpenDocument',
             document: { name, url: url, icon: iconUrl || defaultDocumentIcon },
         })
 
         const windowIndex = desktop.System.Manager.App.apps[appId].windows.findIndex(
-            (w) => w.id === appId + '_VideoPlayer_' + url
+            (w) => w.id === appId + '_MoviePlayer_' + url
         )
         const ws = desktop.System.Manager.App.apps[appId].windows[windowIndex]
         if (ws) {
@@ -98,10 +98,10 @@ const QuickTimeMoviePlayer: React.FC = () => {
         <ClassicyApp id={appId} name={appName} icon={appIcon}>
             {Array.isArray(openDocuments) &&
                 openDocuments.length > 0 &&
-                openDocuments.map((doc: QuickTimeDocument) => (
+                openDocuments.map((doc: QuickTimeMovieDocument) => (
                     <ClassicyWindow
                         key={doc.name + '_' + doc.url}
-                        id={appId + '_VideoPlayer_' + doc.url}
+                        id={appId + '_MoviePlayer_' + doc.url}
                         title={doc.name}
                         icon={doc.icon || undefined}
                         minimumSize={[300, 60]}
@@ -117,7 +117,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                         appMenu={appMenu}
                         onCloseFunc={() =>
                             desktopEventDispatch({
-                                type: 'ClassicyAppQuickTimeCloseDocument',
+                                type: 'ClassicyAppMoviePlayerCloseDocument',
                                 document: doc,
                             })
                         }
@@ -129,6 +129,7 @@ const QuickTimeMoviePlayer: React.FC = () => {
                             options={doc.options}
                             type={doc.type}
                             subtitlesUrl={doc.subtitlesUrl}
+                            controlsDocked={true}
                         />
                     </ClassicyWindow>
                 ))}
@@ -136,4 +137,4 @@ const QuickTimeMoviePlayer: React.FC = () => {
     )
 }
 
-export default QuickTimeMoviePlayer
+export default MoviePlayer
