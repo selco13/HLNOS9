@@ -296,7 +296,7 @@ const News: React.FC = () => {
                         >
                             {getDoc(docId)?.title}
                         </h1>
-                        <h6 style={{ margin: 'var(--window-padding-size) 0' }}>
+                            <h6 style={{ margin: 'var(--window-padding-size) 0', fontFamily: 'var(--ui-font)' }}>
                             {new Date(getDoc(docId)?.start_date).toLocaleDateString()}{' '}
                             {new Date(getDoc(docId)?.start_date).toLocaleTimeString()} - {getDoc(docId)?.source}
                         </h6>
@@ -305,7 +305,9 @@ const News: React.FC = () => {
                         {getDoc(docId)?.image && (
                             <figure>
                                 <img src={getDoc(docId)?.image} style={{ width: '100%' }} />
-                                <figcaption>{getDoc(docId)?.image_caption}</figcaption>
+                                    <figcaption className={styles.newsCaption}>
+                                        {getDoc(docId)?.image_caption}
+                                    </figcaption>
                             </figure>
                         )}
                         <div

@@ -12,3 +12,8 @@
   @include appearance.platinumWindowBoxShadow;
 
 }
+
+.newsCaption {
+  font-family: var(--ui-font);
+  font-size: var(--body-font-size);
+}
