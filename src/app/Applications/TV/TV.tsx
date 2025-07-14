@@ -3,9 +3,9 @@ import ClassicyApp from '@/app/SystemFolder/SystemResources/App/ClassicyApp'
 import { quitMenuItemHelper } from '@/app/SystemFolder/SystemResources/App/ClassicyAppUtils'
 import ClassicyButton from '@/app/SystemFolder/SystemResources/Button/ClassicyButton'
 import ClassicyControlLabel from '@/app/SystemFolder/SystemResources/ControlLabel/ClassicyControlLabel'
-import { QuickTimeVideoEmbed } from '@/app/SystemFolder/SystemResources/QuickTime/QuickTimeMovieEmbed'
 import ClassicyWindow from '@/app/SystemFolder/SystemResources/Window/ClassicyWindow'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import ReactPlayer from 'react-player'
 import data from './testdata.json' with { type: 'json' }
 
 interface ClassicyTVProps {}
@@ -19,6 +19,7 @@ const TV: React.FC<ClassicyTVProps> = ({}) => {
     const { dateTime, timeZoneOffset } = desktop.System.Manager.DateAndTime
 
     const [showSettings, setShowSettings] = useState<boolean>(false)
+    const [activePlayer, setActivePlayer] = useState<number>(data[0].id)
 
     const appMenu = [
         {
@@ -27,6 +28,9 @@ const TV: React.FC<ClassicyTVProps> = ({}) => {
             menuChildren: [quitMenuItemHelper(appId, appName, appIcon)],
         },
     ]
+    const playerRefs = useRef<Map<string, HTMLElement | null>>(new Map())
+
+    const hlsOptions = { file: { forceHLS: true, hlsOptions: { startLevel: 0 } } }
 
     return (
         <>
@@ -69,27 +73,64 @@ const TV: React.FC<ClassicyTVProps> = ({}) => {
                     modal={false}
                     appMenu={appMenu}
                 >
-                    <div style={{ backgroundColor: 'var(--color-system-03)', height: '100%' }}>
-                        {/*{data.map((item, index) => (*/}
-                        {/*    <QuickTimeVideoEmbed*/}
-                        {/*        key={index}*/}
-                        {/*        appId={appId}*/}
-                        {/*        name={item.title}*/}
-                        {/*        url={item.url}*/}
-                        {/*        type={'video'}*/}
-                        {/*    />*/}
-                        {/*))}*/}
-                        <QuickTimeVideoEmbed
-                            key={1}
-                            appId={appId}
-                            name={data[1].title}
-                            url={data[1].url}
-                            type={'video'}
-                            options={{ file: {} }}
-                            autoPlay={true}
-                            hideControls={true}
-                        />
-                        <div></div>
+                    <div
+                        style={{
+                            width: '100%',
+                            minHeight: '100%',
+                            margin: 0,
+                            padding: 0,
+                            backgroundColor: 'var(--color-system-03)',
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                width: '100%',
+                                flexWrap: 'wrap',
+                            }}
+                        >
+                            {data.slice(0, 12).map((item, index) => (
+                                <div
+                                    key={item.id}
+                                    style={{
+                                        flexGrow: 1,
+                                        display: 'flex',
+                                        justifyContent: 'space-around',
+                                        width: activePlayer == item.id ? '100%' : '',
+                                        order: activePlayer == item.id ? -1 : 0,
+                                    }}
+                                    onClick={() => setActivePlayer(item.id)}
+                                >
+                                    {activePlayer != item.id && (
+                                        <div style={{ position: 'absolute' }}>
+                                            <p
+                                                style={{
+                                                    margin: 0,
+                                                    padding: 0,
+                                                    fontFamily: 'var(--ui-font)',
+                                                    fontSize: 'calc(var(--ui-font-size)*.75)',
+                                                }}
+                                            >
+                                                {item.source}
+                                            </p>
+                                        </div>
+                                    )}
+                                    <ReactPlayer
+                                        ref={playerRefs[index]}
+                                        url={item.url}
+                                        playing={true}
+                                        loop={false}
+                                        controls={false}
+                                        playsinline={true}
+                                        volume={activePlayer == item.id ? 1 : 0}
+                                        width={activePlayer == item.id ? '100%' : 'auto'}
+                                        height={activePlayer == item.id ? '32em' : '4em'}
+                                        config={item.url.endsWith('m3u8') ? hlsOptions : {}}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </ClassicyWindow>
             </ClassicyApp>

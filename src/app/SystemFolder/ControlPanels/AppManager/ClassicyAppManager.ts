@@ -1,4 +1,3 @@
-import { classicyQuickTimeEventHandler } from '@/app/Applications/QuickTime/QuickTimeContext'
 import {
     ClassicyStoreSystemAppearanceManager,
     ClassicyTheme,

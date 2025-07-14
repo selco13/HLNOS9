@@ -16,6 +16,7 @@ type QuickTimeVideoEmbed = {
     autoPlay?: boolean
     hideControls?: boolean
     controlsDocked?: boolean
+    muted?: boolean
 }
 
 export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
@@ -28,6 +29,7 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
     autoPlay,
     hideControls,
     controlsDocked,
+    muted,
 }) => {
     const desktop = useDesktop()
 
@@ -163,7 +165,7 @@ export const QuickTimeVideoEmbed: React.FC<QuickTimeVideoEmbed> = ({
                     playsinline={true}
                     width="100%"
                     height="100%"
-                    volume={volume}
+                    volume={muted ? 0 : volume}
                     config={options}
                 />
                 <Suspense>
